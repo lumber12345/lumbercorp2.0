@@ -83,7 +83,7 @@ function fetchFF(pathname, { method = 'GET', body = null, params = {} }) {
 
 /* -------------------------------------------------------- tornstats npc */
 /* TornStats publishes the live NPC loot clocks at
- *   GET https://www.tornstats.com/api/v1/{key}/loot
+ *   GET https://www.tornstats.com/api/v2/{key}/loot
  * Browsers can't always reach it cross-origin, so the static app may ask this
  * proxy to relay the call. The key is forwarded to tornstats.com only — never
  * logged, never stored. 60 s cache: the upstream feed refreshes every few min.
@@ -883,7 +883,7 @@ const server = http.createServer(async (req, res) => {
     if (hit && Date.now() - hit.ts <= NPCLOOT_TTL_MS) {
       return sendRaw(res, hit.status, hit.body, { 'x-cache': 'HIT' });
     }
-    fetchTornStats('/api/v1/' + encodeURIComponent(key) + '/loot')
+    fetchTornStats('/api/v2/' + encodeURIComponent(key) + '/loot')
       .then((r) => {
         cacheSet(ck, r.status, r.body);
         sendRaw(res, r.status, r.body, { 'x-cache': 'MISS' });

@@ -406,26 +406,175 @@
   .jbme-pos{font-size:19px;font-weight:800;letter-spacing:.2px}
   .jbme-sub{font-size:12px;color:var(--faint)}
   .jbstats{display:flex;gap:8px;flex-wrap:wrap}
-  .jbstat{flex:1 1 90px;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:8px 10px}
-  .jbstat b{display:block;font-size:15px}
+  .jbstat{flex:1 1 90px;background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:8px 10px}
+  .jbstat b{display:block;color:var(--text);font-size:15px;font-variant-numeric:tabular-nums}
   .jbstat span{font-size:10.5px;color:var(--faint);text-transform:uppercase;letter-spacing:.5px}
   .jbpts{display:flex;gap:6px;flex-wrap:wrap}
-  .jbpt{background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:12px}
+  .jbpt{background:var(--card2);border:1px solid var(--border);border-radius:999px;padding:3px 10px;font-size:12px}
   .jbpt b{color:var(--accent)}
-  .jbnext{font-size:12.5px;color:var(--text);background:var(--panel2);border-left:3px solid var(--accent);border-radius:8px;padding:8px 10px}
-  .jbgrid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(330px,1fr))}
-  .jbcard h3{margin:0;font-size:15px}
-  .jbhead{display:flex;align-items:center;gap:9px;margin-bottom:2px}
-  .jbface{font-size:24px;line-height:1}
-  .jbmeta{font-size:11px;color:var(--faint)}
-  table.jbtbl{width:100%;border-collapse:collapse;font-size:11.5px;margin-top:8px}
-  table.jbtbl th{text-align:right;color:var(--faint);font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.4px;padding:3px 4px;border-bottom:1px solid var(--line)}
-  table.jbtbl th:first-child,table.jbtbl td:first-child{text-align:left}
-  table.jbtbl td{padding:4px;border-bottom:1px solid rgba(255,255,255,.05);text-align:right;white-space:nowrap}
-  table.jbtbl tr.jbok td{background:rgba(63,201,138,.09)}
-  table.jbtbl tr.jbcur td{background:rgba(255,196,0,.13);font-weight:700}
-  table.jbtbl td.jbsp{text-align:left;white-space:normal;color:var(--faint)}
+  .jbnext{font-size:12.5px;color:var(--text);background:var(--card2);border-left:3px solid var(--accent);border-radius:8px;padding:8px 10px}
+  .jbgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;align-items:start}
+  .jbcard{--jb-tone:#d7a746;padding:0;overflow:hidden;border-color:color-mix(in srgb,var(--jb-tone) 28%,var(--border));min-width:0}
+  .jbcard[data-jb-layout="army"]{--jb-tone:#dfb454;grid-column:1/-1}
+  .jbcard[data-jb-layout="grocer"]{--jb-tone:#6dc98a}
+  .jbcard[data-jb-layout="casino"]{--jb-tone:#c28af8}
+  .jbcard[data-jb-layout="medical"]{--jb-tone:#62c6dd;grid-column:1/-1}
+  .jbcard[data-jb-layout="education"]{--jb-tone:#f1ad62}
+  .jbcard[data-jb-layout="law"]{--jb-tone:#e77c77}
+  .jbcard-head{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid color-mix(in srgb,var(--jb-tone) 25%,var(--border));background:linear-gradient(115deg,color-mix(in srgb,var(--jb-tone) 10%,transparent),transparent 72%)}
+  .jbcard-mark{width:39px;height:39px;display:grid;place-items:center;flex:0 0 auto;border-radius:12px;background:color-mix(in srgb,var(--jb-tone) 13%,var(--card2));border:1px solid color-mix(in srgb,var(--jb-tone) 40%,var(--border));font-size:21px}
+  .jbcard-title{min-width:0;flex:1}
+  .jbcard-kicker{display:block;color:var(--jb-tone);font-size:8.5px;font-weight:900;letter-spacing:1px;text-transform:uppercase}
+  .jbcard h3{margin:1px 0;font-size:15px;line-height:1.2}
+  .jbmeta{font-size:10.5px;color:var(--faint)}
+  .jbcard-points{flex:0 0 auto;min-width:56px;text-align:center;padding:5px 8px;border:1px solid color-mix(in srgb,var(--jb-tone) 40%,var(--border));background:color-mix(in srgb,var(--jb-tone) 10%,var(--card));border-radius:11px;font-size:10px;color:var(--muted)}
+  .jbcard-points b{display:block;color:var(--jb-tone);font-size:14px;line-height:1.1}
+  .jb-layout{padding:12px 13px 14px;min-width:0}
+  .jb-layout-caption{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:7px 10px;border-radius:9px;font-size:9px;font-weight:900;letter-spacing:.8px;text-transform:uppercase;color:var(--jb-tone);background:color-mix(in srgb,var(--jb-tone) 8%,var(--card2));border:1px solid color-mix(in srgb,var(--jb-tone) 24%,var(--border))}
+  .jb-layout-caption span:last-child{font-size:8px;letter-spacing:.4px;color:var(--faint);text-align:right}
+  .jb-position{min-width:0;border:1px solid var(--border);background:var(--card);transition:border-color .16s,background .16s,transform .16s}
+  .jb-position[data-jb-state="current"]{border-color:color-mix(in srgb,var(--warn) 72%,var(--border));background:color-mix(in srgb,var(--warn) 8%,var(--card))}
+  .jb-position[data-jb-state="qualified"]{border-color:color-mix(in srgb,var(--ok) 50%,var(--border));background:color-mix(in srgb,var(--ok) 6%,var(--card))}
+  .jb-position-status{display:inline-flex;align-items:center;gap:4px;white-space:nowrap;border:1px solid var(--border2);border-radius:999px;padding:3px 7px;font-size:8.5px;font-weight:900;letter-spacing:.45px;text-transform:uppercase;color:var(--faint)}
+  [data-jb-state="current"] .jb-position-status{color:var(--warn);border-color:color-mix(in srgb,var(--warn) 45%,var(--border))}
+  [data-jb-state="qualified"] .jb-position-status{color:var(--ok);border-color:color-mix(in srgb,var(--ok) 40%,var(--border))}
+  [data-jb-state="locked"] .jb-position-status{color:var(--muted)}
+  .jb-position h4{margin:0;font-size:12.5px;line-height:1.25}
+  .jb-metric{min-width:0;padding:5px 7px;border-radius:7px;background:color-mix(in srgb,var(--card2) 82%,transparent)}
+  .jb-metric span{display:block;color:var(--faint);font-size:8.2px;font-weight:900;letter-spacing:.55px;text-transform:uppercase}
+  .jb-metric b{display:block;margin-top:2px;color:var(--text);font-size:10.5px;font-variant-numeric:tabular-nums;line-height:1.3;overflow-wrap:anywhere}
+  .jb-metric small{display:block;color:var(--faint);font-size:8px;line-height:1.2}
+  .jb-special{display:flex;align-items:flex-start;gap:7px;margin-top:6px;padding:6px 8px;border-radius:7px;background:color-mix(in srgb,var(--jb-tone) 7%,var(--card2));font-size:9.5px;line-height:1.35;color:var(--muted)}
+  .jb-special-label{flex:0 0 auto;color:var(--jb-tone);font-size:7px;font-weight:900;letter-spacing:.65px;text-transform:uppercase;padding-top:1px}
+  .jb-special.is-none{opacity:.68}
+
+  /* Army — command-chain rank cards with a visible promotion route. */
+  .jb-army-route{margin:8px 1px 9px;color:var(--faint);font-size:9px;letter-spacing:.45px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+  .jb-army-steps{display:grid;gap:6px}
+  .jb-army-step{display:grid;grid-template-columns:30px 31px minmax(0,1fr);align-items:start;gap:8px;padding:7px 8px;border-radius:9px}
+  .jb-army-order{padding-top:5px;color:var(--jb-tone);font:900 10px ui-monospace,SFMono-Regular,monospace;text-align:center}
+  .jb-army-insignia{width:29px;height:29px;display:grid;place-items:center;border:1px solid color-mix(in srgb,var(--jb-tone) 35%,var(--border));border-radius:8px;background:color-mix(in srgb,var(--jb-tone) 11%,var(--card2));font-size:15px}
+  .jb-army-content{min-width:0}
+  .jb-army-title{display:flex;align-items:center;justify-content:space-between;gap:6px;min-width:0}
+  .jb-army-facts{display:grid;grid-template-columns:1.05fr 1.3fr .7fr .8fr 1fr;gap:5px;margin-top:5px}
+  .jb-army-facts .jb-metric{padding:4px 6px}
+  .jb-army-facts .jb-metric b{font-size:9px}
+
+  /* Grocer — shelf-label/price-ticket cards. */
+  .jb-grocer-shelf{position:relative;margin-top:9px;padding-bottom:6px}
+  .jb-grocer-shelf::after{content:"";display:block;height:5px;margin-top:2px;border-radius:2px;background:linear-gradient(180deg,color-mix(in srgb,var(--jb-tone) 35%,var(--border2)),var(--card3));box-shadow:0 3px 0 color-mix(in srgb,var(--jb-tone) 17%,var(--border))}
+  .jb-grocer-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .jb-grocer-ticket{position:relative;padding:9px;border-radius:10px 10px 7px 7px;border-top:3px solid var(--jb-tone);box-shadow:0 3px 0 color-mix(in srgb,var(--jb-tone) 20%,var(--border));overflow:hidden}
+  .jb-grocer-ticket::after{content:"";position:absolute;right:9px;top:9px;width:24px;height:16px;opacity:.18;background:repeating-linear-gradient(90deg,var(--jb-tone) 0 2px,transparent 2px 4px,var(--jb-tone) 4px 5px,transparent 5px 7px)}
+  .jb-grocer-top{display:flex;align-items:center;gap:7px;min-width:0}
+  .jb-grocer-stamp{width:29px;height:29px;flex:0 0 auto;display:grid;place-items:center;background:color-mix(in srgb,var(--jb-tone) 13%,var(--card2));border-radius:8px;font-size:15px}
+  .jb-grocer-title{min-width:0;flex:1}
+  .jb-grocer-title small{display:block;color:var(--jb-tone);font-size:8px;font-weight:900;letter-spacing:.6px;text-transform:uppercase}
+  .jb-grocer-title h4{margin:1px 0 0;font-size:11.5px}
+  .jb-grocer-price{display:flex;align-items:baseline;justify-content:space-between;gap:5px;margin:8px 0 6px;padding:5px 7px;border-radius:6px;background:color-mix(in srgb,var(--jb-tone) 8%,var(--card2))}
+  .jb-grocer-price span{font-size:8px;color:var(--faint);font-weight:900;letter-spacing:.55px;text-transform:uppercase}
+  .jb-grocer-price b{color:var(--jb-tone);font-size:15px;font-variant-numeric:tabular-nums}
+  .jb-grocer-info{display:grid;gap:4px}
+  .jb-grocer-info .jb-metric{display:flex;align-items:center;justify-content:space-between;gap:6px;padding:4px 6px}
+  .jb-grocer-info .jb-metric span{flex:0 0 auto}
+  .jb-grocer-info .jb-metric b{text-align:right;font-size:9px}
+  .jb-grocer-bottom{display:flex;justify-content:space-between;gap:5px;flex-wrap:wrap;margin-top:6px;color:var(--muted);font-size:8.5px}
+  .jb-grocer-bottom b{color:var(--jb-tone)}
+  .jb-grocer-ticket .jb-special{margin-top:5px;padding:4px 6px;font-size:8.5px}
+
+  /* Casino — green felt and separate playing-card rank cards. */
+  .jb-casino-felt{margin-top:9px;padding:9px;border:1px solid color-mix(in srgb,var(--jb-tone) 35%,var(--border));border-radius:14px;background:radial-gradient(ellipse at 48% -20%,color-mix(in srgb,var(--jb-tone) 19%,transparent),transparent 66%),linear-gradient(145deg,#10251e,#112018 57%,#0d1915)}
+  [data-theme="light"] .jb-casino-felt{background:radial-gradient(ellipse at 48% -20%,color-mix(in srgb,var(--jb-tone) 17%,transparent),transparent 66%),linear-gradient(145deg,#e6f0e9,#dce9e0 57%,#eef3ef)}
+  .jb-casino-tabletop{display:flex;align-items:center;justify-content:space-between;gap:7px;margin-bottom:8px;color:color-mix(in srgb,var(--jb-tone) 80%,var(--text));font-size:8px;font-weight:900;letter-spacing:.8px;text-transform:uppercase}
+  .jb-casino-deck{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+  .jb-casino-card{position:relative;padding:8px;border-radius:10px;background:linear-gradient(140deg,var(--card),var(--card2));box-shadow:0 3px 8px rgba(0,0,0,.15);overflow:hidden}
+  .jb-casino-card::after{content:"♠";position:absolute;right:7px;top:21px;color:color-mix(in srgb,var(--jb-tone) 13%,transparent);font-size:43px;line-height:1;pointer-events:none}
+  .jb-casino-card[data-jb-state="current"]::after{color:color-mix(in srgb,var(--warn) 16%,transparent)}
+  .jb-casino-top{position:relative;z-index:1;display:flex;align-items:flex-start;gap:6px}
+  .jb-casino-suit{width:25px;height:31px;flex:0 0 auto;display:grid;place-items:center;border:1px solid color-mix(in srgb,var(--jb-tone) 42%,var(--border));border-radius:6px;color:var(--jb-tone);font-size:15px;font-weight:900;background:color-mix(in srgb,var(--jb-tone) 8%,var(--card))}
+  .jb-casino-suit small{font-size:6px;line-height:1}
+  .jb-casino-title{min-width:0;flex:1}
+  .jb-casino-title h4{margin:2px 0 4px;font-size:10px}
+  .jb-casino-pay{display:flex;align-items:baseline;justify-content:space-between;gap:4px;margin:7px 0 5px;padding-bottom:5px;border-bottom:1px dashed color-mix(in srgb,var(--jb-tone) 30%,var(--border));position:relative;z-index:1}
+  .jb-casino-pay span{font-size:7px;color:var(--faint);font-weight:900;letter-spacing:.5px;text-transform:uppercase}
+  .jb-casino-pay b{color:var(--jb-tone);font-size:14px;font-variant-numeric:tabular-nums}
+  .jb-casino-stats{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:4px}
+  .jb-casino-stats .jb-metric{padding:4px 5px;background:color-mix(in srgb,var(--card2) 78%,transparent)}
+  .jb-casino-stats .jb-metric b{font-size:8.7px}
+  .jb-casino-rewards{position:relative;z-index:1;display:flex;gap:8px;justify-content:space-between;flex-wrap:wrap;margin-top:5px;color:var(--faint);font-size:8.7px}
+  .jb-casino-rewards b{color:var(--jb-tone);font-size:9.5px}
+  .jb-casino-card .jb-special{position:relative;z-index:1;font-size:8.5px;padding:4px 5px;margin-top:5px}
+
+  /* Medical — clinical-care timeline and patient-chart metrics. */
+  .jb-medical-ward{position:relative;margin-top:9px;display:grid;gap:7px}
+  .jb-medical-ward::before{content:"";position:absolute;left:19px;top:17px;bottom:18px;width:2px;background:color-mix(in srgb,var(--jb-tone) 26%,var(--border));pointer-events:none}
+  .jb-medical-record{position:relative;display:grid;grid-template-columns:40px minmax(0,1fr);gap:8px;padding:8px;border-radius:10px}
+  .jb-medical-node{position:relative;z-index:1;width:28px;height:28px;margin:1px auto 0;display:grid;place-items:center;border:1px solid color-mix(in srgb,var(--jb-tone) 52%,var(--border));border-radius:50%;background:var(--card2);color:var(--jb-tone);font-size:12px;font-weight:900}
+  .jb-medical-record[data-jb-state="current"] .jb-medical-node{color:var(--warn);border-color:var(--warn)}
+  .jb-medical-main{min-width:0}
+  .jb-medical-title{display:flex;align-items:center;justify-content:space-between;gap:7px}
+  .jb-medical-facts{display:grid;grid-template-columns:1.15fr 1.3fr .72fr .8fr 1fr;gap:5px;margin-top:6px}
+  .jb-medical-facts .jb-metric{padding:4px 6px}
+  .jb-medical-facts .jb-metric b{font-size:8.7px}
+  .jb-medical-record .jb-special{margin-top:5px}
+
+  /* Education — gradebook/report-card tiles with subject bands. */
+  .jb-education-board{position:relative;margin-top:9px;padding:8px;border-radius:11px;border:1px solid color-mix(in srgb,var(--jb-tone) 28%,var(--border));background:repeating-linear-gradient(180deg,transparent 0 25px,color-mix(in srgb,var(--jb-tone) 5%,transparent) 25px 26px),color-mix(in srgb,var(--jb-tone) 4%,var(--card2))}
+  .jb-education-top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px;color:var(--jb-tone);font-size:8px;font-weight:900;letter-spacing:.7px;text-transform:uppercase}
+  .jb-education-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+  .jb-edu-report{position:relative;padding:7px 7px 7px 39px;border-radius:7px 10px 10px 7px;border:1px solid color-mix(in srgb,var(--jb-tone) 25%,var(--border));background:var(--card);overflow:hidden}
+  .jb-edu-report::before{content:"";position:absolute;left:29px;top:0;bottom:0;border-left:1px solid color-mix(in srgb,var(--jb-tone) 28%,var(--border))}
+  .jb-edu-grade{position:absolute;left:0;top:0;bottom:0;width:29px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;background:color-mix(in srgb,var(--jb-tone) 10%,var(--card2));color:var(--jb-tone)}
+  .jb-edu-grade small{font-size:6px;font-weight:900;letter-spacing:.35px}
+  .jb-edu-grade b{font-size:13px;font-family:ui-monospace,SFMono-Regular,monospace}
+  .jb-edu-title{display:flex;align-items:flex-start;justify-content:space-between;gap:5px}
+  .jb-edu-title h4{font-size:9.5px;margin:2px 0 0}
+  .jb-edu-label{display:block;color:var(--faint);font-size:7.5px;font-weight:900;letter-spacing:.5px;text-transform:uppercase}
+  .jb-edu-subjects{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:6px}
+  .jb-edu-subjects .jb-metric{padding:4px 5px}
+  .jb-edu-subjects .jb-metric b{font-size:8.5px}
+  .jb-edu-footer{display:flex;justify-content:space-between;gap:5px;flex-wrap:wrap;margin-top:5px;color:var(--muted);font-size:8px}
+  .jb-edu-footer b{color:var(--jb-tone)}
+  .jb-edu-report .jb-special{margin-top:5px;padding:4px 5px;font-size:8.5px}
+
+  /* Law — numbered case files, evidence/entry stats, and promotion rulings. */
+  .jb-law-docket{margin-top:9px;padding:8px;border:1px solid color-mix(in srgb,var(--jb-tone) 27%,var(--border));border-radius:11px;background:linear-gradient(160deg,color-mix(in srgb,var(--jb-tone) 5%,var(--card2)),var(--card2))}
+  .jb-law-bench{display:flex;justify-content:space-between;gap:6px;margin-bottom:6px;padding:0 2px 6px;border-bottom:2px solid color-mix(in srgb,var(--jb-tone) 25%,var(--border));font-size:7.5px;color:var(--jb-tone);font-weight:900;letter-spacing:.8px;text-transform:uppercase}
+  .jb-law-list{display:grid;gap:5px}
+  .jb-law-case{display:grid;grid-template-columns:39px minmax(0,1fr);gap:7px;padding:6px;border-radius:8px;background:var(--card);border:1px solid var(--border)}
+  .jb-law-number{display:flex;flex-direction:column;align-items:center;justify-content:center;align-self:stretch;border-right:1px dashed color-mix(in srgb,var(--jb-tone) 35%,var(--border));color:var(--jb-tone)}
+  .jb-law-number small{font-size:6.5px;font-weight:900;letter-spacing:.4px}
+  .jb-law-number b{font:900 13px ui-monospace,SFMono-Regular,monospace}
+  .jb-law-main{min-width:0}
+  .jb-law-title{display:flex;align-items:center;justify-content:space-between;gap:5px}
+  .jb-law-title h4{font-size:10px}
+  .jb-law-facts{display:grid;grid-template-columns:1.1fr 1.2fr .65fr .7fr 1fr;gap:4px;margin-top:5px}
+  .jb-law-facts .jb-metric{padding:4px 5px}
+  .jb-law-facts .jb-metric b{font-size:8.5px}
+  .jb-law-case .jb-special{margin-top:4px;padding:4px 5px;font-size:8.5px}
+
+  @media (max-width:700px){
+    .jbgrid{grid-template-columns:1fr}
+    .jbcard[data-jb-layout="army"],.jbcard[data-jb-layout="medical"]{grid-column:auto}
+    .jb-army-facts,.jb-medical-facts{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .jb-law-facts{grid-template-columns:repeat(3,minmax(0,1fr))}
+  }
+  @media (max-width:520px){
+    .jbcard-head{padding:11px}
+    .jb-layout{padding:10px}
+    .jb-grocer-grid,.jb-casino-deck,.jb-education-grid{grid-template-columns:1fr}
+    .jb-army-step{grid-template-columns:23px 27px minmax(0,1fr);gap:6px;padding:6px}
+    .jb-army-insignia{width:26px;height:26px;font-size:13px}
+    .jb-army-facts,.jb-medical-facts,.jb-law-facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .jb-medical-ward::before{left:15px}
+    .jb-medical-record{grid-template-columns:31px minmax(0,1fr);gap:5px;padding:6px}
+    .jb-medical-node{width:24px;height:24px}
+    .jb-edu-title{display:block}
+    .jb-edu-title .jb-position-status{margin-top:3px}
+    .jb-edu-title h4{font-size:10px}
+  }
   .jbsect{margin:18px 0 8px;font-size:13px;text-transform:uppercase;letter-spacing:1px;color:var(--faint)}
+  .jb-position-legend{margin:-3px 2px 9px;color:var(--faint);font-size:10px;line-height:1.4}
   .ladder{display:flex;gap:8px;flex-wrap:wrap;align-items:stretch;margin-top:2px}
   .ladstep{flex:1;min-width:128px;background:var(--card2);border:1px solid var(--border);border-radius:11px;padding:9px 10px}
   .ladstep b{font-size:12.5px;display:block}
@@ -744,12 +893,13 @@
         </div>
         <div class="ladder" id="npcLadder"></div>
         <div class="npcnote" style="margin-top:9px">
-          <b>Where the timers come from:</b> this tab polls
-          <a href="https://tornstats.com/loot" target="_blank" rel="noopener">TornStats</a>
-          (<code>/api/v1/&lt;key&gt;/loot</code>) for each NPC's real hospital-exit and Loot Level II–V timestamps and
-          counts them down live — that call carries <b>your Torn API key to tornstats.com</b>, so if a proxy is
-          configured the request is relayed through it instead. No key, no feed, or feed down? The card falls back to
-          your own <b>⚔️ Defeated now</b> clock, and you can pin any NPC to it with <b>✎ My own clock</b>.
+          <b>Timer source:</b> the live clocks follow TornStats'
+          <a href="https://www.tornstats.com/loot" target="_blank" rel="noopener">NPC Loot page</a>.
+          To render those countdowns here, this tab reads the matching structured feed
+          (<code>/api/v2/&lt;key&gt;/loot</code>) for each NPC's hospital-exit and Loot Level II–V timestamps.
+          That call carries <b>your Torn API key to tornstats.com</b>, so if a proxy is configured the request is
+          relayed through it instead. No key, no feed, or feed down? The card falls back to your own
+          <b>⚔️ Defeated now</b> clock, and you can pin any NPC to it with <b>✎ My own clock</b>.
         </div>
         <div class="npcnote" style="margin-top:7px">
           The ladder starts the instant the NPC leaves hospital (<b>100–120 min</b> after the kill), then levels up at
@@ -768,7 +918,7 @@
           <button data-npcfilter="live">Attackable now</button>
         </div>
         <input type="text" id="npcSearch" placeholder="Search NPC or loot item…" autocomplete="off" spellcheck="false">
-        <span class="chip" id="npcSource" title="Where the countdowns come from">⏱️ Manual clocks</span>
+        <a class="chip" id="npcSource" href="https://www.tornstats.com/loot" target="_blank" rel="noopener" title="Open the TornStats NPC Loot timer page">⏱️ Manual clocks</a>
         <button class="btn sm" id="btnNpcRefresh" title="Re-poll TornStats for the live NPC loot clocks">⟳ Timers</button>
         <button class="btn sm" id="btnNpcAvatars" title="Pull the real NPC profile pictures with your Torn API key">🖼️ Live avatars</button>
       </div>
@@ -835,14 +985,16 @@
         <button class="btn sm" id="btnJbRefresh" title="Re-read your city job, city-job points and working stats from the Torn API">⟳ Refresh</button>
       </div>
 
-      <div class="jbsect" id="jbCitySect">The six city jobs — every position</div>
+      <div class="jbsect" id="jbCitySect">Six city jobs · six distinct position layouts</div>
+      <div class="jb-position-legend">M / I / E = Manual / Intelligence / Endurance · gains are per day · promotion points are thresholds</div>
       <div class="jbgrid" id="jbCity"></div>
 
       <div class="npcnote" style="margin-top:12px">
         This book covers <b>city jobs only</b>: Army, Grocer, Casino, Medical, Education and Law.
         City-job points are granted daily at <b>18:00 TCT</b>; each ladder shows points earned per day
         and required for promotion. Points remain with their job type when you leave and rejoin.
-        Requirements and specials verified against the
+        Personal progress reads your public profile plus the Minimal-access <code>jobpoints</code> and
+        <code>workstats</code> selections. Requirements and specials verified against the
         <a href="https://wiki.torn.com/wiki/Job" target="_blank" rel="noopener">Torn Wiki — Job</a>.
       </div>
       <div class="npcnote" id="jbUpdated" style="margin-top:6px"></div>
@@ -1677,7 +1829,7 @@ const PAGES = {
   bazaar:    ["Bazaar Finder", "Hunt the cheapest listings"],
   targets:   ["Target Finder", "Scout & track attack targets"],
   npcloot:   ["NPC Loot", "Lootable NPCs — loot levels, timers & every drop"],
-  jobbook:   ["The Job Book", "Every job & company — ladders, pay, points and specials"],
+  jobbook:   ["The Job Book", "Six city-job ladders · 41 positions · six distinct layouts"],
   settings:  ["Settings", "Make it yours"]
 };
 function goto(page){
@@ -2479,13 +2631,15 @@ let npcFilter = "all", npcQuery = "";
 const npcSig = {};                              // last rendered signature per NPC
 let npcManual = store.get("lc2_npcmanual", {}); // { [id]: true } — ignore the feed for this NPC
 
-/* ---- live timers from TornStats ------------------------------------------
- * GET https://www.tornstats.com/api/v1/{key}/loot returns, per NPC:
+/* ---- live timers from TornStats' public /loot board ----------------------
+ * The board is https://www.tornstats.com/loot; this structured feed is what
+ * the app reads to render those same timers as local countdowns.
+ * GET https://www.tornstats.com/api/v2/{key}/loot returns, per NPC:
  *   { name, torn_id, status, hosp_out, loot_2, loot_3, loot_4, loot_5, updated }
  * with unix-SECOND timestamps — exactly the hospital-exit + I→V ladder this
  * tab draws. Needs your Torn API key, which is therefore sent to tornstats.com
  * (or to your own proxy, which relays it and never stores it). */
-const TS_LOOT_API = "https://www.tornstats.com/api/v1/";
+const TS_LOOT_API = "https://www.tornstats.com/api/v2/";
 let npcLive = store.get("lc2_npclive", null);   // { [id]: {id,name,status,lv:[ms x5],updated} }
 let npcLiveAt = Number(store.get("lc2_npcliveat", 0)) || 0;
 let npcLiveSrc = store.get("lc2_npclivesrc", null);   // "tornstats" | "proxy"
@@ -2578,10 +2732,10 @@ function renderNpcSource(){
   if(npcLive && npcLiveAt){
     const ids = Object.keys(npcLive).length;
     el.className = "chip " + (npcLiveErr ? "warn" : "ok");
-    el.innerHTML = `📡 TornStats live · ${ids} NPC${ids === 1 ? "" : "s"} · ${timeAgo(npcLiveAt)}`
+    el.innerHTML = `📡 TornStats /loot · ${ids} NPC${ids === 1 ? "" : "s"} · ${timeAgo(npcLiveAt)}`
       + (npcLiveErr ? ` · refresh failed` : "")
       + (npcLiveSrc === "proxy" ? " · via your proxy" : "");
-    el.title = npcLiveErr ? escHtml(npcLiveErr) : "Hospital exit + Loot Level I–V times, polled from tornstats.com";
+    el.title = npcLiveErr ? escHtml(npcLiveErr) : "Open TornStats' NPC Loot page — hospital exit + Loot Level I–V timers";
   }else{
     el.className = "chip warn";
     el.innerHTML = "⏱️ Manual clocks" + (npcLiveErr ? "" : " — no live feed yet");
@@ -2930,19 +3084,49 @@ function jbCityOnlyState(raw){
     if(v !== undefined && v !== null) jobs[j.id] = num(v);
   }
   return {
-    pos: typeof raw.pos === "string" ? raw.pos : null,
+    pos: typeof raw.pos === "string" ? raw.pos
+      : (raw.pos && typeof raw.pos.position === "string" ? raw.pos.position : null),
     man: num(raw.man), int: num(raw.int), end: num(raw.end),
-    jobs, at: num(raw.at)
+    jobs, at: num(raw.at), schema: num(raw.schema)
   };
 }
 let jbMe = jbCityOnlyState(store.get("lc2_jobme", null)); // legacy company fields are dropped on load
 if(jbMe) store.set("lc2_jobme", jbMe);
 let jbErr = null, jbBusy = false;
 
+function jbWorkstatsFrom(reply){
+  if(!reply || typeof reply !== "object") return null;
+  const candidates = [];
+  const addCandidate = obj => {
+    if(!obj || typeof obj !== "object" || Array.isArray(obj)) return;
+    candidates.push(obj);
+    ["workstats","work_stats","workStats","working_stats","workingStats","stats"].forEach(k => {
+      if(obj[k] && typeof obj[k] === "object") candidates.push(obj[k]);
+    });
+  };
+  addCandidate(reply);
+  addCandidate(reply.user);
+  addCandidate(reply.data);
+  addCandidate(reply.profile);
+  const pick = (obj, names) => {
+    for(const name of names) if(obj[name] !== undefined && obj[name] !== null && obj[name] !== "") return obj[name];
+    return undefined;
+  };
+  for(const obj of candidates){
+    const stats = {
+      manual_labor: pick(obj,["manual_labor","manualLabor","manual"]),
+      intelligence: pick(obj,["intelligence","intel"]),
+      endurance: pick(obj,["endurance","end"])
+    };
+    if(Object.values(stats).every(v => v !== undefined)) return stats;
+  }
+  return null;
+}
+
 async function jbFetch(silent){
   const key = (settings.apiKey || "").trim();
   if(!key){
-    jbErr = "Add a Torn API key in Setup → Data Source to see your city job, city-job points and working stats";
+    jbErr = "Add a Minimal-access Torn API key in Setup → Data Source to read your city job, job points and working stats";
     if(!silent) toast("🔑 " + jbErr, "warn");
     renderJobBook(); return false;
   }
@@ -2951,25 +3135,36 @@ async function jbFetch(silent){
   const btn = $("btnJbRefresh");
   if(btn){ btn.disabled = true; btn.classList.add("spin"); }
   try{
-    const j = await tornUser("profile,jobpoints,stats");
+    const j = await tornUser("profile,jobpoints,workstats");
     if(!j || j.error) throw new Error((j && j.error && j.error.error) || "the Torn API refused the call");
-    const pr = j.profile || {}, st = j.stats || {}, jp = j.jobpoints || {};
-    const apiJob = j.job;
-    const pos = typeof apiJob === "string" ? apiJob : (apiJob && apiJob.position) || pr.job || null;
+    const pr = j.profile || {}, jp = j.jobpoints || {};
+    const ws = jbWorkstatsFrom(j);
+    if(!ws){
+      const sections = Object.keys(j).filter(k => k !== "error").join(", ") || "none";
+      throw new Error(`Torn did not return all three work stats (response sections: ${sections}). Confirm your API key has Minimal access, then refresh.`);
+    }
+    /* Torn's profile selection returns job as an object: {job, position,
+       company_id, ...}. For city jobs, position is the ladder rung. */
+    const apiJob = (pr.job && typeof pr.job === "object") ? pr.job : j.job;
+    const pos = (apiJob && typeof apiJob.position === "string" && apiJob.position)
+      || (typeof pr.job === "string" ? pr.job : null)
+      || (typeof j.job === "string" ? j.job : null);
     const num = v => (typeof v === "number" ? v : (parseInt(v, 10) || 0));
     const jobs = {};
     for(const k in (jp.jobs || {})) jobs[String(k).toLowerCase()] = num(jp.jobs[k]);
     jbMe = {
       pos,
-      man: num(st.manual_labor), int: num(st.intelligence), end: num(st.endurance),
-      jobs, at: Date.now()
+      man: num(ws.manual_labor), int: num(ws.intelligence), end: num(ws.endurance),
+      jobs, at: Date.now(), schema: 3
     };
     store.set("lc2_jobme", jbMe);
     jbErr = null;
     if(!silent) toast("📖 City-job data updated from the Torn API", "ok");
     return true;
   }catch(e){
-    jbErr = (e && e.message) || "Torn API unreachable";
+    jbErr = e && Number(e.code) === 16
+      ? "This needs a Minimal-access Torn API key (jobpoints + workstats)."
+      : (e && e.message) || "Torn API unreachable";
     if(!silent) toast("⚠️ Job Book: " + escHtml(jbErr) + (jbMe ? " (showing the last good read)" : ""), "warn");
     return false;
   }finally{
@@ -3015,7 +3210,7 @@ function jbMeHtml(){
     return `<div class="jbme-top">
         <div style="flex:1;min-width:0">
           <div class="jbme-pos">📖 Your city-job progress</div>
-          <div class="jbme-sub">${jbErr ? escHtml(jbErr) : "Add a Torn API key in Setup to pull your city-job position, city-job points and working stats."}</div>
+          <div class="jbme-sub">${jbErr ? escHtml(jbErr) : "Add a Minimal-access Torn API key in Setup to pull your city-job position, city-job points and working stats."}</div>
         </div>
         <button class="btn sm primary" data-jb="fetch">⟳ Read from Torn</button>
       </div>
@@ -3038,9 +3233,9 @@ function jbMeHtml(){
   }else if(nxt && nxt.row){
     advice = `<div class="jbnext">Next up in <b>${escHtml(nxt.job)}</b>: ${escHtml(nxt.row[0])} — you need ${escHtml(nxt.need.join(", "))}.</div>`;
   }else if(!cityHit && jbMe.pos){
-    advice = `<div class="jbnext">Your current position is outside the city-job ladders. Green rows below show city-job positions your working stats meet.</div>`;
+    advice = `<div class="jbnext">Your current position is outside the city-job ladders. Green-highlighted cards show the city positions your working stats meet.</div>`;
   }else{
-    advice = `<div class="jbnext">Green rows below show the city-job positions your working stats already meet.</div>`;
+    advice = `<div class="jbnext">Green-highlighted positions show the city-job roles your working stats already meet.</div>`;
   }
   return `<div class="jbme-top">
       <div style="flex:1;min-width:0">
@@ -3050,8 +3245,8 @@ function jbMeHtml(){
       <button class="btn sm primary" data-jb="fetch">⟳ Refresh</button>
     </div>
     <div class="jbstats">
-      <div class="jbstat"><span>Manual</span><b>${fmtInt(jbMe.man)}</b></div>
-      <div class="jbstat"><span>Intel</span><b>${fmtInt(jbMe.int)}</b></div>
+      <div class="jbstat"><span>Manual labor</span><b>${fmtInt(jbMe.man)}</b></div>
+      <div class="jbstat"><span>Intelligence</span><b>${fmtInt(jbMe.int)}</b></div>
       <div class="jbstat"><span>Endurance</span><b>${fmtInt(jbMe.end)}</b></div>
       <div class="jbstat"><span>Next points</span><b data-jbcd>${fmtCountdown(sec)}</b></div>
     </div>
@@ -3061,36 +3256,200 @@ function jbMeHtml(){
     ${advice}`;
 }
 
+function jbPositionState(r){
+  if(jbMe && (jbMe.pos || "").toLowerCase() === r[0].toLowerCase()) return "current";
+  if(!jbMe) return "reference";
+  return jbQualify(r) ? "qualified" : "locked";
+}
+function jbPositionStatus(state){
+  const labels = {current:"Your position", qualified:"Stats qualify", locked:"Stats short", reference:"Reference"};
+  return `<span class="jb-position-status">${labels[state] || "Reference"}</span>`;
+}
+function jbMetric(label, value, note=""){
+  return `<div class="jb-metric"><span>${label}</span><b>${value}</b>${note ? `<small>${note}</small>` : ""}</div>`;
+}
+function jbReqText(r){ return `M ${fmtInt(r[1])} · I ${fmtInt(r[2])} · E ${fmtInt(r[3])}`; }
+function jbGainText(r){ return `+${fmtInt(r[4])} · +${fmtInt(r[5])} · +${fmtInt(r[6])}`; }
+function jbPromotionText(r){ return r[9] === null ? "Max rank" : `${fmtInt(r[9])} pts`; }
+function jbSpecialHtml(r){
+  const none = r[10] === "none";
+  return `<div class="jb-special${none ? " is-none" : ""}">
+    <span class="jb-special-label">${none ? "No special" : "Job special"}</span>
+    <span>${none ? "No special for this position" : escHtml(r[10])}</span>
+  </div>`;
+}
+function jbLayoutCaption(title, detail){
+  return `<div class="jb-layout-caption"><span>${title}</span><span>${detail}</span></div>`;
+}
+function jbArmyLayout(j, rows){
+  const emblems = ["I","II","III","IV","V","VI","VII","VIII","IX","X"];
+  return `<div class="jb-layout jb-army-layout">
+    ${jbLayoutCaption("Field commission route", "Entry stats · daily training · rank benefits")}
+    <div class="jb-army-route"><span>ENLISTED → COMMAND</span><span>Promotion points are the next-rank threshold</span></div>
+    <div class="jb-army-steps">${rows.map((r, i) => {
+      const state = jbPositionState(r);
+      return `<article class="jb-position jb-army-step" data-jb-position="${escHtml(r[0])}" data-jb-state="${state}">
+        <div class="jb-army-order">${emblems[i] || i + 1}</div>
+        <div class="jb-army-insignia" aria-hidden="true">${j.glyph}</div>
+        <div class="jb-army-content">
+          <div class="jb-army-title"><h4>${escHtml(r[0])}</h4>${jbPositionStatus(state)}</div>
+          <div class="jb-army-facts">
+            ${jbMetric("Entry · M / I / E", jbReqText(r))}
+            ${jbMetric("Daily gain · M / I / E", jbGainText(r))}
+            ${jbMetric("Pay / day", `$${fmtInt(r[7])}`)}
+            ${jbMetric("Points / day", `+${fmtInt(r[8])}`)}
+            ${jbMetric("Promotion", jbPromotionText(r))}
+          </div>
+          ${jbSpecialHtml(r)}
+        </div>
+      </article>`;
+    }).join("")}</div>
+  </div>`;
+}
+function jbGrocerLayout(j, rows){
+  const stockIcons = ["🥬","🏷️","🧺","🚚","🛒"];
+  return `<div class="jb-layout jb-grocer-layout">
+    ${jbLayoutCaption("Store-floor shift board", "Shelf tickets · pay · daily city-job points")}
+    <div class="jb-grocer-shelf"><div class="jb-grocer-grid">${rows.map((r, i) => {
+      const state = jbPositionState(r);
+      return `<article class="jb-position jb-grocer-ticket" data-jb-position="${escHtml(r[0])}" data-jb-state="${state}">
+        <div class="jb-grocer-top">
+          <div class="jb-grocer-stamp" aria-hidden="true">${stockIcons[i] || "🛍️"}</div>
+          <div class="jb-grocer-title"><small>Shift ${String(i + 1).padStart(2,"0")} · store role</small><h4>${escHtml(r[0])}</h4></div>
+          ${jbPositionStatus(state)}
+        </div>
+        <div class="jb-grocer-price"><span>Daily pay</span><b>$${fmtInt(r[7])}</b></div>
+        <div class="jb-grocer-info">
+          ${jbMetric("Entry check · M / I / E", jbReqText(r))}
+          ${jbMetric("Daily training · M / I / E", jbGainText(r))}
+        </div>
+        <div class="jb-grocer-bottom"><span><b>+${fmtInt(r[8])}</b> points / day</span><span>Promotion: <b>${jbPromotionText(r)}</b></span></div>
+        ${jbSpecialHtml(r)}
+      </article>`;
+    }).join("")}</div></div>
+  </div>`;
+}
+function jbCasinoLayout(j, rows){
+  const suits = ["♣","♦","♥","♠","♣","♦"];
+  const ranks = ["A","2","3","4","5","6"];
+  return `<div class="jb-layout jb-casino-layout">
+    ${jbLayoutCaption("Casino floor · house ladder", "Playing-card ranks · payout and point chips")}
+    <div class="jb-casino-felt">
+      <div class="jb-casino-tabletop"><span>Dealer → management</span><span>House ranks ${rows.length}</span></div>
+      <div class="jb-casino-deck">${rows.map((r, i) => {
+        const state = jbPositionState(r);
+        return `<article class="jb-position jb-casino-card" data-jb-position="${escHtml(r[0])}" data-jb-state="${state}">
+          <div class="jb-casino-top">
+            <div class="jb-casino-suit" aria-hidden="true"><small>${ranks[i] || i + 1}</small>${suits[i] || "♠"}</div>
+            <div class="jb-casino-title"><h4>${escHtml(r[0])}</h4>${jbPositionStatus(state)}</div>
+          </div>
+          <div class="jb-casino-pay"><span>Daily house pay</span><b>$${fmtInt(r[7])}</b></div>
+          <div class="jb-casino-stats">
+            ${jbMetric("Entry · M / I / E", jbReqText(r))}
+            ${jbMetric("Daily gain · M / I / E", jbGainText(r))}
+          </div>
+          <div class="jb-casino-rewards">
+            <span><b>+${fmtInt(r[8])}</b> points / day</span>
+            <span><b>${jbPromotionText(r)}</b> to promote</span>
+          </div>
+          ${jbSpecialHtml(r)}
+        </article>`;
+      }).join("")}</div>
+    </div>
+  </div>`;
+}
+function jbMedicalLayout(j, rows){
+  return `<div class="jb-layout jb-medical-layout">
+    ${jbLayoutCaption("Hospital care pathway", "Career rounds · clinical stats · daily practice")}
+    <div class="jb-medical-ward">${rows.map((r, i) => {
+      const state = jbPositionState(r);
+      return `<article class="jb-position jb-medical-record" data-jb-position="${escHtml(r[0])}" data-jb-state="${state}">
+        <div class="jb-medical-node" aria-hidden="true">${i + 1}</div>
+        <div class="jb-medical-main">
+          <div class="jb-medical-title"><h4>${escHtml(r[0])}</h4>${jbPositionStatus(state)}</div>
+          <div class="jb-medical-facts">
+            ${jbMetric("Entry · M / I / E", jbReqText(r))}
+            ${jbMetric("Daily practice · M / I / E", jbGainText(r))}
+            ${jbMetric("Pay / day", `$${fmtInt(r[7])}`)}
+            ${jbMetric("Points / day", `+${fmtInt(r[8])}`)}
+            ${jbMetric("Promotion", jbPromotionText(r))}
+          </div>
+          ${jbSpecialHtml(r)}
+        </div>
+      </article>`;
+    }).join("")}</div>
+  </div>`;
+}
+function jbEducationLayout(j, rows){
+  return `<div class="jb-layout jb-education-layout">
+    ${jbLayoutCaption("Academic gradebook", "Entry requirements · study gains · promotion credits")}
+    <div class="jb-education-board">
+      <div class="jb-education-top"><span>Term-by-term staff record</span><span>${rows.length} grade${rows.length === 1 ? "" : "s"}</span></div>
+      <div class="jb-education-grid">${rows.map((r, i) => {
+        const state = jbPositionState(r);
+        return `<article class="jb-position jb-edu-report" data-jb-position="${escHtml(r[0])}" data-jb-state="${state}">
+          <div class="jb-edu-grade"><small>GRADE</small><b>${String(i + 1).padStart(2,"0")}</b></div>
+          <div class="jb-edu-title"><div><span class="jb-edu-label">Faculty position</span><h4>${escHtml(r[0])}</h4></div>${jbPositionStatus(state)}</div>
+          <div class="jb-edu-subjects">
+            ${jbMetric("Admission · M / I / E", jbReqText(r))}
+            ${jbMetric("Study / day · M / I / E", jbGainText(r))}
+          </div>
+          <div class="jb-edu-footer"><span>Stipend <b>$${fmtInt(r[7])}</b> / day</span><span><b>+${fmtInt(r[8])}</b> points/day</span><span>Promotion <b>${jbPromotionText(r)}</b></span></div>
+          ${jbSpecialHtml(r)}
+        </article>`;
+      }).join("")}</div>
+    </div>
+  </div>`;
+}
+function jbLawLayout(j, rows){
+  return `<div class="jb-layout jb-law-layout">
+    ${jbLayoutCaption("Court docket · career rulings", "Case file · qualifications · promotion precedent")}
+    <div class="jb-law-docket">
+      <div class="jb-law-bench"><span>City Court · staff register</span><span>Active files ${rows.length}</span></div>
+      <div class="jb-law-list">${rows.map((r, i) => {
+        const state = jbPositionState(r);
+        return `<article class="jb-position jb-law-case" data-jb-position="${escHtml(r[0])}" data-jb-state="${state}">
+          <div class="jb-law-number"><small>FILE</small><b>${String(i + 1).padStart(2,"0")}</b></div>
+          <div class="jb-law-main">
+            <div class="jb-law-title"><h4>${escHtml(r[0])}</h4>${jbPositionStatus(state)}</div>
+            <div class="jb-law-facts">
+              ${jbMetric("Admission · M / I / E", jbReqText(r))}
+              ${jbMetric("Daily gains · M / I / E", jbGainText(r))}
+              ${jbMetric("Pay / day", `$${fmtInt(r[7])}`)}
+              ${jbMetric("Points / day", `+${fmtInt(r[8])}`)}
+              ${jbMetric("Promotion", jbPromotionText(r))}
+            </div>
+            ${jbSpecialHtml(r)}
+          </div>
+        </article>`;
+      }).join("")}</div>
+    </div>
+  </div>`;
+}
 function jbCityCard(j){
   const q = jbQuery.toLowerCase();
-  const rows = j.pos.map(r => {
-    const ok = jbQualify(r);
-    const isMine = jbMe && (jbMe.pos || "").toLowerCase() === r[0].toLowerCase();
-    if(q && !(j.name + " " + r[0] + " " + (r[10] || "")).toLowerCase().includes(q)) return "";
-    return `<tr class="${isMine ? "jbcur" : ok ? "jbok" : ""}">
-      <td>${escHtml(r[0])}</td>
-      <td>${fmtInt(r[1])}</td><td>${fmtInt(r[2])}</td><td>${fmtInt(r[3])}</td>
-      <td>+${r[4]}/${r[5]}/${r[6]}</td>
-      <td>$${fmtInt(r[7])}</td>
-      <td>${r[8]}/day</td>
-      <td>${r[9] === null ? "—" : r[9]}</td>
-      <td class="jbsp">${r[10] === "none" ? "—" : escHtml(r[10])}</td></tr>`;
-  }).join("");
-  if(!rows.replace(/\s/g, "")) return "";
+  const rows = j.pos.filter(r => !q || (j.name + " " + r[0] + " " + (r[10] || "")).toLowerCase().includes(q));
+  if(!rows.length) return "";
   if(jbFilter === "qualify" && jbMe && !j.pos.some(r => jbQualify(r))) return "";
   const pts = jbMe && jbMe.jobs && jbMe.jobs[j.id];
-  return `<article class="card jbcard">
-    <div class="jbhead"><span class="jbface">${j.glyph}</span>
-      <div style="min-width:0"><h3>${escHtml(j.name)}</h3>
+  const layouts = {
+    army: jbArmyLayout, grocer: jbGrocerLayout, casino: jbCasinoLayout,
+    medical: jbMedicalLayout, education: jbEducationLayout, law: jbLawLayout
+  };
+  const kicker = {
+    army:"Field commission", grocer:"Store-floor shifts", casino:"Casino floor",
+    medical:"Hospital pathway", education:"Academic ladder", law:"Court docket"
+  }[j.id] || "City job ladder";
+  return `<article class="card jbcard" data-jb-layout="${escHtml(j.id)}">
+    <header class="jbcard-head">
+      <div class="jbcard-mark" aria-hidden="true">${j.glyph}</div>
+      <div class="jbcard-title"><span class="jbcard-kicker">${kicker}</span><h3>${escHtml(j.name)}</h3>
         <div class="jbmeta">${escHtml(j.tag)} · ${j.pos.length} positions</div></div>
-      ${pts !== undefined ? `<span class="chip ok" title="Your banked ${escHtml(j.point)}">${fmtInt(pts)} pts</span>` : ""}
-    </div>
-    <table class="jbtbl">
-      <thead><tr><th>Position</th><th>Man</th><th>Int</th><th>End</th><th>Gains</th><th>Pay</th><th>Points</th><th>Promo</th><th>Special</th></tr></thead>
-      <tbody>${rows}</tbody></table>
+      ${pts !== undefined ? `<span class="jbcard-points" title="Your banked ${escHtml(j.point)}"><b>${fmtInt(pts)}</b> job pts</span>` : ""}
+    </header>
+    ${(layouts[j.id] || jbArmyLayout)(j, rows)}
   </article>`;
 }
-
 function renderJobBook(){
   $("jbMe").innerHTML = jbMeHtml();
   const city = JB_CITY.map(jbCityCard).join("");
@@ -3109,7 +3468,7 @@ function jbTick(){
 }
 function jbEnter(){
   renderJobBook();
-  if((settings.apiKey || "").trim() && (!jbMe || Date.now() - (jbMe.at || 0) > 5 * 60000)) jbFetch(true);
+  if((settings.apiKey || "").trim() && (!jbMe || jbMe.schema !== 3 || Date.now() - (jbMe.at || 0) > 5 * 60000)) jbFetch(true);
 }
 
 /* ---------- live tick (called every second from updateDynamic) ---------- */
