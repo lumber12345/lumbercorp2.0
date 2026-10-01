@@ -2995,8 +2995,24 @@ async function jbFetch(silent){
     const pr = j.profile || {}, st = j.stats || {}, jp = j.jobpoints || {};
     const jb = j.job;
     const pos = typeof jb === "string" ? jb : (jb && jb.position) || pr.job || null;
-    const comp = (jb && (jb.company_name || jb.company)) || pr.company_name || pr.company || null;
+    let comp = (jb && (jb.company_name || jb.company)) || pr.company_name || pr.company || null;
     const num = v => (typeof v === "number" ? v : (parseInt(v, 10) || 0));
+
+    /* `profile.company` is the numeric company ID, not a name — so a company
+       employee would otherwise read as "unknown position". Resolve the ID to
+       its company TYPE ("Sweet Shop") with one extra public call; a refusal
+       here must not sink the whole read. */
+    let companyId = null;
+    if(typeof comp === "number"){
+      companyId = comp;
+      try{
+        const cj = await tornFetch(`${API}/company/${comp}/?selections=profile&key=${encodeURIComponent(key)}&comment=lumbercorp2`);
+        const cn = cj && cj.company;
+        if(typeof cn === "string" && cn) comp = cn;
+        else if(cn && typeof cn === "object" && cn.name) comp = cn.name;
+        else comp = null;
+      }catch(e){ comp = null; }
+    }
     const jobs = {};
     for(const k in (jp.jobs || {})) jobs[k] = num(jp.jobs[k]);
     const comps = {};
@@ -3005,7 +3021,7 @@ async function jbFetch(silent){
       comps[(e && e.name) || k] = num(e && e.jobpoints);
     }
     jbMe = {
-      pos, company: typeof comp === "number" ? null : comp, companyId: typeof comp === "number" ? comp : null,
+      pos, company: typeof comp === "string" ? comp : null, companyId,
       man: num(st.manual_labor), int: num(st.intelligence), end: num(st.endurance),
       jobs, companies: comps, at: Date.now()
     };
@@ -3060,6 +3076,16 @@ function jbNextPosition(){
   return out;
 }
 
+/* Specials the current employer's banked points can actually cover. */
+function jbAffordable(){
+  if(!jbMe || !jbMe.company) return null;
+  const c = JB_COMPANIES.find(x => x.name.toLowerCase() === String(jbMe.company).toLowerCase());
+  if(!c) return null;
+  const pts = (jbMe.companies || {})[c.name];
+  if(pts == null) return { c, pts: null, can: [] };
+  return { c, pts, can: c.sp.filter(x => x[2] === null || pts >= x[2]) };
+}
+
 function jbMeHtml(){
   if(!jbMe){
     return `<div class="jbme-top">
@@ -3073,8 +3099,10 @@ function jbMeHtml(){
   }
   const cityHit = JB_CITY_BY_POS[(jbMe.pos || "").toLowerCase()];
   const kind = jbMe.company ? `player company · ${escHtml(jbMe.company)}`
+             : jbMe.companyId ? `player company #${jbMe.companyId} (type not readable with this key)`
              : cityHit ? `city job · ${escHtml(cityHit.job.name)}`
-             : jbMe.pos ? "unknown position" : "unemployed";
+             : jbMe.pos ? escHtml(jbMe.pos)
+             : "unemployed";
   const jobPts = Object.entries(jbMe.jobs);
   const compPts = Object.entries(jbMe.company ? {} : jbMe.companies);
   const allPts = Object.entries(jbMe.companies);
@@ -3096,9 +3124,21 @@ function jbMeHtml(){
     ${allPts.length ? `<div class="jbpts">${allPts.map(([k, v]) =>
         `<span class="jbpt" title="Job points held in ${escHtml(k)} — kept per job type">${escHtml(k)} <b>${fmtInt(v)}</b></span>`).join("")}</div>`
       : `<div class="jbme-sub">No job points held yet.</div>`}
+    ${(function(){
+      const a = jbAffordable();
+      if(!a) return "";
+      if(a.pts == null) return `<div class="jbnext">You hold no banked <b>${escHtml(a.c.name)}</b> points yet — they arrive at 18:00 TCT.</div>`;
+      const locked = a.c.sp.filter(x => x[2] !== null && a.pts < x[2]);
+      const nextUp = locked[0];
+      return `<div class="jbnext">At <b>${escHtml(a.c.name)}</b> your <b>${fmtInt(a.pts)}</b> points cover `
+        + (a.can.length ? a.can.map(x => escHtml(x[1]) + ` (${x[0]}★)`).join(", ") : "nothing yet")
+        + (nextUp ? ` · ${escHtml(nextUp[1])} (${nextUp[0]}★) needs ${fmtInt(nextUp[2] - a.pts)} more.` : " · every special is unlocked.")
+        + `</div>`;
+    })()}
     ${nxt && nxt.length ? nxt.map(n => n.need
         ? `<div class="jbnext">Next up in <b>${escHtml(n.job)}</b>: ${escHtml(n.row[0])} — you need ${escHtml(n.need.join(", "))}.</div>`
-        : `<div class="jbnext">✅ You already meet the stats for <b>${escHtml(n.row[0])}</b> in ${escHtml(n.job)} — go claim the promotion.</div>`).join("") : ""}`;
+        : `<div class="jbnext">✅ You already meet the stats for <b>${escHtml(n.row[0])}</b> in ${escHtml(n.job)} — go claim the promotion.</div>`).join("")
+      : (jbMe.company || jbMe.companyId ? "" : `<div class="jbnext">Pick any city job above — the green rungs are the ones your working stats already meet.</div>`)}`;
 }
 
 function jbCityCard(j){
