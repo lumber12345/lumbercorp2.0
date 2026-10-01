@@ -1,6 +1,7 @@
 /* LumberCorp 2.0 — tiny zero-dependency Torn API v2 proxy
  * Deployed as a free Render Web Service alongside the static app.
- * - Serves nothing but /api/ping and /api/torn (allow-listed faction/user paths)
+ * - Serves /api/ping, /api/torn (allow-listed faction/user paths) and
+ *   /api/npc-loot (relays TornStats' live NPC loot clocks)
  * - 10 s server-side cache so polling is gentle on the API
  * - CORS: open (*), so the static LumberCorp 2.0 site can call it cross-origin
  * - API keys are forwarded to api.torn.com only — never logged or stored
@@ -76,6 +77,39 @@ function fetchFF(pathname, { method = 'GET', body = null, params = {} }) {
     req.on('timeout', () => req.destroy(new Error('FF Scouter timeout')));
     req.on('error', reject);
     if (payload) req.write(payload);
+    req.end();
+  });
+}
+
+/* -------------------------------------------------------- tornstats npc */
+/* TornStats publishes the live NPC loot clocks at
+ *   GET https://www.tornstats.com/api/v2/{key}/loot
+ * Browsers can't always reach it cross-origin, so the static app may ask this
+ * proxy to relay the call. The key is forwarded to tornstats.com only — never
+ * logged, never stored. 60 s cache: the upstream feed refreshes every few min.
+ * Env: TS_BASE/TS_PORT/TS_PROTOCOL (test overrides), NPCLOOT_TTL_MS. */
+const TS_BASE = process.env.TS_BASE || 'www.tornstats.com';
+const TS_PORT = Number(process.env.TS_PORT) || 443;
+const TS_PROTOCOL = process.env.TS_PROTOCOL || 'https'; /* http only for tests */
+const NPCLOOT_TTL_MS = Number(process.env.NPCLOOT_TTL_MS) || 60 * 1000;
+function fetchTornStats(pathname) {
+  return new Promise((resolve, reject) => {
+    const options = {
+      hostname: TS_BASE.split(':')[0],
+      port: TS_BASE.includes(':') ? Number(TS_BASE.split(':')[1]) : TS_PORT,
+      path: pathname,
+      method: 'GET',
+      headers: { accept: 'application/json', 'user-agent': 'LumberCorp2Proxy/1.0 (unofficial fan tool)' },
+      timeout: 15000,
+    };
+    const req = (TS_PROTOCOL === 'http' ? http : https).request(options, (res) => {
+      const chunks = [];
+      let size = 0;
+      res.on('data', (c) => { size += c.length; if (size > 2 * 1024 * 1024) req.destroy(); else chunks.push(c); });
+      res.on('end', () => resolve({ status: res.statusCode, body: Buffer.concat(chunks).toString('utf8') }));
+    });
+    req.on('timeout', () => req.destroy(new Error('TornStats timeout')));
+    req.on('error', reject);
     req.end();
   });
 }
@@ -835,6 +869,26 @@ const server = http.createServer(async (req, res) => {
     fetchFF('/api/v1/register', { method: 'POST', body: { key, agree_to_data_policy: true, signup_source: 'LumberCorp2' } })
       .then(({ status, body }) => finish(status, body))
       .catch((e) => send(res, 504, { error: { error: 'FF Scouter request failed: ' + (e.message || 'unknown') } }));
+    return;
+  }
+
+  /* ---- TornStats NPC loot clocks (relay for the NPC Loot tab) ---- */
+  if (u.pathname === '/api/npc-loot') {
+    const key = (u.searchParams.get('key') || '').trim();
+    if (!/^[A-Za-z0-9]{8,64}$/.test(key)) {
+      return send(res, 400, { error: { error: 'a Torn API key is required' } });
+    }
+    const ck = 'npcloot&k=' + key;
+    const hit = cache.get(ck);
+    if (hit && Date.now() - hit.ts <= NPCLOOT_TTL_MS) {
+      return sendRaw(res, hit.status, hit.body, { 'x-cache': 'HIT' });
+    }
+    fetchTornStats('/api/v2/' + encodeURIComponent(key) + '/loot')
+      .then((r) => {
+        cacheSet(ck, r.status, r.body);
+        sendRaw(res, r.status, r.body, { 'x-cache': 'MISS' });
+      })
+      .catch((e) => send(res, 502, { error: { error: 'TornStats request failed: ' + (e.message || 'unknown') } }));
     return;
   }
 

@@ -35,6 +35,29 @@ falls back to demo mode until any rankwars-compatible proxy is configured.
 New over 1.0:
 
 - **Live bar ETAs** — energy/nerve/happy/life tick client-side with “full in …” countdowns
+- **NPC Loot tab (v2.44.0)** — all 13 lootable NPCs (Duke, Leslie, Jimmy, Fernando, Tiny,
+  Scrooge, Easter Bunny, M'aol + the five Praetorians) with their real Torn profile pictures,
+  every possible drop (58 entries, rendered with Torn's own item art) and a **live loot-level
+  ladder driven by TornStats' public [`/loot` timer board](https://www.tornstats.com/loot): the tab reads
+  the matching structured feed at `/api/v2/<key>/loot` (relayed through the proxy as `/api/npc-loot`
+  when one is configured, cached 60 s) for each NPC's real hospital-exit and Loot Level II–V
+  timestamps, re-polled every minute while the tab
+  is open and kept in `localStorage` so the last good read survives a reload. No key, no feed or
+  feed down? The card falls back to your own *⚔️ Defeated now* clock (100–120 min hospital, then
+  +30 m / +1 h 30 m / +3 h 30 m / +7 h 30 m), which you can pin per NPC with *✎ My own clock*.
+  Filter by year-round / seasonal / attackable-now, search any loot item, and get an alert when a
+  tracked NPC climbs a level (Alerts → *NPC loot level up*). Note: pulling the feed sends your
+  Torn API key to tornstats.com.
+- **The Job Book tab (v2.45.0)** — **city jobs only**: all six Torn city-job ladders (Army,
+  Grocer, Casino, Medical, Education, Law — 41 positions), each with its own distinct layout and
+  full Man/Int/End requirements, daily stat gains, pay, points per day, promotion thresholds and
+  job specials. No player-company listings
+  or company specials. Add a Minimal-access Torn API key to see your city-job position, working
+  stats and banked city-job points (`selections=profile,jobpoints,workstats`); the book marks your
+  current rung, greens city positions your stats qualify for, shows the exact stat gap to your next
+  city-job promotion, and counts down to the 18:00 TCT point drop. Filter to all city jobs or only
+  ones with positions you qualify for; search any city-job position or special. Tables verified
+  against the Torn Wiki.
 - **Flight planner** — pick destination + class (Standard/Airstrip/WLT/Business), see arrival/return
   times, begin a flight and get a live countdown + landing notification (persisted across reloads)
 - **Restock ticker** — abroad markets restock on a fixed 15-min cycle; the bar shows the next one
