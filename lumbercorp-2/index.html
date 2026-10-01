@@ -195,7 +195,11 @@
   }
   .iconbtn:hover{border-color:var(--border2);background:var(--card2)}
   .iconbtn:active{transform:scale(.94)}
-  .iconbtn.spin{animation:spin 1s linear infinite}
+  .iconbtn.spin,.btn.spin{animation:spin 1s linear infinite}
+  .btn.spin{opacity:.7}
+  #npcSource{white-space:nowrap}
+  #npcSource.ok{color:var(--accent)}
+  #npcSource.warn{color:var(--warn)}
   @keyframes spin{to{transform:rotate(360deg)}}
   .kbadge{
     display:inline-flex;align-items:center;gap:5px;font-size:11px;color:var(--faint);
@@ -712,10 +716,17 @@
         </div>
         <div class="ladder" id="npcLadder"></div>
         <div class="npcnote" style="margin-top:9px">
+          <b>Where the timers come from:</b> this tab polls
+          <a href="https://tornstats.com/loot" target="_blank" rel="noopener">TornStats</a>
+          (<code>/api/v1/&lt;key&gt;/loot</code>) for each NPC's real hospital-exit and Loot Level II–V timestamps and
+          counts them down live — that call carries <b>your Torn API key to tornstats.com</b>, so if a proxy is
+          configured the request is relayed through it instead. No key, no feed, or feed down? The card falls back to
+          your own <b>⚔️ Defeated now</b> clock, and you can pin any NPC to it with <b>✎ My own clock</b>.
+        </div>
+        <div class="npcnote" style="margin-top:7px">
           The ladder starts the instant the NPC leaves hospital (<b>100–120 min</b> after the kill), then levels up at
           <b>+30 min</b>, <b>+1 h 30 m</b>, <b>+3 h 30 m</b> and <b>+7 h 30 m</b> — 7½ hours from “Okay” to Loot Level V.
-          Tap <b>⚔️ Defeated now</b> on a card to start your own clock. Source:
-          <a href="https://wiki.torn.com/wiki/Loot" target="_blank" rel="noopener">Torn Wiki — Loot</a>.
+          Source: <a href="https://wiki.torn.com/wiki/Loot" target="_blank" rel="noopener">Torn Wiki — Loot</a>.
         </div>
       </div>
 
@@ -729,8 +740,11 @@
           <button data-npcfilter="live">Attackable now</button>
         </div>
         <input type="text" id="npcSearch" placeholder="Search NPC or loot item…" autocomplete="off" spellcheck="false">
+        <span class="chip" id="npcSource" title="Where the countdowns come from">⏱️ Manual clocks</span>
+        <button class="btn sm" id="btnNpcRefresh" title="Re-poll TornStats for the live NPC loot clocks">⟳ Timers</button>
         <button class="btn sm" id="btnNpcAvatars" title="Pull the real NPC profile pictures with your Torn API key">🖼️ Live avatars</button>
       </div>
+      <div class="npcnote" id="npcSourceNote" hidden style="margin:-4px 2px 12px;color:var(--warn)"></div>
       <div class="npcgrid" id="npcGrid"></div>
       <div class="npcnote" style="margin-top:10px">
         Rarity labels are community-reported — Torn has never published drop rates. What is documented: the rarest loot
@@ -2402,13 +2416,126 @@ let npcSeen = store.get("lc2_npcseen", {});     // { [id]: last level we announc
 let npcImgs = store.get("lc2_npcimgs", {});     // { [id]: torn profile_image url }
 let npcFilter = "all", npcQuery = "";
 const npcSig = {};                              // last rendered signature per NPC
+let npcManual = store.get("lc2_npcmanual", {}); // { [id]: true } — ignore the feed for this NPC
+
+/* ---- live timers from TornStats ------------------------------------------
+ * GET https://www.tornstats.com/api/v1/{key}/loot returns, per NPC:
+ *   { name, torn_id, status, hosp_out, loot_2, loot_3, loot_4, loot_5, updated }
+ * with unix-SECOND timestamps — exactly the hospital-exit + I→V ladder this
+ * tab draws. Needs your Torn API key, which is therefore sent to tornstats.com
+ * (or to your own proxy, which relays it and never stores it). */
+const TS_LOOT_API = "https://www.tornstats.com/api/v1/";
+let npcLive = store.get("lc2_npclive", null);   // { [id]: {id,name,status,lv:[ms x5],updated} }
+let npcLiveAt = Number(store.get("lc2_npcliveat", 0)) || 0;
+let npcLiveSrc = store.get("lc2_npclivesrc", null);   // "tornstats" | "proxy"
+let npcLiveErr = null;
+let npcLiveBusy = false;
 
 function npcSave(){ store.set("lc2_npcloot", npcState); }
+function npcSaveManual(){ store.set("lc2_npcmanual", npcManual); }
+
+function npcLiveEntry(id){
+  return (!npcManual[id] && npcLive && npcLive[id]) ? npcLive[id] : null;
+}
+function npcParseLive(j){
+  const out = {};
+  if(!j || typeof j !== "object") return out;
+  const ms = v => (Number(v) > 0 ? Number(v) * 1000 : null);
+  for(const k of Object.keys(j)){
+    if(!/^\d+$/.test(k)) continue;
+    const e = j[k];
+    if(!e || typeof e !== "object") continue;
+    const lv = [ms(e.hosp_out), ms(e.loot_2), ms(e.loot_3), ms(e.loot_4), ms(e.loot_5)];
+    if(!lv[0]) continue;
+    out[k] = { id: Number(k), name: e.name || "", status: e.status || "", lv, updated: ms(e.updated) };
+  }
+  return out;
+}
+/* Direct to TornStats first; if the browser can't reach it (CORS/offline) and a
+   proxy is configured, relay through it. Last good payload is kept offline. */
+async function npcFetchLive(silent){
+  const key = (settings.apiKey || "").trim();
+  const btn = $("btnNpcRefresh");
+  if(!key){
+    npcLiveErr = "Add a Torn API key in Setup → Data Source to pull live NPC timers";
+    if(!silent) toast("🔑 " + npcLiveErr, "warn");
+    renderNpcSource();
+    return false;
+  }
+  if(npcLiveBusy) return false;
+  npcLiveBusy = true;
+  if(btn){ btn.disabled = true; btn.classList.add("spin"); }
+  const tries = [{ src: "tornstats", url: TS_LOOT_API + encodeURIComponent(key) + "/loot" }];
+  const base = (typeof bzApiBase === "function" ? bzApiBase() : "").trim();
+  if(base) tries.push({ src: "proxy", url: base + "/api/npc-loot?key=" + encodeURIComponent(key) });
+  let lastErr = null;
+  try{
+    for(const t of tries){
+      try{
+        const r = await fetch(t.url, { cache: "no-store" });
+        const j = await r.json();
+        if(!r.ok) throw new Error((j && j.error && (j.error.error || j.error)) || ("HTTP " + r.status));
+        if(j && j.status === false) throw new Error(j.message || "TornStats rejected the call");
+        const parsed = npcParseLive(j);
+        const ids = Object.keys(parsed);
+        if(!ids.length) throw new Error((j && j.message) || "no NPCs in the feed");
+        npcLive = parsed; npcLiveAt = Date.now(); npcLiveSrc = t.src; npcLiveErr = null;
+        store.set("lc2_npclive", npcLive);
+        store.set("lc2_npcliveat", npcLiveAt);
+        store.set("lc2_npclivesrc", npcLiveSrc);
+        /* the feed outranks the demo clocks — drop the seeded samples it covers */
+        let dropped = 0;
+        for(const id in npcState) if(npcState[id].sample && parsed[id]){ delete npcState[id]; dropped++; }
+        if(dropped) npcSave();
+        if(!silent) toast(`📡 Live NPC timers from TornStats — ${ids.length} NPCs`, "ok");
+        return true;
+      }catch(e){ lastErr = e; }
+    }
+    npcLiveErr = (lastErr && lastErr.message) || "TornStats unreachable";
+    if(!silent) toast("⚠️ TornStats feed failed — " + escHtml(npcLiveErr) + (npcLiveAt ? " (showing the last good read)" : " (manual clocks only)"), "warn");
+    return false;
+  }finally{
+    /* always release the lock and re-arm the button, whichever way we left */
+    npcLiveBusy = false;
+    renderNpcSource();
+    renderNpcSummary();
+    /* re-render either way: a failed refresh has to show the fallback controls,
+       and a success has to swap every card onto the feed's clocks */
+    if(state.page === "npcloot"){ renderNpcGrid(); renderNpcNext(); }
+  }
+}
+function npcMaybeRefresh(force){
+  if(npcLiveBusy) return;
+  if(!force && npcLiveAt && Date.now() - npcLiveAt < 60000) return;
+  npcFetchLive(true);
+}
+function renderNpcSource(){
+  const el = $("npcSource");
+  if(!el) return;
+  const btn = $("btnNpcRefresh");
+  if(btn){ btn.disabled = false; btn.classList.remove("spin"); }
+  if(npcLive && npcLiveAt){
+    const ids = Object.keys(npcLive).length;
+    el.className = "chip " + (npcLiveErr ? "warn" : "ok");
+    el.innerHTML = `📡 TornStats live · ${ids} NPC${ids === 1 ? "" : "s"} · ${timeAgo(npcLiveAt)}`
+      + (npcLiveErr ? ` · refresh failed` : "")
+      + (npcLiveSrc === "proxy" ? " · via your proxy" : "");
+    el.title = npcLiveErr ? escHtml(npcLiveErr) : "Hospital exit + Loot Level I–V times, polled from tornstats.com";
+  }else{
+    el.className = "chip warn";
+    el.innerHTML = "⏱️ Manual clocks" + (npcLiveErr ? "" : " — no live feed yet");
+    el.title = npcLiveErr || "Add a Torn API key to pull the live NPC loot clocks";
+  }
+  const note = $("npcSourceNote");
+  if(note) note.hidden = !npcLiveErr;
+  if(note && npcLiveErr) note.textContent = "Live feed: " + npcLiveErr + ".";
+}
 
 /* First run: seed a staggered sample cycle so the ladder is alive on day one.
    Every seeded card is flagged and says so until you record a real kill. */
 function npcSeed(){
   if(Object.keys(npcState).length) return;
+  if(npcLive && Object.keys(npcLive).length) return;   // the live feed outranks the demo
   const now = Date.now(), M = 60000;
   const seed = { 4: 25, 15: 110 + 45, 19: 110 + 110, 20: 110 + 260, 21: 110 + 520 };
   for(const id in seed) npcState[id] = { defeated: now - seed[id] * M, hosp: NPC_HOSP_DEF, sample: true };
@@ -2417,17 +2544,34 @@ function npcSeed(){
 
 /* ---------- maths ---------- */
 function npcPhase(n){
+  const now = Date.now();
+  /* 1) TornStats' own clocks — authoritative when we have them */
+  const live = npcLiveEntry(n.id);
+  if(live && live.lv[0]){
+    const lv = live.lv.map(t => t || live.lv[0]);
+    let level = 0;
+    if(now >= lv[0]){
+      level = 1;
+      for(let i = 1; i < 5; i++) if(now >= lv[i]) level = i + 1;
+    }
+    return { s: { live: true }, out: lv[0], lv, level, inHosp: now < lv[0], live };
+  }
+  /* 2) your own "Defeated now" clock */
   const s = npcState[n.id];
   if(!s || !s.defeated) return null;
   const out = s.defeated + (s.hosp || NPC_HOSP_DEF) * 60000;
   const lv = NPC_LADDER_MIN.map(m => out + m * 60000);
-  const now = Date.now();
   let level = 0;
   if(now >= out){
     level = 1;
     for(let i = 1; i < 5; i++) if(now >= lv[i]) level = i + 1;
   }
   return { s, out, lv, level, inHosp: now < out };
+}
+/* hospital window used for the progress bar when the defeat time is unknown
+   (live feeds only tell us when the NPC comes OUT) */
+function npcHospSpan(p){
+  return (p.s && p.s.defeated) ? (p.out - p.s.defeated) : NPC_HOSP_DEF * 60000;
 }
 function npcSeason(n){
   const mo = new Date().getMonth();
@@ -2460,6 +2604,17 @@ function npcNextStep(n, p){
 }
 
 /* ---------- rendering ---------- */
+function npcSigOf(n, p){
+  if(!p) return "none";
+  if(p.live) return "L" + p.level + ":" + p.lv[0] + ":" + npcLiveAt;
+  return (p.inHosp ? "h" : "o") + p.level + ":" + p.s.defeated + ":" + (p.s.hosp || NPC_HOSP_DEF);
+}
+function npcSourceChip(n, p){
+  if(p && p.live) return `<span class="chip ok" title="Timers from TornStats, updated ${escHtml(timeAgo(npcLiveAt))}">📡 live</span>`;
+  if(p && p.s.sample) return `<span class="chip" title="Demo cycle — record a real kill to replace it">sample</span>`;
+  if(p) return `<span class="chip" title="Clock you started yourself">✍️ yours</span>`;
+  return npcManual[n.id] ? `<span class="chip warn" title="TornStats feed ignored for this NPC">✍️ yours</span>` : "";
+}
 function renderNpcLadder(){
   const el = $("npcLadder");
   if(!el) return;
@@ -2487,6 +2642,9 @@ function npcLootHtml(n){
 
 function npcStateHtml(n, p){
   if(!p) return `<span class="big">Idle</span> <span data-stx="${n.id}">no clock — record a kill to start the ladder</span>`;
+  if(p.live && p.live.status && !/hospital|okay|idle/i.test(p.live.status)){
+    return `<span class="big">${escHtml(p.live.status)}</span> <span data-stx="${n.id}">TornStats — the loot ladder still runs</span>`;
+  }
   if(p.inHosp) return `<span class="big hosp">🏥 Hospitalized</span> <span data-stx="${n.id}">out in ${fmtCountdown((p.out - Date.now()) / 1000)} · Loot Level I waits</span>`;
   const tail = p.level >= 5 ? "max — 5 attackers get loot, rarest table unlocked"
                             : p.level + " attacker" + (p.level > 1 ? "s" : "") + " get" + (p.level > 1 ? "" : "s") + " loot";
@@ -2496,7 +2654,7 @@ function npcStateHtml(n, p){
 function npcProgHtml(n, p){
   if(!p) return `<div class="npccds"><span>Track your next ${escHtml(n.name)} kill here</span></div>`;
   if(p.inHosp){
-    const tot = (p.out - p.s.defeated) || 1, left = Math.max(0, p.out - Date.now());
+    const tot = npcHospSpan(p) || 1, left = Math.max(0, p.out - Date.now());
     return `<div class="npccds">
       <span>Hospital</span>
       <span class="track"><span class="fill restockfill" data-bar="${n.id}" style="width:${Math.min(100, (1 - left / tot) * 100).toFixed(1)}%"></span></span>
@@ -2534,8 +2692,7 @@ function npcCard(n){
   const sea = npcSeason(n);
   const face = npcImgs[n.id] || n.face || "";
   const hosp = (p && p.s.hosp) || NPC_HOSP_DEF;
-  const sig = p ? (p.inHosp ? "h" : "o") + p.level + ":" + p.s.defeated + ":" + hosp : "none";
-  npcSig[n.id] = sig;
+  npcSig[n.id] = npcSigOf(n, p);
   return `<article class="card npc${sea.on ? "" : " dim"}" data-npc="${n.id}">
     <div class="npc-head">
       <div class="npc-face">${n.glyph}${face ? `<img src="${escHtml(face)}" alt="${escHtml(n.name)}" loading="lazy" onerror="this.remove();">` : ""}</div>
@@ -2543,6 +2700,7 @@ function npcCard(n){
         <div class="npc-name">
           <a href="https://www.torn.com/profiles.php?XID=${n.id}" target="_blank" rel="noopener">${escHtml(n.name)} <span class="chip">[${n.id}]</span></a>
           <span class="chip ${sea.on ? "ok" : "warn"}">${escHtml(sea.label)}</span>
+          ${npcSourceChip(n, p)}
         </div>
         <div class="npc-meta">${fmtInt(n.hp)} HP · ${escHtml(n.tag)}</div>
       </div>
@@ -2552,15 +2710,25 @@ function npcCard(n){
     ${npcProgHtml(n, p)}
     <div class="lootgrid">${npcLootHtml(n)}</div>
     <div class="npcnote">${escHtml(n.note)}</div>
-    <div class="npcfoot">
-      <button class="btn sm primary" data-act="kill" data-id="${n.id}">⚔️ Defeated now</button>
-      <select data-act="hosp" data-id="${n.id}" title="Torn hospitalises NPCs for 100–120 minutes">
-        ${NPC_HOSP_CHOICES.map(m => `<option value="${m}"${m === hosp ? " selected" : ""}>${m} min hosp.</option>`).join("")}
-      </select>
-      <span class="spacer"></span>
-      <button class="btn sm" data-act="clear" data-id="${n.id}"${p ? "" : " hidden"}>✕ Clear</button>
-    </div>
+    <div class="npcfoot">${npcFootHtml(n, p, hosp)}</div>
   </article>`;
+}
+
+function npcFootHtml(n, p, hosp){
+  if(p && p.live){
+    return `<span class="npcnote">📡 TornStats clock · feed read ${escHtml(timeAgo(npcLiveAt))}${p.live.status ? " · Torn says <b>" + escHtml(p.live.status) + "</b>" : ""}</span>
+      <span class="spacer"></span>
+      <button class="btn sm" data-act="manual" data-id="${n.id}" title="Ignore the feed and run your own countdown for this NPC">✎ My own clock</button>`;
+  }
+  const back = (npcManual[n.id] && npcLive && npcLive[n.id])
+    ? `<button class="btn sm" data-act="live" data-id="${n.id}" title="Go back to the TornStats clock">📡 Use TornStats</button>` : "";
+  return `<button class="btn sm primary" data-act="kill" data-id="${n.id}">⚔️ Defeated now</button>
+    <select data-act="hosp" data-id="${n.id}" title="Torn hospitalises NPCs for 100–120 minutes">
+      ${NPC_HOSP_CHOICES.map(m => `<option value="${m}"${m === hosp ? " selected" : ""}>${m} min hosp.</option>`).join("")}
+    </select>
+    <span class="spacer"></span>
+    ${back}
+    <button class="btn sm" data-act="clear" data-id="${n.id}"${p ? "" : " hidden"}>✕ Clear</button>`;
 }
 
 function npcMatches(n){
@@ -2611,8 +2779,17 @@ function renderNpcLoot(){
   renderNpcLadder();
   renderNpcGrid();
   renderNpcNext();
+  renderNpcSummary();
+}
+
+function renderNpcSummary(){
   const u = $("npcUpdated");
-  if(u) u.textContent = `${NPCS.length} lootable NPCs · ${NPCS.reduce((a, n) => a + n.loot.length, 0)} loot entries · clocks stored in this browser`;
+  if(!u) return;
+  const ids = npcLive ? Object.keys(npcLive).length : 0;
+  u.textContent = `${NPCS.length} lootable NPCs · ${NPCS.reduce((a, n) => a + n.loot.length, 0)} loot entries · `
+    + (npcLiveAt
+        ? `timers from TornStats (${ids} NPC${ids === 1 ? "" : "s"}), read ${timeAgo(npcLiveAt)}${npcLiveErr ? " — refresh failing" : ""}`
+        : "timers from your own clocks — no live feed yet");
 }
 
 /* ---------- live tick (called every second from updateDynamic) ---------- */
@@ -2620,8 +2797,7 @@ function npcTick(){
   for(const n of NPCS){
     const p = npcPhase(n);
     const card = document.querySelector(`[data-npc="${n.id}"]`);
-    const hosp = (p && p.s.hosp) || NPC_HOSP_DEF;
-    const sig = p ? (p.inHosp ? "h" : "o") + p.level + ":" + p.s.defeated + ":" + hosp : "none";
+    const sig = npcSigOf(n, p);
     if(sig !== npcSig[n.id]){                    // phase changed → rebuild that card
       if(card) card.outerHTML = npcCard(n);
       else npcSig[n.id] = sig;
@@ -2636,7 +2812,7 @@ function npcTick(){
       if(big) big.textContent = "🏥 Hospitalized";
       if(stx) stx.textContent = "out in " + fmtCountdown(left / 1000) + " · Loot Level I waits";
       const bar = card.querySelector(`[data-bar="${n.id}"]`);
-      const tot = (p.out - p.s.defeated) || 1;
+      const tot = npcHospSpan(p) || 1;
       if(bar) bar.style.width = Math.min(100, (1 - left / tot) * 100).toFixed(1) + "%";
       const cd = card.querySelector(`[data-cd="${n.id}"]`);
       if(cd) cd.textContent = fmtCountdown(left / 1000);
@@ -2700,6 +2876,21 @@ function npcMark(id){
   if(card) card.outerHTML = npcCard(n);
   renderNpcNext();
 }
+function npcUseManual(id){
+  npcManual[id] = true;
+  npcSaveManual();
+  const card = document.querySelector(`[data-npc="${id}"]`);
+  if(card && NPC_BY_ID[id]) card.outerHTML = npcCard(NPC_BY_ID[id]);
+  renderNpcNext();
+}
+function npcUseLive(id){
+  delete npcManual[id];
+  npcSaveManual();
+  const card = document.querySelector(`[data-npc="${id}"]`);
+  if(card && NPC_BY_ID[id]) card.outerHTML = npcCard(NPC_BY_ID[id]);
+  renderNpcNext();
+  npcMaybeRefresh();
+}
 function npcClear(id){
   const n = NPC_BY_ID[id];
   delete npcState[id]; delete npcSeen[id];
@@ -2744,6 +2935,8 @@ async function npcLoadAvatars(force){
 function npcEnter(){
   npcSeed();
   renderNpcLoot();
+  renderNpcSource();
+  npcMaybeRefresh();          // TornStats refreshes every few minutes
 }
 npcSeed();
 
@@ -3442,12 +3635,15 @@ function wire(){
   });
   $("npcSearch").addEventListener("input", e => { npcQuery = e.target.value.trim(); renderNpcGrid(); });
   $("btnNpcAvatars").addEventListener("click", () => npcLoadAvatars(true));
+  $("btnNpcRefresh").addEventListener("click", () => npcFetchLive(false));
   $("npcGrid").addEventListener("click", e => {
     const b = e.target.closest("[data-act]");
     if(!b) return;
     const id = Number(b.dataset.id);
     if(b.dataset.act === "kill") npcMark(id);
     else if(b.dataset.act === "clear") npcClear(id);
+    else if(b.dataset.act === "manual") npcUseManual(id);
+    else if(b.dataset.act === "live") npcUseLive(id);
   });
   $("npcGrid").addEventListener("change", e => {
     const s = e.target.closest('[data-act="hosp"]');
@@ -3845,6 +4041,8 @@ function init(){
   setInterval(() => { simTick(1); updateDynamic(); checkAlerts(); }, 1000);
   // periodic stock feed re-poll (every 3 min)
   setInterval(() => fetchYata(false), 3 * 60 * 1000);
+  // NPC loot clocks: re-poll TornStats while the tab is open (60 s)
+  setInterval(() => { if(state.page === "npcloot") npcMaybeRefresh(); }, 60 * 1000);
   if("serviceWorker" in navigator && location.protocol.startsWith("http")){
     navigator.serviceWorker.register("sw.js").catch(() => {});
   }

@@ -38,10 +38,15 @@ New over 1.0:
 - **NPC Loot tab (v2.44.0)** — all 13 lootable NPCs (Duke, Leslie, Jimmy, Fernando, Tiny,
   Scrooge, Easter Bunny, M'aol + the five Praetorians) with their real Torn profile pictures,
   every possible drop (58 entries, rendered with Torn's own item art) and a **live loot-level
-  ladder**: tap *⚔️ Defeated now* and the tab counts the 100–120 min hospital stay, then the
-  Loot Level I→V unlocks at +30 m / +1 h 30 m / +3 h 30 m / +7 h 30 m, per NPC, persisted across
-  reloads. Filter by year-round / seasonal / attackable-now, search any loot item, and get an
-  alert when a tracked NPC climbs a level (Alerts → *NPC loot level up*).
+  ladder driven by TornStats**: the tab polls `https://www.tornstats.com/api/v1/<key>/loot`
+  (relayed through the proxy as `/api/npc-loot` when one is configured, cached 60 s) for each
+  NPC's real hospital-exit and Loot Level II–V timestamps, re-polled every minute while the tab
+  is open and kept in `localStorage` so the last good read survives a reload. No key, no feed or
+  feed down? The card falls back to your own *⚔️ Defeated now* clock (100–120 min hospital, then
+  +30 m / +1 h 30 m / +3 h 30 m / +7 h 30 m), which you can pin per NPC with *✎ My own clock*.
+  Filter by year-round / seasonal / attackable-now, search any loot item, and get an alert when a
+  tracked NPC climbs a level (Alerts → *NPC loot level up*). Note: pulling the feed sends your
+  Torn API key to tornstats.com.
 - **Flight planner** — pick destination + class (Standard/Airstrip/WLT/Business), see arrival/return
   times, begin a flight and get a live countdown + landing notification (persisted across reloads)
 - **Restock ticker** — abroad markets restock on a fixed 15-min cycle; the bar shows the next one
