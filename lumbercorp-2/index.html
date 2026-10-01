@@ -2973,6 +2973,48 @@ const JB_COMPANIES = [
   { name:"Zoo", size:"large", cost:300000000, emp:6, sp:[[1,"Fulfillment",1,"50 happiness"],[3,"Animal Instinct",null,"25% hunting reward"],[5,"Special K",5,"Ketamine drug"],[7,"Eye of the Tiger",null,"70% awareness"],[10,"Seasoned Poacher",null,"+3.00 accuracy"]] }
 ];
 
+const JB_COMPANY_RANKS = {
+  "Adult Novelties":[["Human Resources",0,12000,6000,0,50,25,"Trainer"],["Sexpert",0,10000,5000,0,49,25,"None"],["Store Manager",0,4000,8000,0,24,47,"Manager"],["Marketing Manager",0,8000,4000,0,47,24,"Marketer"],["Receptionist",0,3000,6000,0,23,45,"Secretary"],["Sales Assistant",2000,0,4000,21,0,41,"None"],["Cleaner",2000,0,1000,36,0,18,"Cleaner"]],
+  "Amusement Park":[["Inspector",0,135000,67500,0,70,35,"Trainer"],["Manager",0,45000,90000,0,33,66,"Manager"],["Marketer",0,90000,45000,0,66,33,"Marketer"],["Security Guard",79000,0,39500,65,0,33,"None"],["Mechanic",67500,33750,0,64,32,0,"None"],["Accountant",0,33750,67500,0,32,64,"Secretary"],["Ride Attendant",0,22500,45000,0,31,61,"None"],["Entertainer",34000,0,17000,58,0,29,"None"],["Ticket Agent",0,11250,22500,0,28,55,"None"],["Janitor",22500,0,11250,55,0,28,"Cleaner"]],
+  "Candle Shop":[["Chandler",4500,2250,0,42,21,0,"None"],["Trainer",0,4500,2250,0,42,21,"Trainer"],["Quality Control",0,1500,3000,0,20,39,"Manager"],["Bookkeeper",0,1250,2500,0,19,38,"Secretary"],["Salesperson",0,750,1500,0,17,34,"None"],["Cleaner",1000,0,500,30,0,15,"Cleaner"]],
+  "Car Dealership":[["Training Adviser",0,63000,31500,0,63,32,"Trainer"],["Manager",0,21000,42000,0,30,60,"Manager"],["Webmaster",0,42000,21000,0,60,30,"Marketer"],["Receptionist",0,15750,31500,0,29,58,"Secretary"],["Mechanic",26500,0,13250,56,0,28,"None"],["Sales Executive",0,21000,10500,0,55,28,"None"],["Cleaner",10500,0,5250,49,0,25,"Cleaner"],["Sales Apprentice",0,5500,2750,0,44,22,"None"]],
+  "Clothing Store":[["Line Manager",0,6000,3000,0,45,23,"Trainer"],["Store Manager",0,2000,4000,0,21,41,"Manager"],["Marketing Manager",0,4000,2000,0,41,21,"Marketer"],["Accountant",0,1500,3000,0,20,39,"Secretary"],["Security Guard",3000,0,1500,39,0,20,"None"],["Salesperson",0,2000,1000,0,36,18,"None"],["Cashier",750,0,1500,0,17,34,"None"],["Cleaner",1000,0,500,30,0,15,"Cleaner"],["Sales Trainee",0,500,250,0,25,13,"None"]],
+  "Cruise Line":[["Captain",0,154500,77250,0,71,36,"None"],["First Officer",0,105000,52500,0,67,34,"None"],["Doctor",0,103000,51500,0,67,34,"None"],["Specialist",0,90000,45000,0,66,33,"Trainer"],["Bosun",0,37000,74000,0,33,65,"Manager"],["Marketer",0,72000,36000,0,64,32,"Marketer"],["Chef",0,64500,32250,0,64,32,"None"],["Engineer",54500,27250,0,62,31,0,"None"],["Receptionist",0,21000,42000,0,30,60,"Secretary"],["Steward",0,20750,41500,0,30,60,"None"],["Bartender",19250,0,38500,0,30,59,"None"],["Deckhand",26000,0,13000,56,0,28,"Cleaner"],["Ticket Agent",0,13000,26000,0,28,56,"None"]],
+  "Cyber Cafe":[["Cashier",0,5000,10000,0,25,49,"None"],["Cleaner",5000,0,2500,43,0,22,"Cleaner"],["Manager",0,10000,20000,0,27,54,"Manager"],["Receptionist",0,7500,15000,0,26,52,"Secretary"],["Marketer",0,20000,10000,0,54,27,"Marketer"],["Teacher",0,30000,15000,0,57,29,"Trainer"],["Administrator",0,20000,10000,0,54,27,"None"],["Technician",8750,17500,0,0,53,27,"None"]],
+  "Detective Agency":[["Private Investigator",22500,45500,0,0,61,31,"None"],["Trainee Investigator",14000,28000,0,0,57,29,"None"],["Secretary",12500,0,25000,0,28,56,"Secretary"],["Intelligence Analyst",0,58000,29000,0,63,32,"None"],["Surveillance",26000,52000,0,0,62,31,"None"],["Chief Investigator",40000,80000,0,0,65,33,"None"],["Client Liaison",0,62000,31000,0,63,32,"None"]],
+  "Farm":[["Harvester",14000,0,7000,51,0,26,"None"],["Delivery Driver",23000,0,11500,55,0,28,"None"],["Herdsperson",18500,0,9250,54,0,27,"None"],["Farm Manager",0,18500,37000,0,30,59,"Manager"],["Bookkeeper",0,14000,28000,0,29,57,"Secretary"],["Consultant",0,55500,27750,0,62,31,"Trainer"],["Retailer",0,18500,9250,0,54,27,"None"],["Dairy Farmer",23000,0,11500,55,0,28,"None"],["Poultry Farmer",18500,0,9250,54,0,27,"None"]],
+  "Firework Stand":[["Salesperson",0,500,1000,0,15,30,"None"],["Pyrotechnician",3000,1500,0,39,20,0,"None"],["Picker Packer",500,0,250,25,0,13,"None"],["Manager",0,1000,2000,0,18,36,"Manager"],["Bookkeeper",0,750,1500,0,17,34,"Secretary"],["Advertising Manager",0,2000,1000,0,36,18,"Marketer"],["Trainer",0,3000,1500,0,39,20,"Trainer"]],
+  "Fitness Center":[["Personal Trainer",31000,0,15500,58,0,29,"None"],["Swimming Instructor",23250,0,46500,0,31,61,"None"],["Lifeguard",19500,0,39000,60,0,30,"None"],["Cleaner",15500,0,7750,52,0,26,"Cleaner"],["Manager",0,31000,62000,0,32,63,"Manager"],["Receptionist",0,5000,10000,0,25,49,"None"],["Marketer",0,62000,31000,0,63,32,"Marketer"],["Human Resources",0,23250,46500,0,31,61,"Secretary"],["Nutritionist",27250,54500,0,0,62,31,"None"],["Fitness Instructor",46500,0,23250,61,0,31,"None"]],
+  "Flower Shop":[["Florist",500,0,1000,0,15,30,"None"],["Arranger",500,1000,0,0,30,15,"None"],["Apprentice",500,0,250,0,13,25,"None"],["Cleaner",500,0,250,25,0,13,"Cleaner"],["Manager",0,1000,2000,0,18,36,"Manager"],["Marketer",0,2000,1000,0,36,18,"Marketer"],["Accountant",0,750,1500,0,17,34,"Secretary"]],
+  "Furniture Store":[["Sales Clerk",0,3250,6500,0,23,45,"None"],["Delivery Driver",8000,0,4000,47,0,24,"None"],["Apprentice",0,750,1500,0,17,34,"None"],["Cleaner",3500,0,1750,40,0,20,"Cleaner"],["Manager",0,6500,13000,0,26,51,"Manager"],["Receptionist",0,5000,10000,0,25,49,"Secretary"],["Marketer",0,13000,6500,0,51,26,"Marketer"],["Trainer",0,19500,9750,0,54,27,"Trainer"]],
+  "Game Shop":[["Clerk",1500,0,3000,0,20,39,"None"],["Game Advisor",0,4500,2250,0,42,21,"None"],["Cleaner",1500,0,750,34,0,17,"Cleaner"],["Store Manager",0,3000,6000,0,23,45,"Manager"],["Accountant",0,2250,4500,0,21,42,"Secretary"],["Marketer",0,6000,3000,0,45,23,"Marketer"]],
+  "Gas Station":[["Attendant",0,13000,26000,0,28,56,"None"],["Cleaner",17500,0,8750,53,0,27,"Cleaner"],["Manager",0,30000,60000,0,32,63,"Manager"],["Marketer",0,40000,20000,0,60,30,"Marketer"],["Trainer",0,70500,35250,0,64,32,"Trainer"]],
+  "Gents Strip Club":[["Stripper",7250,0,14500,0,26,52,"None"],["Security",29000,0,14500,57,0,29,"None"],["Cleaner",7500,0,3750,46,0,23,"Cleaner"],["Manager",0,14500,29000,0,29,57,"Manager"],["Bookkeeper",0,11000,22000,0,28,55,"Secretary"],["Photographer",0,29000,14500,0,57,29,"Marketer"]],
+  "Grocery Store":[["Cashier",3000,0,6000,0,23,45,"None"],["Stock Clerk",4500,0,2250,42,0,21,"None"],["Cleaner",3000,0,1500,39,0,20,"Cleaner"],["Manager",0,6000,12000,0,25,50,"Manager"],["Accountant",0,4500,9000,0,24,48,"Secretary"],["Marketer",0,12000,6000,0,50,25,"Marketer"],["Trainer",0,18000,9000,0,53,27,"Trainer"],["Delivery Driver",7500,0,3750,46,0,23,"None"],["Cart Attendant",3000,0,1500,39,0,20,"None"]],
+  "Gun Shop":[["Clerk",3750,0,7500,0,23,46,"None"],["Gunsmith",15000,7500,0,52,26,0,"None"],["Cleaner",4000,0,2000,41,0,21,"Cleaner"],["Manager",0,7500,15000,0,26,52,"Manager"],["Bookkeeper",0,5750,11500,0,25,50,"Secretary"],["Marketer",0,15000,7500,0,52,26,"Marketer"],["Instructor",0,22500,11250,0,55,28,"Trainer"]],
+  "Hair Salon":[["Stylist",1500,0,750,34,0,17,"None"],["Colorist",2000,0,1000,36,0,18,"None"],["Nail Technician",750,0,1500,0,17,34,"None"],["Apprentice",500,0,250,25,0,13,"None"],["Shampooist",1000,0,500,30,0,15,"Cleaner"],["Senior Stylist",3000,0,1500,39,0,20,"Manager"],["Receptionist",0,1250,2500,0,19,38,"Secretary"],["Trainer",0,4500,2250,0,42,21,"Trainer"],["Aesthetician",0,4500,2250,0,42,21,"None"]],
+  "Ladies Strip Club":[["Male Stripper",7250,0,14500,0,26,52,"None"],["Security",29000,0,14500,57,0,29,"None"],["Cleaner",8500,0,4250,47,0,24,"Cleaner"],["Manager",0,16500,33000,0,29,58,"Manager"],["Bookkeeper",0,12500,25000,0,28,56,"Secretary"],["Photographer",0,33000,16500,0,58,29,"Marketer"]],
+  "Law Firm":[["Cleaner",5500,0,2750,44,0,22,"Cleaner"],["Marketer",0,22000,11000,0,55,28,"Marketer"],["Consultant",0,33000,16500,0,58,29,"Trainer"],["Secretary",0,8250,16500,0,27,53,"Secretary"],["Assistant",0,2750,5500,0,22,44,"None"],["Attorney",0,11000,5500,0,49,25,"None"]],
+  "Lingerie Store":[["Salesperson",0,2250,4500,0,21,42,"None"],["Cleaner",2500,0,1250,38,0,19,"Cleaner"],["Store Manager",0,4500,9000,0,24,48,"Manager"],["Lingerie Model",0,9000,4500,0,48,24,"Marketer"],["Human Resources",0,13500,6750,0,51,26,"Trainer"],["Trainee",0,500,1000,0,15,30,"None"]],
+  "Logistics Management":[["Lumper",45000,0,22500,61,0,31,"None"],["Driver",28750,0,57500,0,32,63,"None"],["Forklift Operator",60000,0,30000,63,0,32,"None"],["Transport Coordinator",0,85000,42500,0,66,33,"None"],["Warehouse Manager",0,115000,57500,0,68,34,"Cleaner"],["Shift Manager",0,90000,45000,0,66,33,"Secretary"],["Supply Chain Manager",0,125000,62500,0,69,35,"Manager"],["Procurement Manager",0,140000,70000,0,70,35,"Marketer"]],
+  "Meat Warehouse":[["Quality Controller",12500,25000,0,0,56,28,"None"],["Packer",9500,0,4750,48,0,24,"None"],["Apprentice Butcher",3000,0,1500,39,0,20,"None"],["Cleaner",6500,0,3250,45,0,23,"Cleaner"],["Manager",0,12500,25000,0,28,56,"Manager"],["Assistant",0,9500,19000,0,27,54,"Secretary"],["Supervisor",0,37500,18750,0,59,30,"Trainer"],["Butcher",12500,0,6250,50,0,25,"None"],["Retailer",0,12500,6250,0,50,25,"None"]],
+  "Mechanic Shop":[["Technician",8500,0,4250,47,0,24,"None"],["Apprentice Technician",2000,0,1000,36,0,18,"None"],["Cleaner",4500,0,2250,42,0,21,"Cleaner"],["Manager",0,8500,17000,0,27,53,"Manager"],["Receptionist",0,6500,13000,0,26,51,"Secretary"],["Trainer",0,25500,12750,0,56,28,"Trainer"]],
+  "Mining Corporation":[["Sales Executive",0,83000,41500,0,66,33,"None"],["Mill Operator",75000,0,37500,65,0,33,"None"],["Production Foreman",39500,0,79000,0,33,65,"None"],["Mine Engineer",0,81000,40500,0,65,33,"None"],["Electrician",39000,0,78000,65,0,33,"None"],["Safety Inspector",47500,95000,0,0,67,34,"Cleaner"],["Site Manager",0,97000,48750,0,67,34,"Manager"],["Secretary",0,39000,78000,0,33,65,"Secretary"]],
+  "Music Store":[["Sales Assistant",0,1750,3500,0,20,40,"None"],["Musician",4500,9000,0,0,48,24,"None"],["Sales Apprentice",0,500,1000,0,15,30,"None"],["Cleaner",2000,0,1000,36,0,18,"Cleaner"],["Supervisor",0,3500,7000,0,23,46,"Manager"],["Bookkeeper",0,2750,5500,0,22,44,"Secretary"],["Trainer",0,10500,5250,0,49,25,"Trainer"]],
+  "Nightclub":[["Bartender",13500,0,27000,0,29,57,"None"],["Bouncer",48000,0,24000,61,0,31,"None"],["Barback",10250,0,20500,54,0,27,"None"],["Cleaner",13500,0,6750,51,0,26,"Cleaner"],["Manager",0,27000,54000,0,31,62,"Manager"],["Personal Assistant",0,20250,40500,0,30,60,"Secretary"],["Promoter",0,54000,27000,0,62,31,"Marketer"],["Trainer",0,81000,40500,0,65,33,"Trainer"],["Disk-jockey",0,40500,20250,0,60,30,"None"]],
+  "Oil Rig":[["Driller",150000,75000,0,70,35,0,"None"],["Roughneck",75000,0,37500,65,0,33,"Cleaner"],["Derrick Hand",94000,0,47000,67,0,34,"None"],["Secretary",0,56250,112500,0,34,68,"Secretary"],["Inspector",0,225000,112500,0,74,37,"Trainer"],["Sales Executive",0,131500,65750,0,69,35,"None"],["Motor Hand",112500,56250,0,68,34,0,"None"]],
+  "Private Security Firm":[["Security Contractor",70000,0,35000,64,0,32,"None"],["Team Leader",110000,0,55000,68,0,35,"Manager"],["Defence Consultant",0,135000,67500,0,70,35,"Trainer"],["Spokesperson",0,80000,40000,0,65,33,"Marketer"],["Company Liaison",0,57500,115000,0,34,68,"Secretary"],["Chief Strategist",0,165000,82500,0,71,35,"None"],["Reconnaissance",80000,40000,0,65,33,0,"None"],["Disposal Engineer",0,85000,42500,0,66,33,"None"],["Armourer",40000,0,80000,0,33,65,"None"],["Medic",0,90000,45000,0,66,33,"None"],["Comms Engineer",0,85000,42500,0,66,33,"None"]],
+  "Property Broker":[["Property Broker",0,750,1500,0,17,34,"None"],["Valuation Specialist",0,3000,1500,0,39,20,"None"],["Associate Broker",0,250,500,0,13,25,"None"],["Cleaner",1000,0,500,30,0,15,"Cleaner"],["Team Manager",0,1500,3000,0,20,39,"Manager"],["Receptionist",0,1250,2500,0,19,38,"Secretary"],["Graphic Designer",0,3000,1500,0,39,20,"Marketer"],["Broker Support",0,4500,2250,0,42,21,"Trainer"]],
+  "Pub":[["Bartender",1500,0,3000,0,20,39,"None"],["Bouncer",6000,0,3000,45,0,23,"None"],["Waiter",1500,0,3000,39,0,20,"None"],["Cleaner",1500,0,750,34,0,17,"Cleaner"],["Manager",0,3000,6000,0,23,45,"Manager"],["Bookkeeper",0,2250,4500,0,21,42,"Secretary"],["Trainer",0,9000,4500,0,48,24,"Trainer"],["Promoter",0,6000,3000,0,45,23,"Marketer"]],
+  "Restaurant":[["Waiter",1250,0,2500,0,19,38,"None"],["Sous Chef",0,4000,2000,0,41,21,"Trainer"],["Head Chef",0,2500,5000,0,22,43,"Manager"],["Kitchen Assistant",1500,0,750,34,0,17,"Cleaner"],["Head Waiter",0,2000,4000,0,21,41,"Secretary"],["Line Cook",1250,2500,0,0,38,19,"None"],["Chef",1500,3000,0,0,39,20,"None"],["Apprentice Chef",750,1500,0,0,34,17,"None"],["Dishwasher",1500,0,750,34,0,17,"None"]],
+  "Software Corporation":[["Developer",0,24000,12000,0,56,28,"None"],["Tester",0,12000,6000,0,50,25,"None"],["Graphic Designer",0,18000,9000,0,53,27,"None"],["Apprentice",0,6000,3000,0,45,23,"None"],["Cleaner",12000,0,6000,50,0,25,"Cleaner"],["Lead Developer",0,24000,48000,0,31,61,"Manager"],["Analyst",0,18000,36000,0,30,59,"Secretary"],["Marketer",0,48000,24000,0,61,31,"Marketer"],["Consultant",0,72000,36000,0,64,32,"Trainer"]],
+  "Sweet Shop":[["Confectionist",0,2500,1250,0,38,19,"None"],["Packager",750,0,1500,0,17,34,"None"],["Cleaner",1000,0,500,30,0,15,"Cleaner"],["Manager",0,2000,4000,0,21,41,"Manager"],["Bookkeeper",0,1500,3000,0,20,39,"Secretary"],["Marketer",0,4000,2000,0,41,21,"Marketer"],["Clerk",1000,0,2000,0,18,36,"None"]],
+  "Television Network":[["Producer",0,99000,49500,0,67,34,"None"],["Programmer",0,66000,33000,0,64,32,"None"],["Camera Operator",24750,49500,0,0,61,31,"None"],["Sales Executive",0,24750,49500,0,31,61,"None"],["Cleaner",33000,0,16500,58,0,29,"Cleaner"],["Attorney",0,132000,66000,0,69,35,"None"],["Secretary",0,49500,99000,0,67,34,"Secretary"],["Marketer",0,132000,66000,0,69,35,"Marketer"],["Writer",0,115500,57750,0,68,34,"None"],["Stagehand",33000,0,16500,58,0,29,"None"],["Anchor",0,132000,66000,0,69,35,"None"],["Reporter",0,82500,41250,0,66,33,"None"]],
+  "Theater":[["Ticketing Agent",0,10000,20000,0,27,54,"None"],["Technician",60000,30000,0,63,32,0,"None"],["Programmer",0,50000,25000,0,62,31,"None"],["Janitor",20000,0,10000,54,0,27,"Cleaner"],["Manager",0,40000,80000,0,33,65,"Manager"],["Accountant",0,30000,60000,0,32,63,"Secretary"],["Marketing Manager",0,80000,40000,0,65,33,"Marketer"],["Usher",10000,0,20000,0,27,54,"None"]],
+  "Toy Shop":[["Sales Assistant",2500,0,5000,0,22,43,"None"],["Cleaner",2500,0,1250,38,0,19,"Cleaner"],["Store Manager",0,5000,10000,0,25,49,"Manager"],["Office Clerk",0,3750,7500,0,23,46,"Secretary"],["Marketing Executive",0,10000,5000,0,49,25,"Marketer"],["Training Advisor",0,15000,7500,0,52,26,"Trainer"],["Stock Clerk",4000,0,2000,41,0,21,"None"]],
+  "Zoo":[["Zoo Keeper",58000,0,29000,63,0,32,"Cleaner"],["Animal Trainer",36250,72500,0,0,65,33,"None"],["Aquarist",0,29000,58000,0,32,63,"None"],["Intern",14500,0,7250,52,0,26,"None"],["Manager",0,58000,116000,0,34,68,"Manager"],["Bookkeeper",0,43500,87000,0,33,66,"Secretary"],["Photographer",0,116000,58000,0,68,34,"Marketer"],["Consultant",0,174000,87000,0,72,36,"Trainer"],["Veterinarian",58000,116000,0,0,68,34,"None"],["Cashier",0,14500,29000,0,29,57,"None"]],
+};
+
 /* ---------- live state ---------- */
 let jbFilter = "all", jbQuery = "";
 let jbMe = store.get("lc2_jobme", null);      // { pos, company, man, int, end, jobs:{}, companies:{}, at }
@@ -3053,6 +3095,33 @@ function jbQualify(row){
   if(!jbMe) return null;
   return jbMe.man >= row[1] && jbMe.int >= row[2] && jbMe.end >= row[3];
 }
+/* Company ranks are director-assigned, so the wiki's figures are the stats a
+   director typically wants, not a hard gate — label them that way. */
+function jbRankQualify(r){
+  if(!jbMe) return null;
+  return jbMe.man >= r[1] && jbMe.int >= r[2] && jbMe.end >= r[3];
+}
+function jbRankRows(c, q){
+  const rk = JB_COMPANY_RANKS[c.name];
+  if(!rk) return "";
+  const rows = rk.map(r => {
+    if(q && !(c.name + " " + r[0] + " " + r[7]).toLowerCase().includes(q)) return "";
+    const ok = jbRankQualify(r);
+    const isMine = jbMe && (jbMe.pos || "").toLowerCase() === r[0].toLowerCase();
+    const gains = [r[4] && r[4] + " Man", r[5] && r[5] + " Int", r[6] && r[6] + " End"].filter(Boolean).join(" / ");
+    return `<tr class="${isMine ? "jbcur" : ok ? "jbok" : ""}">
+      <td>${escHtml(r[0])}</td>
+      <td>${r[1] ? fmtInt(r[1]) : "—"}</td><td>${r[2] ? fmtInt(r[2]) : "—"}</td><td>${r[3] ? fmtInt(r[3]) : "—"}</td>
+      <td>${escHtml(gains)}</td>
+      <td class="jbsp">${r[7] === "None" ? "—" : escHtml(r[7])}</td></tr>`;
+  }).join("");
+  if(!rows.replace(/\s/g, "")) return "";
+  return `<table class="jbtbl">
+      <thead><tr><th>Position</th><th>Man</th><th>Int</th><th>End</th><th>Daily gains</th><th>Role</th></tr></thead>
+      <tbody>${rows}</tbody></table>
+    <div class="jbmeta" style="margin-top:4px">Recommended stats — the director sets the actual requirement.</div>`;
+}
+
 function jbNextPosition(){
   if(!jbMe) return null;
   const out = [];
@@ -3173,10 +3242,12 @@ function jbCityCard(j){
 
 function jbCompanyCard(c){
   const q = jbQuery.toLowerCase();
-  if(q && !(c.name + " " + c.sp.map(x => x[1] + " " + x[3]).join(" ")).toLowerCase().includes(q)) return "";
+  const rankNames = (JB_COMPANY_RANKS[c.name] || []).map(r => r[0] + " " + r[7]).join(" ");
+  if(q && !(c.name + " " + c.sp.map(x => x[1] + " " + x[3]).join(" ") + " " + rankNames).toLowerCase().includes(q)) return "";
   if(jbFilter === "qualify" && jbMe){
-    const mine = (jbMe.companies || {})[c.name];
-    if(!mine) return "";
+    const holdsPts = (jbMe.companies || {})[c.name] != null;
+    const meetsRank = (JB_COMPANY_RANKS[c.name] || []).some(r => jbRankQualify(r));
+    if(!holdsPts && !meetsRank) return "";
   }
   const mine = jbMe ? (jbMe.companies || {})[c.name] : null;
   const isHere = jbMe && jbMe.company && jbMe.company.toLowerCase() === c.name.toLowerCase();
@@ -3186,6 +3257,7 @@ function jbCompanyCard(c){
         <div class="jbmeta">${escHtml(c.size)} · from $${fmtInt(c.cost)} · ${c.emp} staff at start</div></div>
       ${mine != null ? `<span class="chip ok" title="Job points banked in this company type">${fmtInt(mine)} pts</span>` : ""}
     </div>
+    ${jbRankRows(c, jbQuery.toLowerCase())}
     <div class="jbspecials">${c.sp.map(x => {
       const afford = mine != null && x[2] !== null && mine >= x[2];
       return `<div class="jbsp${afford ? " jbafford" : ""}">
@@ -3211,8 +3283,10 @@ function renderJobBook(){
   $("jbCitySect").hidden = !f.city;
   $("jbCompSect").hidden = !f.company;
   const nPos = JB_CITY.reduce((a, j) => a + j.pos.length, 0);
+  const nRank = Object.values(JB_COMPANY_RANKS).reduce((a, r) => a + r.length, 0);
   $("jbUpdated").textContent = `${JB_CITY.length} city jobs · ${nPos} positions · ${JB_COMPANIES.length} companies · `
-    + `${JB_COMPANIES.length * 5} star specials · ${jbMe ? "your stats & points from the Torn API" : "reference only — add a Torn API key for your own numbers"}`;
+    + `${nRank} company positions · ${JB_COMPANIES.length * 5} star specials · `
+    + `${jbMe ? "your stats & points from the Torn API" : "reference only — add a Torn API key for your own numbers"}`;
 }
 function jbTick(){
   if(state.page !== "jobbook") return;
