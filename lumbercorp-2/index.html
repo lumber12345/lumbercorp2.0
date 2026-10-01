@@ -161,7 +161,8 @@
     backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
     border-top:1px solid var(--border);
     padding:6px 8px calc(6px + env(safe-area-inset-bottom));
-    grid-template-columns:repeat(9, 1fr);gap:2px;
+    /* one equal column per tab, whatever the count — no hardcoded N */
+    grid-auto-flow:column;grid-auto-columns:1fr;gap:2px;
   }
   .tabbar button{
     background:none;border:none;color:var(--faint);cursor:pointer;
@@ -399,6 +400,39 @@
   .npcfoot{display:flex;gap:7px;align-items:center;flex-wrap:wrap;border-top:1px dashed var(--border);padding-top:9px}
   .npcfoot select{background:var(--card2);border:1px solid var(--border2);border-radius:9px;padding:6px 8px;font-size:12px;font-weight:700}
   .npcnote{font-size:11px;color:var(--faint);line-height:1.55}
+  /* ---- Job Book ---- */
+  .jbme{display:grid;gap:10px}
+  .jbme-top{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .jbme-pos{font-size:19px;font-weight:800;letter-spacing:.2px}
+  .jbme-sub{font-size:12px;color:var(--faint)}
+  .jbstats{display:flex;gap:8px;flex-wrap:wrap}
+  .jbstat{flex:1 1 90px;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+  .jbstat b{display:block;font-size:15px}
+  .jbstat span{font-size:10.5px;color:var(--faint);text-transform:uppercase;letter-spacing:.5px}
+  .jbpts{display:flex;gap:6px;flex-wrap:wrap}
+  .jbpt{background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:12px}
+  .jbpt b{color:var(--accent)}
+  .jbnext{font-size:12.5px;color:var(--text);background:var(--panel2);border-left:3px solid var(--accent);border-radius:8px;padding:8px 10px}
+  .jbgrid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(330px,1fr))}
+  .jbcard h3{margin:0;font-size:15px}
+  .jbhead{display:flex;align-items:center;gap:9px;margin-bottom:2px}
+  .jbface{font-size:24px;line-height:1}
+  .jbmeta{font-size:11px;color:var(--faint)}
+  table.jbtbl{width:100%;border-collapse:collapse;font-size:11.5px;margin-top:8px}
+  table.jbtbl th{text-align:right;color:var(--faint);font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.4px;padding:3px 4px;border-bottom:1px solid var(--line)}
+  table.jbtbl th:first-child,table.jbtbl td:first-child{text-align:left}
+  table.jbtbl td{padding:4px;border-bottom:1px solid rgba(255,255,255,.05);text-align:right;white-space:nowrap}
+  table.jbtbl tr.jbok td{background:rgba(63,201,138,.09)}
+  table.jbtbl tr.jbcur td{background:rgba(255,196,0,.13);font-weight:700}
+  table.jbtbl td.jbsp{text-align:left;white-space:normal;color:var(--faint)}
+  .jbspecials{display:grid;gap:5px;margin-top:8px}
+  .jbsp{display:flex;gap:8px;align-items:baseline;font-size:12px;background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:6px 9px}
+  .jbsp .st{color:var(--warn);font-weight:700;min-width:26px}
+  .jbsp .nm{font-weight:700}
+  .jbsp .cf{color:var(--accent);font-size:11px;white-space:nowrap}
+  .jbsp .ef{color:var(--faint);font-size:11.5px}
+  .jbsp.jbafford{border-color:rgba(63,201,138,.45)}
+  .jbsect{margin:18px 0 8px;font-size:13px;text-transform:uppercase;letter-spacing:1px;color:var(--faint)}
   .ladder{display:flex;gap:8px;flex-wrap:wrap;align-items:stretch;margin-top:2px}
   .ladstep{flex:1;min-width:128px;background:var(--card2);border:1px solid var(--border);border-radius:11px;padding:9px 10px}
   .ladstep b{font-size:12.5px;display:block}
@@ -526,6 +560,7 @@
     <button class="navitem" data-page="bazaar"><span class="ni">🛒</span> Bazaar</button>
     <button class="navitem" data-page="targets"><span class="ni">🎯</span> Targets</button>
     <button class="navitem" data-page="npcloot"><span class="ni">🩸</span> NPC Loot</button>
+    <button class="navitem" data-page="jobbook"><span class="ni">📖</span> Job Book</button>
     <button class="navitem" data-page="settings"><span class="ni">⚙️</span> Settings</button>
     <div class="railfoot">
       <button class="modebadge" id="modeBadge" title="Toggle demo / live mode">
@@ -795,6 +830,36 @@
     </section>
 
     <!-- ============ SETTINGS ============ -->
+    <section id="page-jobbook" hidden>
+      <div class="card jbme" id="jbMe"></div>
+
+      <div class="npcbar">
+        <div class="seg" id="jbFilterSeg">
+          <button data-jbfilter="all" class="active">Everything</button>
+          <button data-jbfilter="city">City jobs</button>
+          <button data-jbfilter="company">Companies</button>
+          <button data-jbfilter="qualify">I qualify for</button>
+        </div>
+        <input type="text" id="jbSearch" placeholder="Search job, position or special…" autocomplete="off" spellcheck="false">
+        <button class="btn sm" id="btnJbRefresh" title="Re-read your job, points and working stats from the Torn API">⟳ Refresh</button>
+      </div>
+
+      <div class="jbsect" id="jbCitySect">City jobs — position ladders</div>
+      <div class="jbgrid" id="jbCity"></div>
+
+      <div class="jbsect" id="jbCompSect">Player companies — star specials</div>
+      <div class="jbgrid" id="jbCompany"></div>
+
+      <div class="npcnote" style="margin-top:12px">
+        Job points are granted at <b>18:00 TCT</b> each day — one per star of your company's rating, or the daily
+        amount for your city-job position. Points are kept <b>per job type</b>, so they survive leaving and
+        rejoining any job of the same type. City-job ladders and company specials verified against the
+        <a href="https://wiki.torn.com/wiki/Job" target="_blank" rel="noopener">Torn Wiki — Job</a> and
+        <a href="https://wiki.torn.com/wiki/Company/Company_List" target="_blank" rel="noopener">Company List</a>.
+      </div>
+      <div class="npcnote" id="jbUpdated" style="margin-top:6px"></div>
+    </section>
+
     <section id="page-settings" hidden>
       <h2 class="sec">Data Source</h2>
       <div class="card setcard">
@@ -904,6 +969,7 @@
   <button data-page="bazaar"><span class="ti">🛒</span>Bazaar</button>
   <button data-page="targets"><span class="ti">🎯</span>Targets</button>
   <button data-page="npcloot"><span class="ti">🩸</span>Loot</button>
+  <button data-page="jobbook"><span class="ti">📖</span>Jobs</button>
   <button data-page="settings"><span class="ti">⚙️</span>Setup</button>
 </nav>
 
@@ -1618,6 +1684,7 @@ const PAGES = {
   bazaar:    ["Bazaar Finder", "Hunt the cheapest listings"],
   targets:   ["Target Finder", "Scout & track attack targets"],
   npcloot:   ["NPC Loot", "Lootable NPCs — loot levels, timers & every drop"],
+  jobbook:   ["The Job Book", "Every job & company — ladders, pay, points and specials"],
   settings:  ["Settings", "Make it yours"]
 };
 function goto(page){
@@ -1636,6 +1703,7 @@ function goto(page){
   if(page === "bazaar"){ bzEnter(); }
   if(page === "targets"){ tfEnter(); }
   if(page === "npcloot"){ npcEnter(); }
+  if(page === "jobbook"){ jbEnter(); }
   if(page === "settings"){ renderSettings(); }
   renderAll(); // cheap refresh of dynamic bits for the new page
   window.scrollTo({ top: 0 });
@@ -2792,6 +2860,325 @@ function renderNpcSummary(){
         : "timers from your own clocks — no live feed yet");
 }
 
+
+/* ==========================================================================
+   THE JOB BOOK — every city job ladder + every company's star specials.
+   Source: wiki.torn.com/wiki/Job and wiki.torn.com/wiki/Company/Company_List
+   ========================================================================== */
+/* City-job position tuple:
+   [name, reqMan, reqInt, reqEnd, gainMan, gainInt, gainEnd, pay, jpPerDay, pointsForPromotion, special] */
+const JB_CITY = [
+  { id:"army", name:"Army", glyph:"🎖️", tag:"Combat & spy specials", point:"Army points", pos:[
+    ["Private",2,2,2,3,1,2,125,1,5,"Strength boost for army points"],
+    ["Corporal",50,15,20,5,2,3,150,2,10,"none"],
+    ["Sergeant",120,35,50,8,3,5,180,3,15,"Steal weapon for 10 army points"],
+    ["Master Sergeant",325,60,115,12,4,7,220,4,20,"none"],
+    ["Warrant Officer",700,160,300,17,7,10,225,5,25,"none"],
+    ["Lieutenant",1300,360,595,20,9,11,325,6,30,"Defence boost for army points"],
+    ["Major",2550,490,900,24,10,13,550,7,35,"none"],
+    ["Colonel",4150,600,1100,28,12,15,755,8,40,"none"],
+    ["Brigadier",7500,1350,2530,33,18,15,1000,9,45,"none"],
+    ["General",10000,2000,4000,40,25,20,2500,10,null,"Spy a player's battle stats for 10 army points and $5,000"]
+  ]},
+  { id:"grocer", name:"Grocer", glyph:"🛒", tag:"Cheap cans, low stat floor", point:"Grocer points", pos:[
+    ["Bag Boy",2,2,2,2,1,3,150,1,5,"Steal cash for 1 Grocer point"],
+    ["Price Labeller",30,15,50,3,2,5,175,2,10,"Steal a bag of Candy for 2 Grocer points"],
+    ["Cashier",50,35,120,5,3,8,210,3,15,"Steal a bottle of Alcohol for 5 Grocer points"],
+    ["Food Delivery",120,60,225,10,5,15,250,4,20,"none"],
+    ["Manager",250,200,500,15,10,20,300,5,null,"Steal an Energy Drink for 25 Grocer points"]
+  ]},
+  { id:"casino", name:"Casino", glyph:"🎰", tag:"Best early pay", point:"Casino points", pos:[
+    ["Dealer",2,2,2,1,2,3,250,1,5,"Collect tips: + Money for 1 Casino point"],
+    ["Gaming Consultant",35,50,120,2,3,5,350,2,10,"Pocket tokens: +25 Casino Tokens for 1 Casino point"],
+    ["Marketing Manager",60,115,325,4,7,12,500,3,15,"none"],
+    ["Revenue Manager",360,595,1300,9,11,20,1000,4,20,"Steal cash: + Money for 1 Casino point"],
+    ["Casino Manager",490,900,2550,10,13,24,1750,5,25,"none"],
+    ["Casino President",755,1100,4150,12,15,28,3500,6,null,"Count cards: + Money for 10 Casino points and $100,000"]
+  ]},
+  { id:"medical", name:"Medical", glyph:"⚕️", tag:"Ends in the 75e revive", point:"Medical points", pos:[
+    ["Medical Student",0,300,0,4,12,7,400,1,5,"none"],
+    ["Houseman",100,600,150,7,17,10,600,2,10,"Steal small first aid kit for 2 Medical points"],
+    ["Senior Houseman",175,1000,275,9,20,11,950,3,15,"Steal first aid kit for 4 Medical points"],
+    ["GP",300,1500,500,10,24,13,1500,4,20,"Steal morphine for 7 Medical points"],
+    ["Consultant",600,2500,1000,12,28,15,3000,5,25,"none"],
+    ["Surgeon",1300,5000,2000,18,33,15,5000,6,30,"none"],
+    ["Brain Surgeon",2600,10000,4000,20,40,25,7000,7,null,"Revive someone for 75 energy (Passive)"]
+  ]},
+  { id:"education", name:"Education", glyph:"🎓", tag:"Working stats for points", point:"Education points", pos:[
+    ["Recess Supervisor",0,500,0,8,10,9,300,1,5,"+100 Manual per 10 Education Points"],
+    ["Substitute Teacher",300,750,500,13,15,14,400,2,10,"none"],
+    ["Elementary Teacher",600,1000,700,15,20,17,600,3,15,"+100 Endurance per 10 Education Points"],
+    ["Secondary Teacher",1000,1300,1000,20,25,20,850,4,20,"none"],
+    ["Professor",1500,2000,1500,25,30,25,1000,5,25,"+100 Intel per 10 Education Points"],
+    ["Vice Principal",1500,3000,1500,30,35,30,1750,6,30,"none"],
+    ["Principal",1500,5000,1500,30,40,30,3250,7,null,"10% passive decrease in completion time for all future education courses (Passive)"]
+  ]},
+  { id:"law", name:"Law", glyph:"⚖️", tag:"Ends in the bust perk", point:"Law points", pos:[
+    ["Law Student",0,0,1500,15,15,20,150,1,5,"Gain 3 nerve for 5 law points"],
+    ["Paralegal",1750,2500,5000,17,20,23,600,2,10,"Gain money for 100 law points"],
+    ["Probate Lawyer",2500,5000,7500,19,23,30,750,3,15,"none"],
+    ["Trial Lawyer",3500,6500,7750,25,27,35,1500,4,20,"Get someone out of jail for 15 law points"],
+    ["Circuit Court Judge",4000,7250,10000,27,30,38,2500,5,25,"none"],
+    ["Federal Judge",6000,9000,15000,30,33,45,5000,6,null,"+5% in crime exp & skill gain (Passive)"]
+  ]}
+];
+const JB_CITY_BY_POS = {};
+JB_CITY.forEach(j => j.pos.forEach(r => { JB_CITY_BY_POS[r[0].toLowerCase()] = { job: j, row: r }; }));
+
+/* Company special tuple: [stars, name, costOrNullForPassive, effect] */
+const JB_COMPANIES = [
+  { name:"Adult Novelties", size:"small", cost:1750000, emp:4, sp:[[1,"Blackmail",1,"Money"],[3,"Voyeur",20,"Erotic DVD"],[5,"Party Supplies",500,"Pack of Trojans"],[7,"Bondage",null,"25% enemy speed reduction"],[10,"Indecent",null,"100% bonus to Erotic DVDs"]] },
+  { name:"Amusement Park", size:"medium", cost:100000000, emp:8, sp:[[1,"Dauntless",1,"+2 nerve"],[3,"Free Ride",10,"250 happiness for target"],[5,"Unflinching",null,"10 maximum nerve"],[7,"Adrenaline Rush",null,"25% epinephrine effect & duration"],[10,"Thrill Seeker",null,"10% crime exp & skill gain"]] },
+  { name:"Candle Shop", size:"small", cost:500000, emp:4, sp:[[1,"Warming Therapy",1,"50 happiness"],[3,"Illumination",null,"50% awareness"],[5,"Calming Therapy",1,"2 nerve"],[7,"Reinvigorating Therapy",1,"5 energy"],[10,"Meditation",250,"View someone's true level if they are level holding"]] },
+  { name:"Car Dealership", size:"small", cost:6000000, emp:4, sp:[[1,"Test Drive",5,"Racing point"],[3,"Discount Parts",null,"75% cost discount on car parts"],[5,"Salesman",null,"Waive anonymous item market listing fee"],[7,"Two-Faced",null,"15% fraud crime exp & skill gain"],[10,"Getaway Car",null,"Escape button always enabled"]] },
+  { name:"Clothing Store", size:"small", cost:1000000, emp:5, sp:[[1,"Fashion Show",1,"Experience"],[3,"Nine to Five",10,"100 Endurance"],[5,"Activewear",null,"+25% passive dexterity"],[7,"Secret Pockets",null,"+75% mug protection"],[10,"Tailoring",null,"+20% armor bonus"]] },
+  { name:"Cruise Line", size:"large", cost:300000000, emp:6, sp:[[1,"Bursar",1,"25 casino tokens"],[3,"Portage",null,"2 extra travel items"],[5,"R&R",1,"Drug addiction reduction"],[7,"Destination Report",1,"View stock analysis of all items at a selected country"],[10,"Freight",null,"3 extra travel items"]] },
+  { name:"Cyber Cafe", size:"small", cost:3000000, emp:4, sp:[[1,"Ub3rg33k",null,"50% virus coding time reduction"],[3,"Clone Data",25,"Virus"],[5,"Proxy Hacking",25,"Cancel a target's virus programming"],[7,"IP Tracing",25,"View list of anonymous bounties"],[10,"Financial Phishing",25,"View details of someone's investment account"]] },
+  { name:"Detective Agency", size:"small", cost:12000000, emp:4, sp:[[1,"References",2,"View someone's employment and faction history"],[3,"Deputized",null,"Able to arrest those who meet the required threshold after defeat"],[5,"Friend or Foe",100,"See who's friended / blacklisted you"],[7,"Watchlist",50,"Anonymously extend a target's flight time by 1:30–2:00 hours"],[10,"Most Wanted",25,"View a list of people with the highest wanted rewards"]] },
+  { name:"Farm", size:"small", cost:5250000, emp:5, sp:[[1,"Fullfillment",1,"50 happiness"],[3,"Animal Instinct",null,"25% hunting reward"],[5,"Special K",5,"Ketamine drug"],[7,"Fertilizer",100,"Small explosive device"],[10,"Early Riser",1,"7 energy"]] },
+  { name:"Firework Stand", size:"small", cost:500000, emp:4, sp:[[1,"Audaciousness",1,"+2 nerve"],[3,"Illumination",null,"+50% awareness"],[5,"Pyromania",null,"+25% flamethrower damage, +10 flamethrower accuracy"],[7,"Explosives Expert",5,"Random bomb parts (temporarily unavailable)"],[10,"Inferno",25,"Random incendiary ammunition for currently equipped weapons"]] },
+  { name:"Fitness Center", size:"medium", cost:17000000, emp:8, sp:[[1,"Healthy Mind",1,"30 minute education time reduction"],[3,"Goal Oriented",null,"50% reduction of happiness loss in gym"],[5,"Roid Rage",1,"Strength"],[7,"Athlete",null,"3% life regeneration per tick"],[10,"Training Regime",null,"3% gym gains"]] },
+  { name:"Flower Shop", size:"small", cost:500000, emp:4, sp:[[1,"Rare Import",3,"Special flower"],[3,"Cultivation",null,"25% illegal production success & gain (temporarily unavailable)"],[5,"Herbal Cleansing",1,"Drug addiction reduction"],[7,"Over Capacity",null,"Buy 5 additional special flowers abroad"],[10,"Floral Contacts",1,"View stock analysis of flowers in all countries"]] },
+  { name:"Furniture Store", size:"small", cost:2500000, emp:4, sp:[[1,"Coffee Break",1,"3 energy"],[3,"Heavy Lifting",1,"Strength"],[5,"Removal",null,"15% theft crime exp & skill gain"],[7,"Beefcake",null,"25% passive strength"],[10,"Brute Force",null,"100% fist & kick damage"]] },
+  { name:"Game Shop", size:"small", cost:1250000, emp:4, sp:[[1,"Ub3rg33k",null,"50% virus coding time reduction"],[3,"Early Release",100,"Money"],[5,"Gamer",null,"100% console happiness"],[7,"Power Levelling",10,"View progress to your next level"],[10,"Overpowered",1,"1 nerve, 5 energy, 50 happiness"]] },
+  { name:"Gas Station", size:"small", cost:25000000, emp:4, sp:[[1,"Molotov Cocktail",3,"+1 Molotov Cocktail"],[3,"Fueled",null,"+25% bonus to speed"],[5,"Cauterize",null,"Occasional 20% health regeneration (10% chance per turn)"],[7,"Fireproof",null,"50% reduction to burning damage received"],[10,"Blaze of Glory",null,"50% bonus to burning damage dealt"]] },
+  { name:"Gents Strip Club", size:"small", cost:5000000, emp:4, sp:[[1,"Happy Ending",1,"+50 happy"],[3,"Dancer's Flair",null,"+25% passive dexterity"],[5,"Supple",null,"+50% tyrosine effect & duration"],[7,"Pilates",null,"+10% dexterity gym gains"],[10,"No Touching",null,"1 in 4 chance to dodge melee attacks"]] },
+  { name:"Grocery Store", size:"small", cost:2000000, emp:5, sp:[[1,"Bagged Down",2,"Bag of candy"],[3,"Fast Metabolism",null,"10% consumable cooldown"],[5,"Bottled Up",5,"Bottle of alcohol"],[7,"Absorption",null,"10% consumable boost"],[10,"Canned In",12,"Can of (premium) energy drink"]] },
+  { name:"Gun Shop", size:"small", cost:2500000, emp:4, sp:[[1,"Sales Discount",null,"20% discount on standard ammo"],[3,"Surplus",15,"Random special ammunition for currently equipped weapons"],[5,"Skilled Analysis",null,"Target equipment and ammo always visible"],[7,"Bandoleer",null,"1 extra clip for guns during attacks"],[10,"Firearms Expert",null,"10% primary & secondary weapon damage"]] },
+  { name:"Hair Salon", size:"small", cost:750000, emp:4, sp:[[1,"Debate",1,"Experience"],[3,"Gossip",10,"View someone's money on hand"],[5,"Rumors",null,"Reduced enemy stealth"],[7,"Cutting Corners",1,"30 minute education time reduction"],[10,"Sweeney's Revenge",null,"20% slashing weapon damage"]] },
+  { name:"Ladies Strip Club", size:"small", cost:5000000, emp:4, sp:[[1,"Hot Flush",1,"+50 happy"],[3,"Hench",null,"+25% passive defense"],[5,"Hormonal",null,"+50% serotonin effect & duration"],[7,"Boxercise",null,"+10% defense gym gains"],[10,"Hardbody",null,"30% melee damage mitigation"]] },
+  { name:"Law Firm", size:"small", cost:4000000, emp:4, sp:[[1,"Bail Bondsman",null,"50% decreased bail costs"],[3,"Background Check",10,"View someone's stats"],[5,"Closing Argument",null,"Easier to bust more people at once"],[7,"Loophole",null,"20% organised crime skill"],[10,"Educated Decisions",null,"View success chance of potential busts"]] },
+  { name:"Lingerie Store", size:"small", cost:1750000, emp:4, sp:[[1,"Nine to Five",10,"100 endurance"],[3,"Concealment",null,"2 extra travel items"],[5,"Born Free",null,"+50% speed and dexterity when not wearing armor"],[7,"Simp",null,"Waive all property upkeep and staff costs"],[10,"Sex Appeal",null,"Free business class travel"]] },
+  { name:"Logistics Management", size:"large", cost:1800000000, emp:6, sp:[[1,"Efficiency",1,"Speed"],[3,"Organized",null,"Increases available open mission contracts from 3 to 5"],[5,"Repatriated",null,"Travel back to Torn from abroad while in hospital"],[7,"Contraband",50,"Large quantity of a foreign item"],[10,"Logistics Report",250,"Targeted company productivity boost"]] },
+  { name:"Meat Warehouse", size:"medium", cost:4000000, emp:5, sp:[[1,"Blood Thirst",1,"+2 nerve"],[3,"Blood Splatter",null,"50% reduction in crime penalty"],[5,"Carnage",null,"10 maximum nerve"],[7,"Huntsman",null,"25% hunting skill gain"],[10,"Vampiric",null,"3% life regeneration per tick"]] },
+  { name:"Mechanic Shop", size:"small", cost:3000000, emp:4, sp:[[1,"Machinist",5,"Racing point"],[3,"Discount Parts",null,"75% cost discount on car parts"],[5,"Junkyard Dog",10,"Random car"],[7,"Refurbish",null,"Lose no car parts after crashing"],[10,"Driver",null,"50% driving skill gain"]] },
+  { name:"Mining Corporation", size:"medium", cost:4500000000, emp:8, sp:[[1,"Mining Boom",20,"Random excavation equipment"],[3,"Thirsty Work",null,"30% alcohol cooldown reduction"],[5,"Rock Salt",1,"Defense"],[7,"Essential Salts",null,"10% maximum life"],[10,"Preserved Meat",25,"Boost current life to 150% of maximum"]] },
+  { name:"Music Store", size:"small", cost:1500000, emp:4, sp:[[1,"Ambience",1,"50 happiness"],[3,"Well Tuned",null,"30% increased gym experience"],[5,"High-fidelity",null,"Reduced enemy stealth"],[7,"Deafened",10,"Maximum stealth"],[10,"The Score",null,"+15% passive on all stats"]] },
+  { name:"Nightclub", size:"small", cost:7500000, emp:5, sp:[[1,"Criminal Connections",1,"Experience"],[3,"Target Market",null,"+15% illicit service exp and skill gain"],[5,"Suppression",1,"Drug addiction reduction"],[7,"Tolerance",null,"50% drug overdose chance reduction"],[10,"Restraint",null,"Education unaffected by drug addiction"]] },
+  { name:"Oil Rig", size:"large", cost:10500000000, emp:12, sp:[[1,"Danger Money",1,"Money"],[3,"Embargo",50,"Halve a target's happiness"],[5,"Oil Mogul",3,"Reduce bank investment time by 1 hour"],[7,"Tax Haven",null,"10% increase of Cayman Islands interest rate"],[10,"Fat Cat",null,"50% investment banking limit"]] },
+  { name:"Private Security Firm", size:"medium", cost:950000000, emp:6, sp:[[1,"Off the Grid",20,"72 hour bounty protection"],[3,"Tactical Breach",null,"+50% flash grenade intensity"],[5,"Open Arsenal",75,"Primary or secondary weapon"],[7,"Regulation",null,"25% full set armor mitigation bonus"],[10,"Mercenary",1,"3 mission credits"]] },
+  { name:"Property Broker", size:"small", cost:750000, emp:4, sp:[[1,"Commission",1,"Money"],[3,"Job Satisfaction",1,"50 happiness"],[5,"Vendor",null,"Waive anonymous item market listing fee"],[7,"Insider Trading",150,"Random property (up to Castle)"],[10,"Interior Connections",null,"10% property upgrade cost reduction"]] },
+  { name:"Pub", size:"small", cost:1250000, emp:4, sp:[[1,"Pub Lunch",1,"3 energy"],[3,"Drunken Master",null,"10% melee weapon damage"],[5,"Liquid Courage",25,"Refill nerve bar"],[7,"Lightweight",null,"50% bottle of alcohol boost"],[10,"Buzzed",null,"+15 maximum nerve"]] },
+  { name:"Restaurant", size:"small", cost:1000000, emp:4, sp:[[1,"Free Meals",1,"3 energy"],[3,"Butcher",null,"10% melee weapon damage"],[5,"Flambayed",50,"Flamethrower"],[7,"Healthy Diet",null,"2% life regeneration per tick"],[10,"Professional Metabolism",null,"25% consumable cooldown reduction"]] },
+  { name:"Software Corporation", size:"small", cost:6000000, emp:5, sp:[[1,"Ub3rg33k",null,"50% virus coding time reduction"],[3,"Proxy Hacking",25,"Cancel a target's virus programming"],[5,"Intricate Hack",250,"Steals 1–3% of a company's funds"],[7,"Hack the Planet",null,"15% cybercrime success & skill gain"],[10,"Corporate Espionage",50,"View financial details of a company"]] },
+  { name:"Sweet Shop", size:"small", cost:1000000, emp:4, sp:[[1,"Sweet Tooth",1,"50 happiness"],[3,"Sugar Rush",2,"Bag of candy"],[5,"Gluttony",10,"1,000 happiness"],[7,"Energy Rush",15,"Can of (premium) energy drink"],[10,"Voracious",30,"4,500 happiness"]] },
+  { name:"Television Network", size:"medium", cost:8000000000, emp:8, sp:[[1,"Propaganda",5,"1 faction respect"],[3,"Scoop",null,"50% newspaper advertising cost"],[5,"Inside Story",15,"View someone's stats & money"],[7,"Bad Publicity",null,"25% extortion success rate and skill gain (temporarily unavailable)"],[10,"Press Pass",25,"Receive special privileges"]] },
+  { name:"Theater", size:"medium", cost:50000000, emp:6, sp:[[1,"Stagecraft",1,"Experience"],[3,"Dramatics",10,"Maximum stealth"],[5,"Masked",null,"Cannot be targeted by spies"],[7,"Twinlike",null,"15% counterfeiting crime exp & skill gain"],[10,"Disguised",null,"Hidden traveling status & destination"]] },
+  { name:"Toy Shop", size:"small", cost:2000000, emp:5, sp:[[1,"Memory Lane",1,"50 happiness"],[3,"Jumble Sale",3,"Special plushie"],[5,"Gamer",null,"100% console happiness"],[7,"Over Capacity",null,"Bring back +5 plushies from abroad"],[10,"Toy Importer",1,"View stock analysis of plushies in all countries"]] },
+  { name:"Zoo", size:"large", cost:300000000, emp:6, sp:[[1,"Fulfillment",1,"50 happiness"],[3,"Animal Instinct",null,"25% hunting reward"],[5,"Special K",5,"Ketamine drug"],[7,"Eye of the Tiger",null,"70% awareness"],[10,"Seasoned Poacher",null,"+3.00 accuracy"]] }
+];
+
+/* ---------- live state ---------- */
+let jbFilter = "all", jbQuery = "";
+let jbMe = store.get("lc2_jobme", null);      // { pos, company, man, int, end, jobs:{}, companies:{}, at }
+let jbErr = null, jbBusy = false;
+
+async function jbFetch(silent){
+  const key = (settings.apiKey || "").trim();
+  if(!key){
+    jbErr = "Add a Torn API key in Setup → Data Source to see your own job, points and stats";
+    if(!silent) toast("🔑 " + jbErr, "warn");
+    renderJobBook(); return false;
+  }
+  if(jbBusy) return false;
+  jbBusy = true;
+  const btn = $("btnJbRefresh");
+  if(btn){ btn.disabled = true; btn.classList.add("spin"); }
+  try{
+    const j = await tornUser("profile,jobpoints,stats");
+    if(!j || j.error) throw new Error((j && j.error && j.error.error) || "the Torn API refused the call");
+    const pr = j.profile || {}, st = j.stats || {}, jp = j.jobpoints || {};
+    const jb = j.job;
+    const pos = typeof jb === "string" ? jb : (jb && jb.position) || pr.job || null;
+    const comp = (jb && (jb.company_name || jb.company)) || pr.company_name || pr.company || null;
+    const num = v => (typeof v === "number" ? v : (parseInt(v, 10) || 0));
+    const jobs = {};
+    for(const k in (jp.jobs || {})) jobs[k] = num(jp.jobs[k]);
+    const comps = {};
+    for(const k in (jp.companies || {})){
+      const e = jp.companies[k];
+      comps[(e && e.name) || k] = num(e && e.jobpoints);
+    }
+    jbMe = {
+      pos, company: typeof comp === "number" ? null : comp, companyId: typeof comp === "number" ? comp : null,
+      man: num(st.manual_labor), int: num(st.intelligence), end: num(st.endurance),
+      jobs, companies: comps, at: Date.now()
+    };
+    store.set("lc2_jobme", jbMe);
+    jbErr = null;
+    if(!silent) toast("📖 Job Book updated from the Torn API", "ok");
+    return true;
+  }catch(e){
+    jbErr = (e && e.message) || "Torn API unreachable";
+    if(!silent) toast("⚠️ Job Book: " + escHtml(jbErr) + (jbMe ? " (showing the last good read)" : ""), "warn");
+    return false;
+  }finally{
+    jbBusy = false;
+    if(btn){ btn.disabled = false; btn.classList.remove("spin"); }
+    renderJobBook();
+  }
+}
+
+/* next 18:00 TCT — the daily job-point drop */
+function jbNextDrop(){
+  const now = new Date();
+  const tct = new Date(now.getTime() + (5 * 60 + now.getTimezoneOffset()) * 60000);
+  const drop = new Date(tct); drop.setHours(18, 0, 0, 0);
+  if(tct.getTime() >= drop.getTime()) drop.setDate(drop.getDate() + 1);
+  return Math.max(0, Math.round((drop.getTime() - tct.getTime()) / 1000));
+}
+
+function jbQualify(row){
+  if(!jbMe) return null;
+  return jbMe.man >= row[1] && jbMe.int >= row[2] && jbMe.end >= row[3];
+}
+function jbNextPosition(){
+  if(!jbMe) return null;
+  const out = [];
+  for(const j of JB_CITY){
+    const mine = (jbMe.pos || "").toLowerCase();
+    const cur = j.pos.findIndex(r => r[0].toLowerCase() === mine);
+    if(cur < 0) continue;
+    for(let i = cur + 1; i < j.pos.length; i++){
+      const r = j.pos[i];
+      if(jbQualify(r)) out.push({ job: j.name, row: r });
+      else{
+        const need = [];
+        if(jbMe.man < r[1]) need.push(`${fmtInt(r[1] - jbMe.man)} more Man`);
+        if(jbMe.int < r[2]) need.push(`${fmtInt(r[2] - jbMe.int)} more Int`);
+        if(jbMe.end < r[3]) need.push(`${fmtInt(r[3] - jbMe.end)} more End`);
+        out.push({ job: j.name, row: r, need });
+      }
+      break;
+    }
+  }
+  return out;
+}
+
+function jbMeHtml(){
+  if(!jbMe){
+    return `<div class="jbme-top">
+        <div style="flex:1;min-width:0">
+          <div class="jbme-pos">📖 Your job</div>
+          <div class="jbme-sub">${jbErr ? escHtml(jbErr) : "Add a Torn API key in Setup to pull your position, job points and working stats."}</div>
+        </div>
+        <button class="btn sm primary" data-jb="fetch">⟳ Read from Torn</button>
+      </div>
+      <div class="npcnote">The reference below — all 6 city-job ladders and all 39 company specials — works without a key.</div>`;
+  }
+  const cityHit = JB_CITY_BY_POS[(jbMe.pos || "").toLowerCase()];
+  const kind = jbMe.company ? `player company · ${escHtml(jbMe.company)}`
+             : cityHit ? `city job · ${escHtml(cityHit.job.name)}`
+             : jbMe.pos ? "unknown position" : "unemployed";
+  const jobPts = Object.entries(jbMe.jobs);
+  const compPts = Object.entries(jbMe.company ? {} : jbMe.companies);
+  const allPts = Object.entries(jbMe.companies);
+  const nxt = jbNextPosition();
+  const sec = jbNextDrop();
+  return `<div class="jbme-top">
+      <div style="flex:1;min-width:0">
+        <div class="jbme-pos">${escHtml(jbMe.pos || "Unemployed")}</div>
+        <div class="jbme-sub">${kind} · read ${escHtml(timeAgo(jbMe.at))}${jbErr ? " · refresh failed: " + escHtml(jbErr) : ""}</div>
+      </div>
+      <button class="btn sm primary" data-jb="fetch">⟳ Refresh</button>
+    </div>
+    <div class="jbstats">
+      <div class="jbstat"><span>Manual</span><b>${fmtInt(jbMe.man)}</b></div>
+      <div class="jbstat"><span>Intel</span><b>${fmtInt(jbMe.int)}</b></div>
+      <div class="jbstat"><span>Endurance</span><b>${fmtInt(jbMe.end)}</b></div>
+      <div class="jbstat"><span>Next points</span><b data-jbcd>${fmtCountdown(sec)}</b></div>
+    </div>
+    ${allPts.length ? `<div class="jbpts">${allPts.map(([k, v]) =>
+        `<span class="jbpt" title="Job points held in ${escHtml(k)} — kept per job type">${escHtml(k)} <b>${fmtInt(v)}</b></span>`).join("")}</div>`
+      : `<div class="jbme-sub">No job points held yet.</div>`}
+    ${nxt && nxt.length ? nxt.map(n => n.need
+        ? `<div class="jbnext">Next up in <b>${escHtml(n.job)}</b>: ${escHtml(n.row[0])} — you need ${escHtml(n.need.join(", "))}.</div>`
+        : `<div class="jbnext">✅ You already meet the stats for <b>${escHtml(n.row[0])}</b> in ${escHtml(n.job)} — go claim the promotion.</div>`).join("") : ""}`;
+}
+
+function jbCityCard(j){
+  const q = jbQuery.toLowerCase();
+  const rows = j.pos.map(r => {
+    const ok = jbQualify(r);
+    const isMine = jbMe && (jbMe.pos || "").toLowerCase() === r[0].toLowerCase();
+    if(q && !(j.name + " " + r[0] + " " + (r[10] || "")).toLowerCase().includes(q)) return "";
+    return `<tr class="${isMine ? "jbcur" : ok ? "jbok" : ""}">
+      <td>${escHtml(r[0])}</td>
+      <td>${fmtInt(r[1])}</td><td>${fmtInt(r[2])}</td><td>${fmtInt(r[3])}</td>
+      <td>+${r[4]}/${r[5]}/${r[6]}</td>
+      <td>$${fmtInt(r[7])}</td>
+      <td>${r[8]}/day</td>
+      <td>${r[9] === null ? "—" : r[9]}</td>
+      <td class="jbsp">${r[10] === "none" ? "—" : escHtml(r[10])}</td></tr>`;
+  }).join("");
+  if(!rows.replace(/\s/g, "")) return "";
+  if(jbFilter === "qualify" && jbMe && !j.pos.some(r => jbQualify(r))) return "";
+  const affordable = jbMe && jbMe.jobs && jbMe.jobs[j.id] != null;
+  return `<article class="card jbcard">
+    <div class="jbhead"><span class="jbface">${j.glyph}</span>
+      <div style="min-width:0"><h3>${escHtml(j.name)}</h3>
+        <div class="jbmeta">${escHtml(j.tag)} · ${j.pos.length} positions</div></div>
+      ${affordable ? `<span class="chip ok" title="Your banked ${escHtml(j.point)}">${fmtInt(jbMe.jobs[j.id])} pts</span>` : ""}
+    </div>
+    <table class="jbtbl">
+      <thead><tr><th>Position</th><th>Man</th><th>Int</th><th>End</th><th>Gains</th><th>Pay</th><th>Points</th><th>Promo</th><th>Special</th></tr></thead>
+      <tbody>${rows}</tbody></table>
+  </article>`;
+}
+
+function jbCompanyCard(c){
+  const q = jbQuery.toLowerCase();
+  if(q && !(c.name + " " + c.sp.map(x => x[1] + " " + x[3]).join(" ")).toLowerCase().includes(q)) return "";
+  if(jbFilter === "qualify" && jbMe){
+    const mine = (jbMe.companies || {})[c.name];
+    if(!mine) return "";
+  }
+  const mine = jbMe ? (jbMe.companies || {})[c.name] : null;
+  const isHere = jbMe && jbMe.company && jbMe.company.toLowerCase() === c.name.toLowerCase();
+  return `<article class="card jbcard${isHere ? "" : ""}">
+    <div class="jbhead"><span class="jbface">🏢</span>
+      <div style="min-width:0"><h3>${escHtml(c.name)}${isHere ? " <span class='chip ok'>your employer</span>" : ""}</h3>
+        <div class="jbmeta">${escHtml(c.size)} · from $${fmtInt(c.cost)} · ${c.emp} staff at start</div></div>
+      ${mine != null ? `<span class="chip ok" title="Job points banked in this company type">${fmtInt(mine)} pts</span>` : ""}
+    </div>
+    <div class="jbspecials">${c.sp.map(x => {
+      const afford = mine != null && x[2] !== null && mine >= x[2];
+      return `<div class="jbsp${afford ? " jbafford" : ""}">
+        <span class="st">${x[0]}★</span>
+        <span class="nm">${escHtml(x[1])}</span>
+        <span class="cf">${x[2] === null ? "passive" : x[2] + " pts"}</span>
+        <span class="ef">${escHtml(x[3])}</span></div>`;
+    }).join("")}</div>
+  </article>`;
+}
+
+function jbMatchesFilter(){
+  return { city: jbFilter === "all" || jbFilter === "city" || jbFilter === "qualify",
+           company: jbFilter === "all" || jbFilter === "company" || jbFilter === "qualify" };
+}
+function renderJobBook(){
+  const f = jbMatchesFilter();
+  $("jbMe").innerHTML = jbMeHtml();
+  const city = f.city ? JB_CITY.map(jbCityCard).join("") : "";
+  const comp = f.company ? JB_COMPANIES.map(jbCompanyCard).join("") : "";
+  $("jbCity").innerHTML = city || (f.city ? `<div class="npcnote">No city job matches that search.</div>` : "");
+  $("jbCompany").innerHTML = comp || (f.company ? `<div class="npcnote">No company matches that search${jbFilter === "qualify" ? " (or you hold no points in any company type)" : ""}.</div>` : "");
+  $("jbCitySect").hidden = !f.city;
+  $("jbCompSect").hidden = !f.company;
+  const nPos = JB_CITY.reduce((a, j) => a + j.pos.length, 0);
+  $("jbUpdated").textContent = `${JB_CITY.length} city jobs · ${nPos} positions · ${JB_COMPANIES.length} companies · `
+    + `${JB_COMPANIES.length * 5} star specials · ${jbMe ? "your stats & points from the Torn API" : "reference only — add a Torn API key for your own numbers"}`;
+}
+function jbTick(){
+  if(state.page !== "jobbook") return;
+  const el = document.querySelector("[data-jbcd]");
+  if(el) el.textContent = fmtCountdown(jbNextDrop());
+}
+function jbEnter(){
+  renderJobBook();
+  if((settings.apiKey || "").trim() && (!jbMe || Date.now() - (jbMe.at || 0) > 5 * 60000)) jbFetch(true);
+}
+
 /* ---------- live tick (called every second from updateDynamic) ---------- */
 function npcTick(){
   for(const n of NPCS){
@@ -3489,6 +3876,7 @@ function updateDynamic(){
   }
   renderRestock();
   npcTick();
+  jbTick();
   // clocks
   const nowTorn = new Intl.DateTimeFormat("en-GB", { timeZone: "Etc/GMT+5", hour:"2-digit", minute:"2-digit", second:"2-digit" }).format(new Date());
   $("clockTorn").textContent = nowTorn + " TCT";
@@ -3636,6 +4024,19 @@ function wire(){
   $("npcSearch").addEventListener("input", e => { npcQuery = e.target.value.trim(); renderNpcGrid(); });
   $("btnNpcAvatars").addEventListener("click", () => npcLoadAvatars(true));
   $("btnNpcRefresh").addEventListener("click", () => npcFetchLive(false));
+
+  /* ---- Job Book ---- */
+  $("jbFilterSeg").addEventListener("click", e => {
+    const b = e.target.closest("[data-jbfilter]"); if(!b) return;
+    jbFilter = b.dataset.jbfilter;
+    $("jbFilterSeg").querySelectorAll("button").forEach(x => x.classList.toggle("active", x === b));
+    renderJobBook();
+  });
+  $("jbSearch").addEventListener("input", e => { jbQuery = e.target.value.trim(); renderJobBook(); });
+  $("btnJbRefresh").addEventListener("click", () => jbFetch(false));
+  $("jbMe").addEventListener("click", e => {
+    if(e.target.closest('[data-jb="fetch"]')) jbFetch(false);
+  });
   $("npcGrid").addEventListener("click", e => {
     const b = e.target.closest("[data-act]");
     if(!b) return;

@@ -47,6 +47,15 @@ New over 1.0:
   Filter by year-round / seasonal / attackable-now, search any loot item, and get an alert when a
   tracked NPC climbs a level (Alerts → *NPC loot level up*). Note: pulling the feed sends your
   Torn API key to tornstats.com.
+- **The Job Book tab (v2.45.0)** — the whole job system in one place: all **6 city-job ladders**
+  (Army, Grocer, Casino, Medical, Education, Law — 41 positions) with each rung's required
+  Man/Int/End, daily stat gains, pay, job points and job special, plus all **39 player companies**
+  with every 1★/3★/5★/7★/10★ special and its job-point cost. Add a Torn API key and the book
+  becomes personal: it reads your position, working stats and every banked job-point balance
+  (`selections=profile,jobpoints,stats`), greens the rungs you already qualify for, marks your
+  current rung, tells you exactly how much Man/Int/End the next promotion needs, and counts down
+  to the 18:00 TCT point drop. Filter by city jobs / companies / "I qualify for", or search any
+  position or special. Tables verified against the Torn Wiki.
 - **Flight planner** — pick destination + class (Standard/Airstrip/WLT/Business), see arrival/return
   times, begin a flight and get a live countdown + landing notification (persisted across reloads)
 - **Restock ticker** — abroad markets restock on a fixed 15-min cycle; the bar shows the next one
