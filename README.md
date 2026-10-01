@@ -35,6 +35,13 @@ falls back to demo mode until any rankwars-compatible proxy is configured.
 New over 1.0:
 
 - **Live bar ETAs** — energy/nerve/happy/life tick client-side with “full in …” countdowns
+- **NPC Loot tab (v2.44.0)** — all 13 lootable NPCs (Duke, Leslie, Jimmy, Fernando, Tiny,
+  Scrooge, Easter Bunny, M'aol + the five Praetorians) with their real Torn profile pictures,
+  every possible drop (58 entries, rendered with Torn's own item art) and a **live loot-level
+  ladder**: tap *⚔️ Defeated now* and the tab counts the 100–120 min hospital stay, then the
+  Loot Level I→V unlocks at +30 m / +1 h 30 m / +3 h 30 m / +7 h 30 m, per NPC, persisted across
+  reloads. Filter by year-round / seasonal / attackable-now, search any loot item, and get an
+  alert when a tracked NPC climbs a level (Alerts → *NPC loot level up*).
 - **Flight planner** — pick destination + class (Standard/Airstrip/WLT/Business), see arrival/return
   times, begin a flight and get a live countdown + landing notification (persisted across reloads)
 - **Restock ticker** — abroad markets restock on a fixed 15-min cycle; the bar shows the next one

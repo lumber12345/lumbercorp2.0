@@ -161,7 +161,7 @@
     backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
     border-top:1px solid var(--border);
     padding:6px 8px calc(6px + env(safe-area-inset-bottom));
-    grid-template-columns:repeat(8, 1fr);gap:2px;
+    grid-template-columns:repeat(9, 1fr);gap:2px;
   }
   .tabbar button{
     background:none;border:none;color:var(--faint);cursor:pointer;
@@ -169,6 +169,8 @@
     font-size:10px;font-weight:700;padding:6px 0 4px;border-radius:10px;position:relative;
   }
   .tabbar button .ti{font-size:17px;line-height:1.2}
+  .tabbar button{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  @media (max-width:620px){ .tabbar button{font-size:9px} .tabbar button .ti{font-size:15px} }
   .tabbar button.active{color:var(--accent)}
   .tabbar .badge{
     position:absolute;top:2px;right:calc(50% - 20px);
@@ -338,6 +340,68 @@
   .dest .itemchip b{color:var(--text)}
   .dest .itemchip .zero{opacity:.45}
 
+  /* ================= NPC loot ================= */
+  .npcbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:0 2px 12px}
+  .npcbar input{flex:1;min-width:180px;background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:9px 12px;font-weight:600}
+  .npcbar input:focus{outline:none;border-color:var(--accent)}
+  .npcnext{padding:13px 15px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+  .npcnext .nx1{font-size:10.5px;font-weight:800;letter-spacing:.9px;text-transform:uppercase;color:var(--faint)}
+  .npcnext .nx2{font-size:15.5px;font-weight:800;margin-top:1px}
+  .npcnext .nxcd{margin-left:auto;font-size:21px;font-weight:900;font-variant-numeric:tabular-nums;color:var(--accent);text-align:right}
+  .npcnext .nxcd small{display:block;font-size:10px;color:var(--faint);font-weight:700;letter-spacing:.6px}
+  .npcgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(335px,1fr));gap:12px}
+  .npc{padding:14px 15px 13px;display:flex;flex-direction:column;gap:10px}
+  .npc.dim{opacity:.62}
+  .npc-head{display:flex;gap:11px;align-items:flex-start}
+  .npc-face{
+    position:relative;width:62px;height:62px;flex:0 0 auto;border-radius:16px;overflow:hidden;
+    border:1px solid var(--border2);background:linear-gradient(135deg,var(--card3),var(--card2));
+    display:grid;place-items:center;font-size:27px;
+  }
+  .npc-face img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 16%;display:none;border:none}
+  .npc-name{font-size:15px;font-weight:800;display:flex;align-items:center;gap:7px;flex-wrap:wrap;line-height:1.2}
+  .npc-name a{color:inherit;text-decoration:none}
+  .npc-name a:hover{color:var(--accent2)}
+  .npc-meta{font-size:11.5px;color:var(--muted);margin-top:3px;font-variant-numeric:tabular-nums}
+  .npc-state{font-size:12.5px;font-weight:700;color:var(--muted);display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+  .npc-state .big{font-size:15.5px;font-weight:800;color:var(--text);font-variant-numeric:tabular-nums}
+  .npc-state .big.hosp{color:var(--bad)}
+  .npc-state .big.ok{color:var(--ok)}
+  .lvlrow{display:grid;grid-template-columns:repeat(5,1fr);gap:5px}
+  .lvl{border:1px solid var(--border);border-radius:10px;padding:5px 2px 6px;background:var(--card2);text-align:center;min-width:0}
+  .lvl b{display:block;font-size:10.5px;font-weight:800;letter-spacing:.4px}
+  .lvl span{display:block;font-size:9px;color:var(--faint);font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .lvl.done{border-color:color-mix(in srgb,var(--ok) 32%,var(--border))}
+  .lvl.done b{color:var(--ok)}
+  .lvl.now{border-color:var(--accent);background:var(--glow);box-shadow:inset 0 0 0 1px var(--accent)}
+  .lvl.later{opacity:.5}
+  .npccds{display:flex;align-items:center;gap:9px;font-size:11.5px;color:var(--muted);font-weight:600}
+  .npccds .track{flex:1;height:6px}
+  .npccds b{font-variant-numeric:tabular-nums;color:var(--text);font-weight:800;white-space:nowrap}
+  .lootgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(76px,1fr));gap:6px}
+  .lootit{
+    background:var(--card2);border:1px solid var(--border);border-radius:11px;padding:6px 4px 7px;
+    text-align:center;display:flex;flex-direction:column;align-items:center;gap:3px;
+  }
+  .lootit .li{
+    width:38px;height:38px;display:grid;place-items:center;font-size:21px;border-radius:9px;
+    background:radial-gradient(circle at 50% 36%, color-mix(in srgb,var(--accent) 18%,transparent), transparent 72%);
+  }
+  .lootit .li img{width:38px;height:38px;object-fit:contain;display:block}
+  .lootit .ln{font-size:9.5px;font-weight:700;line-height:1.2;height:2.4em;overflow:hidden;display:block}
+  .lootit .lt{font-size:8.5px;color:var(--faint);letter-spacing:.3px;text-transform:uppercase;font-weight:800}
+  .lootit.rare{border-color:color-mix(in srgb,var(--warn) 45%,var(--border))}
+  .lootit.rare .lt{color:var(--warn)}
+  .npcfoot{display:flex;gap:7px;align-items:center;flex-wrap:wrap;border-top:1px dashed var(--border);padding-top:9px}
+  .npcfoot select{background:var(--card2);border:1px solid var(--border2);border-radius:9px;padding:6px 8px;font-size:12px;font-weight:700}
+  .npcnote{font-size:11px;color:var(--faint);line-height:1.55}
+  .ladder{display:flex;gap:8px;flex-wrap:wrap;align-items:stretch;margin-top:2px}
+  .ladstep{flex:1;min-width:128px;background:var(--card2);border:1px solid var(--border);border-radius:11px;padding:9px 10px}
+  .ladstep b{font-size:12.5px;display:block}
+  .ladstep span{font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
+  .ladstep i{font-style:normal;font-size:10.5px;color:var(--faint);display:block;margin-top:2px;line-height:1.4}
+  @media (max-width:520px){ .npcgrid{grid-template-columns:1fr} .lvlrow{gap:4px} }
+
   /* ================= shared controls ================= */
   .seg{display:inline-flex;background:var(--card);border:1px solid var(--border2);border-radius:11px;padding:3px;gap:3px}
   .seg button{border:none;background:none;color:var(--muted);font-size:12.5px;font-weight:700;padding:7px 13px;border-radius:8px;cursor:pointer;transition:.15s}
@@ -457,6 +521,7 @@
     <button class="navitem" data-page="alerts"><span class="ni">🔔</span> Alerts <span class="badge" id="alertBadge" hidden>0</span></button>
     <button class="navitem" data-page="bazaar"><span class="ni">🛒</span> Bazaar</button>
     <button class="navitem" data-page="targets"><span class="ni">🎯</span> Targets</button>
+    <button class="navitem" data-page="npcloot"><span class="ni">🩸</span> NPC Loot</button>
     <button class="navitem" data-page="settings"><span class="ni">⚙️</span> Settings</button>
     <div class="railfoot">
       <button class="modebadge" id="modeBadge" title="Toggle demo / live mode">
@@ -638,6 +703,44 @@
     </section>
 
 
+    <!-- ============ NPC LOOT ============ -->
+    <section id="page-npcloot" hidden>
+      <div class="card setcard" style="margin-bottom:12px">
+        <div class="setrow" style="align-items:flex-start">
+          <div><div class="st">🩸 How NPC looting works</div>
+          <div class="sd">Team up on a lootable NPC and Torn runs a <b>loot lottery</b> for everyone who landed a damaging hit or a temporary. The NPC's <b>loot level at the moment it dies</b> decides how many attackers walk away with something — and how good it can be. You don't have to be alive at the kill to be in the draw, but your tickets die with it.</div></div>
+        </div>
+        <div class="ladder" id="npcLadder"></div>
+        <div class="npcnote" style="margin-top:9px">
+          The ladder starts the instant the NPC leaves hospital (<b>100–120 min</b> after the kill), then levels up at
+          <b>+30 min</b>, <b>+1 h 30 m</b>, <b>+3 h 30 m</b> and <b>+7 h 30 m</b> — 7½ hours from “Okay” to Loot Level V.
+          Tap <b>⚔️ Defeated now</b> on a card to start your own clock. Source:
+          <a href="https://wiki.torn.com/wiki/Loot" target="_blank" rel="noopener">Torn Wiki — Loot</a>.
+        </div>
+      </div>
+
+      <div class="card npcnext" id="npcNextBox" hidden></div>
+
+      <div class="npcbar">
+        <div class="seg" id="npcFilterSeg">
+          <button data-npcfilter="all" class="active">All 13</button>
+          <button data-npcfilter="year">Year-round</button>
+          <button data-npcfilter="season">Seasonal</button>
+          <button data-npcfilter="live">Attackable now</button>
+        </div>
+        <input type="text" id="npcSearch" placeholder="Search NPC or loot item…" autocomplete="off" spellcheck="false">
+        <button class="btn sm" id="btnNpcAvatars" title="Pull the real NPC profile pictures with your Torn API key">🖼️ Live avatars</button>
+      </div>
+      <div class="npcgrid" id="npcGrid"></div>
+      <div class="npcnote" style="margin-top:10px">
+        Rarity labels are community-reported — Torn has never published drop rates. What is documented: the rarest loot
+        cannot drop at low loot levels, the loot level equals the number of attackers who receive an item, and Scrooge's
+        whole table can drop at any level at a heavily reduced rate. Item art is served by Torn
+        (<code>/images/items/&lt;id&gt;/large.png</code>); anything without a Torn image id falls back to an icon.
+      </div>
+      <div class="updated" id="npcUpdated"></div>
+    </section>
+
     <!-- ============ STATS ============ -->
     <section id="page-stats" hidden>
       <h2 class="sec">Faction</h2>
@@ -666,6 +769,10 @@
         <div class="setrow">
           <div><div class="st">⏱️ Cooldown finished</div><div class="sd">Ping me when a cooldown hits zero</div></div>
           <label class="switch"><input type="checkbox" id="tglCooldown"><span class="sl2"></span></label>
+        </div>
+        <div class="setrow">
+          <div><div class="st">🩸 NPC loot level up</div><div class="sd">Ping me when a tracked NPC climbs the loot ladder</div></div>
+          <label class="switch"><input type="checkbox" id="tglLoot"><span class="sl2"></span></label>
         </div>
       </div>
       <h2 class="sec">Activity Feed</h2>
@@ -782,6 +889,7 @@
   <button data-page="alerts"><span class="ti">🔔</span>Alerts<span class="badge" id="alertBadgeM" hidden>0</span></button>
   <button data-page="bazaar"><span class="ti">🛒</span>Bazaar</button>
   <button data-page="targets"><span class="ti">🎯</span>Targets</button>
+  <button data-page="npcloot"><span class="ti">🩸</span>Loot</button>
   <button data-page="settings"><span class="ti">⚙️</span>Setup</button>
 </nav>
 
@@ -872,11 +980,11 @@ function flagEmoji(cc){
 }
 
 /* ---------- settings ---------- */
-const APP_VERSION = "2.43.0";
+const APP_VERSION = "2.44.0";
 const DEFAULT_SETTINGS = {
   mode: "demo", apiKey: "", refresh: 60,
   theme: "dark", accent: "amber",
-  notifEnergy: true, notifFlight: true, notifCooldown: true,
+  notifEnergy: true, notifFlight: true, notifCooldown: true, notifLoot: true,
   customActions: [], rwProxy: ""
 };
 let settings = Object.assign({}, DEFAULT_SETTINGS, store.get("lc2_settings", {}));
@@ -1495,6 +1603,7 @@ const PAGES = {
   alerts:    ["Alerts", "Notifications & activity"],
   bazaar:    ["Bazaar Finder", "Hunt the cheapest listings"],
   targets:   ["Target Finder", "Scout & track attack targets"],
+  npcloot:   ["NPC Loot", "Lootable NPCs — loot levels, timers & every drop"],
   settings:  ["Settings", "Make it yours"]
 };
 function goto(page){
@@ -1506,12 +1615,13 @@ function goto(page){
   document.querySelectorAll(".tabbar button").forEach(b => b.classList.toggle("active", b.dataset.page === page));
   $("pageTitle").textContent = PAGES[page][0];
   $("pageSub").textContent = PAGES[page][1];
-  if(page === "alerts"){ state.unread = 0; renderAlertBadge(); renderActivity(); }
+  if(page === "alerts"){ state.unread = 0; renderAlertBadge(); renderActivity(); syncNotifToggles(); }
   if(page === "flight"){ renderPlanner(); renderActiveFlight(); renderDestGrid(); renderYataStatus(); }
   if(page === "stats"){ renderStats(); }
   if(page === "rankwars"){ rwEnter(); }
   if(page === "bazaar"){ bzEnter(); }
   if(page === "targets"){ tfEnter(); }
+  if(page === "npcloot"){ npcEnter(); }
   if(page === "settings"){ renderSettings(); }
   renderAll(); // cheap refresh of dynamic bits for the new page
   window.scrollTo({ top: 0 });
@@ -2024,6 +2134,13 @@ function renderActPreview(){
 
 /* ---------- settings ---------- */
 const ACCENTS = [["amber","#f5a524"],["ember","#ff6b4a"],["jade","#2fbf71"],["violet","#8b5cf6"],["ice","#38bdf8"]];
+/* The Alerts page shows the same switches Settings writes — keep both in sync
+   so a toggle never looks off while the setting is on. */
+function syncNotifToggles(){
+  const pairs = [["tglEnergy","notifEnergy"],["tglFlight","notifFlight"],
+                 ["tglCooldown","notifCooldown"],["tglLoot","notifLoot"]];
+  for(const [id, key] of pairs){ const el = $(id); if(el) el.checked = !!settings[key]; }
+}
 function renderSettings(){
   if(state.mode === "live" && state.caps){
     const c = state.caps;
@@ -2038,9 +2155,7 @@ function renderSettings(){
   document.querySelectorAll("[data-theme-val]").forEach(b => b.classList.toggle("active", b.dataset.theme_val === settings.theme || b.dataset.themeVal === settings.theme));
   $("setKey").value = settings.apiKey || "";
   $("setRefresh").value = String(settings.refresh);
-  $("tglEnergy").checked = !!settings.notifEnergy;
-  $("tglFlight").checked = !!settings.notifFlight;
-  $("tglCooldown").checked = !!settings.notifCooldown;
+  syncNotifToggles();
   $("accentRow").innerHTML = ACCENTS.map(([name, col]) =>
     `<div class="swatch ${settings.accent === name ? "sel" : ""}" data-accent-pick="${name}" style="background:${col}" title="${name}"></div>`).join("");
   $("accentRow").querySelectorAll("[data-accent-pick]").forEach(el => {
@@ -2141,8 +2256,506 @@ function renderAll(){
   if(state.page === "rankwars") rwEnter();
   if(state.page === "bazaar") bzEnter();
   if(state.page === "targets") tfEnter();
+  if(state.page === "npcloot") renderNpcLoot();
   renderMode();
 }
+
+/* ============================== NPC LOOT ==============================
+ * Every lootable NPC in Torn City, every item they can drop (with Torn's own
+ * item art) and a live loot-level ladder:
+ *
+ *   kill  →  hospital 100–120 min  →  Loot Level I
+ *           +30 min → II · +1 h 30 m → III · +3 h 30 m → IV · +7 h 30 m → V
+ *
+ * The loot level at the moment the NPC dies = how many attackers receive an
+ * item, and the rarest loot only unlocks at the top of the ladder.
+ * Defeat clocks are yours: tap "⚔️ Defeated now" and the five timers run.
+ * Source: https://wiki.torn.com/wiki/Loot  */
+const NPC_LADDER_MIN = [0, 30, 90, 210, 450];   // minutes after leaving hospital
+const NPC_ROMAN = ["I", "II", "III", "IV", "V"];
+const NPC_HOSP_CHOICES = [100, 110, 120];       // Torn hospitalises NPCs 100–120 min
+const NPC_HOSP_DEF = 110;
+const npcImg = id => "https://www.torn.com/images/items/" + id + "/large.png";
+
+/* [name, tornItemId | null, type, rare(0/1), fallback glyph] */
+const NPCS = [
+  { id: 4, name: "Duke", hp: 5500000, tag: "Supergood Loanshark · mission giver", glyph: "🎩",
+    season: "year", face: "https://profileimages.torn.com/4d661456-1798-ad32-4.png",
+    note: "The classic loot run. His Rheinmetall MG 3 is the headline drop; the fedora/duster set is the filler.",
+    loot: [
+      ["Rheinmetall MG 3", 837, "Primary", 1, "🔫"],
+      ["Homemade Pocket Shotgun", 838, "Secondary", 0, "🔫"],
+      ["Madball", 839, "Melee", 0, "🏏"],
+      ["Nail Bomb", 840, "Temporary", 0, "💣"],
+      ["Classic Fedora", 841, "Clothing", 0, "🎩"],
+      ["Pinstripe Suit Trousers", 842, "Clothing", 0, "👖"],
+      ["Duster", 843, "Clothing", 0, "🧥"]
+    ] },
+  { id: 15, name: "Leslie", hp: 4000000, tag: "Spin the Wheel operator · casino", glyph: "🎰",
+    season: "year", face: "https://profileimages.torn.com/4d661456-17bc-2098-15.png",
+    note: "The Nock Gun carries this table — the rest is clothing the community jokes is 'disappointment'.",
+    loot: [
+      ["Nock Gun", 830, "Primary", 1, "🔫"],
+      ["Beretta Pico", 831, "Secondary", 0, "🔫"],
+      ["Riding Crop", 832, "Melee", 0, "🐎"],
+      ["Bolas", 1456, "Temporary", 0, "🪢"],
+      ["String Vest", 835, "Clothing", 0, "🎽"],
+      ["Sweatpants", 834, "Clothing", 0, "👖"],
+      ["Black Oxfords", 836, "Clothing", 0, "👞"]
+    ] },
+  { id: 19, name: "Jimmy", hp: 2000000, tag: "Apathetic Extortionist", glyph: "🚬",
+    season: "year", face: "https://profileimages.torn.com/4d661456-205b-349e-19.png",
+    note: "Smallest HP pool of the year-round five — the usual warm-up kill. Bread Knife is the chase item.",
+    loot: [
+      ["Bread Knife", 1053, "Melee", 1, "🔪"],
+      ["Concussion Grenade", 1042, "Temporary", 0, "💣"],
+      ["Ripped Jeans", 982, "Clothing", 0, "👖"],
+      ["Lawyer's Business Card", 368, "Booster", 0, "💳"],
+      ["Bag of Sherbet", 587, "Candy", 0, "🍬"],
+      ["Jawbreaker", 586, "Candy", 0, "🍭"],
+      ["Pixie Sticks", 151, "Candy", 0, "🍬"]
+    ] },
+  { id: 20, name: "Fernando", hp: 2500000, tag: "Sensual Assassin", glyph: "☂️",
+    season: "year", face: "https://profileimages.torn.com/4d600926-9be6-ab38-20.png",
+    note: "Feathery Hotel Coupons drop on the regular — a cheap way to keep the flight/booster loop going.",
+    loot: [
+      ["Poison Umbrella", 1055, "Melee", 1, "☂️"],
+      ["Bandit Mask", 983, "Clothing", 0, "🎭"],
+      ["Feathery Hotel Coupon", 367, "Booster", 0, "🏨"]
+    ] },
+  { id: 21, name: "Tiny", hp: 4500000, tag: "Brick Wall", glyph: "🏋️",
+    season: "year", face: "https://profileimages.torn.com/b2ee0bbf-06f4-f3ae-21.jpg",
+    note: "Documented split: the cans and six-pack drop at every loot level, the Sledgehammer / Boxing Gloves / Dumbbells only from Loot Level IV.",
+    loot: [
+      ["Can of Munster", 530, "Energy drink", 0, "🥫"],
+      ["Can of Red Cow", 532, "Energy drink", 0, "🥫"],
+      ["Can of Taurine Elite", 533, "Energy drink", 0, "🥫"],
+      ["Six Pack of Energy Drink", 818, "Supply pack", 0, "🍺"],
+      ["Sledgehammer", 850, "Melee", 1, "🔨"],
+      ["Boxing Gloves", 330, "Booster", 1, "🥊"],
+      ["Dumbbells", 331, "Booster", 1, "🏋️"]
+    ] },
+  { id: 10, name: "Scrooge", hp: 9500000, tag: "Frosty Bastard", glyph: "🎄",
+    season: "dec", face: "",
+    note: "December only. His whole table can drop at any loot level — just at a heavily reduced rate below IV.",
+    loot: [
+      ["Snow Cannon", 76, "Primary", 0, "❄️"],
+      ["Diamond Icicle", 605, "Melee", 0, "🔷"],
+      ["Snowball", 611, "Temporary", 0, "❄️"],
+      ["Scrooge's Top Hat", 726, "Clothing", 0, "🎩"],
+      ["Scrooge's Topcoat", 727, "Clothing", 0, "🧥"],
+      ["Scrooge's Trousers", 728, "Clothing", 0, "👖"],
+      ["Scrooge's Gloves", 730, "Clothing", 0, "🧤"],
+      ["Scrooge's Boots", 729, "Clothing", 0, "🥾"]
+    ] },
+  { id: 17, name: "Easter Bunny", hp: 8500000, tag: "Eggcentric Albumentalist", glyph: "🐰",
+    season: "easter", face: "",
+    note: "Easter week only. Egg Propelled Launcher is still one of the few NPC drops that rank-war gear hasn't replaced.",
+    loot: [
+      ["Egg Propelled Launcher", 100, "Primary", 1, "🥚"],
+      ["Bunny Suit", 101, "Clothing", 0, "🐰"],
+      ["Ski Mask", 1150, "Clothing", 0, "🎿"],
+      ["Bunny Nose", 1151, "Clothing", 0, "🐇"],
+      ["Coloured Easter Eggs (not Pink / Orange)", null, "Other", 0, "🥚"],
+      ["Rabbit Foot", null, "Other", 0, "🐇"]
+    ] },
+  { id: 23, name: "M'aol", hp: 605000000, tag: "Awoken by 9,999 treats · once a year", glyph: "👹",
+    season: "halloween", face: "", custom: true,
+    note: "Custom loot level — no I→V ladder. Kill the five Praetorians first (Praetorian Bond blocks him), then everyone who helped is entered for 5 random pieces of M'aol armour, the Tentacle and 94 × Arca Fortunae.",
+    loot: [
+      ["M'aol Visage", 1164, "Defensive", 0, "👹"],
+      ["M'aol Spathe", 1165, "Defensive", 0, "🥋"],
+      ["M'aol Britches", 1166, "Defensive", 0, "👖"],
+      ["M'aol Hooves", 1167, "Defensive", 0, "🥾"],
+      ["M'aol Clawshields", 1168, "Defensive", 0, "🧤"],
+      ["M'aol Wings", 1169, "Clothing", 0, "🪽"],
+      ["M'aol Tentacle", 1171, "Enhancer", 1, "🐙"],
+      ["Arca Fortunae × 94", null, "Other", 0, "🎁"]
+    ] },
+  { id: 100, name: "Dyno'salam", hp: 60000000, tag: "Praetorian · Hawaii", glyph: "🦎",
+    season: "halloween", face: "", custom: true,
+    note: "Awakens with M'aol. One Relic for the group that puts him down.",
+    loot: [["Dyno Sac", null, "Relic", 1, "🔮"]] },
+  { id: 101, name: "Nol'dasaym", hp: 42350000, tag: "Praetorian · United Kingdom", glyph: "🐲",
+    season: "halloween", face: "", custom: true,
+    note: "Awakens with M'aol. Bloodlust + Sleep + Poison; 90% chance to deflect temporary weapons.",
+    loot: [["Nol Cloachra", null, "Relic", 1, "🔮"]] },
+  { id: 102, name: "Asmol'yand", hp: 42350000, tag: "Praetorian · Cayman Islands", glyph: "🐉",
+    season: "halloween", face: "", custom: true,
+    note: "Awakens with M'aol. Frenzy ramps damage on every consecutive hit — kill him fast.",
+    loot: [["Asmol Knuckle", null, "Relic", 1, "🔮"]] },
+  { id: 103, name: "Sylo'nadam", hp: 55550000, tag: "Praetorian · Canada", glyph: "🦂",
+    season: "halloween", face: "", custom: true,
+    note: "Awakens with M'aol. 950% poison over 19 turns — bring medicals.",
+    loot: [["Sylo Tooth", null, "Relic", 1, "🔮"]] },
+  { id: 104, name: "Ladso'myna", hp: 86800000, tag: "Praetorian · Mexico", glyph: "👁️",
+    season: "halloween", face: "", custom: true,
+    note: "Awakens with M'aol. The fattest Praetorian; 1000% head damage on melee.",
+    loot: [["Ladso Eye", 1170, "Relic", 1, "👁️"]] }
+];
+const NPC_BY_ID = {};
+for(const n of NPCS) NPC_BY_ID[n.id] = n;
+
+/* ---------- persistence ---------- */
+let npcState = store.get("lc2_npcloot", {});    // { [id]: {defeated:ms, hosp:min, sample:bool} }
+let npcSeen = store.get("lc2_npcseen", {});     // { [id]: last level we announced }
+let npcImgs = store.get("lc2_npcimgs", {});     // { [id]: torn profile_image url }
+let npcFilter = "all", npcQuery = "";
+const npcSig = {};                              // last rendered signature per NPC
+
+function npcSave(){ store.set("lc2_npcloot", npcState); }
+
+/* First run: seed a staggered sample cycle so the ladder is alive on day one.
+   Every seeded card is flagged and says so until you record a real kill. */
+function npcSeed(){
+  if(Object.keys(npcState).length) return;
+  const now = Date.now(), M = 60000;
+  const seed = { 4: 25, 15: 110 + 45, 19: 110 + 110, 20: 110 + 260, 21: 110 + 520 };
+  for(const id in seed) npcState[id] = { defeated: now - seed[id] * M, hosp: NPC_HOSP_DEF, sample: true };
+  npcSave();
+}
+
+/* ---------- maths ---------- */
+function npcPhase(n){
+  const s = npcState[n.id];
+  if(!s || !s.defeated) return null;
+  const out = s.defeated + (s.hosp || NPC_HOSP_DEF) * 60000;
+  const lv = NPC_LADDER_MIN.map(m => out + m * 60000);
+  const now = Date.now();
+  let level = 0;
+  if(now >= out){
+    level = 1;
+    for(let i = 1; i < 5; i++) if(now >= lv[i]) level = i + 1;
+  }
+  return { s, out, lv, level, inHosp: now < out };
+}
+function npcSeason(n){
+  const mo = new Date().getMonth();
+  if(n.season === "year") return { on: true, label: "All year" };
+  const map = {
+    dec:      { on: [11], label: "December" },
+    easter:   { on: [3],  label: "Easter week · April" },
+    halloween:{ on: [9],  label: "Halloween week" }
+  };
+  const s = map[n.season] || { on: [], label: "—" };
+  return { on: s.on.indexOf(mo) >= 0, label: s.label };
+}
+function fmtLadder(min){
+  if(min === 0) return "Out of hospital";
+  if(min < 60) return "+" + min + " min";
+  const h = Math.floor(min / 60), m = min % 60;
+  return "+" + h + " h" + (m ? " " + m + " m" : "");
+}
+function fmtTct(ms){
+  try{
+    return new Intl.DateTimeFormat("en-GB", { timeZone: "Etc/GMT+5", hour: "2-digit", minute: "2-digit" }).format(new Date(ms));
+  }catch(e){ return fmtClock(ms); }
+}
+/* next milestone: {at, label} or null when the ladder is maxed */
+function npcNextStep(n, p){
+  if(!p) return null;
+  if(p.inHosp) return { at: p.out, label: "Loot Level I" };
+  if(n.custom) return null;
+  if(p.level >= 5) return null;
+  return { at: p.lv[p.level], label: "Loot Level " + NPC_ROMAN[p.level] };
+}
+
+/* ---------- rendering ---------- */
+function renderNpcLadder(){
+  const el = $("npcLadder");
+  if(!el) return;
+  el.innerHTML = NPC_LADDER_MIN.map((m, i) => `
+    <div class="ladstep">
+      <b>Loot Level ${NPC_ROMAN[i]}</b>
+      <span>${fmtLadder(m)}</span>
+      <i>${i + 1} attacker${i ? "s" : ""} receive${i ? "" : "s"} loot</i>
+    </div>`).join("");
+}
+
+function npcLootHtml(n){
+  const ladder = !n.custom;   // the IV–V rarity tag only applies to the I→V ladder
+  return n.loot.map(l => {
+    const art = l[1]
+      ? `<img src="${npcImg(l[1])}" alt="${escHtml(l[0])}" loading="lazy" onerror="this.parentNode.textContent='${l[4]}';">`
+      : l[4];
+    const rare = l[3] && ladder;
+    return `<div class="lootit${rare ? " rare" : ""}" title="${escHtml(l[0])} — ${escHtml(l[2])}${rare ? " · rare, high loot levels" : ""}${l[3] && !ladder ? " · rare drop" : ""}">
+      <span class="li">${art}</span>
+      <span class="ln">${escHtml(l[0])}</span>
+      <span class="lt">${escHtml(l[2])}${rare ? " · IV–V" : ""}</span>
+    </div>`;
+  }).join("");
+}
+
+function npcStateHtml(n, p){
+  if(!p) return `<span class="big">Idle</span> <span data-stx="${n.id}">no clock — record a kill to start the ladder</span>`;
+  if(p.inHosp) return `<span class="big hosp">🏥 Hospitalized</span> <span data-stx="${n.id}">out in ${fmtCountdown((p.out - Date.now()) / 1000)} · Loot Level I waits</span>`;
+  if(n.custom) return `<span class="big ok">Loot Level C</span> <span data-stx="${n.id}">custom ladder — ${p.level >= 1 ? "attackable now" : ""}</span>`;
+  const tail = p.level >= 5 ? "max — 5 attackers get loot, rarest table unlocked"
+                            : p.level + " attacker" + (p.level > 1 ? "s" : "") + " get" + (p.level > 1 ? "" : "s") + " loot";
+  return `<span class="big ok">Loot Level ${NPC_ROMAN[p.level - 1]}</span> <span data-stx="${n.id}">${tail}</span>`;
+}
+
+function npcProgHtml(n, p){
+  if(!p) return `<div class="npccds"><span>Track your next ${escHtml(n.name)} kill here</span></div>`;
+  if(p.inHosp){
+    const tot = (p.out - p.s.defeated) || 1, left = Math.max(0, p.out - Date.now());
+    return `<div class="npccds">
+      <span>Hospital</span>
+      <span class="track"><span class="fill restockfill" data-bar="${n.id}" style="width:${Math.min(100, (1 - left / tot) * 100).toFixed(1)}%"></span></span>
+      <b data-cd="${n.id}">${fmtCountdown(left / 1000)}</b>
+    </div>`;
+  }
+  if(n.custom) return `<div class="npccds"><span>Out of hospital</span><span class="track"><span class="fill restockfill" style="width:100%"></span></span><b data-cd="${n.id}">attackable ✓</b></div>`;
+  if(p.level >= 5) return `<div class="npccds"><span>Loot Level V</span><span class="track"><span class="fill restockfill" style="width:100%"></span></span><b data-cd="${n.id}">MAX ✓</b></div>`;
+  const from = p.lv[p.level - 1], to = p.lv[p.level];
+  const pct = Math.max(0, Math.min(100, (Date.now() - from) / (to - from) * 100));
+  return `<div class="npccds">
+    <span>Loot Level ${NPC_ROMAN[p.level]}</span>
+    <span class="track"><span class="fill restockfill" data-bar="${n.id}" style="width:${pct.toFixed(1)}%"></span></span>
+    <b data-cd="${n.id}">${NPC_ROMAN[p.level]} in ${fmtCountdown((to - Date.now()) / 1000)}</b>
+  </div>`;
+}
+
+function npcLadderRowHtml(n, p){
+  if(n.custom){
+    return `<div class="npcnote">🎃 <b>Custom loot level</b> — M'aol and the Praetorians skip the I→V ladder.
+      Everyone who helped defeat one goes into the draw, and the NPC is attackable as soon as it leaves hospital
+      ${p ? `(<b>${fmtTct(p.out)} TCT</b>).` : "— record a kill to start the hospital clock."}</div>`;
+  }
+  if(!p){
+    return `<div class="npcnote">No clock running. Tap <b>⚔️ Defeated now</b> the moment your group kills
+      ${escHtml(n.name)} and all five level timers start ticking.</div>`;
+  }
+  return `<div>
+    <div class="npcnote" style="margin-bottom:5px">Level-up times · TCT${p.s.sample ? " · <b>sample cycle</b>" : ""}</div>
+    <div class="lvlrow">` +
+    NPC_LADDER_MIN.map((m, i) => {
+      let cls = "later";
+      if(!p.inHosp) cls = p.level > i + 1 ? "done" : (p.level === i + 1 ? "now" : "later");
+      const sub = p.inHosp ? fmtTct(p.lv[i]) : (p.level > i + 1 ? "done ✓" : (p.level === i + 1 ? "now" : fmtTct(p.lv[i])));
+      return `<div class="lvl ${cls}"><b>${NPC_ROMAN[i]}</b><span>${sub}</span></div>`;
+    }).join("") + `</div></div>`;
+}
+
+function npcCard(n){
+  const p = npcPhase(n);
+  const sea = npcSeason(n);
+  const face = npcImgs[n.id] || n.face || "";
+  const hosp = (p && p.s.hosp) || NPC_HOSP_DEF;
+  const sig = p ? (p.inHosp ? "h" : "o") + p.level + ":" + p.s.defeated + ":" + hosp : "none";
+  npcSig[n.id] = sig;
+  return `<article class="card npc${sea.on ? "" : " dim"}" data-npc="${n.id}">
+    <div class="npc-head">
+      <div class="npc-face">${n.glyph}${face ? `<img src="${escHtml(face)}" alt="${escHtml(n.name)}" loading="lazy" onerror="this.remove();">` : ""}</div>
+      <div style="min-width:0;flex:1">
+        <div class="npc-name">
+          <a href="https://www.torn.com/profiles.php?XID=${n.id}" target="_blank" rel="noopener">${escHtml(n.name)} <span class="chip">[${n.id}]</span></a>
+          <span class="chip ${sea.on ? "ok" : "warn"}">${escHtml(sea.label)}</span>
+        </div>
+        <div class="npc-meta">${fmtInt(n.hp)} HP · ${escHtml(n.tag)}</div>
+      </div>
+    </div>
+    <div class="npc-state" data-st="${n.id}">${npcStateHtml(n, p)}</div>
+    ${npcLadderRowHtml(n, p)}
+    ${npcProgHtml(n, p)}
+    <div class="lootgrid">${npcLootHtml(n)}</div>
+    <div class="npcnote">${escHtml(n.note)}</div>
+    <div class="npcfoot">
+      <button class="btn sm primary" data-act="kill" data-id="${n.id}">⚔️ Defeated now</button>
+      <select data-act="hosp" data-id="${n.id}" title="Torn hospitalises NPCs for 100–120 minutes">
+        ${NPC_HOSP_CHOICES.map(m => `<option value="${m}"${m === hosp ? " selected" : ""}>${m} min hosp.</option>`).join("")}
+      </select>
+      <span class="spacer"></span>
+      <button class="btn sm" data-act="clear" data-id="${n.id}"${p ? "" : " hidden"}>✕ Clear</button>
+    </div>
+  </article>`;
+}
+
+function npcMatches(n){
+  if(npcFilter === "year" && n.season !== "year") return false;
+  if(npcFilter === "season" && n.season === "year") return false;
+  if(npcFilter === "live"){
+    const p = npcPhase(n);
+    if(!npcSeason(n).on) return false;
+    if(p && p.inHosp) return false;
+  }
+  if(!npcQuery) return true;
+  const q = npcQuery.toLowerCase();
+  if(n.name.toLowerCase().indexOf(q) >= 0) return true;
+  if(String(n.id) === npcQuery) return true;
+  return n.loot.some(l => l[0].toLowerCase().indexOf(q) >= 0 || l[2].toLowerCase().indexOf(q) >= 0);
+}
+
+function renderNpcGrid(){
+  const el = $("npcGrid");
+  if(!el) return;
+  const list = NPCS.filter(npcMatches);
+  el.innerHTML = list.length ? list.map(npcCard).join("")
+    : `<div class="empty" style="grid-column:1/-1">No NPC matches that filter.</div>`;
+}
+
+function renderNpcNext(){
+  const box = $("npcNextBox");
+  if(!box) return;
+  let best = null;
+  for(const n of NPCS){
+    const p = npcPhase(n);
+    const nx = npcNextStep(n, p);
+    if(nx && (!best || nx.at < best.at)) best = { n, p, nx };
+  }
+  if(!best){ box.hidden = true; box.innerHTML = ""; return; }
+  const { n, p, nx } = best;
+  const cd = fmtCountdown(Math.max(0, (nx.at - Date.now()) / 1000));
+  box.hidden = false;
+  box.innerHTML = `<div>
+      <div class="nx1">Next loot level up</div>
+      <div class="nx2">${escHtml(n.name)} <span class="chip accent">${escHtml(nx.label)}</span></div>
+    </div>
+    <div class="nxcd">${cd}<small>${fmtTct(nx.at)} TCT</small></div>`;
+  box.dataset.key = n.id + ":" + nx.at;
+}
+
+function renderNpcLoot(){
+  renderNpcLadder();
+  renderNpcGrid();
+  renderNpcNext();
+  const u = $("npcUpdated");
+  if(u) u.textContent = `${NPCS.length} lootable NPCs · ${NPCS.reduce((a, n) => a + n.loot.length, 0)} loot entries · clocks stored in this browser`;
+}
+
+/* ---------- live tick (called every second from updateDynamic) ---------- */
+function npcTick(){
+  for(const n of NPCS){
+    const p = npcPhase(n);
+    const card = document.querySelector(`[data-npc="${n.id}"]`);
+    const hosp = (p && p.s.hosp) || NPC_HOSP_DEF;
+    const sig = p ? (p.inHosp ? "h" : "o") + p.level + ":" + p.s.defeated + ":" + hosp : "none";
+    if(sig !== npcSig[n.id]){                    // phase changed → rebuild that card
+      if(card) card.outerHTML = npcCard(n);
+      else npcSig[n.id] = sig;
+      renderNpcNext();
+      continue;
+    }
+    if(!card || !p) continue;
+    const stx = card.querySelector(`[data-stx="${n.id}"]`);
+    const big = card.querySelector(`[data-st="${n.id}"] .big`);
+    if(p.inHosp){
+      const left = Math.max(0, p.out - Date.now());
+      if(big) big.textContent = "🏥 Hospitalized";
+      if(stx) stx.textContent = "out in " + fmtCountdown(left / 1000) + " · Loot Level I waits";
+      const bar = card.querySelector(`[data-bar="${n.id}"]`);
+      const tot = (p.out - p.s.defeated) || 1;
+      if(bar) bar.style.width = Math.min(100, (1 - left / tot) * 100).toFixed(1) + "%";
+      const cd = card.querySelector(`[data-cd="${n.id}"]`);
+      if(cd) cd.textContent = fmtCountdown(left / 1000);
+    }else if(!n.custom && p.level < 5){
+      const to = p.lv[p.level], from = p.lv[p.level - 1];
+      const bar = card.querySelector(`[data-bar="${n.id}"]`);
+      if(bar) bar.style.width = Math.max(0, Math.min(100, (Date.now() - from) / (to - from) * 100)).toFixed(1) + "%";
+      const cd = card.querySelector(`[data-cd="${n.id}"]`);
+      if(cd) cd.textContent = NPC_ROMAN[p.level] + " in " + fmtCountdown(Math.max(0, (to - Date.now()) / 1000));
+    }
+  }
+  if(state.page === "npcloot"){
+    const box = $("npcNextBox");
+    if(box && !box.hidden){
+      let best = null;
+      for(const n of NPCS){
+        const p = npcPhase(n);
+        const nx = npcNextStep(n, p);
+        if(nx && (!best || nx.at < best.at)) best = { n, nx };
+      }
+      if(best && box.dataset.key === best.n.id + ":" + best.nx.at){
+        const cd = box.querySelector(".nxcd");
+        if(cd) cd.innerHTML = fmtCountdown(Math.max(0, (best.nx.at - Date.now()) / 1000)) + "<small>" + fmtTct(best.nx.at) + " TCT</small>";
+      }else renderNpcNext();
+    }
+  }
+  npcCheckLevels();
+}
+
+/* ---------- notifications ---------- */
+function npcCheckLevels(){
+  let dirty = false;
+  for(const n of NPCS){
+    if(n.custom) continue;
+    const p = npcPhase(n);
+    if(!p) continue;
+    const seen = npcSeen[n.id] || 0;
+    if(p.level > seen){
+      if(seen > 0 && settings.notifLoot){
+        logAct("🩸", `${n.name} reached Loot Level ${NPC_ROMAN[p.level - 1]} — ${p.level} attacker${p.level > 1 ? "s" : ""} can win loot`);
+        toast(`🩸 ${escHtml(n.name)} hit <b>Loot Level ${NPC_ROMAN[p.level - 1]}</b>`, "ok");
+        notify("LumberCorp 2.0", `🩸 ${n.name} is at Loot Level ${NPC_ROMAN[p.level - 1]} — ${p.level} attacker${p.level > 1 ? "s" : ""} receive loot.`);
+      }
+      npcSeen[n.id] = p.level;
+      dirty = true;
+    }
+  }
+  if(dirty) store.set("lc2_npcseen", npcSeen);
+}
+
+/* ---------- actions ---------- */
+function npcMark(id){
+  const n = NPC_BY_ID[id];
+  if(!n) return;
+  const prev = npcState[id];
+  npcState[id] = { defeated: Date.now(), hosp: (prev && prev.hosp) || NPC_HOSP_DEF, sample: false };
+  npcSeen[id] = 0;
+  npcSave(); store.set("lc2_npcseen", npcSeen);
+  logAct("🩸", `${n.name} defeated — loot clock started (Loot Level I in ${npcState[id].hosp} min)`, true);
+  toast(`⚔️ ${escHtml(n.name)} down — Loot Level I in <b>${npcState[id].hosp} min</b>`, "ok");
+  const card = document.querySelector(`[data-npc="${id}"]`);
+  if(card) card.outerHTML = npcCard(n);
+  renderNpcNext();
+}
+function npcClear(id){
+  const n = NPC_BY_ID[id];
+  delete npcState[id]; delete npcSeen[id];
+  npcSave(); store.set("lc2_npcseen", npcSeen);
+  const card = document.querySelector(`[data-npc="${id}"]`);
+  if(card && n) card.outerHTML = npcCard(n);
+  renderNpcNext();
+}
+function npcSetHosp(id, mins){
+  if(!npcState[id]) return;
+  npcState[id].hosp = mins;
+  npcSave();
+  const card = document.querySelector(`[data-npc="${id}"]`);
+  if(card && NPC_BY_ID[id]) card.outerHTML = npcCard(NPC_BY_ID[id]);
+  renderNpcNext();
+}
+
+/* Real NPC profile pictures, pulled with your own key and cached locally so
+   the tab still shows them offline afterwards. */
+async function npcLoadAvatars(force){
+  const key = (settings.apiKey || "").trim();
+  if(!key){ toast("Add a Torn API key in Settings → Data Source first", "warn"); return; }
+  const btn = $("btnNpcAvatars");
+  if(btn){ btn.disabled = true; btn.textContent = "🖼️ Loading…"; }
+  let got = 0, failed = 0;
+  for(const n of NPCS){
+    if(!force && npcImgs[n.id]) { got++; continue; }
+    try{
+      const j = await tornFetch(`${API}/user/${n.id}/?selections=profile&key=${encodeURIComponent(key)}&comment=lumbercorp2`);
+      if(j && typeof j.profile_image === "string" && j.profile_image){
+        npcImgs[n.id] = j.profile_image;
+        got++;
+      }else failed++;
+    }catch(e){ failed++; }
+  }
+  store.set("lc2_npcimgs", npcImgs);
+  if(btn){ btn.disabled = false; btn.textContent = "🖼️ Live avatars"; }
+  toast(got ? `🖼️ ${got} NPC picture${got === 1 ? "" : "s"} loaded${failed ? " · " + failed + " unavailable" : ""}` : "No NPC pictures came back — check the key's access level", got ? "ok" : "warn");
+  renderNpcGrid();
+}
+
+function npcEnter(){
+  npcSeed();
+  renderNpcLoot();
+}
+npcSeed();
 
 /* ============================== RANK WARS ============================== */
 /* ===== Rank Wars — Live Wars: the real rankwars app ======================
@@ -2692,6 +3305,7 @@ function updateDynamic(){
     }
   }
   renderRestock();
+  npcTick();
   // clocks
   const nowTorn = new Intl.DateTimeFormat("en-GB", { timeZone: "Etc/GMT+5", hour:"2-digit", minute:"2-digit", second:"2-digit" }).format(new Date());
   $("clockTorn").textContent = nowTorn + " TCT";
@@ -2828,6 +3442,28 @@ function wire(){
   $("btnSearch").addEventListener("click", openPalette);
   $("modeBadge").addEventListener("click", () => setMode(state.mode === "live" ? "demo" : "live"));
 
+  // ---- NPC Loot tab ----
+  $("npcFilterSeg").addEventListener("click", e => {
+    const b = e.target.closest("[data-npcfilter]");
+    if(!b) return;
+    npcFilter = b.dataset.npcfilter;
+    [...$("npcFilterSeg").children].forEach(x => x.classList.toggle("active", x === b));
+    renderNpcGrid();
+  });
+  $("npcSearch").addEventListener("input", e => { npcQuery = e.target.value.trim(); renderNpcGrid(); });
+  $("btnNpcAvatars").addEventListener("click", () => npcLoadAvatars(true));
+  $("npcGrid").addEventListener("click", e => {
+    const b = e.target.closest("[data-act]");
+    if(!b) return;
+    const id = Number(b.dataset.id);
+    if(b.dataset.act === "kill") npcMark(id);
+    else if(b.dataset.act === "clear") npcClear(id);
+  });
+  $("npcGrid").addEventListener("change", e => {
+    const s = e.target.closest('[data-act="hosp"]');
+    if(s) npcSetHosp(Number(s.dataset.id), Number(s.value));
+  });
+
   // palette
   $("palInput").addEventListener("input", e => palRender(e.target.value));
   $("palInput").addEventListener("keydown", palKey);
@@ -2871,6 +3507,7 @@ function wire(){
   bindToggle("tglEnergy", "notifEnergy");
   bindToggle("tglFlight", "notifFlight");
   bindToggle("tglCooldown", "notifCooldown");
+  bindToggle("tglLoot", "notifLoot");
   $("btnClearAct").addEventListener("click", () => {
     state.activity = []; state.unread = 0; store.set("lc2_activity", []);
     renderAlertBadge(); renderActivity(); renderActPreview();
