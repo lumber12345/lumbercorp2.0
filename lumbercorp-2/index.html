@@ -801,6 +801,75 @@
   .cobar select{background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:8px 11px;font-weight:600;font-size:12.5px}
   .cobar select:focus{outline:none;border-color:var(--accent)}
   .coquote{border-left:3px solid var(--accent);padding:2px 0 2px 11px;font-size:12px;color:var(--muted);line-height:1.5}
+
+  /* ================= race to level 15 ================= */
+  .rcrace{display:flex;gap:15px;align-items:flex-start;flex-wrap:wrap;padding:16px}
+  .rcrace-mark{width:56px;height:56px;flex:0 0 auto;border-radius:16px;display:grid;place-items:center;font-size:28px;
+    background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 18%,var(--card2)),var(--card2));border:1px solid var(--border2)}
+  .rcrace-main{flex:1;min-width:230px}
+  .rcrace-name{font-size:19px;font-weight:800;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .rcrace-sub{font-size:12.5px;color:var(--muted);margin-top:3px;line-height:1.55}
+  .rclevel{display:flex;align-items:center;gap:11px;margin-top:11px;flex-wrap:wrap}
+  .rclevel .lvl{font-size:26px;font-weight:900;font-variant-numeric:tabular-nums;line-height:1}
+  .rclevel .lvl small{font-size:12px;font-weight:700;color:var(--faint);display:block;letter-spacing:.5px;text-transform:uppercase}
+  .rcbar{flex:1;min-width:180px}
+  .rcbar .track{height:10px;border-radius:99px;background:var(--card3);overflow:hidden;border:1px solid var(--border)}
+  .rcbar .fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .4s}
+  .rcbar .lbl{display:flex;justify-content:space-between;font-size:10.5px;color:var(--faint);font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px}
+  .rcnow{display:flex;gap:22px;flex-wrap:wrap;text-align:right}
+  .rcnow small{display:block;font-size:10px;letter-spacing:.7px;text-transform:uppercase;color:var(--faint);font-weight:700}
+  .rcnow b{font-size:16px;font-variant-numeric:tabular-nums}
+  .rcgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:10px}
+  .rctile{padding:11px 13px}
+  .rctile .l{font-size:10.5px;font-weight:700;color:var(--faint);text-transform:uppercase;letter-spacing:.6px}
+  .rctile .v{font-size:17px;font-weight:800;font-variant-numeric:tabular-nums;margin-top:3px}
+  .rctile .n{font-size:10.5px;color:var(--faint);margin-top:1px}
+  .rctile.hi{border-color:color-mix(in srgb,var(--accent) 45%,var(--border));background:color-mix(in srgb,var(--accent) 6%,var(--card))}
+  .rcctl{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px;margin-top:11px}
+  .rcctl label{display:block;font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--faint);margin-bottom:5px}
+  .rcctl select,.rcctl input[type=number]{width:100%;background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:8px 10px;font-weight:700;font-size:13px}
+  .rcctl select:focus,.rcctl input:focus{outline:none;border-color:var(--accent)}
+  .rcctl input[type=range]{width:100%}
+  .rcctl .hint{font-size:10.5px;color:var(--faint);margin-top:4px;line-height:1.45}
+  .rcswitch{display:flex;align-items:center;gap:9px;font-size:12.5px;font-weight:700;color:var(--muted)}
+  .rcswitch input{width:auto;accent-color:var(--accent)}
+  .rcphase{padding:0;overflow:hidden;margin-bottom:12px}
+  .rcphase-head{display:flex;gap:12px;align-items:center;padding:12px 14px;border-bottom:1px solid var(--border);
+    background:linear-gradient(115deg,color-mix(in srgb,var(--accent) 8%,transparent),transparent 70%)}
+  .rcphase-mark{width:40px;height:40px;flex:0 0 auto;border-radius:12px;display:grid;place-items:center;font-size:21px;
+    background:color-mix(in srgb,var(--accent) 12%,var(--card2));border:1px solid color-mix(in srgb,var(--accent) 32%,var(--border))}
+  .rcphase-title{flex:1;min-width:0}
+  .rcphase-title h3{margin:0;font-size:15px}
+  .rcphase-title .sub{font-size:11.5px;color:var(--faint);margin-top:2px}
+  .rcphase-when{flex:0 0 auto;font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--accent);
+    border:1px solid color-mix(in srgb,var(--accent) 35%,var(--border));border-radius:99px;padding:4px 10px;background:color-mix(in srgb,var(--accent) 8%,var(--card))}
+  .rcphase-goal{padding:10px 14px 0;font-size:12.5px;color:var(--muted)}
+  .rcsteps{padding:9px 12px 12px;display:flex;flex-direction:column;gap:2px}
+  .rcstep{display:flex;gap:11px;align-items:flex-start;padding:9px 10px;border-radius:11px;cursor:pointer;transition:.15s;border:1px solid transparent}
+  .rcstep:hover{background:var(--card2)}
+  .rcstep input{margin-top:2px;width:17px;height:17px;flex:0 0 auto;accent-color:var(--accent);cursor:pointer}
+  .rcstep .tx{flex:1;min-width:0}
+  .rcstep .tt{font-size:13px;font-weight:700;line-height:1.35}
+  .rcstep .dd{font-size:11.5px;color:var(--faint);line-height:1.5;margin-top:2px}
+  .rcstep.done .tt{text-decoration:line-through;color:var(--muted)}
+  .rcstep.done .dd{opacity:.66}
+  .rcprog{display:flex;align-items:center;gap:12px;padding:12px 14px;flex-wrap:wrap}
+  .rcprog .bar{flex:1;min-width:160px;height:9px;border-radius:99px;background:var(--card3);overflow:hidden;border:1px solid var(--border)}
+  .rcprog .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--ok),#8fe3b4);transition:width .3s}
+  .rctbl{width:100%;border-collapse:collapse;font-size:12.5px}
+  .rctbl th{font-size:10.5px;text-transform:uppercase;letter-spacing:.7px;color:var(--faint);text-align:left;padding:7px 9px;border-bottom:1px solid var(--border)}
+  .rctbl td{padding:8px 9px;border-bottom:1px solid var(--border);vertical-align:top}
+  .rctbl tr:last-child td{border-bottom:none}
+  .rctbl .v{font-variant-numeric:tabular-nums;font-weight:700;white-space:nowrap}
+  .rcdont{display:flex;flex-direction:column;gap:7px}
+  .rcdont .row{display:flex;gap:10px;align-items:flex-start;font-size:12.5px;line-height:1.5}
+  .rcdont .row .x{color:var(--bad);font-weight:900;flex:0 0 auto}
+  .rcdont .row b{color:var(--text)}
+  .rcdont .row span{color:var(--muted)}
+  @media (max-width:520px){
+    .rcrace{padding:13px}
+    .rcnow{text-align:left;gap:16px}
+  }
 </style>
 </head>
 <body>
@@ -826,6 +895,7 @@
     <button class="navitem" data-page="npcloot"><span class="ni">🩸</span> NPC Loot</button>
     <button class="navitem" data-page="jobbook"><span class="ni">📖</span> The Job Book</button>
     <button class="navitem" data-page="company"><span class="ni">🏢</span> Company</button>
+    <button class="navitem" data-page="race"><span class="ni">🏁</span> Race to Level 15</button>
     <button class="navitem" data-page="settings"><span class="ni">⚙️</span> Settings</button>
     <div class="railfoot">
       <button class="modebadge" id="modeBadge" title="Toggle demo / live mode">
@@ -1206,6 +1276,92 @@
       </div>
     </section>
 
+    <!-- ============ RACE TO LEVEL 15 ============ -->
+    <section id="page-race" hidden>
+      <div class="card rcrace" style="margin-bottom:13px">
+        <div class="rcrace-mark">🏁</div>
+        <div class="rcrace-main">
+          <div class="rcrace-name">Race to Level 15 <span class="chip accent" id="rcModeChip">plan</span></div>
+          <div class="rcrace-sub">
+            Level 15 unlocks the <b>Travel Agency</b> — the moment Torn stops being a grind and starts paying.
+            Attacks give several times more XP than anything else, and <b>leaving</b> a beaten opponent gives the most XP of all.
+            This tab is the plan, the pace calculator and the live tracker for that sprint.
+          </div>
+          <div class="rclevel" id="rcLevelRow"></div>
+        </div>
+        <div class="rcnow" id="rcNowBox"></div>
+      </div>
+
+      <div class="card copanel">
+        <h3>🧭 Your pace <span class="count" id="rcPaceNote"></span></h3>
+        <div class="csub">Everything here is built on how XP and energy actually work: 25 energy per attack, ~100–200 winning attacks from level 1 to 15, and the fact that Torn hides your XP bar — so this is an estimate you can steer, not a promise.</div>
+        <div class="rcgrid" id="rcPace"></div>
+        <div class="rcctl" id="rcCtl"></div>
+        <div class="conote" style="margin-top:11px" id="rcPaceWhy"></div>
+      </div>
+
+      <div class="card copanel">
+        <h3>✅ The plan <span class="count" id="rcProgNote"></span></h3>
+        <div class="csub">Work top to bottom. Your ticks are saved in this browser, so the plan remembers where you were.</div>
+        <div class="rcprog" style="padding:0 0 4px">
+          <div class="bar"><i id="rcProgFill" style="width:0%"></i></div>
+          <span class="chip" id="rcProgChip">0%</span>
+          <button class="btn sm" id="rcResetSteps" style="margin-left:auto">Reset ticks</button>
+        </div>
+      </div>
+      <div id="rcPhases"></div>
+
+      <div class="grid g2" style="align-items:start">
+        <div class="card copanel">
+          <h3>⏱️ How long it really takes</h3>
+          <div class="csub">Player reports, not marketing. The difference between rows is Xanax, donator status and how often you log in.</div>
+          <table class="rctbl">
+            <thead><tr><th>Approach</th><th>Typical time</th><th>What it takes</th></tr></thead>
+            <tbody>
+              <tr><td><b>Hardcore</b></td><td class="v">3–5 days</td><td>Donator, Xanax around the clock, a faction handing out gear, near-perfect login discipline</td></tr>
+              <tr><td><b>Active</b></td><td class="v">1–2 weeks</td><td>Logging in several times a day, all energy into attacks, crimes between them, a little Xanax</td></tr>
+              <tr><td><b>Casual</b></td><td class="v">3–6 weeks</td><td>A few logins a day, no drugs, training and attacking mixed</td></tr>
+              <tr><td><b>Community spread</b></td><td class="v">3 – 45 days</td><td>The range players actually report on the Torn subreddit — the top of it is people who capped their energy daily</td></tr>
+            </tbody>
+          </table>
+          <div class="conote" style="margin-top:10px">Banked energy is the whole game: two players with the same stats can be 3× apart in time simply because one logs in at the cap and the other doesn't.</div>
+        </div>
+
+        <div class="card copanel">
+          <h3>📖 What each level opens</h3>
+          <div class="csub">A few of these change how you earn before you even reach 15.</div>
+          <table class="rctbl">
+            <thead><tr><th>Level</th><th>Unlock</th></tr></thead>
+            <tbody id="rcUnlocks"></tbody>
+          </table>
+          <div class="conote" style="margin-top:10px">From the wiki's <a href="https://wiki.torn.com/wiki/Level_and_Ranks" target="_blank" rel="noopener">Level and Ranks</a> page. Sources for this tab: that page, plus the wiki pages for <a href="https://wiki.torn.com/wiki/Energy" target="_blank" rel="noopener">Energy</a>, <a href="https://wiki.torn.com/wiki/Nerve" target="_blank" rel="noopener">Nerve</a> and <a href="https://wiki.torn.com/wiki/Attack" target="_blank" rel="noopener">Attack</a>.</div>
+        </div>
+      </div>
+
+      <div class="card copanel">
+        <h3>🚫 What slows people down</h3>
+        <div class="csub">Every one of these is a real habit that costs days.</div>
+        <div class="rcdont" id="rcDonts"></div>
+      </div>
+
+      <div class="card copanel">
+        <h3>🔗 Go do it</h3>
+        <div class="corow">
+          <a class="btn sm primary" href="https://www.torn.com/attack.php" target="_blank" rel="noopener">⚔️ Attack page</a>
+          <a class="btn sm" href="https://www.torn.com/gym.php" target="_blank" rel="noopener">🏋️ Gym</a>
+          <a class="btn sm" href="https://www.torn.com/crimes.php" target="_blank" rel="noopener">🔪 Crimes</a>
+          <a class="btn sm" href="https://www.torn.com/joblist.php" target="_blank" rel="noopener">💼 Job list</a>
+          <button class="btn sm" id="rcGoTargets">🎯 Targets tab</button>
+          <button class="btn sm" id="rcGoCompany">🏢 Company tab</button>
+          <a class="btn sm" href="https://www.torn.com/forums.php#/p=threads&f=61&t=16034448&b=0&a=0" target="_blank" rel="noopener">📋 Baldr's leveling list (forums)</a>
+          <a class="btn sm" href="https://ffscouter.com/target-finder" target="_blank" rel="noopener">🔎 FFScouter target finder</a>
+        </div>
+        <div class="conote" style="margin-top:11px">
+          Target lists are community maintained — a target that's in hospital or has been fed stats since the list was posted won't pay. Always check the target's level, status and profile before you spend 25 energy.
+        </div>
+      </div>
+    </section>
+
     <section id="page-settings" hidden>
       <h2 class="sec">Data Source</h2>
       <div class="card setcard">
@@ -1298,6 +1454,10 @@
           profit, customers, popularity/efficiency/environment, stock &amp; orders, wages, upgrades and your
           specials ladder) and <i>What company should I make?</i> (all 39 companies with costs, staff, every
           1★–10★ special, honest pros &amp; cons and a goal-based recommender).<br>
+          <b style="color:var(--text)">Race to Level 15</b> tab: why 15 unlocks the Travel Agency, a five-phase
+          tick-list from setup to the first flight, a live pace calculator (energy/day → attacks/day → days to 15,
+          steered by Xanax, drinks, the daily refill, donator status and your win rate), the honest community
+          timeline and the traps that cost days.<br>
           What's new over 1.0: live bar ETAs &amp; tick simulation · flight planner with landing countdown + notifications ·
           restock-cycle ticker · abroad <i>profit</i> tables vs market value · ⌘K command palette ·
           themable accents · export/reset. Abroad stock still comes from
@@ -1321,6 +1481,7 @@
   <button data-page="npcloot"><span class="ti">🩸</span>Loot</button>
   <button data-page="jobbook" aria-label="The Job Book" title="The Job Book"><span class="ti">📖</span>Jobs</button>
   <button data-page="company" aria-label="Company" title="Company"><span class="ti">🏢</span>Corp</button>
+  <button data-page="race" aria-label="Race to Level 15" title="Race to Level 15"><span class="ti">🏁</span>Lvl 15</button>
   <button data-page="settings"><span class="ti">⚙️</span>Setup</button>
 </nav>
 
@@ -1411,7 +1572,7 @@ function flagEmoji(cc){
 }
 
 /* ---------- settings ---------- */
-const APP_VERSION = "2.46.0";
+const APP_VERSION = "2.47.0";
 const DEFAULT_SETTINGS = {
   mode: "demo", apiKey: "", refresh: 60,
   theme: "dark", accent: "amber",
@@ -2042,6 +2203,7 @@ const PAGES = {
   npcloot:   ["NPC Loot", "Lootable NPCs — loot levels, timers & every drop"],
   jobbook:   ["The Job Book", "Six city-job ladders · 41 positions · six distinct layouts"],
   company:   ["Company", "Run your company · or pick the right one to start"],
+  race:      ["Race to Level 15", "The fastest route to the Travel Agency"],
   settings:  ["Settings", "Make it yours"]
 };
 function goto(page){
@@ -2062,6 +2224,7 @@ function goto(page){
   if(page === "npcloot"){ npcEnter(); }
   if(page === "jobbook"){ jbEnter(); }
   if(page === "company"){ coEnter(); }
+  if(page === "race"){ rcEnter(); }
   if(page === "settings"){ renderSettings(); }
   renderAll(); // cheap refresh of dynamic bits for the new page
   window.scrollTo({ top: 0 });
@@ -4383,6 +4546,7 @@ function updateDynamic(){
   renderRestock();
   npcTick();
   jbTick();
+  rcUpdateDynamic();
   // clocks
   const nowTorn = new Intl.DateTimeFormat("en-GB", { timeZone: TCT_TZ, hour:"2-digit", minute:"2-digit", second:"2-digit" }).format(new Date());
   $("clockTorn").textContent = nowTorn + " TCT";
@@ -5740,6 +5904,448 @@ function coWire(){
 </script>
 <script>
 "use strict";
+/* ========================= RACE TO LEVEL 15 =========================
+ * A plan tab: why 15 matters, the fastest route there, what it costs in
+ * energy and time, a live pace calculator built on how XP/energy really
+ * work, a tick-list you can keep, and the traps that cost days.
+ *
+ * Facts (energy regen 5/10 min donator or 5/15 min non-donator, 25 energy per
+ * attack, leave > mug > hosp XP, level unlocks) come from the Torn Wiki:
+ *   https://wiki.torn.com/wiki/Level_and_Ranks
+ *   https://wiki.torn.com/wiki/Energy
+ *   https://wiki.torn.com/wiki/Attack
+ * The XP curve itself is hidden by Torn — the attack estimate is the
+ * community figure (~100–200 winning attacks from level 1) and is adjustable.
+ * ================================================================== */
+
+/* ---------- level unlocks ---------- */
+const RC_UNLOCKS = [
+  [2,  "Bookies"],
+  [3,  "Join a company · Lottery"],
+  [4,  "Blackjack"],
+  [5,  "Auction House · missions beyond George's · Poker"],
+  [6,  "Russian Roulette"],
+  [7,  "Spin the Wheel"],
+  [10, "Become the Director of a company"],
+  [13, "Global chat"],
+  [15, "🛫 Travel Agency — fly abroad and buy flowers & plushies to resell"]
+];
+const RC_TARGET = 15;
+
+/* ---------- the plan ---------- */
+const RC_PHASES = [
+{ id:"setup", g:"🧰", when:"First 30 min", name:"Setup — before you spend a single energy point",
+  goal:"Get geared and connected first. Every fight you lose without armour is 25 energy that earned nothing.",
+  steps:[
+    { t:"Add a Torn API key (Minimal or Limited access)",
+      d:"Setup → Data Source. This tab then tracks your level, energy and nerve live and tells you exactly how many attacks a day you need." },
+    { t:"Turn on the energy-full notification",
+      d:"Alerts → energy full. Sitting on a full bar is wasted regeneration — it is the single easiest way to lose a day." },
+    { t:"Buy a weapon and a full set of armour",
+      d:"Any cheap melee weapon beats bare fists, and five pieces of armour cut the damage you take. Check Bits 'n' Bobs or the item market." },
+    { t:"Stock up on First Aid Kits",
+      d:"A loss puts you in hospital. You want to heal and be attacking again in minutes, not sitting out a hospital timer." },
+    { t:"Take a city job",
+      d:"Jobs pay a wage, grow work stats and drip XP. The Job Book tab has all six city ladders and their requirements. You can join a company from level 3." },
+    { t:"Join a faction and ask for gear, Xanax and cheap rent",
+      d:"Factions lend weapons and armour and hand Xanax to members. In practice this is the difference between five days and two weeks." },
+    { t:"Bank your cash",
+      d:"New players holding money on hand get mugged. Bank withdrawals are free — only carry what you're about to spend." },
+    { t:"Start an education course",
+      d:"You can't rush it for free, but the clock only runs while a course is active — start one now and it's money in the bank later." }
+  ]},
+{ id:"base", g:"🏋️", when:"Days 1–2", name:"Build a baseline (the part everyone skips)",
+  goal:"About 300–500 total battle stats, so the attacks you pay 25 energy for are attacks you win.",
+  steps:[
+    { t:"Train to roughly 300–500 total battle stats before the grind",
+      d:"Losing an attack costs the same 25 energy as winning one and gives no XP. Under ~300 stats you'll lose to the targets you want to farm." },
+    { t:"Lean your training into strength and speed",
+      d:"Strength is damage, speed is hit chance. Early on a rough 40/40/10/10 split across strength / speed / dexterity / defence beats a flat spread." },
+    { t:"Never sit on a full energy bar",
+      d:"Energy refills at 5 per 10 minutes (donator, max 150) or 5 per 15 minutes (max 100). At the cap, regeneration simply stops — those points never come back." },
+    { t:"Spend your nerve as it fills",
+      d:"One nerve every five minutes. Crimes give XP and crime XP, and crime XP grows your nerve bar — which means more crime XP next session." },
+    { t:"Work through George's missions",
+      d:"Missions hand out XP, cash and items, and they teach the systems you'll rely on after level 15." },
+    { t:"Log in every 2–3 hours while awake",
+      d:"This is most of 'how fast you level'. Two players with identical stats can be three times apart on time-to-15 purely from login discipline." }
+  ]},
+{ id:"grind", g:"⚔️", when:"Days 2–5", name:"The XP grind — attack, and always leave",
+  goal:"Attacks are worth several times more XP than anything else in Torn, and leaving is the highest-XP attack outcome.",
+  steps:[
+    { t:"Find leveling targets: weak players at high levels",
+      d:"The best XP comes from beating someone well above your level with tiny battle stats. Use this app's Targets tab, Baldr's community list on the forums, or FFScouter's target finder." },
+    { t:"Always click LEAVE after a win",
+      d:"Leaving gives 100% of the XP. Mugging gives roughly 55–60%, and hospitalising only about 40%. Hosping a leveling target throws XP away." },
+    { t:"Spend every 25 energy on attacks",
+      d:"25 energy per attack, win or lose. The bar refills on its own, so holding energy 'for later' is strictly worse than spending it now." },
+    { t:"Use the once-a-day energy refill when the bar is empty",
+      d:"Points Building → Use next to Energy. Used on an empty bar it's worth a whole bar; used on a full bar it's worth nothing." },
+    { t:"Use Xanax (250 energy) between attacks",
+      d:"The biggest accelerator there is. Take it once your energy is already spent — never before, and mind the overdose risk and addiction." },
+    { t:"Top up with energy drinks between drug cooldowns",
+      d:"5–30 energy each, on a 2-hour booster cooldown. Far cheaper than Xanax per dose and they stack with everything else." },
+    { t:"Keep doing crimes and missions in between",
+      d:"Nerve refills whether you use it or not, so crimes beside your attacks are free progress — plus they grow the nerve bar." },
+    { t:"Check the pace tiles above each day",
+      d:"If 'days to 15' is creeping up, you're capped, losing fights, or skipping refills. Fix the cause, not the number." }
+  ]},
+{ id:"boost", g:"🏢", when:"Any time", name:"Free XP and energy from jobs and companies",
+  goal:"The only places in Torn where job points convert directly into XP and energy.",
+  steps:[
+    { t:"Work somewhere whose 1★ special is experience",
+      d:"Clothing Store (Fashion Show), Hair Salon (Debate), Nightclub (Criminal Connections) and Theater (Stagecraft) all trade one job point for XP. The Company tab has every ladder." },
+    { t:"Use energy-granting company specials",
+      d:"Furniture Store / Pub / Restaurant at 1★ (3 energy per job point), Candle Shop 7★ (5), Game Shop 10★ (5 + nerve + happiness), Farm 10★ (7). Exchanges are capped at 100 job points a day." },
+    { t:"Use nerve-granting specials as well",
+      d:"Firework Stand 1★ (+2 nerve), Meat Warehouse 1★ (+2), Candle Shop 5★ (+2), Pub 5★ (refills your whole nerve bar for 25 job points)." },
+    { t:"Ask your faction about loans and perks",
+      d:"Many factions lend gear or an XP-bonus weapon. Some weapons carry an 'Experience' bonus that increases XP on the finishing hit." },
+    { t:"Never borrow money you can't lose to buy drugs",
+      d:"Selling losses to fund Xanax is a real strategy, but an overdose or a mug on borrowed cash sets you back further than simply training would have." }
+  ]},
+{ id:"done", g:"🏁", when:"At level 15", name:"You made it — now switch gears",
+  goal:"Level 15 unlocks the Travel Agency. Abroad flowers and plushies are a new player's first real income.",
+  steps:[
+    { t:"Open the Travel Agency and take your first flight",
+      d:"The Flight tab has every destination, the ticket classes, the 15-minute restock ticker and profit-per-flight maths." },
+    { t:"Move your energy back into the gym",
+      d:"You levelled on attack energy, so your battle stats are behind. Training now pays off for everything that comes later." },
+    { t:"Keep crimes running",
+      d:"Crime XP is the only thing that grows your natural nerve bar. It's a long game, and it starts now." },
+    { t:"Get into a faction with real perks",
+      d:"Chain and war payouts plus faction perks (nerve, stats) are the biggest early multipliers in the game." },
+    { t:"Pick a company worth running",
+      d:"The Company tab ranks all 39 companies by cost, profit and specials — and sorts them by the goals you pick." }
+  ]}
+];
+
+/* ---------- traps ---------- */
+const RC_DONTS = [
+  ["Mugging or hospitalising leveling targets", "roughly 55–60% and 40% of the XP you'd get for leaving — the same 25 energy, a fraction of the reward."],
+  ["Letting energy or nerve sit at maximum", "regeneration stops at the cap. It never banks up; the points are simply lost."],
+  ["Searching the dump with energy", "energy spent on the dump is energy not spent on attacks or the gym."],
+  ["Waiting to fly before level 15", "you can't fly until 15 unlocks the Travel Agency. Don't plan trips, plan attacks."],
+  ["Carrying cash on hand", "muggers hunt new players. Bank it and withdraw only what you're spending."],
+  ["Attacking without armour or first aid kits", "you lose fights you should win, then sit in hospital for 15–30 minutes."],
+  ["Grinding crimes you keep failing", "failures cost crime XP and can jail you. Stay at a difficulty you clear reliably."],
+  ["Taking Xanax on a full bar", "you waste the energy you just paid for. Take drugs after spending what you already have."],
+  ["Buying a 'level up service' without checking", "they exist and they work, but they cost real money and leave you with no battle stats for your level."],
+  ["Racing so hard you arrive with no stats", "levelling on attacks alone means you hit 15 as a punching bag. Alternate gym and attacks after the sprint."]
+];
+
+/* ---------- state ---------- */
+let rcSteps = store.get("lc2_racesteps", {}) || {};
+let rcOpts  = Object.assign({ base:150, xanax:0, drinks:0, refill:true, win:70, donator:null, level:null },
+                            store.get("lc2_raceopts", {}) || {});
+function rcSaveSteps(){ store.set("lc2_racesteps", rcSteps); }
+function rcSaveOpts(){ store.set("lc2_raceopts", rcOpts); }
+
+/* XP still to earn, as a share of the 1 → 15 journey.
+   Torn hides the real curve, so model the XP per level as proportional to the
+   level number (2,3,…,15 → 119 units total). Good enough to steer by. */
+function rcShareLeft(level){
+  const lv = Math.max(1, Math.min(RC_TARGET, Number(level) || 1));
+  if(lv >= RC_TARGET) return 0;
+  let left = 0;
+  for(let L = lv; L < RC_TARGET; L++) left += (L + 1);
+  let total = 0;
+  for(let L = 1; L < RC_TARGET; L++) total += (L + 1);
+  return left / total;
+}
+
+/* live-ish context: what we know about the racer right now */
+function rcCtx(){
+  const live = state.mode === "live";
+  const u = state.user || {};
+  const bar = (u.bars && u.bars.energy) || null;
+  const liveLevel = (live && typeof u.level === "number" && u.level > 0) ? u.level : null;
+  const raw = rcOpts.level != null ? Number(rcOpts.level) : (liveLevel != null ? liveLevel : 6);
+  const level = Math.max(1, Math.min(RC_TARGET, raw));
+  const energyMax = (live && bar && bar.maximum) ? bar.maximum : (rcOpts.donator ? 150 : 100);
+  const donator = rcOpts.donator == null ? (live ? energyMax >= 150 : false) : !!rcOpts.donator;
+  /* regen/day: use the player's real bar when we have it, else the wiki rates */
+  let regenDay;
+  if(live && bar && Number(bar.interval) > 0 && Number(bar.increment) > 0){
+    regenDay = (86400 / Number(bar.interval)) * Number(bar.increment);
+  } else {
+    regenDay = donator ? 720 : 480;   /* 5 per 10 min, or 5 per 15 min */
+  }
+  /* in demo mode show a believable level-6 racer rather than the demo account */
+  const energyNow = (live && bar && typeof bar.current === "number") ? bar.current : 62;
+  const nerve = live ? ((u.bars && u.bars.nerve) || null) : { current: 9, maximum: 20 };
+  return {
+    live, level, levelIsLive: rcOpts.level == null && liveLevel != null,
+    liveLevel, overridden: rcOpts.level != null, energyMax, energyNow, donator, regenDay, nerve,
+    money: (live && typeof u.money_onhand === "number") ? u.money_onhand : 620000,
+    playerName: u.name || null
+  };
+}
+function rcPace(){
+  const c = rcCtx();
+  const base = Math.max(20, Number(rcOpts.base) || 150);
+  const attacksLeft = Math.round(base * rcShareLeft(c.level));
+  const totalEnergy = c.regenDay
+    + (Number(rcOpts.xanax) || 0) * 250
+    + (Number(rcOpts.drinks) || 0) * 15
+    + (rcOpts.refill ? c.energyMax : 0);
+  const attempts = totalEnergy / 25;
+  const winRate = Math.max(5, Math.min(100, Number(rcOpts.win) || 70)) / 100;
+  const wins = attempts * winRate;
+  const days = wins > 0 ? attacksLeft / wins : Infinity;
+  const canAttackNow = c.energyNow != null ? Math.floor(c.energyNow / 25) : null;
+  return { c, base, attacksLeft, totalEnergy, attempts, wins, days, winRate, canAttackNow,
+           eta: days > 0 && isFinite(days) ? Date.now() + days * 86400000 : null };
+}
+function rcFmtDate(ts){
+  if(!ts || !isFinite(ts)) return "—";
+  const d = new Date(ts);
+  return d.toLocaleDateString(undefined, { weekday:"short", month:"short", day:"numeric" }) + " · " +
+         d.toLocaleTimeString(undefined, { hour:"2-digit", minute:"2-digit" });
+}
+
+/* ---------- render ---------- */
+function rcLevelRowHtml(){
+  const { c } = rcPace();
+  const pct = Math.round(((c.level - 1) / (RC_TARGET - 1)) * 100);
+  const done = c.level >= RC_TARGET;
+  return `
+    <div class="lvl"><small>Now</small>${c.level}</div>
+    <div class="rcbar">
+      <div class="lbl"><span>Level ${c.level} → ${RC_TARGET}</span><span>${done ? "done ✓" : (RC_TARGET - c.level) + " to go"}</span></div>
+      <div class="track"><div class="fill" style="width:${Math.max(2, Math.min(100, pct))}%"></div></div>
+    </div>`;
+}
+function rcNowHtml(){
+  const { c, canAttackNow } = rcPace();
+  const bits = [];
+  if(c.energyNow != null){
+    bits.push(`<div><small>Energy now</small><b>${fmtInt(c.energyNow)}${c.energyMax ? " / " + fmtInt(c.energyMax) : ""}</b></div>`);
+    bits.push(`<div><small>Attacks ready</small><b ${canAttackNow ? 'style="color:var(--accent)"' : ""}>${fmtInt(canAttackNow)}</b></div>`);
+  }
+  if(c.nerve && typeof c.nerve.current === "number"){
+    bits.push(`<div><small>Nerve</small><b>${fmtInt(c.nerve.current)}${c.nerve.maximum ? " / " + fmtInt(c.nerve.maximum) : ""}</b></div>`);
+  }
+  if(c.money != null && c.money > 250000){
+    bits.push(`<div><small>Cash on hand</small><b style="color:var(--warn)">${fmtMoney(c.money)}</b></div>`);
+  }
+  return bits.join("");
+}
+function rcPaceTilesHtml(){
+  const { c, attacksLeft, totalEnergy, attempts, wins, days, eta, canAttackNow } = rcPace();
+  const tiles = [];
+  tiles.push(`<div class="card rctile hi"><div class="l">Days to 15</div><div class="v">${isFinite(days) ? (days < 1 ? "<1" : Math.ceil(days)) : "—"}</div>
+    <div class="n">${eta ? "about " + rcFmtDate(eta) : "add energy sources"}</div></div>`);
+  tiles.push(`<div class="card rctile"><div class="l">Winning attacks left</div><div class="v">${fmtInt(attacksLeft)}</div>
+    <div class="n">from level ${c.level}${rcOpts.level == null ? "" : " (manual)"}</div></div>`);
+  tiles.push(`<div class="card rctile"><div class="l">Energy / day</div><div class="v">${fmtInt(totalEnergy)}</div>
+    <div class="n">${fmtInt(c.regenDay)} regen + ${fmtInt(Math.max(0, totalEnergy - c.regenDay))} from items</div></div>`);
+  tiles.push(`<div class="card rctile"><div class="l">Attacks / day</div><div class="v">${fmtInt(Math.floor(attempts))}</div>
+    <div class="n">at 25 energy each</div></div>`);
+  tiles.push(`<div class="card rctile"><div class="l">Wins / day</div><div class="v">${fmtInt(Math.floor(wins))}</div>
+    <div class="n">at a ${Math.round(rcPace().winRate * 100)}% win rate</div></div>`);
+  if(canAttackNow != null){
+    tiles.push(`<div class="card rctile"><div class="l">Attacks ready now</div><div class="v">${fmtInt(canAttackNow)}</div>
+      <div class="n">${canAttackNow ? "go spend them" : "come back when energy ticks"}</div></div>`);
+  }
+  return tiles.join("");
+}
+function rcControlsHtml(){
+  const o = rcOpts, c = rcCtx();
+  const don = o.donator == null ? (c.donator ? "auto-on" : "auto-off") : (o.donator ? "on" : "off");
+  return `
+    <div>
+      <label>Your level</label>
+      <input type="number" id="rcLevel" min="1" max="15" value="${c.level}">
+      <div class="hint">${c.levelIsLive
+        ? "read live from your Torn profile"
+        : (c.overridden && c.liveLevel != null)
+          ? `manual override — <button class="btn sm" data-rcreset="level" style="padding:1px 7px;font-size:11px">↻ use live (lvl ${c.liveLevel})</button>`
+          : "set it by hand in demo mode"}</div>
+    </div>
+    <div>
+      <label>Winning attacks for the whole run</label>
+      <input type="range" id="rcBase" min="80" max="260" step="10" value="${o.base}">
+      <div class="hint"><b>${fmtInt(o.base)}</b> · community range is ~100–200 winning attacks from level 1; targets, gear and win rate move you inside it</div>
+    </div>
+    <div>
+      <label>Xanax per day</label>
+      <select id="rcXanax">${[0,1,2,3,4,5,6,8].map(n => `<option value="${n}" ${Number(o.xanax)===n?"selected":""}>${n}${n?" · +"+fmtInt(n*250)+" energy":""}</option>`).join("")}</select>
+      <div class="hint">250 energy each · shares the drug cooldown</div>
+    </div>
+    <div>
+      <label>Energy drinks per day</label>
+      <select id="rcDrinks">${[0,1,2,4,6,8,12].map(n => `<option value="${n}" ${Number(o.drinks)===n?"selected":""}>${n}${n?" · +"+fmtInt(n*15)+" energy":""}</option>`).join("")}</select>
+      <div class="hint">5–30 energy each, 2-hour booster cooldown (15 avg used here)</div>
+    </div>
+    <div>
+      <label>Daily energy refill</label>
+      <label class="rcswitch"><input type="checkbox" id="rcRefill" ${o.refill ? "checked" : ""}> Using it every day (+${fmtInt(c.energyMax)} energy)</label>
+      <div class="hint">once a day from the Points Building — worth a full bar</div>
+    </div>
+    <div>
+      <label>Donator status</label>
+      <label class="rcswitch"><input type="checkbox" id="rcDonator" ${c.donator ? "checked" : ""}> 150 energy cap (${don})</label>
+      <div class="hint">donator refills 720 energy/day; without it 480</div>
+    </div>
+    <div>
+      <label>Win rate against your targets</label>
+      <input type="range" id="rcWin" min="30" max="100" step="5" value="${o.win}">
+      <div class="hint"><b>${o.win}%</b> · below ~60% you're under-trained — go back to the gym or pick softer targets</div>
+    </div>`;
+}
+function rcPhaseHtml(ph, i){
+  const done = ph.steps.filter((s, j) => rcSteps[ph.id + ":" + j]).length;
+  const all = done === ph.steps.length;
+  return `<div class="card rcphase">
+    <div class="rcphase-head">
+      <span class="rcphase-mark">${ph.g}</span>
+      <div class="rcphase-title">
+        <h3>${escHtml(ph.name)}</h3>
+        <div class="sub">${escHtml(ph.when)}</div>
+      </div>
+      <span class="rcphase-when" ${all ? 'style="color:var(--ok);border-color:color-mix(in srgb,var(--ok) 40%,var(--border))"' : ""}>${all ? "done ✓" : done + "/" + ph.steps.length}</span>
+    </div>
+    <div class="rcphase-goal">🎯 ${escHtml(ph.goal)}</div>
+    <div class="rcsteps">
+      ${ph.steps.map((s, j) => {
+        const id = ph.id + ":" + j, on = !!rcSteps[id];
+        return `<label class="rcstep ${on ? "done" : ""}" data-rcstep="${id}">
+          <input type="checkbox" ${on ? "checked" : ""} data-rcstepbox="${id}">
+          <span class="tx"><span class="tt">${escHtml(s.t)}</span><span class="dd">${escHtml(s.d)}</span></span>
+        </label>`;
+      }).join("")}
+    </div>
+  </div>`;
+}
+function rcProgress(){
+  const total = RC_PHASES.reduce((n, p) => n + p.steps.length, 0);
+  const done = RC_PHASES.reduce((n, p) => n + p.steps.filter((s, j) => rcSteps[p.id + ":" + j]).length, 0);
+  return { total, done, pct: total ? Math.round((done / total) * 100) : 0 };
+}
+function rcPaceWhyHtml(){
+  const p = rcPace(), xan = Number(rcOpts.xanax) || 0, days = p.days;
+  const ahead = p.c.liveLevel != null && p.c.liveLevel >= RC_TARGET;
+  return `
+    <b>The maths:</b> ${fmtInt(p.totalEnergy)} energy a day ÷ 25 per attack = <b>${fmtInt(Math.floor(p.attempts))} attacks</b>,
+    and at a ${Math.round(p.winRate * 100)}% win rate that's <b>${fmtInt(Math.floor(p.wins))} winning attacks a day</b>.
+    With about <b>${fmtInt(p.attacksLeft)} wins</b> still needed, that's <b>${isFinite(days) ? Math.ceil(days) : "—"} day${Math.ceil(days) === 1 ? "" : "s"}</b>.
+    ${xan === 0 ? "Adding a Xanax or two a day is the fastest lever on this whole page — 250 energy is ten extra attacks." : `Your ${xan} Xanax a day is doing heavy lifting: ${fmtInt(xan * 250)} of your ${fmtInt(p.totalEnergy)} daily energy.`}
+    ${ahead ? " You're already past 15 — the numbers above assume you're starting an alt or a restart." : ""}
+    <br><span class="co-muted">Assumes you never sit at a full bar, that every attack is a win at your stated rate, and that an average leveling target pays the community-average XP. Torn hides the real XP curve, so treat the countdown as a pace gauge.</span>`;
+}
+function renderRace(){
+  const { c, attacksLeft, days } = rcPace();
+  $("rcLevelRow").innerHTML = rcLevelRowHtml();
+  $("rcNowBox").innerHTML = rcNowHtml();
+
+  const chip = $("rcModeChip");
+  const ahead = c.liveLevel != null && c.liveLevel >= RC_TARGET;
+  chip.textContent = ahead ? "past 15 — plan for an alt" : (c.live ? (c.levelIsLive ? "live tracking" : "live · manual level") : "demo · sample numbers");
+  chip.className = "chip " + (ahead ? "ok" : c.live ? "accent" : "warn");
+
+  $("rcPace").innerHTML = rcPaceTilesHtml();
+  $("rcCtl").innerHTML = rcControlsHtml();
+  $("rcPaceNote").textContent = c.live ? "tracking " + (c.playerName || "your account") : "demo mode";
+
+  $("rcPaceWhy").innerHTML = rcPaceWhyHtml();
+
+  const pr = rcProgress();
+  $("rcProgNote").textContent = pr.done + " of " + pr.total + " steps done";
+  $("rcProgFill").style.width = pr.pct + "%";
+  $("rcProgChip").textContent = pr.pct + "%";
+  $("rcProgChip").className = "chip " + (pr.pct === 100 ? "ok" : pr.pct >= 50 ? "accent" : "");
+  $("rcPhases").innerHTML = RC_PHASES.map(rcPhaseHtml).join("");
+
+  $("rcUnlocks").innerHTML = RC_UNLOCKS.map(([lv, what]) => {
+    const hit = c.live && c.level >= lv;
+    return `<tr><td class="v" style="${hit ? "color:var(--ok)" : ""}">${hit ? "✓ " : ""}${lv}</td><td>${what}</td></tr>`;
+  }).join("");
+  $("rcDonts").innerHTML = RC_DONTS.map(([t, d]) =>
+    `<div class="row"><span class="x">✕</span><span><b>${escHtml(t)}</b> — <span>${escHtml(d)}</span></span></div>`).join("");
+  rcUpdateDynamic();
+}
+/* refresh only the numbers that move — never rebuilds the controls */
+function rcRefreshPace(){
+  const box = $("rcNowBox");
+  if(box) box.innerHTML = rcNowHtml();
+  const row = $("rcLevelRow");
+  if(row) row.innerHTML = rcLevelRowHtml();
+  const grid = $("rcPace");
+  if(grid) grid.innerHTML = rcPaceTilesHtml();
+  const why = $("rcPaceWhy");
+  if(why) why.innerHTML = rcPaceWhyHtml();
+}
+function rcUpdateDynamic(){
+  if(state.page !== "race") return;
+  rcRefreshPace();
+}
+function rcEnter(){
+  renderRace();
+}
+function rcWire(){
+  if(!$("page-race")) return;
+  const phases = $("rcPhases");
+  phases.addEventListener("change", e => {
+    const cb = e.target.closest("[data-rcstepbox]");
+    if(!cb) return;
+    const id = cb.dataset.rcstepbox;
+    if(cb.checked) rcSteps[id] = true; else delete rcSteps[id];
+    rcSaveSteps();
+    const label = cb.closest(".rcstep");
+    if(label) label.classList.toggle("done", cb.checked);
+    const pr = rcProgress();
+    $("rcProgNote").textContent = pr.done + " of " + pr.total + " steps done";
+    $("rcProgFill").style.width = pr.pct + "%";
+    $("rcProgChip").textContent = pr.pct + "%";
+    $("rcProgChip").className = "chip " + (pr.pct === 100 ? "ok" : pr.pct >= 50 ? "accent" : "");
+    /* re-render the phase header counters (and celebrate a finished phase) */
+    RC_PHASES.forEach(ph => {
+      const done = ph.steps.filter((s, j) => rcSteps[ph.id + ":" + j]).length;
+      if(done === ph.steps.length && ph.steps.some((s, j) => ph.id + ":" + j === id)){
+        toast("✅ Phase complete: " + escHtml(ph.name), "ok");
+      }
+    });
+    $("rcPhases").innerHTML = RC_PHASES.map(rcPhaseHtml).join("");
+    if(pr.pct === 100) toast("🏁 Plan complete — go and hit level 15.", "ok");
+  });
+  $("rcResetSteps").addEventListener("click", () => {
+    if(!confirm("Clear every tick in the plan?")) return;
+    rcSteps = {}; rcSaveSteps(); renderRace();
+  });
+  const bind = (id, ev, fn) => { const el = $(id); if(el) el.addEventListener(ev, fn); };
+  const ctl = $("rcCtl");
+  /* while dragging a slider, refresh the numbers only — rebuilding the
+     controls would rip the element out from under the pointer */
+  ctl.addEventListener("input", e => {
+    const t = e.target;
+    if(t.id === "rcWin"){ rcOpts.win = Number(t.value) || 70; }
+    else if(t.id === "rcBase"){ rcOpts.base = Number(t.value) || 150; }
+    else return;
+    rcSaveOpts();
+    const hint = t.closest("div") && t.closest("div").querySelector(".hint b");
+    if(hint) hint.textContent = t.id === "rcWin" ? rcOpts.win + "%" : fmtInt(rcOpts.base);
+    rcRefreshPace();
+  });
+  ctl.addEventListener("change", e => {
+    const t = e.target;
+    if(t.dataset && t.dataset.rcreset === "level"){ rcOpts.level = null; }
+    else if(t.id === "rcLevel"){ rcOpts.level = Math.max(1, Math.min(RC_TARGET, Number(t.value) || 1)); }
+    else if(t.id === "rcBase"){ rcOpts.base = Number(t.value) || 150; }
+    else if(t.id === "rcXanax"){ rcOpts.xanax = Number(t.value) || 0; }
+    else if(t.id === "rcDrinks"){ rcOpts.drinks = Number(t.value) || 0; }
+    else if(t.id === "rcRefill"){ rcOpts.refill = !!t.checked; }
+    else if(t.id === "rcDonator"){ rcOpts.donator = !!t.checked; }
+    else if(t.id === "rcWin"){ rcOpts.win = Number(t.value) || 70; }
+    else return;
+    rcSaveOpts(); renderRace();
+  });
+  bind("rcGoTargets", "click", () => goto("targets"));
+  bind("rcGoCompany", "click", () => goto("company"));
+}
+</script>
+<script>
+"use strict";
 /* ============================== EVENTS ============================== */
 function toggleTheme(){
   settings.theme = settings.theme === "dark" ? "light" : "dark";
@@ -5763,6 +6369,9 @@ function wire(){
 
   // ---- Company tab ----
   coWire();
+
+  // ---- Race to level 15 ----
+  rcWire();
 
   // ---- NPC Loot tab ----
   $("npcFilterSeg").addEventListener("click", e => {

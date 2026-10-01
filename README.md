@@ -74,6 +74,18 @@ New over 1.0:
   or passive stats) that ranks the best five. Data verified against the Torn Wiki
   [Company List](https://wiki.torn.com/wiki/Company/Company_List) and
   [Special List](https://wiki.torn.com/wiki/Company/Special_List).
+- **Race to Level 15 tab (v2.47.0)** — the fastest route to the Travel Agency, in one place: why
+  level 15 matters, a five-phase tick-list (setup → baseline stats → the attack grind → free XP/energy
+  from jobs & companies → what to do the moment you hit 15) with 32 steps and saved progress, and a
+  live pace calculator that turns real numbers into a countdown. It reads your level, energy bar and
+  nerve from the Torn API (the regen rate comes from your own bar, so donator status and bonuses are
+  respected), then works out energy/day (regen + Xanax + energy drinks + the daily refill),
+  attacks/day at 25 energy each, wins/day at your win rate, and the days left — every input is yours
+  to steer. Also in the tab: the honest community timeline (3–5 days hardcore, 1–2 weeks active,
+  3–6 weeks casual), the level-by-level unlock table, the ten habits that cost days (mugging or
+  hospitalising leveling targets, sitting at a full bar, carrying cash, drugs on a full bar…), and
+  one-tap links to the attack page, gym, crimes, Baldr's leveling list and the app's own Targets tab.
+  Mechanics verified against the Torn Wiki — Level and Ranks, Energy, Nerve and Attack.
 - **Flight planner** — pick destination + class (Standard/Airstrip/WLT/Business), see arrival/return
   times, begin a flight and get a live countdown + landing notification (persisted across reloads)
 - **Restock ticker** — abroad markets restock on a fixed 15-min cycle; the bar shows the next one
