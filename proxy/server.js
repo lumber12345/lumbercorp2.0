@@ -1,7 +1,7 @@
 /* LumberCorp 2.0 — tiny zero-dependency Torn API v2 proxy
  * Deployed as a free Render Web Service alongside the static app.
- * - Serves /api/ping, /api/torn (allow-listed faction/user paths) and
- *   /api/npc-loot (relays TornStats' live NPC loot clocks)
+ * - Serves /api/ping, /api/torn (allow-listed faction/user/company paths)
+ *   and /api/npc-loot (relays TornStats' live NPC loot clocks)
  * - 10 s server-side cache so polling is gentle on the API
  * - CORS: open (*), so the static LumberCorp 2.0 site can call it cross-origin
  * - API keys are forwarded to api.torn.com only — never logged or stored
@@ -38,6 +38,9 @@ const PATH_OK = [
   /^\/faction\/(basic|members|wars|warfareranked|rankedwars|rankedwarreport|attacks)$/,
   /^\/faction\/\d+\/(basic|members|wars|rankedwars|rankedwarreport|chain|attacks)$/,
   /^\/user\/(basic|profile)$/,  /^\/user\/(bars|cooldowns|travel|money|networth|personalstats)$/,
+  /* Company tab — director dashboard (profile/stats/stock/orders/employees) */
+  /^\/company\/(profile|detailed|employees|stock|news|timestamp)$/,
+  /^\/company\/\d+\/(profile|detailed|employees|stock|news|timestamp)$/,
 ];
 const PARAM_OK = new Set(['sort', 'from', 'to', 'limit', 'offset', 'cat', 'striptags', 'timestamp', 'filters']);
 

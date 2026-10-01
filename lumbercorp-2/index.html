@@ -679,6 +679,197 @@
   [hidden]{display:none !important}
 #rwLiveWrap{margin-top:12px}
 #rwFrame{width:100%;height:clamp(560px,78vh,1000px);border:1px solid var(--border2);border-radius:14px;background:#0b0d10;display:block}
+
+  /* ================= company tab ================= */
+  .cosub{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin:0 2px 13px}
+  .cosub .cnote{margin-left:auto;font-size:11px;color:var(--faint)}
+  .copanel{padding:15px 16px;margin-bottom:13px}
+  .copanel h3{margin:0 0 4px;font-size:15px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .copanel h3 .count{margin-left:auto;font-size:11px;font-weight:700;color:var(--faint)}
+  .copanel .csub{font-size:12px;color:var(--muted);margin-bottom:10px}
+  .corow{display:flex;gap:9px;flex-wrap:wrap;align-items:center}
+  .cospacer{margin-left:auto}
+
+  /* company identity */
+  .cohero{display:flex;gap:15px;align-items:flex-start;flex-wrap:wrap;padding:16px}
+  .cohero-mark{width:56px;height:56px;flex:0 0 auto;border-radius:16px;display:grid;place-items:center;font-size:27px;
+    background:linear-gradient(135deg,var(--card3),var(--card2));border:1px solid var(--border2)}
+  .cohero-main{flex:1;min-width:220px}
+  .cohero-name{font-size:19px;font-weight:800;letter-spacing:.2px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .cohero-sub{font-size:12.5px;color:var(--muted);margin-top:2px}
+  .cohero-side{display:flex;gap:22px;flex-wrap:wrap;text-align:right}
+  .cohero-side small{display:block;font-size:10px;letter-spacing:.7px;text-transform:uppercase;color:var(--faint);font-weight:700}
+  .cohero-side b{font-size:15px;font-variant-numeric:tabular-nums}
+  .cobars{display:flex;gap:14px;flex-wrap:wrap;margin-top:9px}
+  .cometer{min-width:132px;flex:1}
+  .cometer span{font-size:10.5px;color:var(--faint);text-transform:uppercase;letter-spacing:.6px;font-weight:700}
+  .cometer b{float:right;font-size:11.5px;font-variant-numeric:tabular-nums}
+  .cobar{height:6px;border-radius:99px;background:var(--card3);overflow:hidden;margin-top:4px}
+  .cobar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+  .cobar.warn i{background:linear-gradient(90deg,var(--warn),var(--bad))}
+  .cobar.ok i{background:linear-gradient(90deg,var(--ok),#8fe3b4)}
+
+  /* stat tiles */
+  .costats{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:10px}
+  .costat{padding:11px 13px}
+  .costat .l{font-size:10.5px;font-weight:700;color:var(--faint);text-transform:uppercase;letter-spacing:.6px;display:flex;gap:5px;align-items:center}
+  .costat .v{font-size:16.5px;font-weight:800;font-variant-numeric:tabular-nums;margin-top:3px}
+  .costat .n{font-size:10.5px;color:var(--faint);margin-top:1px}
+
+  /* tables */
+  .cotbl{width:100%;border-collapse:collapse;font-size:12.5px}
+  .cotbl th{font-size:10.5px;text-transform:uppercase;letter-spacing:.7px;color:var(--faint);text-align:left;padding:7px 9px;border-bottom:1px solid var(--border);white-space:nowrap}
+  .cotbl td{padding:8px 9px;border-bottom:1px solid var(--border);font-variant-numeric:tabular-nums;white-space:nowrap}
+  .cotbl tr:last-child td{border-bottom:none}
+  .cotbl .r{text-align:right}
+  .cotbl tfoot td{font-weight:800;background:var(--card2);border-top:1px solid var(--border2)}
+  .cotbl .name{font-weight:700;white-space:normal}
+  .co-up{color:var(--ok);font-weight:800}
+  .co-down{color:var(--bad);font-weight:800}
+  .co-muted{color:var(--faint)}
+
+  /* specials ladder */
+  .colad{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+  .colad-row{display:flex;gap:10px;align-items:center;padding:8px 11px;background:var(--card2);border:1px solid var(--border);border-radius:10px;font-size:12.5px}
+  .colad-row .st{flex:0 0 34px;font-weight:800;color:var(--faint);font-size:11.5px;text-align:center;border:1px solid var(--border2);border-radius:7px;padding:2px 0}
+  .colad-row .nm{font-weight:700;flex:0 0 34%;min-width:110px}
+  .colad-row .ef{color:var(--muted);flex:1;min-width:0}
+  .colad-row .cst{color:var(--faint);font-size:11px;white-space:nowrap}
+  .colad-row.locked{opacity:.5}
+  .colad-row.locked .st{background:var(--card3)}
+  .colad-row.on{opacity:1;border-color:color-mix(in srgb,var(--ok) 40%,var(--border));background:color-mix(in srgb,var(--ok) 7%,var(--card2))}
+  .colad-row.next{border-color:color-mix(in srgb,var(--accent) 45%,var(--border))}
+  .colad-row .st.on{color:#141005;background:linear-gradient(135deg,var(--accent),var(--accent2));border-color:transparent}
+  .colad-row .next-tag{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--accent)}
+
+  /* empty / notice */
+  .conote{font-size:11.5px;color:var(--faint);line-height:1.55}
+  .conote b{color:var(--muted)}
+  .coempty{padding:20px;text-align:center;border:1px dashed var(--border2);border-radius:var(--radius);color:var(--faint);font-size:13px}
+
+  /* ---------------- guide ---------------- */
+  .cogrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:start}
+  @media (max-width:900px){ .cogrid{grid-template-columns:1fr} }
+  .cocard{--co-tone:var(--accent);padding:0;overflow:hidden;min-width:0}
+  .cocard.top{--co-tone:var(--ok)}
+  .cocard-head{display:flex;gap:11px;align-items:center;padding:12px 14px;border-bottom:1px solid var(--border);
+    background:linear-gradient(115deg,color-mix(in srgb,var(--co-tone) 9%,transparent),transparent 70%)}
+  .cocard-mark{width:40px;height:40px;flex:0 0 auto;border-radius:12px;display:grid;place-items:center;font-size:21px;
+    background:color-mix(in srgb,var(--co-tone) 12%,var(--card2));border:1px solid color-mix(in srgb,var(--co-tone) 35%,var(--border))}
+  .cocard-title{flex:1;min-width:0}
+  .cocard-title h3{margin:0;font-size:15px;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+  .cocard-title .sub{font-size:11.5px;color:var(--faint);margin-top:2px}
+  .cocard-rate{flex:0 0 auto;text-align:center;padding:5px 9px;border-radius:11px;border:1px solid color-mix(in srgb,var(--co-tone) 35%,var(--border));
+    background:color-mix(in srgb,var(--co-tone) 9%,var(--card));font-size:9.5px;color:var(--faint);text-transform:uppercase;letter-spacing:.5px;font-weight:800}
+  .cocard-rate b{display:block;font-size:15px;color:var(--co-tone);line-height:1.15}
+  .cocard-body{padding:12px 14px;display:flex;flex-direction:column;gap:10px}
+  .cocard .tag{font-size:12.5px;color:var(--muted);line-height:1.5}
+  .cocard .tag b{color:var(--text)}
+  .cohls{display:flex;gap:6px;flex-wrap:wrap}
+  .copc{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media (max-width:520px){ .copc{grid-template-columns:1fr} }
+  .copc > div{background:var(--card2);border:1px solid var(--border);border-radius:11px;padding:9px 11px}
+  .copc .ttl{font-size:10px;font-weight:900;letter-spacing:.8px;text-transform:uppercase;margin-bottom:5px}
+  .copc .pros .ttl{color:var(--ok)}
+  .copc .cons .ttl{color:var(--bad)}
+  .copc ul{list-style:none;display:flex;flex-direction:column;gap:4px}
+  .copc li{font-size:11.5px;color:var(--muted);line-height:1.45;padding-left:13px;position:relative}
+  .copc li::before{position:absolute;left:0;top:0}
+  .copc .pros li::before{content:"+";color:var(--ok);font-weight:900}
+  .copc .cons li::before{content:"–";color:var(--bad);font-weight:900}
+  .cocard details{border:1px solid var(--border);border-radius:11px;background:var(--card2)}
+  .cocard summary{cursor:pointer;padding:9px 11px;font-size:11.5px;font-weight:800;letter-spacing:.4px;color:var(--muted);list-style:none}
+  .cocard summary::-webkit-details-marker{display:none}
+  .cocard summary::before{content:"▸ ";color:var(--faint)}
+  .cocard details[open] summary::before{content:"▾ "}
+  .cocard details .colad{padding:0 10px 10px}
+  .cobest{display:flex;gap:6px;flex-wrap:wrap;align-items:center;font-size:11px;color:var(--faint)}
+  .cocard-foot{border-top:1px solid var(--border);padding:9px 14px;background:var(--card2);display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:11.5px;color:var(--faint)}
+  .cocard-foot .cospacer{margin-left:auto}
+  .cotop{display:flex;flex-direction:column;gap:8px;margin-top:4px}
+  .corank{display:flex;gap:11px;align-items:center;padding:10px 12px;background:var(--card2);border:1px solid var(--border);border-radius:12px}
+  .corank .rk{width:26px;height:26px;flex:0 0 auto;border-radius:9px;display:grid;place-items:center;font-weight:900;font-size:12.5px;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));color:#141005}
+  .corank .nm{font-weight:800;font-size:13.5px}
+  .corank .why{font-size:11px;color:var(--faint)}
+  .corank .cst{margin-left:auto;text-align:right;font-size:11.5px;color:var(--muted);font-weight:700}
+  .cogoals{display:flex;gap:7px;flex-wrap:wrap}
+  .cogoal{cursor:pointer;background:var(--card2);border:1px solid var(--border2);color:var(--muted);border-radius:99px;
+    padding:7px 13px;font-size:12px;font-weight:700;transition:.15s}
+  .cogoal:hover{color:var(--text)}
+  .cogoal.on{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#141005;border-color:transparent}
+  .cobar select{background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:8px 11px;font-weight:600;font-size:12.5px}
+  .cobar select:focus{outline:none;border-color:var(--accent)}
+  .coquote{border-left:3px solid var(--accent);padding:2px 0 2px 11px;font-size:12px;color:var(--muted);line-height:1.5}
+
+  /* ================= race to level 15 ================= */
+  .rcrace{display:flex;gap:15px;align-items:flex-start;flex-wrap:wrap;padding:16px}
+  .rcrace-mark{width:56px;height:56px;flex:0 0 auto;border-radius:16px;display:grid;place-items:center;font-size:28px;
+    background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 18%,var(--card2)),var(--card2));border:1px solid var(--border2)}
+  .rcrace-main{flex:1;min-width:230px}
+  .rcrace-name{font-size:19px;font-weight:800;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .rcrace-sub{font-size:12.5px;color:var(--muted);margin-top:3px;line-height:1.55}
+  .rclevel{display:flex;align-items:center;gap:11px;margin-top:11px;flex-wrap:wrap}
+  .rclevel .lvl{font-size:26px;font-weight:900;font-variant-numeric:tabular-nums;line-height:1}
+  .rclevel .lvl small{font-size:12px;font-weight:700;color:var(--faint);display:block;letter-spacing:.5px;text-transform:uppercase}
+  .rcbar{flex:1;min-width:180px}
+  .rcbar .track{height:10px;border-radius:99px;background:var(--card3);overflow:hidden;border:1px solid var(--border)}
+  .rcbar .fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .4s}
+  .rcbar .lbl{display:flex;justify-content:space-between;font-size:10.5px;color:var(--faint);font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px}
+  .rcnow{display:flex;gap:22px;flex-wrap:wrap;text-align:right}
+  .rcnow small{display:block;font-size:10px;letter-spacing:.7px;text-transform:uppercase;color:var(--faint);font-weight:700}
+  .rcnow b{font-size:16px;font-variant-numeric:tabular-nums}
+  .rcgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:10px}
+  .rctile{padding:11px 13px}
+  .rctile .l{font-size:10.5px;font-weight:700;color:var(--faint);text-transform:uppercase;letter-spacing:.6px}
+  .rctile .v{font-size:17px;font-weight:800;font-variant-numeric:tabular-nums;margin-top:3px}
+  .rctile .n{font-size:10.5px;color:var(--faint);margin-top:1px}
+  .rctile.hi{border-color:color-mix(in srgb,var(--accent) 45%,var(--border));background:color-mix(in srgb,var(--accent) 6%,var(--card))}
+  .rcctl{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px;margin-top:11px}
+  .rcctl label{display:block;font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--faint);margin-bottom:5px}
+  .rcctl select,.rcctl input[type=number]{width:100%;background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:8px 10px;font-weight:700;font-size:13px}
+  .rcctl select:focus,.rcctl input:focus{outline:none;border-color:var(--accent)}
+  .rcctl input[type=range]{width:100%}
+  .rcctl .hint{font-size:10.5px;color:var(--faint);margin-top:4px;line-height:1.45}
+  .rcswitch{display:flex;align-items:center;gap:9px;font-size:12.5px;font-weight:700;color:var(--muted)}
+  .rcswitch input{width:auto;accent-color:var(--accent)}
+  .rcphase{padding:0;overflow:hidden;margin-bottom:12px}
+  .rcphase-head{display:flex;gap:12px;align-items:center;padding:12px 14px;border-bottom:1px solid var(--border);
+    background:linear-gradient(115deg,color-mix(in srgb,var(--accent) 8%,transparent),transparent 70%)}
+  .rcphase-mark{width:40px;height:40px;flex:0 0 auto;border-radius:12px;display:grid;place-items:center;font-size:21px;
+    background:color-mix(in srgb,var(--accent) 12%,var(--card2));border:1px solid color-mix(in srgb,var(--accent) 32%,var(--border))}
+  .rcphase-title{flex:1;min-width:0}
+  .rcphase-title h3{margin:0;font-size:15px}
+  .rcphase-title .sub{font-size:11.5px;color:var(--faint);margin-top:2px}
+  .rcphase-when{flex:0 0 auto;font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--accent);
+    border:1px solid color-mix(in srgb,var(--accent) 35%,var(--border));border-radius:99px;padding:4px 10px;background:color-mix(in srgb,var(--accent) 8%,var(--card))}
+  .rcphase-goal{padding:10px 14px 0;font-size:12.5px;color:var(--muted)}
+  .rcsteps{padding:9px 12px 12px;display:flex;flex-direction:column;gap:2px}
+  .rcstep{display:flex;gap:11px;align-items:flex-start;padding:9px 10px;border-radius:11px;cursor:pointer;transition:.15s;border:1px solid transparent}
+  .rcstep:hover{background:var(--card2)}
+  .rcstep input{margin-top:2px;width:17px;height:17px;flex:0 0 auto;accent-color:var(--accent);cursor:pointer}
+  .rcstep .tx{flex:1;min-width:0}
+  .rcstep .tt{font-size:13px;font-weight:700;line-height:1.35}
+  .rcstep .dd{font-size:11.5px;color:var(--faint);line-height:1.5;margin-top:2px}
+  .rcstep.done .tt{text-decoration:line-through;color:var(--muted)}
+  .rcstep.done .dd{opacity:.66}
+  .rcprog{display:flex;align-items:center;gap:12px;padding:12px 14px;flex-wrap:wrap}
+  .rcprog .bar{flex:1;min-width:160px;height:9px;border-radius:99px;background:var(--card3);overflow:hidden;border:1px solid var(--border)}
+  .rcprog .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--ok),#8fe3b4);transition:width .3s}
+  .rctbl{width:100%;border-collapse:collapse;font-size:12.5px}
+  .rctbl th{font-size:10.5px;text-transform:uppercase;letter-spacing:.7px;color:var(--faint);text-align:left;padding:7px 9px;border-bottom:1px solid var(--border)}
+  .rctbl td{padding:8px 9px;border-bottom:1px solid var(--border);vertical-align:top}
+  .rctbl tr:last-child td{border-bottom:none}
+  .rctbl .v{font-variant-numeric:tabular-nums;font-weight:700;white-space:nowrap}
+  .rcdont{display:flex;flex-direction:column;gap:7px}
+  .rcdont .row{display:flex;gap:10px;align-items:flex-start;font-size:12.5px;line-height:1.5}
+  .rcdont .row .x{color:var(--bad);font-weight:900;flex:0 0 auto}
+  .rcdont .row b{color:var(--text)}
+  .rcdont .row span{color:var(--muted)}
+  @media (max-width:520px){
+    .rcrace{padding:13px}
+    .rcnow{text-align:left;gap:16px}
+  }
 </style>
 </head>
 <body>
@@ -703,6 +894,8 @@
     <button class="navitem" data-page="targets"><span class="ni">🎯</span> Targets</button>
     <button class="navitem" data-page="npcloot"><span class="ni">🩸</span> NPC Loot</button>
     <button class="navitem" data-page="jobbook"><span class="ni">📖</span> The Job Book</button>
+    <button class="navitem" data-page="company"><span class="ni">🏢</span> Company</button>
+    <button class="navitem" data-page="race"><span class="ni">🏁</span> Race to Level 15</button>
     <button class="navitem" data-page="settings"><span class="ni">⚙️</span> Settings</button>
     <div class="railfoot">
       <button class="modebadge" id="modeBadge" title="Toggle demo / live mode">
@@ -1000,6 +1193,175 @@
       <div class="npcnote" id="jbUpdated" style="margin-top:6px"></div>
     </section>
 
+    <!-- ============ COMPANY ============ -->
+    <section id="page-company" hidden>
+      <div class="cosub">
+        <div class="seg" id="coTabSeg">
+          <button data-cotab="mine" class="active">🏢 My Company</button>
+          <button data-cotab="guide">🧭 What company should I make?</button>
+        </div>
+        <span class="cnote" id="coNote"></span>
+      </div>
+
+      <div id="coMine"></div>
+
+      <div id="coGuide" hidden>
+        <div class="card copanel">
+          <h3>🧭 What company should I make?</h3>
+          <div class="csub">Every company you can start in Torn — what it costs, how many staff you get, what it actually pays, the five specials it unlocks and the honest pros &amp; cons. Tap your goals and the shortlist sorts itself.</div>
+          <div class="cogoals" id="coGoals"></div>
+          <div class="cotop" id="coTop"></div>
+        </div>
+
+        <div class="card copanel" id="coStart">
+          <h3>📋 Before you spend a dollar</h3>
+          <div class="copc" style="margin-top:8px">
+            <div class="pros">
+              <div class="ttl">Do this first</div>
+              <ul>
+                <li><b>Business Management education.</b> The Bachelor's unlocks company-size, storage and staff-room upgrades — without it your company is stuck small.</li>
+                <li><b>A Limited-access API key.</b> The director's dashboard (bank, efficiency, employees, stock) only exists on Limited access. Add it in Setup → Data Source.</li>
+                <li><b>TC Media Productions stock</b> block gives the director +10% company profits; <b>Tell Group Plc.</b> improves advertising.</li>
+                <li><b>Syscore MFG</b> blocks the Intricate Hack / Proxy Hacking company specials — cheap insurance if you hold a lot of cash in the company.</li>
+              </ul>
+            </div>
+            <div class="cons">
+              <div class="ttl">Know what you're buying</div>
+              <ul>
+                <li><b>Startup ≠ total cost.</b> Size, staff-room and warehouse upgrades cost more than the company does.</li>
+                <li><b>Profit needs people.</b> Low efficiency (bad stats in the wrong roles) means low daily profit, whatever the star rating says.</li>
+                <li><b>Specials need stars.</b> A 10★ special is a long-term project — check the ladder before you commit.</li>
+                <li><b>Companies change hands</b> between players, so a well-run shop holds its value if you ever move on.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="coquote" style="margin-top:11px">
+            Sources: Torn Wiki — <a href="https://wiki.torn.com/wiki/Company/Company_List" target="_blank" rel="noopener">Company List</a> and
+            <a href="https://wiki.torn.com/wiki/Company/Special_List" target="_blank" rel="noopener">Special List</a> (startup costs, staff sizes and every special).
+            Profit ratings are relative and assume a staffed, well-run company — your mileage will vary.
+          </div>
+        </div>
+
+        <div class="card copanel">
+          <div class="corow">
+            <input type="text" id="coSearch" placeholder="Search a company, a perk or a playstyle…" autocomplete="off" spellcheck="false"
+                   style="flex:1;min-width:200px;background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:9px 12px;font-weight:600">
+            <select id="coTier">
+              <option value="all">Every price tier</option>
+              <option value="starter">Starter · under $1M</option>
+              <option value="small">Small · $1M–$10M</option>
+              <option value="mid">Mid · $10M–$100M</option>
+              <option value="large">Large · $100M–$1B</option>
+              <option value="mega">Mega · $1B+</option>
+            </select>
+            <select id="coSort">
+              <option value="match">Sort: best match</option>
+              <option value="cheap">Sort: cheapest first</option>
+              <option value="profit">Sort: highest profit potential</option>
+              <option value="effort">Sort: least management</option>
+              <option value="name">Sort: A–Z</option>
+            </select>
+          </div>
+          <div class="conote" id="coCount" style="margin-top:9px"></div>
+        </div>
+
+        <div class="cogrid" id="coGrid"></div>
+
+        <div class="card copanel" style="margin-top:13px">
+          <div class="coquote">
+            Bonus ladders list the specials you unlock at 1★ / 3★ / 5★ / 7★ / 10★. “Passive” means always on once you reach that star rating;
+            a job-point cost means the perk is bought with the company's job points (earned by working for the company).
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ RACE TO LEVEL 15 ============ -->
+    <section id="page-race" hidden>
+      <div class="card rcrace" style="margin-bottom:13px">
+        <div class="rcrace-mark">🏁</div>
+        <div class="rcrace-main">
+          <div class="rcrace-name">Race to Level 15 <span class="chip accent" id="rcModeChip">plan</span></div>
+          <div class="rcrace-sub">
+            Level 15 unlocks the <b>Travel Agency</b> — the moment Torn stops being a grind and starts paying.
+            Attacks give several times more XP than anything else, and <b>leaving</b> a beaten opponent gives the most XP of all.
+            This tab is the plan, the pace calculator and the live tracker for that sprint.
+          </div>
+          <div class="rclevel" id="rcLevelRow"></div>
+        </div>
+        <div class="rcnow" id="rcNowBox"></div>
+      </div>
+
+      <div class="card copanel">
+        <h3>🧭 Your pace <span class="count" id="rcPaceNote"></span></h3>
+        <div class="csub">Everything here is built on how XP and energy actually work: 25 energy per attack, ~100–200 winning attacks from level 1 to 15, and the fact that Torn hides your XP bar — so this is an estimate you can steer, not a promise.</div>
+        <div class="rcgrid" id="rcPace"></div>
+        <div class="rcctl" id="rcCtl"></div>
+        <div class="conote" style="margin-top:11px" id="rcPaceWhy"></div>
+      </div>
+
+      <div class="card copanel">
+        <h3>✅ The plan <span class="count" id="rcProgNote"></span></h3>
+        <div class="csub">Work top to bottom. Your ticks are saved in this browser, so the plan remembers where you were.</div>
+        <div class="rcprog" style="padding:0 0 4px">
+          <div class="bar"><i id="rcProgFill" style="width:0%"></i></div>
+          <span class="chip" id="rcProgChip">0%</span>
+          <button class="btn sm" id="rcResetSteps" style="margin-left:auto">Reset ticks</button>
+        </div>
+      </div>
+      <div id="rcPhases"></div>
+
+      <div class="grid g2" style="align-items:start">
+        <div class="card copanel">
+          <h3>⏱️ How long it really takes</h3>
+          <div class="csub">Player reports, not marketing. The difference between rows is Xanax, donator status and how often you log in.</div>
+          <table class="rctbl">
+            <thead><tr><th>Approach</th><th>Typical time</th><th>What it takes</th></tr></thead>
+            <tbody>
+              <tr><td><b>Hardcore</b></td><td class="v">3–5 days</td><td>Donator, Xanax around the clock, a faction handing out gear, near-perfect login discipline</td></tr>
+              <tr><td><b>Active</b></td><td class="v">1–2 weeks</td><td>Logging in several times a day, all energy into attacks, crimes between them, a little Xanax</td></tr>
+              <tr><td><b>Casual</b></td><td class="v">3–6 weeks</td><td>A few logins a day, no drugs, training and attacking mixed</td></tr>
+              <tr><td><b>Community spread</b></td><td class="v">3 – 45 days</td><td>The range players actually report on the Torn subreddit — the top of it is people who capped their energy daily</td></tr>
+            </tbody>
+          </table>
+          <div class="conote" style="margin-top:10px">Banked energy is the whole game: two players with the same stats can be 3× apart in time simply because one logs in at the cap and the other doesn't.</div>
+        </div>
+
+        <div class="card copanel">
+          <h3>📖 What each level opens</h3>
+          <div class="csub">A few of these change how you earn before you even reach 15.</div>
+          <table class="rctbl">
+            <thead><tr><th>Level</th><th>Unlock</th></tr></thead>
+            <tbody id="rcUnlocks"></tbody>
+          </table>
+          <div class="conote" style="margin-top:10px">From the wiki's <a href="https://wiki.torn.com/wiki/Level_and_Ranks" target="_blank" rel="noopener">Level and Ranks</a> page. Sources for this tab: that page, plus the wiki pages for <a href="https://wiki.torn.com/wiki/Energy" target="_blank" rel="noopener">Energy</a>, <a href="https://wiki.torn.com/wiki/Nerve" target="_blank" rel="noopener">Nerve</a> and <a href="https://wiki.torn.com/wiki/Attack" target="_blank" rel="noopener">Attack</a>.</div>
+        </div>
+      </div>
+
+      <div class="card copanel">
+        <h3>🚫 What slows people down</h3>
+        <div class="csub">Every one of these is a real habit that costs days.</div>
+        <div class="rcdont" id="rcDonts"></div>
+      </div>
+
+      <div class="card copanel">
+        <h3>🔗 Go do it</h3>
+        <div class="corow">
+          <a class="btn sm primary" href="https://www.torn.com/attack.php" target="_blank" rel="noopener">⚔️ Attack page</a>
+          <a class="btn sm" href="https://www.torn.com/gym.php" target="_blank" rel="noopener">🏋️ Gym</a>
+          <a class="btn sm" href="https://www.torn.com/crimes.php" target="_blank" rel="noopener">🔪 Crimes</a>
+          <a class="btn sm" href="https://www.torn.com/joblist.php" target="_blank" rel="noopener">💼 Job list</a>
+          <button class="btn sm" id="rcGoTargets">🎯 Targets tab</button>
+          <button class="btn sm" id="rcGoCompany">🏢 Company tab</button>
+          <a class="btn sm" href="https://www.torn.com/forums.php#/p=threads&f=61&t=16034448&b=0&a=0" target="_blank" rel="noopener">📋 Baldr's leveling list (forums)</a>
+          <a class="btn sm" href="https://ffscouter.com/target-finder" target="_blank" rel="noopener">🔎 FFScouter target finder</a>
+        </div>
+        <div class="conote" style="margin-top:11px">
+          Target lists are community maintained — a target that's in hospital or has been fed stats since the list was posted won't pay. Always check the target's level, status and profile before you spend 25 energy.
+        </div>
+      </div>
+    </section>
+
     <section id="page-settings" hidden>
       <h2 class="sec">Data Source</h2>
       <div class="card setcard">
@@ -1088,6 +1450,14 @@
       <div class="card setcard" style="font-size:13px;color:var(--muted);line-height:1.7">
         <div><b style="color:var(--text)">LumberCorp 2.0</b> <span class="chip accent" id="aboutVer">v2.0.0</span></div>
         <div>
+          <b style="color:var(--text)">Company</b> tab: two sub-tabs — <i>My Company</i> (live director dashboard:
+          profit, customers, popularity/efficiency/environment, stock &amp; orders, wages, upgrades and your
+          specials ladder) and <i>What company should I make?</i> (all 39 companies with costs, staff, every
+          1★–10★ special, honest pros &amp; cons and a goal-based recommender).<br>
+          <b style="color:var(--text)">Race to Level 15</b> tab: why 15 unlocks the Travel Agency, a five-phase
+          tick-list from setup to the first flight, a live pace calculator (energy/day → attacks/day → days to 15,
+          steered by Xanax, drinks, the daily refill, donator status and your win rate), the honest community
+          timeline and the traps that cost days.<br>
           What's new over 1.0: live bar ETAs &amp; tick simulation · flight planner with landing countdown + notifications ·
           restock-cycle ticker · abroad <i>profit</i> tables vs market value · ⌘K command palette ·
           themable accents · export/reset. Abroad stock still comes from
@@ -1110,6 +1480,8 @@
   <button data-page="targets"><span class="ti">🎯</span>Targets</button>
   <button data-page="npcloot"><span class="ti">🩸</span>Loot</button>
   <button data-page="jobbook" aria-label="The Job Book" title="The Job Book"><span class="ti">📖</span>Jobs</button>
+  <button data-page="company" aria-label="Company" title="Company"><span class="ti">🏢</span>Corp</button>
+  <button data-page="race" aria-label="Race to Level 15" title="Race to Level 15"><span class="ti">🏁</span>Lvl 15</button>
   <button data-page="settings"><span class="ti">⚙️</span>Setup</button>
 </nav>
 
@@ -1200,7 +1572,7 @@ function flagEmoji(cc){
 }
 
 /* ---------- settings ---------- */
-const APP_VERSION = "2.44.0";
+const APP_VERSION = "2.47.0";
 const DEFAULT_SETTINGS = {
   mode: "demo", apiKey: "", refresh: 60,
   theme: "dark", accent: "amber",
@@ -1830,6 +2202,8 @@ const PAGES = {
   targets:   ["Target Finder", "Scout & track attack targets"],
   npcloot:   ["NPC Loot", "Lootable NPCs — loot levels, timers & every drop"],
   jobbook:   ["The Job Book", "Six city-job ladders · 41 positions · six distinct layouts"],
+  company:   ["Company", "Run your company · or pick the right one to start"],
+  race:      ["Race to Level 15", "The fastest route to the Travel Agency"],
   settings:  ["Settings", "Make it yours"]
 };
 function goto(page){
@@ -1849,6 +2223,8 @@ function goto(page){
   if(page === "targets"){ tfEnter(); }
   if(page === "npcloot"){ npcEnter(); }
   if(page === "jobbook"){ jbEnter(); }
+  if(page === "company"){ coEnter(); }
+  if(page === "race"){ rcEnter(); }
   if(page === "settings"){ renderSettings(); }
   renderAll(); // cheap refresh of dynamic bits for the new page
   window.scrollTo({ top: 0 });
@@ -2484,6 +2860,7 @@ function renderAll(){
   if(state.page === "bazaar") bzEnter();
   if(state.page === "targets") tfEnter();
   if(state.page === "npcloot") renderNpcLoot();
+  if(state.page === "company") renderCompanyMine();
   renderMode();
 }
 
@@ -4169,6 +4546,7 @@ function updateDynamic(){
   renderRestock();
   npcTick();
   jbTick();
+  rcUpdateDynamic();
   // clocks
   const nowTorn = new Intl.DateTimeFormat("en-GB", { timeZone: TCT_TZ, hour:"2-digit", minute:"2-digit", second:"2-digit" }).format(new Date());
   $("clockTorn").textContent = nowTorn + " TCT";
@@ -4232,6 +4610,15 @@ function palSources(){
   for(const p of Object.keys(PAGES)) out.push({ icon: PAGES[p] ? "" : "", title: "Go to " + PAGES[p][0], sub: PAGES[p][1], key: "page", run: () => goto(p) });
   const pIcons = { dashboard:"⚡", flight:"✈️", rankwars:"⚔️", stats:"📈", alerts:"🔔", bazaar:"🛒", targets:"🎯", settings:"⚙️" };
   for(const o of out) o.icon = pIcons[o.title.replace("Go to ", "").toLowerCase()] || "➜";
+  /* every company in the guide is jumpable from the palette */
+  if(typeof CO_COMPANIES !== "undefined"){
+    const goalIds = (typeof coGoals !== "undefined" && coGoals) ? coGoals : [];
+    for(const c of CO_COMPANIES.slice().sort((a, b) => a.n.localeCompare(b.n))){
+      out.push({ icon: c.g, title: "Company guide: " + c.n,
+        sub: fmtMoney(c.cost) + " to open · " + c.emp + " staff" + (goalIds.length ? " · match " + coScoreFor(c, goalIds) : ""),
+        key: "guide", run: () => { goto("company"); coFocusCompany(c.id); } });
+    }
+  }
   for(const d of DESTINATIONS) out.push({ icon: flagEmoji(d.flag), title: "Fly to " + d.country, sub: d.city + " · fastest " + fmtDur(Math.min(...Object.values(d.times)) * 60), key: "flight", run: () => { goto("flight"); $("planDest").value = d.country; renderPlanInfo(); } });
   for(const a of actionsList()) out.push({ icon: a.icon || "🔗", title: "Open " + a.name, sub: "torn.com", key: "link", run: () => window.open(a.url, "_blank") });
   out.push({ icon: "🌗", title: "Toggle theme", sub: "dark / light", key: "action", run: () => toggleTheme() });
@@ -4284,6 +4671,1681 @@ function palKey(e){
 </script>
 <script>
 "use strict";
+/* ============================== COMPANY ==============================
+ * Two sub-tabs:
+ *   🏢 My Company                  — live director dashboard (profile, stats,
+ *                                    stock & orders, employees, upgrades,
+ *                                    the company's own specials ladder).
+ *   🧭 What company should I make? — all 39 companies a player can start:
+ *                                    startup cost, staff, how it earns, the
+ *                                    five specials it unlocks, pros & cons,
+ *                                    plus a goal-based recommender.
+ *
+ * Company facts (costs, default staff, every special) come from the Torn Wiki:
+ *   https://wiki.torn.com/wiki/Company/Company_List
+ *   https://wiki.torn.com/wiki/Company/Special_List
+ * Live reads use the Torn API company selections from the player's own browser —
+ * the key never leaves the browser (or the optional proxy the user configured).
+ * ==================================================================== */
+
+/* ---------- price tiers ---------- */
+const CO_TIERS = [
+  { id:"starter", label:"Starter", hint:"under $1M",   max:1e6 },
+  { id:"small",   label:"Small",   hint:"$1M–$10M",    max:1e7 },
+  { id:"mid",     label:"Mid",     hint:"$10M–$100M",  max:1e8 },
+  { id:"large",   label:"Large",   hint:"$100M–$1B",   max:1e9 },
+  { id:"mega",    label:"Mega",    hint:"$1B+",        max:Infinity }
+];
+function coTier(cost){
+  for(const t of CO_TIERS) if(Number(cost) < t.max) return t;
+  return CO_TIERS[CO_TIERS.length - 1];
+}
+/* Torn's internal company-type ids (query string of the jobs list page). */
+const CO_TYPE_IDS = {
+  1:"Hair Salon", 2:"Law Firm", 3:"Flower Shop", 4:"Car Dealership", 5:"Clothing Store",
+  6:"Gun Shop", 7:"Game Shop", 8:"Candle Shop", 9:"Toy Shop", 10:"Adult Novelties",
+  11:"Cyber Cafe", 12:"Grocery Store", 13:"Theater", 14:"Sweet Shop", 15:"Cruise Line",
+  16:"Television Network", 18:"Zoo", 19:"Firework Stand", 20:"Property Broker",
+  21:"Furniture Store", 22:"Gas Station", 23:"Music Store", 24:"Nightclub", 25:"Pub",
+  26:"Gents Strip Club", 27:"Restaurant", 28:"Oil Rig", 29:"Fitness Center",
+  30:"Mechanic Shop", 31:"Amusement Park", 32:"Lingerie Store", 33:"Meat Warehouse",
+  34:"Farm", 35:"Software Corporation", 36:"Ladies Strip Club", 37:"Private Security Firm",
+  38:"Mining Corporation", 39:"Detective Agency", 40:"Logistics Management"
+};
+
+/* ---------- catalogue: 39 companies ----------
+   cost = startup · emp = default staff slots · inc = relative profit potential (1–5)
+   eff  = how much management/start-up effort it takes (1–5)
+   s    = specials ladder  [star, name, cost ("jp" number or "passive"), effect]      */
+const CO_COMPANIES = [
+ { id:"hair", n:"Hair Salon", g:"💇", cost:750000, emp:4, inc:2, eff:1,
+   tag:"The cheapest way to speed up school — and sharpen blades.",
+   mk:"Sells haircuts and colour. Low-value stock with steady footfall.",
+   hl:["7★ −30 min off any course for 1 jp","10★ +20% slashing damage","Only $750K to open"],
+   s:[[1,"Debate",1,"Experience"],[3,"Gossip",10,"View someone's money on hand"],[5,"Rumors","passive","Reduced enemy stealth"],[7,"Cutting Corners",1,"30-minute education time reduction"],[10,"Sweeney's Revenge","passive","20% slashing weapon damage"]],
+   pro:["Very cheap entry and cheap upgrades — an ideal first company","7★ Cutting Corners takes 30 minutes off an education course for 1 job point: the cheapest education speed-up in Torn","10★ adds 20% slashing weapon damage, which suits katana and machete builds","3★ Gossip reveals a target's cash on hand"],
+   con:["Low profit ceiling — a utility company, not a money maker","Every special is single-purpose (education, slashing or intel)","Nothing useful until you have stars"] },
+
+ { id:"law", n:"Law Firm", g:"⚖️", cost:4000000, emp:4, inc:2, eff:3,
+   tag:"A busting business with genuinely strong crime perks.",
+   mk:"Sells legal services. Modest profit — the value is in the specials.",
+   hl:["50% cheaper bail from 1★ (passive)","5★ bust more people at once","7★ +20% organised crime skill"],
+   s:[[1,"Bail Bondsman","passive","50% decreased bail costs"],[3,"Background Check",10,"View someone's stats"],[5,"Closing Argument","passive","Easier to bust more people at once"],[7,"Loophole","passive","20% organised crime skill"],[10,"Educated Decisions","passive","View success chance of potential busts"]],
+   pro:["1★ halves your bail costs immediately — free value from day one","5★ Closing Argument makes multi-busts easier, so each jail run pays more","7★ +20% organised crime skill is a real faction-war asset","10★ shows the success chance before you attempt a bust"],
+   con:["Profit is low for a $4M company","Everything good sits behind stars, and law points accrue slowly","Worthless if you never bust"] },
+
+ { id:"flower", n:"Flower Shop", g:"🌸", cost:500000, emp:4, inc:2, eff:1,
+   tag:"The classic first company for anyone who flies.",
+   mk:"Sells flowers; 3★ lets you order a special flower, 7★ lets you carry more home from abroad.",
+   hl:["Only $500K to open","7★ +5 special flowers per flight","5★ addiction reduction for 1 jp"],
+   s:[[1,"Rare Import",3,"Special flower"],[3,"Cultivation","passive","25% illegal production success & gain (disabled)"],[5,"Herbal Cleansing",1,"Drug addiction reduction"],[7,"Over Capacity","passive","Buy 5 additional special flowers abroad"],[10,"Floral Contacts",1,"View stock analysis of flowers in all countries"]],
+   pro:["One of the two cheapest companies in Torn","7★ Over Capacity is a real income multiplier for flower runners","5★ Herbal Cleansing buys addiction reduction for 1 job point — great while chaining","10★ shows flower stock in every country"],
+   con:["Base profit is tiny; the money comes from the 7★/10★ perks, not the shop","3★ Cultivation is disabled by Torn right now","No combat passives at all"] },
+
+ { id:"car", n:"Car Dealership", g:"🚗", cost:6000000, emp:4, inc:2, eff:2,
+   tag:"Mid-tier money with the best escape passive in the game.",
+   mk:"Sells cars and parts. Decent margins, racing-flavoured perks.",
+   hl:["10★ escape button always enabled","3★ 75% off car parts","5★ no anonymous market listing fee"],
+   s:[[1,"Test Drive",5,"Racing point"],[3,"Discount Parts","passive","75% cost discount on car parts"],[5,"Salesman","passive","Waive anonymous item market listing fee"],[7,"Two-Faced","passive","15% fraud crime exp & skill gain"],[10,"Getaway Car","passive","Escape button always enabled"]],
+   pro:["10★ Getaway Car keeps the escape button available — the safest run-away passive there is","3★ makes car parts 75% cheaper, which racing players love","5★ waives the anonymous item market listing fee","7★ adds 15% fraud crime experience"],
+   con:["$6M in for middle-of-the-road profit","Perks assume you race or drive","The 1★ special is 5 job points for a single racing point"] },
+
+ { id:"clothing", n:"Clothing Store", g:"👕", cost:1000000, emp:5, inc:2, eff:2,
+   tag:"Cheap to start, with some of the best cheap training in Torn.",
+   mk:"Sells clothes. Thin margins, strong defensive perks later.",
+   hl:["3★ +100 Endurance for 10 jp","7★ +75% mug protection","10★ +20% armour bonus"],
+   s:[[1,"Fashion Show",1,"Experience"],[3,"Nine to Five",10,"100 Endurance"],[5,"Activewear","passive","+25% passive dexterity"],[7,"Secret Pockets","passive","+75% mug protection"],[10,"Tailoring","passive","+20% armour bonus"]],
+   pro:["Only $1M to start, with easy upgrade costs","3★ Nine to Five is 100 Endurance for 10 job points — one of the cheapest stat buys anywhere","7★ Secret Pockets cuts mug losses by 75%, ideal for cash-carrying traders","10★ Tailoring boosts armour effectiveness by 20%"],
+   con:["Clothing margins are slim","5★ +25% dexterity is fine but unexciting","Nothing useful until 3★"] },
+
+ { id:"cruise", n:"Cruise Line", g:"🛳️", cost:300000000, emp:6, inc:3, eff:3,
+   tag:"The travel company — five extra item slots at the top of the ladder.",
+   mk:"Sells cruises and casino tokens. Big operation, big overheads.",
+   hl:["+5 travel item slots by 10★","7★ stock analysis for any country","5★ addiction reduction"],
+   s:[[1,"Bursar",1,"25 casino tokens"],[3,"Portage","passive","2 extra travel items"],[5,"R&R",1,"Drug addiction reduction"],[7,"Destination Report",1,"View stock analysis of all items at a selected country"],[10,"Freight","passive","3 extra travel items"]],
+   pro:["3★ and 10★ together add 5 travel slots — the single biggest boost to flight income","7★ Destination Report shows every item's stock in a chosen country","5★ gives 1-job-point addiction reduction, handy while chaining abroad"],
+   con:["$300M to open, then expensive upgrades","The perks are worthless unless you fly constantly","Needs six staff slots (and high-stat roles)"] },
+
+ { id:"cyber", n:"Cyber Cafe", g:"💻", cost:3000000, emp:4, inc:2, eff:2,
+   tag:"Virus coding at double speed, plus information tools.",
+   mk:"Sells internet time and gaming. Small profit, hacking utility.",
+   hl:["50% faster virus coding from 1★","3★ free virus item","10★ view an investment account"],
+   s:[[1,"Ub3rg33k","passive","50% virus coding time reduction"],[3,"Clone Data",25,"Virus"],[5,"Proxy Hacking",25,"Cancel a target's virus programming"],[7,"IP Tracing",25,"View lister of anonymous bounties"],[10,"Financial Phishing",25,"View details of someone's investment account"]],
+   pro:["1★ halves virus coding time and is available immediately","3★ hands you a virus item for 25 job points","5★ lets you cancel someone else's virus","10★ reveals an investment account's details"],
+   con:["Niche: without viruses or computer crime it is just a shop","Low base income","Hacking is easily blocked (Syscore MFG protects a company)"] },
+
+ { id:"detective", n:"Detective Agency", g:"🕵️", cost:12000000, emp:4, inc:2, eff:3,
+   tag:"The only company that lets you arrest — plus flight-delay warfare.",
+   mk:"Sells investigations. Small money, heavy intel/PvP utility.",
+   hl:["3★ arrest after defeat","7★ extend a target's flight 1:30–2:00","5★ see who friended/blacklisted you"],
+   s:[[1,"References",2,"View someone's employment and faction history"],[3,"Deputized","passive","Able to arrest those who meet the required threshold after defeat"],[5,"Friend or Foe",100,"See who's friended / blacklisted you"],[7,"Watchlist",50,"Anonymously extend a target's flight time by 1:30–2:00 hours"],[10,"Most Wanted",25,"View a list of people with the highest wanted rewards"]],
+   pro:["3★ Deputized grants the arrest ability — a mechanic you cannot get anywhere else","7★ Watchlist anonymously delays a target's flight by up to two hours; brutal in wars","5★ Friend or Foe shows who has you friended or blacklisted","10★ Most Wanted lists the richest bounty targets"],
+   con:["$12M to open and the company itself barely earns","No money-making or stat passives","Only worth it if you play the intel/PvP game seriously"] },
+
+ { id:"farm", n:"Farm", g:"🌾", cost:5250000, emp:5, inc:2, eff:2,
+   tag:"The energy company — 7 energy for a single job point.",
+   mk:"Sells produce. Modest profit, and the 10★ special prints energy.",
+   hl:["10★ 7 energy for 1 jp","3★ +25% hunting reward","5★ Ketamine for 5 jp"],
+   s:[[1,"Fullfillment",1,"50 happiness"],[3,"Animal Instinct","passive","25% hunting reward"],[5,"Special K",5,"Ketamine drug"],[7,"Fertilizer",100,"Small explosive device"],[10,"Early Riser",1,"7 energy"]],
+   pro:["10★ Early Riser is 7 energy for 1 job point — the best energy-per-point deal in the company system","3★ +25% hunting reward makes hunting trips pay more","5★ hands out Ketamine, one of the most valuable drugs","Reasonable price for a five-employee operation"],
+   con:["Daily profit is small","Fertilizer costs 100 job points for one small explosive device","Ketamine is addictive — the perk bites back"] },
+
+ { id:"firework", n:"Firework Stand", g:"🎆", cost:500000, emp:4, inc:1, eff:1,
+   tag:"The cheapest way to buy nerve in Torn.",
+   mk:"Sells fireworks. Tiny money, cheapest entry in the game.",
+   hl:["Only $500K to open","1★ +2 nerve for 1 jp","3★ +50% awareness"],
+   s:[[1,"Audaciousness",1,"+2 nerve"],[3,"Illumination","passive","+50% awareness"],[5,"Pyromania","passive","+25% flamethrower damage, +10 flamethrower accuracy"],[7,"Explosives Expert",5,"Random bomb parts (disabled)"],[10,"Inferno",25,"Random incendiary ammunition"]],
+   pro:["Cheapest startup of all 39 companies","1★ Audaciousness: 2 nerve for a single job point — perfect for new players building crime skills","3★ +50% awareness finds more items when searching the city","You don't need to order stock to benefit"],
+   con:["Almost no profit — it is a perk dispenser, not a business","7★ Explosives Expert is disabled by Torn right now","Even fully upgraded the money never gets good"] },
+
+ { id:"fitness", n:"Fitness Center", g:"🏋️", cost:17000000, emp:8, inc:3, eff:3,
+   tag:"Halve your gym happiness loss, then add 3% to every gain.",
+   mk:"Sells memberships and training. Solid income once staffed.",
+   hl:["3★ halves gym happiness loss","10★ +3% gym gains","5★ strength trains for 1 jp"],
+   s:[[1,"Healthy Mind",1,"30-minute education time reduction"],[3,"Goal Oriented","passive","50% reduction of happiness loss in gym"],[5,"Roid Rage",1,"Strength"],[7,"Athlete","passive","3% life regeneration per tick"],[10,"Training Regime","passive","3% gym gains"]],
+   pro:["3★ Goal Oriented halves happiness lost in the gym — a direct workout-efficiency boost","10★ Training Regime adds +3% to every gym gain, permanently","5★ converts job points into strength","Eight employees means a healthy daily profit once staffed"],
+   con:["$17M entry plus steep upgrades","Needs a full roster of strong employees to reach good efficiency","The 1★ special is weak for the price"] },
+
+ { id:"furniture", n:"Furniture Store", g:"🛋️", cost:2500000, emp:4, inc:2, eff:2,
+   tag:"Doubles your fists — the unarmed fighter's company.",
+   mk:"Sells furniture. Average money, excellent unarmed passives.",
+   hl:["7★ +25% passive strength","10★ +100% fist & kick damage","1★ 3 energy for 1 jp"],
+   s:[[1,"Coffee Break",1,"3 energy"],[3,"Heavy Lifting",1,"Strength"],[5,"Removal","passive","15% theft crime exp & skill gain"],[7,"Beefcake","passive","25% passive strength"],[10,"Brute Force","passive","100% fist & kick damage"]],
+   pro:["7★ Beefcake gives +25% passive strength that stacks with everything","10★ Brute Force doubles fist and kick damage — the dream for unarmed builds","1★ Coffee Break is 3 energy for one job point","Cheap for a combat-focused company"],
+   con:["Base profit is ordinary","5★ only boosts theft crimes","Unarmed builds are a niche — most players use weapons"] },
+
+ { id:"game", n:"Game Shop", g:"🎮", cost:1250000, emp:4, inc:2, eff:2,
+   tag:"A nerve, five energy and 50 happiness for one job point.",
+   mk:"Sells games and consoles. Small money, cheap perks.",
+   hl:["10★ nerve + energy + happy for 1 jp","7★ see progress to your next level","5★ double console happiness"],
+   s:[[1,"Ub3rg33k","passive","50% virus coding time reduction"],[3,"Early Release",100,"Money"],[5,"Gamer","passive","100% console happiness"],[7,"Power Levelling",10,"View progress to your next level"],[10,"Overpowered",1,"1 nerve, 5 energy, 50 happiness"]],
+   pro:["10★ Overpowered is 1 nerve, 5 energy and 50 happiness for a single job point","7★ Power Levelling shows exactly how far you are from your next level","5★ doubles happiness from consoles","Cheap to start for what it gives"],
+   con:["Low daily profit","The 1★ virus passive only helps hackers","Specials are small individual boosts, not big passives"] },
+
+ { id:"gas", n:"Gas Station", g:"⛽", cost:25000000, emp:4, inc:3, eff:2,
+   tag:"+25% passive speed and a chance to heal mid-fight.",
+   mk:"Sells fuel and car parts. Decent money and strong survival perks.",
+   hl:["3★ +25% passive speed","5★ occasional 20% heal in combat","7★ halve burning damage taken"],
+   s:[[1,"Molotov Cocktail",3,"+1 Molotov Cocktail"],[3,"Fueled","passive","+25% bonus to speed"],[5,"Cauterize","passive","Occasional 20% health regeneration (10% chance per turn)"],[7,"Fireproof","passive","50% reduction to burning damage received"],[10,"Blaze of Glory","passive","50% bonus to burning damage dealt"]],
+   pro:["3★ Fueled is a permanent +25% speed — a combat stat for the price of a company","5★ Cauterize heals 20% with a 10% chance each turn; enormous in long wars","7★ Fireproof halves burning damage while 10★ doubles your own fire damage","1★ hands out Molotov Cocktails cheaply"],
+   con:["$25M startup for only four staff slots","Good, not top-tier, profit","Perks lean on fire weapons, which are situational"] },
+
+ { id:"gentstrip", n:"Gents Strip Club", g:"🕺", cost:5000000, emp:4, inc:2, eff:2,
+   tag:"+25% passive dexterity and a quarter chance to dodge melee.",
+   mk:"Sells drinks and shows. Modest money, dexterity perks.",
+   hl:["3★ +25% passive dexterity","7★ +10% dexterity gym gains","10★ 1/4 chance to dodge melee"],
+   s:[[1,"Happy Ending",1,"+50 happiness"],[3,"Dancer's Flair","passive","+25% passive dexterity"],[5,"Supple","passive","+50% tyrosine effect & duration"],[7,"Pilates","passive","+10% dexterity gym gains"],[10,"No Touching","passive","1/4 chance to dodge melee attacks"]],
+   pro:["3★ Dancer's Flair is +25% passive dexterity for free","7★ Pilates adds 10% to dexterity gym gains","10★ No Touching gives a one-in-four chance to dodge melee attacks entirely","1★ +50 happiness for 1 job point keeps you topped up"],
+   con:["Money is average at best","Everything is dexterity or happiness","$5M entry for a small shop"] },
+
+ { id:"grocery", n:"Grocery Store", g:"🛒", cost:2000000, emp:5, inc:2, eff:2,
+   tag:"Premium energy drinks for 12 job points.",
+   mk:"Sells food and drink. Steady profit, consumable-focused perks.",
+   hl:["10★ premium energy drink for 12 jp","7★ +10% consumable boost","3★ −10% consumable cooldown"],
+   s:[[1,"Bagged Down",2,"Bag of candy"],[3,"Fast Metabolism","passive","10% consumable cooldown"],[5,"Bottled Up",5,"Bottle of alcohol"],[7,"Absorption","passive","10% consumable boost"],[10,"Canned In",12,"Can of (premium) Energy Drink"]],
+   pro:["10★ Canned In hands out a premium energy drink — the best energy item — for 12 job points","3★ and 7★ together cut consumable cooldowns and boost their effect","5★ supplies bottles of alcohol for 5 job points","Family-size stock with reasonable margins"],
+   con:["Only pays off if you consume a lot of items","No combat passives","The 1★ and 3★ specials are minor"] },
+
+ { id:"gun", n:"Gun Shop", g:"🔫", cost:2500000, emp:4, inc:2, eff:2,
+   tag:"20% off ammo forever, and you can see what your target carries.",
+   mk:"Sells weapons and ammo. Thin margins, top-tier attack perks.",
+   hl:["1★ 20% off all standard ammo (passive)","5★ see a target's gear and ammo","10★ +10% weapon damage"],
+   s:[[1,"Sales Discount","passive","20% discount on standard ammo"],[3,"Surplus",15,"Random special ammunition"],[5,"Skilled Analysis","passive","Target equipment and ammo is always visible"],[7,"Bandoleer","passive","1 extra clip for guns during attacks"],[10,"Firearms Expert","passive","10% primary & secondary weapon damage"]],
+   pro:["1★ Sales Discount is an immediate 20% off standard ammo — everyone shoots","3★ Surplus gives random special ammo for 15 job points","5★ Skilled Analysis shows a target's equipment before you commit","10★ +10% primary and secondary weapon damage is a straight DPS passive"],
+   con:["Thin profit for a $2.5M shop","The extra clip only matters for gun-heavy builds","Special ammo is random, so value varies"] },
+
+ { id:"ladystrip", n:"Ladies Strip Club", g:"💃", cost:5000000, emp:4, inc:2, eff:2,
+   tag:"+25% passive defense and 30% melee damage mitigation.",
+   mk:"Sells drinks and shows. Modest money, defense perks.",
+   hl:["3★ +25% passive defense","7★ +10% defense gym gains","10★ 30% melee damage mitigation"],
+   s:[[1,"Hot Flush",1,"+50 happiness"],[3,"Hench","passive","+25% passive defense"],[5,"Hormonal","passive","+50% serotonin effect & duration"],[7,"Boxercise","passive","+10% defense gym gains"],[10,"Hardbody","passive","30% melee damage mitigation"]],
+   pro:["3★ Hench is +25% passive defense, available early","7★ Boxercise adds 10% to defense gym gains","10★ Hardbody cuts melee damage by 30% — excellent against unarmed attackers","Cheap happiness top-ups at 1★"],
+   con:["Money is average","All perks are defense or happiness","$5M entry for four staff"] },
+
+ { id:"lingerie", n:"Lingerie Store", g:"👙", cost:1750000, emp:4, inc:2, eff:2,
+   tag:"Free Business Class travel once you reach 10 stars.",
+   mk:"Sells clothing. Small money, travel and property savings.",
+   hl:["10★ free Business-Class travel (passive)","3★ +2 travel items","7★ no property upkeep or staff costs"],
+   s:[[1,"Nine to Five",10,"100 Endurance"],[3,"Concealment","passive","2 extra travel items"],[5,"Born Free","passive","+50% speed and dexterity when not wearing armour"],[7,"Simp","passive","Waive all property upkeep and staff costs"],[10,"Sex Appeal","passive","Provides free Business Class travel"]],
+   pro:["10★ Sex Appeal means free Business Class on every flight — serious money saved","3★ Concealment adds two travel item slots","7★ Simp waives property upkeep and staff wages entirely","5★ +50% speed and dexterity suits armour-free dodgers"],
+   con:["Profit is low","The 5★ perk forces you to fight without armour","You must reach 10 stars for the headline perk"] },
+
+ { id:"logistics", n:"Logistics Management", g:"🚚", cost:1800000000, emp:6, inc:5, eff:5,
+   tag:"Five mission contracts, fly home from hospital, bulk imports.",
+   mk:"Runs contracts and freight. Enormous setup, enormous late-game utility.",
+   hl:["3★ five open mission contracts","5★ fly home from hospital","7★ Contraband: a bulk foreign item"],
+   s:[[1,"Efficiency",1,"Speed"],[3,"Organized","passive","Increases available open mission contracts from 3 to 5"],[5,"Repatriated","passive","Allows travelling back to Torn from abroad while in hospital"],[7,"Contraband",50,"Large quantity of a foreign item"],[10,"Logistics Report",250,"Targeted company productivity boost"]],
+   pro:["3★ Organized raises open mission contracts from three to five","5★ Repatriated lets you fly back to Torn while hospitalised — a war-saver","7★ Contraband delivers a large quantity of a foreign item, straight profit","10★ Logistics Report boosts a target company's productivity"],
+   con:["$1.8B to open — strictly late-game","Upgrades and wages are enormous","Payback takes a long time even at high stars"] },
+
+ { id:"meat", n:"Meat Warehouse", g:"🥩", cost:4000000, emp:5, inc:2, eff:2,
+   tag:"+10 maximum nerve and half the crime penalty.",
+   mk:"Sells meat. Low margin, crime and nerve perks.",
+   hl:["5★ +10 maximum nerve","1★ +2 nerve for 1 jp","3★ −50% crime penalty"],
+   s:[[1,"Blood Thirst",1,"+2 nerve"],[3,"Blood Splatter","passive","50% reduction in crime penalty"],[5,"Carnage","passive","10 maximum nerve"],[7,"Huntsman","passive","25% hunting skill gain"],[10,"Vampiric","passive","3% life regeneration per tick"]],
+   pro:["1★ Blood Thirst: 2 nerve for 1 job point, spammable for crimes","5★ Carnage adds 10 maximum nerve — big for chain building","3★ halves the penalty when a crime fails","10★ regenerates 3% life per tick"],
+   con:["Profit is low — you are buying perks","The 7★ hunting bonus is niche","No passive stat boost"] },
+
+ { id:"mechanic", n:"Mechanic Shop", g:"🔧", cost:3000000, emp:4, inc:2, eff:2,
+   tag:"Cheap car parts, free cars, parts that survive crashes.",
+   mk:"Sells repairs and parts. Racing-focused perks.",
+   hl:["3★ 75% off car parts","5★ random car for 10 jp","7★ keep parts after crashes"],
+   s:[[1,"Machinist",5,"Racing point"],[3,"Discount Parts","passive","75% cost discount on car parts"],[5,"Junkyard Dog",10,"Random car"],[7,"Refurbish","passive","Lose no car parts after crashing"],[10,"Driver","passive","50% driving skill gain"]],
+   pro:["3★ makes car parts 75% cheaper — huge for racers","5★ Junkyard Dog gives a random car for 10 job points; often profitable","7★ Refurbish means crashes stop destroying your parts","10★ adds 50% driving skill gain"],
+   con:["Racing perks only — no combat value","Ordinary money","Worthless if you never race or drive"] },
+
+ { id:"mining", n:"Mining Corporation", g:"⛏️", cost:4500000000, emp:8, inc:5, eff:5,
+   tag:"+10% maximum life, and 150% life when you need it.",
+   mk:"Mines ore and sells equipment. Expensive end-game money.",
+   hl:["7★ +10% maximum life","10★ boost life to 150% of max","1★ excavation equipment for 5 jp"],
+   s:[[1,"Mining Boom",5,"Random excavation equipment"],[3,"Thirsty Work","passive","30% alcohol cooldown reduction"],[5,"Rock Salt",1,"Defense"],[7,"Essential Salts","passive","10% maximum life"],[10,"Preserved Meat",25,"Boost current life to 150% of maximum"]],
+   pro:["7★ Essential Salts adds 10% to maximum life — permanent bulk","10★ pushes current life to 150% of maximum, ideal before a war","5★ converts job points into defense training","Mining Boom hands out valuable excavation equipment"],
+   con:["$4.5B startup plus billions in upgrades","Needs eight or more high-stat employees","Long payback — only sensible for wealthy players"] },
+
+ { id:"music", n:"Music Store", g:"🎵", cost:1500000, emp:4, inc:2, eff:3,
+   tag:"+30% gym experience and +15% to every stat.",
+   mk:"Sells instruments and music. Average money, the best training passive in Torn.",
+   hl:["3★ +30% gym experience","10★ +15% to all stats (passive)","7★ maximum stealth for 10 jp"],
+   s:[[1,"Ambience",1,"50 happiness"],[3,"Well Tuned","passive","30% increased gym experience"],[5,"High-Fidelity","passive","Reduced enemy stealth"],[7,"Deafened",10,"Maximum stealth"],[10,"The Score","passive","+15% passive on all stats"]],
+   pro:["3★ Well Tuned is +30% gym experience — a direct boost to every workout","10★ The Score grants +15% to all stats: arguably the best company passive in the game","7★ Deafened gives maximum stealth for 10 job points","Only $1.5M to open"],
+   con:["Reaching 10★ takes real investment in advertising and stock","Daily profit is unremarkable","The best perks are at the very top of the ladder"] },
+
+ { id:"nightclub", n:"Nightclub", g:"🎶", cost:7500000, emp:5, inc:3, eff:2,
+   tag:"Train and use drugs at the same time, with half the overdose risk.",
+   mk:"Sells drinks and entry. Good income for the price.",
+   hl:["7★ −50% overdose chance","10★ education unaffected by addiction","3★ +15% illicit service gains"],
+   s:[[1,"Criminal Connections",1,"Experience"],[3,"Target Market","passive","+15% illicit service exp and skill gain"],[5,"Suppression",1,"Drug addiction reduction"],[7,"Tolerance","passive","50% drug overdose chance reduction"],[10,"Restraint","passive","Education is unaffected by drug addiction"]],
+   pro:["7★ Tolerance halves your overdose risk — the safest way to run drugs","10★ Restraint makes education immune to drug addiction, so you can pop and study","3★ adds 15% to illicit service experience","Solid profit once staffed"],
+   con:["$7.5M entry","Drug-centric perks, no stat passives","Needs stars before the specials matter"] },
+
+ { id:"oil", n:"Oil Rig", g:"🛢️", cost:10500000000, emp:12, inc:5, eff:5,
+   tag:"The biggest payroll and the strongest money perks in Torn.",
+   mk:"Pumps oil. The largest employer and one of the largest earners.",
+   hl:["5★ cut bank investment time by 1 hour","7★ +10% Cayman interest","10★ +50% investment banking limit"],
+   s:[[1,"Danger Money",1,"Money"],[3,"Embargo",50,"Halve a target's happiness"],[5,"Oil Mogul",3,"Reduce bank investment time by 1 hour"],[7,"Tax Haven","passive","10% increase of Cayman Islands interest rate"],[10,"Fat Cat","passive","50% investment banking limit"]],
+   pro:["5★ Oil Mogul cuts bank investment time by an hour for 3 job points — compounding money","7★ Tax Haven adds 10% to Cayman Islands interest","10★ Fat Cat raises the investment banking limit by 50%","Twelve staff slots: the largest payroll in the game"],
+   con:["$10.5B startup, then billions more for upgrades","Requires a full roster of elite employees","Only viable for the richest players"] },
+
+ { id:"property", n:"Property Broker", g:"🏠", cost:750000, emp:4, inc:2, eff:2,
+   tag:"Cheap to open — and 7★ can hand you a Castle.",
+   mk:"Sells property services. Landlord-flavoured perks, weak daily profit.",
+   hl:["7★ random property up to Castle for 150 jp","10★ 10% off property upgrades","5★ no anonymous listing fee"],
+   s:[[1,"Commission",1,"Money"],[3,"Job Satisfaction",1,"50 happiness"],[5,"Vendor","passive","Waive anonymous item market listing fee"],[7,"Insider Trading",150,"Random property (up to Castle)"],[10,"Interior Connections","passive","10% property upgrade cost reduction"]],
+   pro:["7★ Insider Trading gives a random property, potentially worth tens of millions","5★ waives the anonymous item market listing fee","10★ cuts property upgrade costs by 10%","Only $750K to open"],
+   con:["Weak daily profit","The headline perk is random, so it is a gamble","Everything else is minor convenience"] },
+
+ { id:"pub", n:"Pub", g:"🍺", cost:1250000, emp:4, inc:2, eff:2,
+   tag:"Refill your whole nerve bar for 25 job points.",
+   mk:"Sells drinks. Small money, nerve and energy perks.",
+   hl:["5★ refill your nerve bar for 25 jp","10★ +15 maximum nerve","1★ 3 energy for 1 jp"],
+   s:[[1,"Pub Lunch",1,"3 energy"],[3,"Drunken Master","passive","10% melee weapon damage"],[5,"Liquid Courage",25,"Refill nerve bar"],[7,"Lightweight","passive","50% bottle of alcohol boost"],[10,"Buzzed","passive","+15 maximum nerve"]],
+   pro:["5★ Liquid Courage refills your entire nerve bar for 25 job points — pure chain fuel","10★ Buzzed adds 15 maximum nerve","7★ makes bottles of alcohol 50% stronger","Cheap to open and cheap to upgrade"],
+   con:["Profit is small","1★ and 3★ specials are weak","Perks only matter to crime and chain players"] },
+
+ { id:"restaurant", n:"Restaurant", g:"🍽️", cost:1000000, emp:4, inc:2, eff:2,
+   tag:"3 energy for one job point, from day one.",
+   mk:"Sells food. Cheap entry, constant small perks.",
+   hl:["1★ 3 energy for 1 jp","10★ 25% consumable cooldown reduction","7★ 2% life regen per tick"],
+   s:[[1,"Free Meals",1,"3 energy"],[3,"Butcher","passive","10% melee weapon damage"],[5,"Flambayed",50,"Flamethrower"],[7,"Healthy Diet","passive","2% life regeneration per tick"],[10,"Professional Metabolism","passive","25% consumable cooldown reduction"]],
+   pro:["1★ Free Meals: 3 energy for a single job point, available immediately","7★ regenerates 2% of life every tick","10★ cuts consumable cooldowns by 25%","Only $1M to open"],
+   con:["Thin profit margins","The 3★ melee bonus is small","No big passive — a steady drip, not a leap"] },
+
+ { id:"software", n:"Software Corporation", g:"🖥️", cost:6000000, emp:5, inc:3, eff:3,
+   tag:"Steal 1–3% of another company's bank with Intricate Hack.",
+   mk:"Sells software and security. Decent money plus hacking tools.",
+   hl:["5★ Intricate Hack: steal 1–3% of a company's cash","7★ +15% cybercrime success","10★ see a company's finances"],
+   s:[[1,"Ub3rg33k","passive","50% virus coding time reduction"],[3,"Proxy Hacking",25,"Cancel a target's virus programming"],[5,"Intricate Hack",250,"Steals 1-3% of a company's funds"],[7,"Hack the Planet","passive","15% cybercrime success & skill gain"],[10,"Corporate Espionage",50,"View financial details of a company"]],
+   pro:["5★ Intricate Hack can steal 1–3% of a target company's funds — that can be serious money","7★ Hack the Planet: +15% cybercrime success and skill gain","1★ halves virus coding time","10★ reveals a competitor's financial details"],
+   con:["Syscore MFG stock blocks the hack specials","Profit is middle-tier","Purely for the computer-crime crowd"] },
+
+ { id:"sweet", n:"Sweet Shop", g:"🍬", cost:1000000, emp:4, inc:2, eff:2,
+   tag:"4,500 happiness for 30 job points — the best happy special in Torn.",
+   mk:"Sells candy. Low money, unmatched happiness.",
+   hl:["10★ 4,500 happiness for 30 jp","7★ premium energy drink for 15 jp","5★ 1,000 happiness for 10 jp"],
+   s:[[1,"Sweet Tooth",1,"50 happiness"],[3,"Sugar Rush",2,"Bag of candy"],[5,"Gluttony",10,"1,000 happiness"],[7,"Energy Rush",15,"Can of (premium) Energy Drink"],[10,"Voracious",30,"4,500 happiness"]],
+   pro:["10★ Voracious gives 4,500 happiness for 30 job points — unmatched for gym stacking","7★ hands out a premium energy drink","5★ is 1,000 happiness for 10 job points","$1M entry"],
+   con:["Very low profit — it exists for the specials","Happiness is easy to get elsewhere if you don't gym hard","The 1★ and 3★ specials are trivial"] },
+
+ { id:"tv", n:"Television Network", g:"📺", cost:8000000000, emp:8, inc:5, eff:5,
+   tag:"Turn job points into faction respect.",
+   mk:"A broadcast empire. Massive scale, war utility.",
+   hl:["1★ 1 faction respect for 5 jp","10★ Press Pass privileges","5★ see anyone's stats and cash"],
+   s:[[1,"Propaganda",5,"1 faction respect"],[3,"Scoop","passive","50% newspaper advertising cost"],[5,"Inside Story",15,"View someone's stats & money"],[7,"Bad Publicity","passive","25% extortion success rate and skill gain (disabled)"],[10,"Press Pass",25,"Receive special privileges"]],
+   pro:["1★ Propaganda converts job points into faction respect — chain-war gold","5★ Inside Story reveals a target's stats and money","10★ Press Pass unlocks a money-making privilege","3★ halves newspaper advertising costs"],
+   con:["$8B to open — one of the two most expensive companies","Requires a large, very high-stat team","The 7★ special is disabled by Torn right now"] },
+
+ { id:"theater", n:"Theater", g:"🎭", cost:50000000, emp:6, inc:3, eff:3,
+   tag:"Spies can't touch you, and nobody sees you travel.",
+   mk:"Sells shows and tickets. Moderate money, strong stealth perks.",
+   hl:["5★ cannot be targeted by spies (passive)","10★ hidden travel status and destination","3★ maximum stealth for 10 jp"],
+   s:[[1,"Stagecraft",1,"Experience"],[3,"Dramatics",10,"Maximum stealth"],[5,"Masked","passive","Cannot be targeted by spies"],[7,"Twinlike","passive","15% counterfeiting crime exp & skill gain"],[10,"Disguised","passive","Hidden travelling status & destination"]],
+   pro:["5★ Masked makes you immune to spies — your cash and inventory stay private","10★ Disguised hides where and when you are travelling","3★ grants maximum stealth for 10 job points","Respectable profit with six staff"],
+   con:["$50M entry","Stealth-only perks; nothing boosts combat or stats","Needs stars to shine"] },
+
+ { id:"toy", n:"Toy Shop", g:"🧸", cost:2000000, emp:5, inc:2, eff:2,
+   tag:"Carry five more plushies home on every flight.",
+   mk:"Sells toys. Cheap, and the best plushie runner's company.",
+   hl:["7★ +5 plushies per flight","3★ special plushie for 3 jp","5★ double console happiness"],
+   s:[[1,"Memory Lane",1,"50 happiness"],[3,"Jumble Sale",3,"Special plushie"],[5,"Gamer","passive","100% console happiness"],[7,"Over Capacity","passive","Able to bring back +5 plushies from abroad"],[10,"Toy Importer",1,"View stock analysis of plushies in all countries"]],
+   pro:["7★ Over Capacity adds five plushie slots abroad — big money for collectors and runners","3★ hands out a special plushie for 3 job points","10★ shows plushie stock in every country","Only $2M to open"],
+   con:["Low base profit","Income depends entirely on you flying","The 5★ console perk is minor"] },
+
+ { id:"zoo", n:"Zoo", g:"🦁", cost:300000000, emp:6, inc:3, eff:3,
+   tag:"+70% awareness and +3.00 accuracy.",
+   mk:"Runs animal exhibits. Big money, awareness and hunting perks.",
+   hl:["7★ +70% awareness","10★ +3.00 accuracy","5★ Ketamine for 5 jp"],
+   s:[[1,"Fulfillment",1,"50 happiness"],[3,"Animal Instinct","passive","25% hunting reward"],[5,"Special K",5,"Ketamine drug"],[7,"Eye of the Tiger","passive","70% awareness"],[10,"Seasoned Poacher","passive","+3.00 accuracy"]],
+   pro:["7★ Eye of the Tiger is +70% awareness — you find far more items in the city","10★ Seasoned Poacher adds +3.00 accuracy to every attack","3★ adds 25% to hunting rewards","5★ supplies Ketamine"],
+   con:["$300M entry plus expensive upgrades","Awareness perks need you to click the city a lot","Profit is good but not top-tier at this price"] },
+
+ { id:"security", n:"Private Security Firm", g:"🛡️", cost:950000000, emp:6, inc:4, eff:4,
+   tag:"72 hours of bounty protection, and free weapons for job points.",
+   mk:"Sells protection. Expensive, mercenary-style perks.",
+   hl:["1★ 72-hour bounty protection for 20 jp","5★ random weapon for 75 jp","10★ job points into mission credits"],
+   s:[[1,"Off the Grid",20,"72 hour bounty protection"],[3,"Tactical Breach","passive","+50% flash grenade intensity"],[5,"Open Arsenal",75,"Primary or secondary weapon"],[7,"Regulation","passive","25% full set armour mitigation bonus"],[10,"Mercenary",1,"3 mission credits"]],
+   pro:["1★ Off the Grid buys 72 hours of bounty protection for 20 job points","5★ Open Arsenal hands out a random primary or secondary weapon — often very profitable","7★ Regulation adds 25% armour mitigation for a full set","10★ converts job points into mission credits"],
+   con:["$950M to open — late-game only","The 1★ protection only covers yourself","Needs a strong team to run efficiently"] },
+
+ { id:"adult", n:"Adult Novelties", g:"🔞", cost:1750000, emp:4, inc:2, eff:2,
+   tag:"−25% enemy speed, and Erotic DVDs worth double.",
+   mk:"Sells adult items. Healthy margins on cheap stock.",
+   hl:["7★ −25% enemy speed","10★ double Erotic DVD value","Blackmail pays cash for 1 jp"],
+   s:[[1,"Blackmail",1,"Money"],[3,"Voyeur",20,"Erotic DVD"],[5,"Party Supplies",500,"Pack of Trojans"],[7,"Bondage","passive","25% enemy speed reduction"],[10,"Indecent","passive","100% bonus to Erotic DVDs"]],
+   pro:["7★ Bondage cuts enemy speed by 25% — a top-tier combat passive","10★ Indecent doubles the value of Erotic DVDs","1★ Blackmail is cheap random cash","Cheap startup and cheap upgrades"],
+   con:["Low daily profit","5★ costs 500 job points for a single item","The money specials are random"] },
+
+ { id:"amusement", n:"Amusement Park", g:"🎡", cost:100000000, emp:8, inc:3, eff:3,
+   tag:"+10 maximum nerve, permanently.",
+   mk:"Sells day passes. One product, but a big operation.",
+   hl:["5★ +10 maximum nerve (passive)","1★ +2 nerve for 1 jp","10★ +10% crime exp and skill gain"],
+   s:[[1,"Dauntless",1,"+2 nerve"],[3,"Free Ride",10,"250 happiness for target"],[5,"Unflinching","passive","10 maximum nerve"],[7,"Adrenaline Rush","passive","25% epinephrine effect & duration"],[10,"Thrill Seeker","passive","10% crime exp & skill gain"]],
+   pro:["5★ Unflinching adds 10 maximum nerve, permanently","1★ Dauntless is +2 nerve per job point","10★ Thrill Seeker adds 10% crime experience and skill gain","Eight employees make for strong income at scale"],
+   con:["$100M to open","Only one stock line (Day Pass), so profit hinges on popularity","The 3★ special gives happiness to someone else, not you"] },
+
+ { id:"candle", n:"Candle Shop", g:"🕯️", cost:500000, emp:4, inc:1, eff:1,
+   tag:"5 energy for a single job point.",
+   mk:"Sells candles. Tiny money, cheap energy and nerve.",
+   hl:["7★ 5 energy for 1 jp","5★ 2 nerve for 1 jp","3★ +50% awareness"],
+   s:[[1,"Warming Therapy",1,"50 happiness"],[3,"Illumination","passive","50% awareness"],[5,"Calming Therapy",1,"2 nerve"],[7,"Reinvigorating Therapy",1,"5 energy"],[10,"Meditation",250,"View someone\u2019s true level if they are level holding"]],
+   pro:["One of the cheapest companies to open ($500K)","7★ Reinvigorating Therapy: 5 energy for 1 job point — excellent value","5★ Calming Therapy: 2 nerve for 1 job point","3★ +50% awareness helps when searching the city"],
+   con:["Almost no profit","10★ Meditation only matters if you hunt level-holders","Specials are small consumables rather than passives"] },
+
+]
+
+
+const CO_BY_ID = {};
+CO_COMPANIES.forEach(c => { CO_BY_ID[c.id] = c; });
+
+/* ---------- goals → the companies that serve them ----------
+   weight 3 = this is what the company is famous for · 2 = strong reason
+   1 = a nice extra */
+const CO_GOALS = [
+  { id:"gym",     label:"💪 Gym gains",            chip:"Gym",         w:{ music:3, fitness:3, ladystrip:2, gentstrip:2, clothing:1, zoo:1, lingerie:1 } },
+  { id:"energy",  label:"⚡ Energy & happiness",   chip:"Energy",      w:{ restaurant:3, farm:3, candle:3, sweet:3, grocery:2, pub:2, game:2, toy:2, amusement:1 } },
+  { id:"travel",  label:"✈️ Travel & loot runs",   chip:"Travel",      w:{ flower:3, toy:3, cruise:3, lingerie:3, nightclub:1, theater:1, zoo:1 } },
+  { id:"crime",   label:"🔪 Crimes & nerve",       chip:"Crime",       w:{ firework:3, meat:3, pub:3, amusement:2, candle:2, furniture:1, car:1, theater:1, game:1 } },
+  { id:"combat",  label:"🥊 Combat & PvP",         chip:"Combat",      w:{ furniture:3, gun:3, gas:3, adult:2, ladystrip:2, theater:2, security:2, music:1, clothing:1, restaurant:1, pub:1, zoo:1 } },
+  { id:"edu",     label:"🎓 Education & intel",    chip:"Education",   w:{ hair:3, fitness:2, law:2, detective:1, cyber:1 } },
+  { id:"money",   label:"💰 Profit & net worth",   chip:"Profit",      w:{ oil:3, tv:3, logistics:3, mining:3, car:2, software:2, property:2, nightclub:2, mechanic:1, cyber:1, adult:1, game:1, cruise:1, security:1 } },
+  { id:"hack",    label:"🧠 Hacking & spying",     chip:"Hacking",     w:{ cyber:3, software:3, game:2, detective:2, hair:1, tv:1, security:1, theater:1 } },
+  { id:"defense", label:"🛡️ Defense & privacy",    chip:"Defense",     w:{ security:3, theater:2, ladystrip:2, clothing:2, mining:1, law:1 } },
+  { id:"passive", label:"📈 Passive stats",        chip:"Passive",     w:{ music:3, furniture:3, clothing:2, gas:2, ladystrip:1, gentstrip:1, zoo:1, meat:1 } }
+];
+const CO_GOAL_BY_ID = {};
+CO_GOALS.forEach(g => { CO_GOAL_BY_ID[g.id] = g; });
+/* every catalogue id referenced above must exist — drop typos defensively */
+CO_GOALS.forEach(g => Object.keys(g.w).forEach(k => { if(!CO_BY_ID[k]) delete g.w[k]; }));
+
+/* best-for chips: goals where this company scores 2+ */
+function coBestFor(c){
+  return CO_GOALS.filter(g => (g.w[c.id] || 0) >= 2);
+}
+function coScoreFor(c, goalIds){
+  let s = 0;
+  for(const id of goalIds) s += (CO_GOAL_BY_ID[id] ? (CO_GOAL_BY_ID[id].w[c.id] || 0) : 0);
+  return s;
+}
+
+/* ---------- state ---------- */
+let coTab     = store.get("lc2_cotab", "mine");
+let coQuery   = "";
+let coTierSel = "all";
+let coSortSel = "match";
+let coGoals   = store.get("lc2_cogoals", ["gym", "money"]);
+let coCompany = store.get("lc2_company", null);   // normalized last-good read
+let coDemoPick = null;                             // "Demo it" preview from the guide
+let coErr = null, coErrCode = null, coBusy = false;
+let coParts = {};                                  // which selections answered
+
+function coSave(){ store.set("lc2_company", coCompany); }
+
+/* =========================================================== MY COMPANY ==== */
+
+const CO_ALIAS = {
+  id:       ["ID","id","company_id","companyId"],
+  name:     ["name","company_name"],
+  type:     ["company_type","companyType","type"],
+  rating:   ["rating","stars","star_rating"],
+  director: ["director","director_id","directorId"],
+  profitD:  ["daily_profit","dailyProfit"],
+  profitW:  ["weekly_profit","weeklyProfit"],
+  custD:    ["daily_customers","dailyCustomers"],
+  custW:    ["weekly_customers","weeklyCustomers"],
+  days:     ["days_old","daysOld","age"],
+  bank:     ["company_bank","bank","companyFunds"],
+  pop:      ["popularity"],
+  effi:     ["efficiency"],
+  env:      ["environment"],
+  trains:   ["trains_available","trainsAvailable","trains"],
+  adbudget: ["advertising_budget","advertisingBudget"],
+  size:     ["company_size","companySize"],
+  staff:    ["staffroom_size","staffroomSize"],
+  storage:  ["storage_size","storageSize"],
+  space:    ["storage_space","storageSpace","storageSpaceTotal"]
+};
+function coPick(obj, names){
+  if(!obj || typeof obj !== "object") return undefined;
+  for(const n of names) if(obj[n] !== undefined && obj[n] !== null && obj[n] !== "") return obj[n];
+  return undefined;
+}
+function coNum(v){ return v === undefined || v === null || isNaN(Number(v)) ? null : Number(v); }
+
+/* dig the four sections out of any v1 (flat) or v2 (wrapped) reply */
+function coSectionsOf(j){
+  const out = { profile:[], detailed:[], employees:[], stock:[] };
+  const seen = new Set();
+  const visit = (obj, depth) => {
+    if(!obj || typeof obj !== "object" || Array.isArray(obj) || depth > 2 || seen.has(obj)) return;
+    seen.add(obj);
+    for(const k of Object.keys(obj)){
+      const v = obj[k];
+      if(!v || typeof v !== "object") continue;
+      const kk = k.toLowerCase();
+      if(kk === "profile" || kk === "company") out.profile.push(v);
+      else if(kk === "detailed" || kk === "company_detailed") out.detailed.push(v);
+      else if(kk === "employees" || kk === "company_employees") out.employees.push(v);
+      else if(kk === "stock" || kk === "company_stock") out.stock.push(v);
+      else if(kk === "upgrades" || kk === "jobs" || kk === "company_news" || kk === "news") continue;
+      else visit(v, depth + 1);
+    }
+  };
+  visit(j, 0);
+  /* v1 keeps profile-ish fields at the top level */
+  if(!out.profile.length && (j && (j[CO_ALIAS.name[0]] || j.name))) out.profile.push(j);
+  return out;
+}
+function coEmployeesList(src, profileEmps){
+  const byId = new Map();
+  const add = (entry, id) => {
+    if(!entry || typeof entry !== "object") return;
+    const eid = String(coPick(entry, ["id","ID","user_id","userId"]) ?? id ?? "");
+    const cur = byId.get(eid) || { id: eid };
+    const p = profileEmps && profileEmps[eid];
+    if(p) Object.assign(cur, {
+      name: coPick(p, ["name"]) ?? cur.name,
+      position: coPick(p, ["position"]) ?? cur.position,
+      days: coNum(coPick(p, ["days_in_company","daysInCompany","days_employed","daysEmployed"])) ?? cur.days
+    });
+    cur.name     = coPick(entry, ["name","user_name","player_name"]) ?? cur.name;
+    cur.position = coPick(entry, ["position","job","role"]) ?? cur.position;
+    cur.days     = coNum(coPick(entry, ["days_employed","daysEmployed","days_in_company","daysInCompany"])) ?? cur.days;
+    cur.wage     = coNum(coPick(entry, ["wage","daily_wage","dailyWage","pay"])) ?? cur.wage;
+    let eff = coPick(entry, ["effectiveness","effectiveness_total","eff"]);
+    if(eff && typeof eff === "object") eff = coPick(eff, ["total","effectiveness","value"]);
+    cur.eff      = coNum(eff) ?? cur.eff;
+    cur.man      = coNum(coPick(entry, ["manual_labor","manualLabor","man"])) ?? cur.man;
+    cur.int      = coNum(coPick(entry, ["intelligence","intel","int"])) ?? cur.int;
+    cur.end      = coNum(coPick(entry, ["endurance","end"])) ?? cur.end;
+    cur.status   = coPick(entry, ["status","state"]) ?? cur.status;
+    byId.set(eid, cur);
+  };
+  for(const sec of src){
+    if(Array.isArray(sec)) sec.forEach(e => add(e));
+    else if(sec && typeof sec === "object"){
+      /* a map of id → employee, or a single employee object */
+      if(coPick(sec, ["position","effectiveness","wage","days_employed","name"])){
+        const keys = Object.keys(sec);
+        const nested = keys.filter(k => sec[k] && typeof sec[k] === "object");
+        if(nested.length && nested.length === keys.length) nested.forEach(k => add(sec[k], k));
+        else add(sec);
+      } else {
+        for(const k of Object.keys(sec)) add(sec[k], k);
+      }
+    }
+  }
+  return [...byId.values()];
+}
+function coStockList(src){
+  const out = [];
+  for(const sec of src){
+    if(Array.isArray(sec)){
+      for(const it of sec){
+        if(!it || typeof it !== "object") continue;
+        out.push(coStockRow(coPick(it, ["name","item","item_name"]) || "Item", it));
+      }
+    } else if(sec && typeof sec === "object"){
+      const keys = Object.keys(sec);
+      const looksLikeRow = ["cost","in_stock","inStock","price"].some(k => sec[k] !== undefined);
+      if(looksLikeRow && keys.every(k => typeof sec[k] !== "object")) out.push(coStockRow(coPick(sec, ["name"]) || "Item", sec));
+      else for(const k of keys){
+        const v = sec[k];
+        if(v && typeof v === "object") out.push(coStockRow(k, v));
+      }
+    }
+  }
+  return out;
+}
+function coStockRow(name, v){
+  return {
+    name: String(name),
+    cost:  coNum(coPick(v, ["cost","buy_price","buyPrice"])),
+    rrp:   coNum(coPick(v, ["rrp","recommended_retail_price","recommendedRetailPrice"])),
+    price: coNum(coPick(v, ["price","sell_price","sellPrice"])),
+    inStock: coNum(coPick(v, ["in_stock","inStock","quantity"])),
+    onOrder: coNum(coPick(v, ["on_order","onOrder","ordered"])),
+    sold:    coNum(coPick(v, ["sold_amount","soldAmount","sold"])),
+    worth:   coNum(coPick(v, ["sold_worth","soldWorth","sold_value"]))
+  };
+}
+function coNormalize(replies){
+  const prev = coCompany || {};
+  const out = {
+    id: prev.id ?? null, name: prev.name ?? null, type: prev.type ?? null, rating: prev.rating ?? null,
+    directorId: prev.directorId ?? null, directorName: prev.directorName ?? null,
+    profitD: prev.profitD ?? null, profitW: prev.profitW ?? null,
+    custD: prev.custD ?? null, custW: prev.custW ?? null, days: prev.days ?? null,
+    bank: prev.bank ?? null, pop: prev.pop ?? null, effi: prev.effi ?? null, env: prev.env ?? null,
+    trains: prev.trains ?? null, adbudget: prev.adbudget ?? null,
+    upgrades: prev.upgrades || {}, employees: prev.employees || [], stock: prev.stock || [],
+    at: Date.now(), src: prev.src || "live", parts: Object.assign({}, prev.parts)
+  };
+  for(const j of replies){
+    if(!j || typeof j !== "object") continue;
+    const sec = coSectionsOf(j);
+    let profileEmps = null;
+    for(const p of sec.profile){
+      out.id = coNum(coPick(p, CO_ALIAS.id)) ?? out.id;
+      out.name = coPick(p, CO_ALIAS.name) ?? out.name;
+      const t = coPick(p, CO_ALIAS.type);
+      if(t !== undefined && t !== null) out.type = t;
+      out.rating = coNum(coPick(p, CO_ALIAS.rating)) ?? out.rating;
+      let dir = coPick(p, CO_ALIAS.director);
+      if(dir && typeof dir === "object"){
+        out.directorId = coNum(coPick(dir, ["id","ID"])) ?? out.directorId;
+        out.directorName = coPick(dir, ["name","username"]) ?? out.directorName;
+      } else if(dir !== undefined){ out.directorId = coNum(dir) ?? out.directorId; }
+      out.profitD = coNum(coPick(p, CO_ALIAS.profitD)) ?? out.profitD;
+      out.profitW = coNum(coPick(p, CO_ALIAS.profitW)) ?? out.profitW;
+      out.custD   = coNum(coPick(p, CO_ALIAS.custD))   ?? out.custD;
+      out.custW   = coNum(coPick(p, CO_ALIAS.custW))   ?? out.custW;
+      out.days    = coNum(coPick(p, CO_ALIAS.days))    ?? out.days;
+      /* v1 profile carries a compact employee map (names & positions) */
+      const pEmp = coPick(p, ["employees"]);
+      if(pEmp && typeof pEmp === "object" && !Array.isArray(pEmp)) profileEmps = Object.assign(profileEmps || {}, pEmp);
+      out.parts.profile = true;
+    }
+    for(const d of sec.detailed){
+      out.bank     = coNum(coPick(d, CO_ALIAS.bank))     ?? out.bank;
+      out.pop      = coNum(coPick(d, CO_ALIAS.pop))      ?? out.pop;
+      out.effi     = coNum(coPick(d, CO_ALIAS.effi))     ?? out.effi;
+      out.env      = coNum(coPick(d, CO_ALIAS.env))      ?? out.env;
+      out.trains   = coNum(coPick(d, CO_ALIAS.trains))   ?? out.trains;
+      out.adbudget = coNum(coPick(d, CO_ALIAS.adbudget)) ?? out.adbudget;
+      const up = coPick(d, ["upgrades","company_upgrades"]) || {};
+      out.upgrades = {
+        size:    coPick(up, CO_ALIAS.size)    ?? coPick(d, CO_ALIAS.size)    ?? out.upgrades.size,
+        staff:   coPick(up, CO_ALIAS.staff)   ?? coPick(d, CO_ALIAS.staff)   ?? out.upgrades.staff,
+        storage: coPick(up, CO_ALIAS.storage) ?? coPick(d, CO_ALIAS.storage) ?? out.upgrades.storage,
+        space:   coNum(coPick(up, CO_ALIAS.space) ?? coPick(d, CO_ALIAS.space)) ?? out.upgrades.space
+      };
+      out.parts.detailed = true;
+    }
+    if(profileEmps){
+      /* profile knows every employee's name/position even without the directors' section */
+      out.employees = coEmployeesList([profileEmps], profileEmps);
+    }
+    if(sec.employees.length){
+      const list = coEmployeesList(sec.employees, profileEmps);
+      const keep = out.employees.filter(e => !list.some(n => n.id === e.id));
+      out.employees = list.concat(keep);
+      if(list.length) out.parts.employees = true;
+    }
+    if(sec.stock.length){
+      const rows = coStockList(sec.stock);
+      if(rows.length){ out.stock = rows; out.parts.stock = true; }
+    }
+  }
+  return out;
+}
+function coCompanyId(){
+  const job = (state.user && state.user.job) || null;
+  let id = null;
+  if(job && typeof job === "object"){
+    id = coPick(job, ["company_id","companyId"]) ??
+         (job.company && typeof job.company === "object" ? coPick(job.company, ["id","ID"]) : null);
+  }
+  return coNum(id) || coNum(coCompany && coCompany.id) || 0;
+}
+function coKey(){ return (settings.apiKey || "").trim(); }
+
+async function coFetchPart(sel){
+  let firstErr = null;
+  try{
+    return await tornFetch(`${API}/company/?selections=${sel}&key=${encodeURIComponent(coKey())}&comment=lumbercorp2`);
+  }catch(e){ firstErr = e; if(e && e.code === 2) throw e; }
+  /* optional fallback: the user's own proxy, which speaks Torn v2 */
+  const base = (typeof bzApiBase === "function" ? bzApiBase() : "").trim();
+  const id = coCompanyId();
+  if(base && id){
+    try{
+      const r = await fetch(base + "/api/torn?path=" + encodeURIComponent("/company/" + id + "/" + sel)
+        + "&key=" + encodeURIComponent(coKey()), { cache:"no-store" });
+      const j = await r.json();
+      if(j && !j.error) return j;
+    }catch(e2){ /* keep the original error */ }
+  }
+  throw firstErr || new Error("Torn company endpoint unreachable");
+}
+
+async function coFetch(silent){
+  if(coBusy) return false;
+  if(!coKey()){
+    coErr = "Add a Torn API key in Setup → Data Source to read your company.";
+    coErrCode = null;
+    renderCompanyMine();
+    return false;
+  }
+  coBusy = true;
+  const btn = $("coRefresh");
+  if(btn){ btn.disabled = true; btn.classList.add("spin"); }
+  try{
+    const parts = await Promise.all(["profile","detailed","employees","stock"].map(async sel => {
+      try { return { sel, ok:true, data: await coFetchPart(sel) }; }
+      catch(e){ return { sel, ok:false, err:e }; }
+    }));
+    const good = parts.filter(p => p.ok).map(p => p.data);
+    if(!good.length){
+      const e = (parts.find(p => !p.ok) || {}).err || new Error("Torn returned nothing");
+      coErrCode = e && e.code != null ? e.code : null;
+      coErr = coErrCode === 16
+        ? "This key can't read company data. You need at least Minimal access for the company profile — the director's bank, employees and stock need Limited access."
+        : describeApiError(e);
+      if(!silent) toast("⚠️ Company: " + escHtml(coErr), "warn");
+      renderCompanyMine();
+      return false;
+    }
+    const merged = coNormalize(good);
+    const prevParts = (coCompany && coCompany.parts) || {};
+    merged.parts = Object.assign({}, prevParts, merged.parts);
+    coCompany = merged;
+    coSave();
+    coErr = null; coErrCode = null;
+    const refused = parts.filter(p => !p.ok).map(p => p.sel);
+    if(!silent){
+      toast(refused.length ? "🏢 Company updated (some sections refused: " + escHtml(refused.join(", ")) + ")" : "🏢 Company updated from the Torn API",
+            refused.length ? "warn" : "ok");
+    }
+    logAct("🏢", "Company data synced" + (refused.length ? " — refused: " + refused.join(", ") : ""));
+    return true;
+  }catch(e){
+    coErr = (e && e.message) || "Torn company call failed";
+    coErrCode = e && e.code != null ? e.code : null;
+    if(!silent) toast("⚠️ Company: " + escHtml(coErr), "warn");
+    return false;
+  }finally{
+    coBusy = false;
+    if(btn){ btn.disabled = false; btn.classList.remove("spin"); }
+    renderCompanyMine();
+  }
+}
+
+/* ---------- demo company (so the layout is explorable without a key) ------ */
+function demoCompany(){
+  const cat = CO_BY_ID["music"];
+  return {
+    id: 90210, name: "Lumber Corp Records", type: 23, rating: 4.5,
+    directorId: 1234567, directorName: "ShadowReaper",
+    profitD: 1840000, profitW: 12900000, custD: 412, custW: 2880, days: 96,
+    bank: 8420000, pop: 78, effi: 84, env: 66, trains: 2, adbudget: 250000,
+    upgrades: { size: 6, staff: "Large staff room", storage: "Warehouse", space: 2200 },
+    employees: [
+      { id:"1", name:"VinylVixen",  position:"Store Manager",  days:64, wage:24000, eff:96, man:12000, int:64000, end:31000 },
+      { id:"2", name:"BassLine",    position:"Trainer",        days:41, wage:19000, eff:91, man:9800,  int:88000, end:22000 },
+      { id:"3", name:"MixTape",     position:"Marketer",       days:23, wage:15500, eff:72, man:7400,  int:41000, end:18000 },
+      { id:"4", name:"NeedleDrop",  position:"Cleaner",        days:8,  wage:9000,  eff:58, man:31000, int:6200,  end:36000 },
+      { id:"5", name:"LofiLarry",   position:"Secretary",      days:12, wage:11200, eff:64, man:9000,  int:26000, end:14000 }
+    ],
+    stock: [
+      { name:"Grand Piano",       cost:45000, rrp:62000,  price:59000, inStock:6,  onOrder:2, sold:3, worth:177000 },
+      { name:"Electric Guitar",   cost:12800, rrp:19000,  price:18500, inStock:14, onOrder:0, sold:41, worth:758500 },
+      { name:"Drum Kit",          cost:9400,  rrp:14000,  price:13900, inStock:9,  onOrder:10, sold:22, worth:305800 },
+      { name:"Vinyl Record",      cost:320,   rrp:900,    price:880,   inStock:180,onOrder:0, sold:640, worth:563200 },
+      { name:"Sheet Music",       cost:80,    rrp:220,    price:210,   inStock:64, onOrder:200, sold:910, worth:191100 },
+      { name:"Microphone",        cost:2600,  rrp:4200,   price:4100,  inStock:12, onOrder:0, sold:35, worth:143500 }
+    ],
+    at: Date.now(), src: "demo", parts: { profile:true, detailed:true, employees:true, stock:true },
+    catalogue: cat
+  };
+}
+
+/* ---------- rendering helpers ---------- */
+function coMatchCatalogue(c){
+  if(!c) return null;
+  if(c.catalogue) return c.catalogue;
+  const t = c.type;
+  if(typeof t === "string"){
+    const s = t.trim().toLowerCase();
+    const hit = CO_COMPANIES.find(x => x.n.toLowerCase() === s)
+             || CO_COMPANIES.find(x => s.includes(x.n.toLowerCase()));
+    if(hit) return hit;
+  }
+  const tid = Number(t);
+  if(CO_TYPE_IDS[tid]){
+    const nm = CO_TYPE_IDS[tid].toLowerCase();
+    const hit = CO_COMPANIES.find(x => x.n.toLowerCase() === nm || x.n.toLowerCase().startsWith(nm.split(" ")[0]));
+    if(hit) return hit;
+  }
+  if(typeof c.name === "string"){
+    const s = c.name.trim().toLowerCase();
+    const hit = CO_COMPANIES.find(x => s.includes(x.n.toLowerCase()));
+    if(hit) return hit;
+  }
+  return null;
+}
+function coTypeLabel(c){
+  if(!c) return "Company";
+  const cat = coMatchCatalogue(c);
+  if(cat) return cat.n;
+  if(typeof c.type === "string" && isNaN(Number(c.type))) return c.type;
+  const tid = Number(c.type);
+  return CO_TYPE_IDS[tid] || (tid ? "Company type #" + tid : "Company");
+}
+function coStars(rating){
+  const r = Math.max(0, Math.min(5, Number(rating) || 0));
+  const full = Math.round(r);
+  return `<span class="costar" title="${r ? r.toFixed(2) : "0"} / 5">${"★".repeat(full)}${"☆".repeat(5 - full)}</span>`;
+}
+function coMeter(label, value, max, unit){
+  const v = Number(value);
+  if(value == null || isNaN(v)) return "";
+  const pct = max ? Math.max(0, Math.min(100, (v / max) * 100)) : 0;
+  const cls = max === 100 ? (pct >= 70 ? "ok" : pct >= 40 ? "" : "warn") : "";
+  return `<div class="cometer"><span>${escHtml(label)}<b>${unit === "$" ? fmtMoney(v) : fmtInt(v)}${max === 100 ? "%" : ""}</b></span>
+    ${max ? `<div class="cobar ${cls}"><i style="width:${pct}%"></i></div>` : ""}</div>`;
+}
+function coStat(label, value, note){
+  return `<div class="card costat"><div class="l">${escHtml(label)}</div>
+    <div class="v">${value == null ? "—" : escHtml(String(value))}</div>
+    ${note ? `<div class="n">${escHtml(note)}</div>` : ""}</div>`;
+}
+
+/* ---------- My Company renders ---------- */
+function coHeroHtml(c){
+  const stars = Number(c.rating) || 0;
+  const isDemo = c.src === "demo";
+  const parts = c.parts || {};
+  const missing = ["profile","detailed","employees","stock"].filter(p => !parts[p]);
+  return `<div class="card cohero" style="margin-bottom:13px">
+    <div class="cohero-mark">${coMatchCatalogue(c) ? coMatchCatalogue(c).g : "🏢"}</div>
+    <div class="cohero-main">
+      <div class="cohero-name">${escHtml(c.name || "Your company")}
+        ${isDemo ? '<span class="chip warn">demo preview</span>' : '<span class="chip ok">live</span>'}
+        <span class="chip accent">${escHtml(coTypeLabel(c))}</span></div>
+      <div class="cohero-sub">Director <b>${escHtml(c.directorName || (c.directorId ? "#" + c.directorId : "—"))}</b>
+        · ${c.days != null ? fmtInt(c.days) + " days old" : "age unknown"}
+        · ${c.employees.length ? fmtInt(c.employees.length) + " employee" + (c.employees.length === 1 ? "" : "s") : "no employee list"}
+        · read ${timeAgo(c.at)}</div>
+      <div class="cobars">
+        <div class="cometer"><span>Star rating<b>${stars ? stars.toFixed(2) : "—"} / 5</b></span>
+          <div class="cobar ${stars >= 7 ? "ok" : ""}"><i style="width:${(stars / 5) * 100}%"></i></div></div>
+        ${coMeter("Popularity", c.pop, 100)}
+        ${coMeter("Efficiency", c.effi, 100)}
+        ${coMeter("Environment", c.env, 100)}
+      </div>
+    </div>
+    <div class="cohero-side">
+      <div><small>Daily profit</small><b>${fmtMoney(c.profitD)}</b></div>
+      <div><small>Weekly profit</small><b>${fmtMoney(c.profitW)}</b></div>
+      <div><small>Company bank</small><b>${fmtMoney(c.bank)}</b></div>
+    </div>
+  </div>
+  ${missing.length ? `<div class="conote" style="margin:-6px 2px 12px">
+    Torn hasn't returned: <b>${escHtml(missing.join(", "))}</b>. ${parts.profile ? "Those selections need a Limited-access key held by the company director." : "That usually means the key isn't Minimal access, or you don't work for a company."}
+  </div>` : ""}`;
+}
+function coStatsHtml(c){
+  const tiles = [
+    coStat("Daily customers", c.custD == null ? null : fmtInt(c.custD), c.custW != null ? fmtInt(c.custW) + " this week" : ""),
+    coStat("Company bank", fmtMoney(c.bank), "withdrawable funds"),
+    coStat("Popularity", c.pop == null ? null : c.pop + "%", "drives customer flow"),
+    coStat("Efficiency", c.effi == null ? null : c.effi + "%", "staff in the right roles"),
+    coStat("Environment", c.env == null ? null : c.env + "%", "cleaner keeps it up"),
+    coStat("Trains available", c.trains == null ? null : fmtInt(c.trains), "spend them on employees"),
+    coStat("Ad budget", fmtMoney(c.adbudget), "more ads, more customers"),
+    coStat("Company size", c.upgrades && c.upgrades.size != null ? fmtInt(c.upgrades.size) + " staff" : null, c.upgrades && c.upgrades.staff ? String(c.upgrades.staff) : ""),
+    coStat("Storage", c.upgrades && c.upgrades.storage ? String(c.upgrades.storage) : null,
+           c.upgrades && c.upgrades.space != null ? fmtInt(c.upgrades.space) + " units" : "")
+  ].filter(Boolean).join("");
+  return `<div class="card copanel" style="padding:13px 14px">
+    <h3>📊 Company stats <span class="count">${c.src === "demo" ? "sample numbers" : "updated " + timeAgo(c.at)}</span></h3>
+    <div class="costats">${tiles}</div>
+  </div>`;
+}
+function coOrdersHtml(c){
+  const rows = c.stock || [];
+  const head = `<div class="card copanel">
+    <h3>📦 Stock &amp; orders <span class="count">${rows.length ? fmtInt(rows.length) + " lines" : ""}</span></h3>`;
+  if(!rows.length){
+    return head + `<div class="conote">${c.parts && c.parts.stock
+      ? "Torn returned no stock lines for this company — some company types sell services (day passes, tickets, memberships) rather than orderable goods."
+      : "Stock and orders are director-only: they need a <b>Limited-access</b> key. Once the company has stock lines, this panel lists what's on the shelf, what's on order and what each line is earning."}</div></div>`;
+  }
+  let inStockVal = 0, onOrderVal = 0, soldVal = 0, soldQty = 0, revenueDay = 0;
+  const body = rows.map(r => {
+    const price = r.price, cost = r.cost;
+    const margin = (price != null && cost != null) ? price - cost : null;
+    const marginPct = (margin != null && price) ? (margin / price) * 100 : null;
+    if(cost != null && r.inStock != null) inStockVal += cost * r.inStock;
+    if(cost != null && r.onOrder != null) onOrderVal += cost * r.onOrder;
+    if(r.worth != null) soldVal += r.worth;
+    if(r.sold != null) soldQty += r.sold;
+    if(r.worth != null) revenueDay += r.worth;
+    const low = (r.onOrder === 0) && (r.inStock != null && r.inStock <= 5);
+    return `<tr>
+      <td class="name">${escHtml(r.name)}${low ? ' <span class="chip warn">reorder</span>' : ""}</td>
+      <td class="r">${cost == null ? "—" : fmtMoney(cost)}</td>
+      <td class="r co-muted">${r.rrp == null ? "—" : fmtMoney(r.rrp)}</td>
+      <td class="r">${price == null ? "—" : fmtMoney(price)}</td>
+      <td class="r ${margin == null ? "" : margin >= 0 ? "co-up" : "co-down"}">${margin == null ? "—" : fmtMoney(margin)}${marginPct != null ? ` <span class="co-muted">(${marginPct.toFixed(0)}%)</span>` : ""}</td>
+      <td class="r">${r.inStock == null ? "—" : fmtInt(r.inStock)}</td>
+      <td class="r">${r.onOrder == null ? "—" : fmtInt(r.onOrder)}</td>
+      <td class="r">${r.sold == null ? "—" : fmtInt(r.sold)}</td>
+      <td class="r">${r.worth == null ? "—" : fmtMoney(r.worth)}</td>
+    </tr>`;
+  }).join("");
+  const reorder = rows.filter(r => (r.onOrder === 0) && (r.inStock != null && r.inStock <= 5)).map(r => r.name);
+  const badPrice = rows.filter(r => r.price != null && r.cost != null && r.price < r.cost).map(r => r.name);
+  return head + `
+    <div class="csub">Cost is what the company pays per unit; price is what you charge. Margin is profit per unit sold.</div>
+    <div class="tblwrap"><table class="cotbl">
+      <thead><tr>
+        <th>Item</th><th class="r">Cost</th><th class="r">RRP</th><th class="r">Your price</th><th class="r">Margin / unit</th>
+        <th class="r">In stock</th><th class="r">On order</th><th class="r">Sold</th><th class="r">Revenue</th>
+      </tr></thead>
+      <tbody>${body}</tbody>
+      <tfoot><tr>
+        <td>Totals</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">—</td>
+        <td class="r">${fmtMoney(inStockVal)} <span class="co-muted">at cost</span></td>
+        <td class="r">${fmtMoney(onOrderVal)}</td>
+        <td class="r">${fmtInt(soldQty)}</td>
+        <td class="r">${fmtMoney(soldVal)}</td>
+      </tr></tfoot>
+    </table></div>
+    ${reorder.length ? `<div class="conote" style="margin-top:9px">🛒 <b>Nothing on order</b> for ${escHtml(reorder.join(", "))} — reorder before the shelf runs dry.</div>` : ""}
+    ${badPrice.length ? `<div class="conote" style="margin-top:5px">🔻 You're selling <b>${escHtml(badPrice.join(", "))}</b> below cost.</div>` : ""}
+  </div>`;
+}
+function coEmployeesHtml(c){
+  const rows = c.employees || [];
+  const head = `<div class="card copanel">
+    <h3>👥 Employees <span class="count">${rows.length ? fmtInt(rows.length) + " on the books" : ""}</span></h3>`;
+  if(!rows.length){
+    return head + `<div class="conote">${c.parts && c.parts.employees
+      ? "Torn returned no employees — either the company is empty or nobody is on the roster yet."
+      : "The employee list, wages and working stats are director-only (Limited access). <b>Cleaner / Manager / Marketer / Secretary / Trainer</b> are the special roles: a Manager lifts under-performing staff, a Marketer stretches the ad budget and a Trainer generates trains for every 10 effectiveness."}</div></div>`;
+  }
+  let wages = 0, effSum = 0, effN = 0;
+  const body = rows.map(e => {
+    if(e.wage != null) wages += e.wage;
+    if(e.eff != null){ effSum += e.eff; effN++; }
+    const lowEff = e.eff != null && e.eff < 60;
+    return `<tr>
+      <td class="name">${escHtml(e.name || "#" + e.id)}</td>
+      <td>${escHtml(e.position || "—")}${e.status && e.status !== "Okay" ? ` <span class="chip">${escHtml(e.status)}</span>` : ""}</td>
+      <td class="r">${e.days == null ? "—" : fmtInt(e.days)}</td>
+      <td class="r">${e.wage == null ? "—" : fmtMoney(e.wage)}</td>
+      <td class="r ${lowEff ? "co-down" : ""}">${e.eff == null ? "—" : e.eff + "%"}</td>
+      <td class="r co-muted">${e.man == null && e.int == null && e.end == null ? "—" :
+        `${fmtInt(e.man)} / ${fmtInt(e.int)} / ${fmtInt(e.end)}`}</td>
+    </tr>`;
+  }).join("");
+  const avg = effN ? Math.round(effSum / effN) : null;
+  return head + `
+    <div class="csub">M / I / E are the employee's manual labour, intelligence and endurance — put stats where the role needs them and effectiveness climbs.</div>
+    <div class="tblwrap"><table class="cotbl">
+      <thead><tr><th>Employee</th><th>Position</th><th class="r">Days</th><th class="r">Wage / day</th><th class="r">Effectiveness</th><th class="r">M / I / E</th></tr></thead>
+      <tbody>${body}</tbody>
+      <tfoot><tr><td>Totals</td><td>${fmtInt(rows.length)} staff</td><td class="r">—</td>
+        <td class="r">${fmtMoney(wages)}</td><td class="r">${avg == null ? "—" : avg + "% avg"}</td><td class="r">—</td></tr></tfoot>
+    </table></div>
+  </div>`;
+}
+function coSpecialsHtml(c, opts){
+  opts = opts || {};
+  const cat = coMatchCatalogue(c);
+  const head = `<div class="card copanel">
+    <h3>🎁 Company specials <span class="count">${cat ? escHtml(cat.n) + " ladder" : "unlock as stars rise"}</span></h3>`;
+  if(!cat){
+    return head + `<div class="conote">Couldn't match this company to a known type, so its specials ladder can't be shown. ${opts.hideTip ? "" : "Pick the company type in the <b>What company should I make?</b> sub-tab to read the five perks on offer."}</div></div>`;
+  }
+  const rating = Number(c.rating) || 0;
+  const next = cat.s.find(row => rating < row[0]);
+  const rows = cat.s.map(row => {
+    const [star, name, cost, effect] = row;
+    const on = rating >= star;
+    const isNext = next && next[0] === star;
+    return `<div class="colad-row ${on ? "on" : "locked"} ${isNext ? "next" : ""}">
+      <span class="st ${on ? "on" : ""}">${star}★</span>
+      <span class="nm">${escHtml(name)}${isNext ? ' <span class="next-tag">next</span>' : ""}</span>
+      <span class="ef">${escHtml(effect)}</span>
+      <span class="cst">${cost === "passive" ? "passive" : fmtInt(cost) + " jp"}</span>
+    </div>`;
+  }).join("");
+  const tip = cat.s.length && rating
+    ? (next ? `You're <b>${(next[0] - rating).toFixed(2)} stars</b> away from <b>${escHtml(next[1])}</b>.` : `<b>All five specials unlocked</b> — 10★ reached.`)
+    : "";
+  return head + `
+    <div class="csub">Specials unlock at whole star ratings. “Passive” perks are always on once unlocked; the rest are bought with company job points.</div>
+    <div class="colad">${rows}</div>
+    ${tip ? `<div class="conote" style="margin-top:9px">${tip}</div>` : ""}
+  </div>`;
+}
+function coTipsHtml(c){
+  const tips = [];
+  const cat = coMatchCatalogue(c);
+  if(c.effi != null && c.effi < 70)
+    tips.push(`Efficiency is <b>${c.effi}%</b> — move staff into roles that match their working stats (Manager, Marketer, Trainer, Cleaner) and effectiveness will climb.`);
+  if(c.env != null && c.env < 60)
+    tips.push(`Environment is <b>${c.env}%</b> — a Cleaner in the right slot keeps customers flowing.`);
+  if(c.pop != null && c.pop < 60)
+    tips.push(`Popularity is <b>${c.pop}%</b> — an advertising budget grows daily customers and therefore profit.`);
+  if(c.trains != null && c.trains > 0)
+    tips.push(`You have <b>${fmtInt(c.trains)} train${c.trains === 1 ? "" : "s"}</b> available — spend them on employees for permanent stat gains.`);
+  if(c.bank != null && c.bank > 0)
+    tips.push(`The company bank holds <b>${fmtMoney(c.bank)}</b>. Money left in the company can be stolen by hacking specials — keep only what you need for stock orders.`);
+  if(c.stock && c.stock.length){
+    const idle = c.stock.filter(r => r.onOrder === 0 && (r.inStock != null && r.inStock <= 5));
+    if(idle.length) tips.push(`<b>${escHtml(idle.map(r => r.name).join(", "))}</b> ${idle.length === 1 ? "is" : "are"} nearly out with nothing on order.`);
+  }
+  if(cat && cat.id === "music" && (Number(c.rating) || 0) < 10)
+    tips.push(`Every star is advertising + stock + staff. 10★ The Score (+15% all stats) is the reason people buy a Music Store.`);
+  if(!tips.length) return "";
+  return `<div class="card copanel"><h3>💡 What to do next</h3>
+    <ul style="list-style:none;display:flex;flex-direction:column;gap:7px;margin-top:6px">
+      ${tips.map(t => `<li style="font-size:12.5px;color:var(--muted);line-height:1.5;padding-left:16px;position:relative"><span style="position:absolute;left:0">•</span>${t}</li>`).join("")}
+    </ul></div>`;
+}
+function coNoCompanyHtml(){
+  const isLive = state.mode === "live" && !!coKey();
+  const job = state.user && state.user.job;
+  const jobLine = job && typeof job === "object" && job.company_id
+    ? `<div class="conote" style="margin-top:9px">You're on <b>${escHtml(job.position || "staff")}</b> at a company (#${escHtml(String(job.company_id))}). ${escHtml(coErr || "The director's bank, employees and stock are only visible to the director's key.")}</div>`
+    : "";
+  return `<div class="card copanel">
+    <h3>🏢 ${isLive ? (coErr ? "Company data unavailable" : "You don't run a company yet") : "My Company"}</h3>
+    <div class="csub">${isLive
+      ? escHtml(coErr || "Your key is connected, but Torn returned no company for it — you need to be the director (or an employee) of one to see the dashboard.")
+      : "The director's dashboard — profit, customers, stock and orders, employees, upgrades and your specials ladder — appears here as soon as you're running a company in live mode."}</div>
+    ${jobLine}
+    <div class="corow" style="margin-top:11px">
+      <button class="btn primary" data-co="guide">🧭 What company should I make?</button>
+      <button class="btn" data-co="demo">👀 Preview a demo company</button>
+      <a class="btn" href="https://www.torn.com/companies.php" target="_blank" rel="noopener">Open Torn companies</a>
+      ${state.mode !== "live" ? '<button class="btn" data-co="live">🔑 Connect live mode</button>' : ""}
+    </div>
+    <div class="conote" style="margin-top:11px">
+      <b>What a director sees here:</b> daily &amp; weekly profit, daily &amp; weekly customers, popularity, efficiency and environment bars,
+      the company bank and advertising budget, size / staff-room / storage upgrades, every stock line (cost, RRP, your price, in stock, on order, sold, revenue),
+      the full employee list with wages and working stats, and the five specials your star rating has unlocked.
+      All of it needs at least a <b>Minimal-access</b> key, and <b>Limited access</b> for the director-only sections.
+    </div>
+  </div>`;
+}
+function renderCompanyMine(){
+  const el = $("coMine");
+  if(!el) return;
+  const isDemoMode = state.mode === "demo";
+  const c = coCompany || coDemoPick || (isDemoMode ? demoCompany() : null);
+  if(!c){ el.innerHTML = coNoCompanyHtml(); return; }
+  el.innerHTML = coHeroHtml(c) + coStatsHtml(c) + coOrdersHtml(c) + coEmployeesHtml(c) + coSpecialsHtml(c, {}) + coTipsHtml(c)
+    + `<div class="corow" style="margin:2px 2px 14px">
+        <button class="btn sm" id="coRefresh">⟳ Refresh from Torn</button>
+        ${c.src === "demo" ? '<button class="btn sm" data-co="guide">🧭 Pick a real company</button>' : ""}
+        ${c.src === "demo" && coDemoPick ? '<button class="btn sm" data-co="closepreview">✕ Close preview</button>' : ""}
+        <a class="btn sm" href="https://www.torn.com/companies.php" target="_blank" rel="noopener">Manage on Torn ↗</a>
+        <span class="cospacer conote" id="coUpdated">${c.src === "demo" ? "Demo preview — sample numbers so you can see the layout" : "last good read " + timeAgo(c.at)}</span>
+      </div>`;
+  const rb = $("coRefresh");
+  if(rb) rb.addEventListener("click", () => coFetch(false));
+}
+
+/* ============================================================== GUIDE ==== */
+function coFiltered(){
+  const q = coQuery.trim().toLowerCase();
+  let list = CO_COMPANIES.slice();
+  if(coTierSel !== "all") list = list.filter(c => coTier(c.cost).id === coTierSel);
+  if(q){
+    list = list.filter(c => {
+      const hay = [c.n, c.tag, c.mk, ...(c.hl || []), ...(c.pro || []), ...(c.con || []),
+                   ...(c.s || []).map(r => r[1] + " " + r[3]), coTier(c.cost).label].join(" ").toLowerCase();
+      return hay.includes(q);
+    });
+  }
+  const scoring = coGoals.length;
+  const sorters = {
+    match:  (a, b) => (scoring ? coScoreFor(b, coGoals) - coScoreFor(a, coGoals) : 0) || a.cost - b.cost,
+    cheap:  (a, b) => a.cost - b.cost,
+    profit: (a, b) => b.inc - a.inc || a.cost - b.cost,
+    effort: (a, b) => a.eff - b.eff || a.cost - b.cost,
+    name:   (a, b) => a.n.localeCompare(b.n)
+  };
+  return list.sort(sorters[coSortSel] || sorters.match);
+}
+function coCash(){
+  if(state.mode !== "live") return null;
+  const m = state.user && state.user.money_onhand;
+  return (typeof m === "number" && !isNaN(m)) ? m : null;
+}
+function coAffordHtml(c){
+  const cash = coCash();
+  if(cash == null) return "";
+  if(cash >= c.cost) return `<span class="chip ok">✔ affordable now</span>`;
+  return `<span class="chip warn">${fmtMoney(c.cost - cash)} short</span>`;
+}
+function coCardHtml(c){
+  const t = coTier(c.cost);
+  const best = coBestFor(c);
+  const score = coGoals.length ? coScoreFor(c, coGoals) : 0;
+  const cat = coMatchCatalogue(c);
+  return `<article class="card cocard ${score >= 6 ? "top" : ""}" id="coCard-${c.id}">
+    <header class="cocard-head">
+      <span class="cocard-mark">${c.g}</span>
+      <div class="cocard-title">
+        <h3>${escHtml(c.n)} <span class="chip">${escHtml(t.label)} · ${escHtml(t.hint)}</span></h3>
+        <div class="sub">${fmtMoney(c.cost)} to open · ${c.emp} employees to start · upgradable</div>
+      </div>
+      <div class="cocard-rate"><b>${c.inc}/5</b>profit</div>
+    </header>
+    <div class="cocard-body">
+      <div class="tag"><b>${escHtml(c.tag)}</b><br>${escHtml(c.mk)}</div>
+      <div class="cohls">${c.hl.map(h => `<span class="chip accent">${escHtml(h)}</span>`).join("")}</div>
+      <div class="copc">
+        <div class="pros"><div class="ttl">Pros</div><ul>${c.pro.map(p => `<li>${escHtml(p)}</li>`).join("")}</ul></div>
+        <div class="cons"><div class="ttl">Cons</div><ul>${c.con.map(p => `<li>${escHtml(p)}</li>`).join("")}</ul></div>
+      </div>
+      <details>
+        <summary>Bonus ladder — all five specials (1★ → 10★)</summary>
+        <div class="colad">${c.s.map(r => `<div class="colad-row">
+          <span class="st">${r[0]}★</span><span class="nm">${escHtml(r[1])}</span>
+          <span class="ef">${escHtml(r[3])}</span>
+          <span class="cst">${r[2] === "passive" ? "passive" : fmtInt(r[2]) + " jp"}</span></div>`).join("")}</div>
+      </details>
+      <div class="cobest">Best for ${best.map(g => `<span class="chip">${escHtml(g.chip)}</span>`).join("") || '<span class="chip">general play</span>'}
+        ${coGoals.length ? `<span class="cospacer"></span><span class="chip accent">match ${score}</span>` : ""}</div>
+    </div>
+    <footer class="cocard-foot">
+      ${coAffordHtml(c)}
+      <span class="cospacer"></span>
+      <button class="btn sm" data-copick="${c.id}">🔎 Focus</button>
+      <button class="btn sm" data-codemo="${c.id}">👀 Demo it</button>
+    </footer>
+  </article>`;
+}
+function coTopHtml(){
+  const el = $("coTop");
+  if(!el) return;
+  if(!coGoals.length){
+    el.innerHTML = `<div class="conote">Tap a goal above — or two, or three — and the shortlist below ranks every company that serves them. Nothing is preselected? The list just sorts by price.</div>`;
+    return;
+  }
+  const ranked = CO_COMPANIES.map(c => ({ c, s: coScoreFor(c, coGoals) }))
+    .filter(x => x.s > 0).sort((a, b) => b.s - a.s || a.c.cost - b.c.cost).slice(0, 5);
+  if(!ranked.length){ el.innerHTML = ""; return; }
+  const cash = coCash();
+  el.innerHTML = `<div class="cogoals" style="gap:6px">${coGoals.map(g => `<span class="chip accent">${escHtml(CO_GOAL_BY_ID[g] ? CO_GOAL_BY_ID[g].label : g)}</span>`).join("")}</div>`
+    + ranked.map((x, i) => {
+        const why = coGoals.map(g => CO_GOAL_BY_ID[g]).filter(g => g && (g.w[x.c.id] || 0) >= 2).map(g => g.chip);
+        const afford = cash == null ? "" : (cash >= x.c.cost ? ' <span class="chip ok">affordable</span>' : ` <span class="chip warn">${fmtMoney(x.c.cost - cash)} short</span>`);
+        return `<div class="corank">
+          <span class="rk">${i + 1}</span>
+          <span>${x.c.g}</span>
+          <div><div class="nm">${escHtml(x.c.n)}${afford}</div>
+            <div class="why">${escHtml(x.c.tag)}${why.length ? " · hits: " + escHtml(why.join(", ")) : ""}</div></div>
+          <div class="cst">${fmtMoney(x.c.cost)}<br><span class="co-muted">${x.c.emp} staff · ${x.c.inc}/5 profit</span></div>
+          <button class="btn sm" data-copick="${x.c.id}">Open</button>
+        </div>`;
+      }).join("");
+}
+function renderCompanyGuide(){
+  const grid = $("coGrid");
+  if(!grid) return;
+  /* goal chips */
+  const gc = $("coGoals");
+  if(gc){
+    gc.innerHTML = CO_GOALS.map(g => `<button class="cogoal ${coGoals.includes(g.id) ? "on" : ""}" data-cogoal="${g.id}">${escHtml(g.label)}</button>`).join("")
+      + (coGoals.length ? `<button class="cogoal" data-cogoal="__clear">✕ Clear</button>` : "");
+  }
+  coTopHtml();
+  const list = coFiltered();
+  const total = CO_COMPANIES.length;
+  $("coCount").innerHTML = `Showing <b>${list.length}</b> of ${total} companies`
+    + (coQuery ? ` matching “${escHtml(coQuery)}”` : "")
+    + (coTierSel !== "all" ? ` in the ${escHtml(coTier((coTierSel === "starter" ? 0 : coTierSel === "small" ? 1e6 : coTierSel === "mid" ? 1e7 : coTierSel === "large" ? 1e8 : 1e9)).label)} tier` : "")
+    + (coSortSel === "match" && coGoals.length ? " · sorted by how well they serve your goals" : "")
+    + `. Cheapest company: <b>${escHtml(CO_COMPANIES.slice().sort((a,b) => a.cost-b.cost)[0].n)}</b> ($500K).`;
+  grid.innerHTML = list.length ? list.map(coCardHtml).join("")
+    : `<div class="coempty">No company matches those filters. Try clearing the search or picking a different price tier.</div>`;
+}
+function renderCompany(){
+  const mine = $("coTabSeg").querySelector('[data-cotab="mine"]');
+  const guide = $("coTabSeg").querySelector('[data-cotab="guide"]');
+  mine.classList.toggle("active", coTab === "mine");
+  guide.classList.toggle("active", coTab === "guide");
+  $("coMine").hidden = coTab !== "mine";
+  $("coGuide").hidden = coTab !== "guide";
+  $("coNote").innerHTML = coTab === "mine"
+    ? (coCompany && coCompany.src !== "demo" ? "Live director view · " + timeAgo(coCompany.at) : "Your company, once you own one")
+    : "All 39 companies · costs, staff, specials, pros &amp; cons";
+  if(coTab === "mine") renderCompanyMine();
+  else renderCompanyGuide();
+}
+function coApplyTab(silent){
+  store.set("lc2_cotab", coTab);
+  if(!silent) renderCompany();
+}
+function coFocusCompany(id){
+  coGoals = coGoals.slice();
+  coQuery = "";
+  coTierSel = "all";
+  const s = $("coSearch"); if(s) s.value = "";
+  const t = $("coTier"); if(t) t.value = "all";
+  const so = $("coSort"); if(so) so.value = coSortSel;
+  coTab = "guide"; coApplyTab(true);
+  renderCompany();
+  const el = $("coCard-" + id);
+  if(el){
+    el.scrollIntoView({ block:"center", behavior:"smooth" });
+    el.style.transition = "box-shadow .3s";
+    el.style.boxShadow = "0 0 0 2px var(--accent), var(--shadow)";
+    setTimeout(() => { el.style.boxShadow = ""; }, 1600);
+    const d = el.querySelector("details");
+    if(d) d.open = true;
+  }
+}
+function coDemoCompany(id){
+  const cat = CO_BY_ID[id] || CO_BY_ID.music;
+  const demo = demoCompany();
+  demo.catalogue = cat;
+  demo.name = "Demo — " + cat.n;
+  demo.type = cat.n;
+  demo.rating = Math.min(5, Math.max(3.5, cat.inc + 1.5));
+  demo.src = "demo";
+  demo.at = Date.now();
+  /* keep the sample roster/stock but scale it to the chosen company */
+  coDemoPick = demo;
+  coTab = "mine"; coApplyTab(true);
+  renderCompany();
+  toast("👀 Demo: " + escHtml(cat.n) + " — sample numbers, switch to live for your real company", "ok");
+}
+
+/* ---------- entry points ---------- */
+function coEnter(){
+  if(coTab === "mine" && coCompany && coCompany.src === "demo") coCompany = null;   // never keep a stale preview as "live"
+  if(coTab === "mine" && state.mode === "live" && coKey()
+     && (!coCompany || Date.now() - (coCompany.at || 0) > 5 * 60 * 1000)){
+    coFetch(true);
+  }
+  renderCompany();
+}
+function coWire(){
+  const seg = $("coTabSeg");
+  if(!seg) return;
+  seg.addEventListener("click", e => {
+    const b = e.target.closest("[data-cotab]");
+    if(!b) return;
+    coTab = b.dataset.cotab;
+    coApplyTab(false);
+    if(coTab === "guide") renderCompanyGuide();
+  });
+  /* any [data-co] action button anywhere in the app */
+  document.addEventListener("click", e => {
+    const b = e.target.closest("[data-co]");
+    if(!b) return;
+    const act = b.dataset.co;
+    if(act === "guide"){ coTab = "guide"; coApplyTab(false); renderCompany(); }
+    else if(act === "closepreview"){ coDemoPick = null; renderCompanyMine(); }
+    else if(act === "demo"){ coDemoCompany((coDemoPick && coDemoPick.catalogue && coDemoPick.catalogue.id) || "music"); }
+    else if(act === "live"){
+      if(typeof setMode === "function") setMode("live");
+    }
+  });
+  document.addEventListener("click", e => {
+    const pick = e.target.closest("[data-copick]");
+    if(pick){ coFocusCompany(pick.dataset.copick); return; }
+    const dem = e.target.closest("[data-codemo]");
+    if(dem){ coDemoCompany(dem.dataset.codemo); return; }
+    const g = e.target.closest("[data-cogoal]");
+    if(g){
+      const id = g.dataset.cogoal;
+      if(id === "__clear") coGoals = [];
+      else coGoals = coGoals.includes(id) ? coGoals.filter(x => x !== id) : coGoals.concat([id]);
+      if(coGoals.length > 6) coGoals = coGoals.slice(-6);
+      store.set("lc2_cogoals", coGoals);
+      renderCompanyGuide();
+    }
+  });
+  const s = $("coSearch");
+  if(s) s.addEventListener("input", e => { coQuery = e.target.value; renderCompanyGuide(); });
+  const t = $("coTier");
+  if(t) t.addEventListener("change", e => { coTierSel = e.target.value; renderCompanyGuide(); });
+  const so = $("coSort");
+  if(so) so.addEventListener("change", e => { coSortSel = e.target.value; renderCompanyGuide(); });
+}
+</script>
+<script>
+"use strict";
+/* ========================= RACE TO LEVEL 15 =========================
+ * A plan tab: why 15 matters, the fastest route there, what it costs in
+ * energy and time, a live pace calculator built on how XP/energy really
+ * work, a tick-list you can keep, and the traps that cost days.
+ *
+ * Facts (energy regen 5/10 min donator or 5/15 min non-donator, 25 energy per
+ * attack, leave > mug > hosp XP, level unlocks) come from the Torn Wiki:
+ *   https://wiki.torn.com/wiki/Level_and_Ranks
+ *   https://wiki.torn.com/wiki/Energy
+ *   https://wiki.torn.com/wiki/Attack
+ * The XP curve itself is hidden by Torn — the attack estimate is the
+ * community figure (~100–200 winning attacks from level 1) and is adjustable.
+ * ================================================================== */
+
+/* ---------- level unlocks ---------- */
+const RC_UNLOCKS = [
+  [2,  "Bookies"],
+  [3,  "Join a company · Lottery"],
+  [4,  "Blackjack"],
+  [5,  "Auction House · missions beyond George's · Poker"],
+  [6,  "Russian Roulette"],
+  [7,  "Spin the Wheel"],
+  [10, "Become the Director of a company"],
+  [13, "Global chat"],
+  [15, "🛫 Travel Agency — fly abroad and buy flowers & plushies to resell"]
+];
+const RC_TARGET = 15;
+
+/* ---------- the plan ---------- */
+const RC_PHASES = [
+{ id:"setup", g:"🧰", when:"First 30 min", name:"Setup — before you spend a single energy point",
+  goal:"Get geared and connected first. Every fight you lose without armour is 25 energy that earned nothing.",
+  steps:[
+    { t:"Add a Torn API key (Minimal or Limited access)",
+      d:"Setup → Data Source. This tab then tracks your level, energy and nerve live and tells you exactly how many attacks a day you need." },
+    { t:"Turn on the energy-full notification",
+      d:"Alerts → energy full. Sitting on a full bar is wasted regeneration — it is the single easiest way to lose a day." },
+    { t:"Buy a weapon and a full set of armour",
+      d:"Any cheap melee weapon beats bare fists, and five pieces of armour cut the damage you take. Check Bits 'n' Bobs or the item market." },
+    { t:"Stock up on First Aid Kits",
+      d:"A loss puts you in hospital. You want to heal and be attacking again in minutes, not sitting out a hospital timer." },
+    { t:"Take a city job",
+      d:"Jobs pay a wage, grow work stats and drip XP. The Job Book tab has all six city ladders and their requirements. You can join a company from level 3." },
+    { t:"Join a faction and ask for gear, Xanax and cheap rent",
+      d:"Factions lend weapons and armour and hand Xanax to members. In practice this is the difference between five days and two weeks." },
+    { t:"Bank your cash",
+      d:"New players holding money on hand get mugged. Bank withdrawals are free — only carry what you're about to spend." },
+    { t:"Start an education course",
+      d:"You can't rush it for free, but the clock only runs while a course is active — start one now and it's money in the bank later." }
+  ]},
+{ id:"base", g:"🏋️", when:"Days 1–2", name:"Build a baseline (the part everyone skips)",
+  goal:"About 300–500 total battle stats, so the attacks you pay 25 energy for are attacks you win.",
+  steps:[
+    { t:"Train to roughly 300–500 total battle stats before the grind",
+      d:"Losing an attack costs the same 25 energy as winning one and gives no XP. Under ~300 stats you'll lose to the targets you want to farm." },
+    { t:"Lean your training into strength and speed",
+      d:"Strength is damage, speed is hit chance. Early on a rough 40/40/10/10 split across strength / speed / dexterity / defence beats a flat spread." },
+    { t:"Never sit on a full energy bar",
+      d:"Energy refills at 5 per 10 minutes (donator, max 150) or 5 per 15 minutes (max 100). At the cap, regeneration simply stops — those points never come back." },
+    { t:"Spend your nerve as it fills",
+      d:"One nerve every five minutes. Crimes give XP and crime XP, and crime XP grows your nerve bar — which means more crime XP next session." },
+    { t:"Work through George's missions",
+      d:"Missions hand out XP, cash and items, and they teach the systems you'll rely on after level 15." },
+    { t:"Log in every 2–3 hours while awake",
+      d:"This is most of 'how fast you level'. Two players with identical stats can be three times apart on time-to-15 purely from login discipline." }
+  ]},
+{ id:"grind", g:"⚔️", when:"Days 2–5", name:"The XP grind — attack, and always leave",
+  goal:"Attacks are worth several times more XP than anything else in Torn, and leaving is the highest-XP attack outcome.",
+  steps:[
+    { t:"Find leveling targets: weak players at high levels",
+      d:"The best XP comes from beating someone well above your level with tiny battle stats. Use this app's Targets tab, Baldr's community list on the forums, or FFScouter's target finder." },
+    { t:"Always click LEAVE after a win",
+      d:"Leaving gives 100% of the XP. Mugging gives roughly 55–60%, and hospitalising only about 40%. Hosping a leveling target throws XP away." },
+    { t:"Spend every 25 energy on attacks",
+      d:"25 energy per attack, win or lose. The bar refills on its own, so holding energy 'for later' is strictly worse than spending it now." },
+    { t:"Use the once-a-day energy refill when the bar is empty",
+      d:"Points Building → Use next to Energy. Used on an empty bar it's worth a whole bar; used on a full bar it's worth nothing." },
+    { t:"Use Xanax (250 energy) between attacks",
+      d:"The biggest accelerator there is. Take it once your energy is already spent — never before, and mind the overdose risk and addiction." },
+    { t:"Top up with energy drinks between drug cooldowns",
+      d:"5–30 energy each, on a 2-hour booster cooldown. Far cheaper than Xanax per dose and they stack with everything else." },
+    { t:"Keep doing crimes and missions in between",
+      d:"Nerve refills whether you use it or not, so crimes beside your attacks are free progress — plus they grow the nerve bar." },
+    { t:"Check the pace tiles above each day",
+      d:"If 'days to 15' is creeping up, you're capped, losing fights, or skipping refills. Fix the cause, not the number." }
+  ]},
+{ id:"boost", g:"🏢", when:"Any time", name:"Free XP and energy from jobs and companies",
+  goal:"The only places in Torn where job points convert directly into XP and energy.",
+  steps:[
+    { t:"Work somewhere whose 1★ special is experience",
+      d:"Clothing Store (Fashion Show), Hair Salon (Debate), Nightclub (Criminal Connections) and Theater (Stagecraft) all trade one job point for XP. The Company tab has every ladder." },
+    { t:"Use energy-granting company specials",
+      d:"Furniture Store / Pub / Restaurant at 1★ (3 energy per job point), Candle Shop 7★ (5), Game Shop 10★ (5 + nerve + happiness), Farm 10★ (7). Exchanges are capped at 100 job points a day." },
+    { t:"Use nerve-granting specials as well",
+      d:"Firework Stand 1★ (+2 nerve), Meat Warehouse 1★ (+2), Candle Shop 5★ (+2), Pub 5★ (refills your whole nerve bar for 25 job points)." },
+    { t:"Ask your faction about loans and perks",
+      d:"Many factions lend gear or an XP-bonus weapon. Some weapons carry an 'Experience' bonus that increases XP on the finishing hit." },
+    { t:"Never borrow money you can't lose to buy drugs",
+      d:"Selling losses to fund Xanax is a real strategy, but an overdose or a mug on borrowed cash sets you back further than simply training would have." }
+  ]},
+{ id:"done", g:"🏁", when:"At level 15", name:"You made it — now switch gears",
+  goal:"Level 15 unlocks the Travel Agency. Abroad flowers and plushies are a new player's first real income.",
+  steps:[
+    { t:"Open the Travel Agency and take your first flight",
+      d:"The Flight tab has every destination, the ticket classes, the 15-minute restock ticker and profit-per-flight maths." },
+    { t:"Move your energy back into the gym",
+      d:"You levelled on attack energy, so your battle stats are behind. Training now pays off for everything that comes later." },
+    { t:"Keep crimes running",
+      d:"Crime XP is the only thing that grows your natural nerve bar. It's a long game, and it starts now." },
+    { t:"Get into a faction with real perks",
+      d:"Chain and war payouts plus faction perks (nerve, stats) are the biggest early multipliers in the game." },
+    { t:"Pick a company worth running",
+      d:"The Company tab ranks all 39 companies by cost, profit and specials — and sorts them by the goals you pick." }
+  ]}
+];
+
+/* ---------- traps ---------- */
+const RC_DONTS = [
+  ["Mugging or hospitalising leveling targets", "roughly 55–60% and 40% of the XP you'd get for leaving — the same 25 energy, a fraction of the reward."],
+  ["Letting energy or nerve sit at maximum", "regeneration stops at the cap. It never banks up; the points are simply lost."],
+  ["Searching the dump with energy", "energy spent on the dump is energy not spent on attacks or the gym."],
+  ["Waiting to fly before level 15", "you can't fly until 15 unlocks the Travel Agency. Don't plan trips, plan attacks."],
+  ["Carrying cash on hand", "muggers hunt new players. Bank it and withdraw only what you're spending."],
+  ["Attacking without armour or first aid kits", "you lose fights you should win, then sit in hospital for 15–30 minutes."],
+  ["Grinding crimes you keep failing", "failures cost crime XP and can jail you. Stay at a difficulty you clear reliably."],
+  ["Taking Xanax on a full bar", "you waste the energy you just paid for. Take drugs after spending what you already have."],
+  ["Buying a 'level up service' without checking", "they exist and they work, but they cost real money and leave you with no battle stats for your level."],
+  ["Racing so hard you arrive with no stats", "levelling on attacks alone means you hit 15 as a punching bag. Alternate gym and attacks after the sprint."]
+];
+
+/* ---------- state ---------- */
+let rcSteps = store.get("lc2_racesteps", {}) || {};
+let rcOpts  = Object.assign({ base:150, xanax:0, drinks:0, refill:true, win:70, donator:null, level:null },
+                            store.get("lc2_raceopts", {}) || {});
+function rcSaveSteps(){ store.set("lc2_racesteps", rcSteps); }
+function rcSaveOpts(){ store.set("lc2_raceopts", rcOpts); }
+
+/* XP still to earn, as a share of the 1 → 15 journey.
+   Torn hides the real curve, so model the XP per level as proportional to the
+   level number (2,3,…,15 → 119 units total). Good enough to steer by. */
+function rcShareLeft(level){
+  const lv = Math.max(1, Math.min(RC_TARGET, Number(level) || 1));
+  if(lv >= RC_TARGET) return 0;
+  let left = 0;
+  for(let L = lv; L < RC_TARGET; L++) left += (L + 1);
+  let total = 0;
+  for(let L = 1; L < RC_TARGET; L++) total += (L + 1);
+  return left / total;
+}
+
+/* live-ish context: what we know about the racer right now */
+function rcCtx(){
+  const live = state.mode === "live";
+  const u = state.user || {};
+  const bar = (u.bars && u.bars.energy) || null;
+  const liveLevel = (live && typeof u.level === "number" && u.level > 0) ? u.level : null;
+  const raw = rcOpts.level != null ? Number(rcOpts.level) : (liveLevel != null ? liveLevel : 6);
+  const level = Math.max(1, Math.min(RC_TARGET, raw));
+  const energyMax = (live && bar && bar.maximum) ? bar.maximum : (rcOpts.donator ? 150 : 100);
+  const donator = rcOpts.donator == null ? (live ? energyMax >= 150 : false) : !!rcOpts.donator;
+  /* regen/day: use the player's real bar when we have it, else the wiki rates */
+  let regenDay;
+  if(live && bar && Number(bar.interval) > 0 && Number(bar.increment) > 0){
+    regenDay = (86400 / Number(bar.interval)) * Number(bar.increment);
+  } else {
+    regenDay = donator ? 720 : 480;   /* 5 per 10 min, or 5 per 15 min */
+  }
+  /* in demo mode show a believable level-6 racer rather than the demo account */
+  const energyNow = (live && bar && typeof bar.current === "number") ? bar.current : 62;
+  const nerve = live ? ((u.bars && u.bars.nerve) || null) : { current: 9, maximum: 20 };
+  return {
+    live, level, levelIsLive: rcOpts.level == null && liveLevel != null,
+    liveLevel, overridden: rcOpts.level != null, energyMax, energyNow, donator, regenDay, nerve,
+    money: (live && typeof u.money_onhand === "number") ? u.money_onhand : 620000,
+    playerName: u.name || null
+  };
+}
+function rcPace(){
+  const c = rcCtx();
+  const base = Math.max(20, Number(rcOpts.base) || 150);
+  const attacksLeft = Math.round(base * rcShareLeft(c.level));
+  const totalEnergy = c.regenDay
+    + (Number(rcOpts.xanax) || 0) * 250
+    + (Number(rcOpts.drinks) || 0) * 15
+    + (rcOpts.refill ? c.energyMax : 0);
+  const attempts = totalEnergy / 25;
+  const winRate = Math.max(5, Math.min(100, Number(rcOpts.win) || 70)) / 100;
+  const wins = attempts * winRate;
+  const days = wins > 0 ? attacksLeft / wins : Infinity;
+  const canAttackNow = c.energyNow != null ? Math.floor(c.energyNow / 25) : null;
+  return { c, base, attacksLeft, totalEnergy, attempts, wins, days, winRate, canAttackNow,
+           eta: days > 0 && isFinite(days) ? Date.now() + days * 86400000 : null };
+}
+function rcFmtDate(ts){
+  if(!ts || !isFinite(ts)) return "—";
+  const d = new Date(ts);
+  return d.toLocaleDateString(undefined, { weekday:"short", month:"short", day:"numeric" }) + " · " +
+         d.toLocaleTimeString(undefined, { hour:"2-digit", minute:"2-digit" });
+}
+
+/* ---------- render ---------- */
+function rcLevelRowHtml(){
+  const { c } = rcPace();
+  const pct = Math.round(((c.level - 1) / (RC_TARGET - 1)) * 100);
+  const done = c.level >= RC_TARGET;
+  return `
+    <div class="lvl"><small>Now</small>${c.level}</div>
+    <div class="rcbar">
+      <div class="lbl"><span>Level ${c.level} → ${RC_TARGET}</span><span>${done ? "done ✓" : (RC_TARGET - c.level) + " to go"}</span></div>
+      <div class="track"><div class="fill" style="width:${Math.max(2, Math.min(100, pct))}%"></div></div>
+    </div>`;
+}
+function rcNowHtml(){
+  const { c, canAttackNow } = rcPace();
+  const bits = [];
+  if(c.energyNow != null){
+    bits.push(`<div><small>Energy now</small><b>${fmtInt(c.energyNow)}${c.energyMax ? " / " + fmtInt(c.energyMax) : ""}</b></div>`);
+    bits.push(`<div><small>Attacks ready</small><b ${canAttackNow ? 'style="color:var(--accent)"' : ""}>${fmtInt(canAttackNow)}</b></div>`);
+  }
+  if(c.nerve && typeof c.nerve.current === "number"){
+    bits.push(`<div><small>Nerve</small><b>${fmtInt(c.nerve.current)}${c.nerve.maximum ? " / " + fmtInt(c.nerve.maximum) : ""}</b></div>`);
+  }
+  if(c.money != null && c.money > 250000){
+    bits.push(`<div><small>Cash on hand</small><b style="color:var(--warn)">${fmtMoney(c.money)}</b></div>`);
+  }
+  return bits.join("");
+}
+function rcPaceTilesHtml(){
+  const { c, attacksLeft, totalEnergy, attempts, wins, days, eta, canAttackNow } = rcPace();
+  const tiles = [];
+  tiles.push(`<div class="card rctile hi"><div class="l">Days to 15</div><div class="v">${isFinite(days) ? (days < 1 ? "<1" : Math.ceil(days)) : "—"}</div>
+    <div class="n">${eta ? "about " + rcFmtDate(eta) : "add energy sources"}</div></div>`);
+  tiles.push(`<div class="card rctile"><div class="l">Winning attacks left</div><div class="v">${fmtInt(attacksLeft)}</div>
+    <div class="n">from level ${c.level}${rcOpts.level == null ? "" : " (manual)"}</div></div>`);
+  tiles.push(`<div class="card rctile"><div class="l">Energy / day</div><div class="v">${fmtInt(totalEnergy)}</div>
+    <div class="n">${fmtInt(c.regenDay)} regen + ${fmtInt(Math.max(0, totalEnergy - c.regenDay))} from items</div></div>`);
+  tiles.push(`<div class="card rctile"><div class="l">Attacks / day</div><div class="v">${fmtInt(Math.floor(attempts))}</div>
+    <div class="n">at 25 energy each</div></div>`);
+  tiles.push(`<div class="card rctile"><div class="l">Wins / day</div><div class="v">${fmtInt(Math.floor(wins))}</div>
+    <div class="n">at a ${Math.round(rcPace().winRate * 100)}% win rate</div></div>`);
+  if(canAttackNow != null){
+    tiles.push(`<div class="card rctile"><div class="l">Attacks ready now</div><div class="v">${fmtInt(canAttackNow)}</div>
+      <div class="n">${canAttackNow ? "go spend them" : "come back when energy ticks"}</div></div>`);
+  }
+  return tiles.join("");
+}
+function rcControlsHtml(){
+  const o = rcOpts, c = rcCtx();
+  const don = o.donator == null ? (c.donator ? "auto-on" : "auto-off") : (o.donator ? "on" : "off");
+  return `
+    <div>
+      <label>Your level</label>
+      <input type="number" id="rcLevel" min="1" max="15" value="${c.level}">
+      <div class="hint">${c.levelIsLive
+        ? "read live from your Torn profile"
+        : (c.overridden && c.liveLevel != null)
+          ? `manual override — <button class="btn sm" data-rcreset="level" style="padding:1px 7px;font-size:11px">↻ use live (lvl ${c.liveLevel})</button>`
+          : "set it by hand in demo mode"}</div>
+    </div>
+    <div>
+      <label>Winning attacks for the whole run</label>
+      <input type="range" id="rcBase" min="80" max="260" step="10" value="${o.base}">
+      <div class="hint"><b>${fmtInt(o.base)}</b> · community range is ~100–200 winning attacks from level 1; targets, gear and win rate move you inside it</div>
+    </div>
+    <div>
+      <label>Xanax per day</label>
+      <select id="rcXanax">${[0,1,2,3,4,5,6,8].map(n => `<option value="${n}" ${Number(o.xanax)===n?"selected":""}>${n}${n?" · +"+fmtInt(n*250)+" energy":""}</option>`).join("")}</select>
+      <div class="hint">250 energy each · shares the drug cooldown</div>
+    </div>
+    <div>
+      <label>Energy drinks per day</label>
+      <select id="rcDrinks">${[0,1,2,4,6,8,12].map(n => `<option value="${n}" ${Number(o.drinks)===n?"selected":""}>${n}${n?" · +"+fmtInt(n*15)+" energy":""}</option>`).join("")}</select>
+      <div class="hint">5–30 energy each, 2-hour booster cooldown (15 avg used here)</div>
+    </div>
+    <div>
+      <label>Daily energy refill</label>
+      <label class="rcswitch"><input type="checkbox" id="rcRefill" ${o.refill ? "checked" : ""}> Using it every day (+${fmtInt(c.energyMax)} energy)</label>
+      <div class="hint">once a day from the Points Building — worth a full bar</div>
+    </div>
+    <div>
+      <label>Donator status</label>
+      <label class="rcswitch"><input type="checkbox" id="rcDonator" ${c.donator ? "checked" : ""}> 150 energy cap (${don})</label>
+      <div class="hint">donator refills 720 energy/day; without it 480</div>
+    </div>
+    <div>
+      <label>Win rate against your targets</label>
+      <input type="range" id="rcWin" min="30" max="100" step="5" value="${o.win}">
+      <div class="hint"><b>${o.win}%</b> · below ~60% you're under-trained — go back to the gym or pick softer targets</div>
+    </div>`;
+}
+function rcPhaseHtml(ph, i){
+  const done = ph.steps.filter((s, j) => rcSteps[ph.id + ":" + j]).length;
+  const all = done === ph.steps.length;
+  return `<div class="card rcphase">
+    <div class="rcphase-head">
+      <span class="rcphase-mark">${ph.g}</span>
+      <div class="rcphase-title">
+        <h3>${escHtml(ph.name)}</h3>
+        <div class="sub">${escHtml(ph.when)}</div>
+      </div>
+      <span class="rcphase-when" ${all ? 'style="color:var(--ok);border-color:color-mix(in srgb,var(--ok) 40%,var(--border))"' : ""}>${all ? "done ✓" : done + "/" + ph.steps.length}</span>
+    </div>
+    <div class="rcphase-goal">🎯 ${escHtml(ph.goal)}</div>
+    <div class="rcsteps">
+      ${ph.steps.map((s, j) => {
+        const id = ph.id + ":" + j, on = !!rcSteps[id];
+        return `<label class="rcstep ${on ? "done" : ""}" data-rcstep="${id}">
+          <input type="checkbox" ${on ? "checked" : ""} data-rcstepbox="${id}">
+          <span class="tx"><span class="tt">${escHtml(s.t)}</span><span class="dd">${escHtml(s.d)}</span></span>
+        </label>`;
+      }).join("")}
+    </div>
+  </div>`;
+}
+function rcProgress(){
+  const total = RC_PHASES.reduce((n, p) => n + p.steps.length, 0);
+  const done = RC_PHASES.reduce((n, p) => n + p.steps.filter((s, j) => rcSteps[p.id + ":" + j]).length, 0);
+  return { total, done, pct: total ? Math.round((done / total) * 100) : 0 };
+}
+function rcPaceWhyHtml(){
+  const p = rcPace(), xan = Number(rcOpts.xanax) || 0, days = p.days;
+  const ahead = p.c.liveLevel != null && p.c.liveLevel >= RC_TARGET;
+  return `
+    <b>The maths:</b> ${fmtInt(p.totalEnergy)} energy a day ÷ 25 per attack = <b>${fmtInt(Math.floor(p.attempts))} attacks</b>,
+    and at a ${Math.round(p.winRate * 100)}% win rate that's <b>${fmtInt(Math.floor(p.wins))} winning attacks a day</b>.
+    With about <b>${fmtInt(p.attacksLeft)} wins</b> still needed, that's <b>${isFinite(days) ? Math.ceil(days) : "—"} day${Math.ceil(days) === 1 ? "" : "s"}</b>.
+    ${xan === 0 ? "Adding a Xanax or two a day is the fastest lever on this whole page — 250 energy is ten extra attacks." : `Your ${xan} Xanax a day is doing heavy lifting: ${fmtInt(xan * 250)} of your ${fmtInt(p.totalEnergy)} daily energy.`}
+    ${ahead ? " You're already past 15 — the numbers above assume you're starting an alt or a restart." : ""}
+    <br><span class="co-muted">Assumes you never sit at a full bar, that every attack is a win at your stated rate, and that an average leveling target pays the community-average XP. Torn hides the real XP curve, so treat the countdown as a pace gauge.</span>`;
+}
+function renderRace(){
+  const { c, attacksLeft, days } = rcPace();
+  $("rcLevelRow").innerHTML = rcLevelRowHtml();
+  $("rcNowBox").innerHTML = rcNowHtml();
+
+  const chip = $("rcModeChip");
+  const ahead = c.liveLevel != null && c.liveLevel >= RC_TARGET;
+  chip.textContent = ahead ? "past 15 — plan for an alt" : (c.live ? (c.levelIsLive ? "live tracking" : "live · manual level") : "demo · sample numbers");
+  chip.className = "chip " + (ahead ? "ok" : c.live ? "accent" : "warn");
+
+  $("rcPace").innerHTML = rcPaceTilesHtml();
+  $("rcCtl").innerHTML = rcControlsHtml();
+  $("rcPaceNote").textContent = c.live ? "tracking " + (c.playerName || "your account") : "demo mode";
+
+  $("rcPaceWhy").innerHTML = rcPaceWhyHtml();
+
+  const pr = rcProgress();
+  $("rcProgNote").textContent = pr.done + " of " + pr.total + " steps done";
+  $("rcProgFill").style.width = pr.pct + "%";
+  $("rcProgChip").textContent = pr.pct + "%";
+  $("rcProgChip").className = "chip " + (pr.pct === 100 ? "ok" : pr.pct >= 50 ? "accent" : "");
+  $("rcPhases").innerHTML = RC_PHASES.map(rcPhaseHtml).join("");
+
+  $("rcUnlocks").innerHTML = RC_UNLOCKS.map(([lv, what]) => {
+    const hit = c.live && c.level >= lv;
+    return `<tr><td class="v" style="${hit ? "color:var(--ok)" : ""}">${hit ? "✓ " : ""}${lv}</td><td>${what}</td></tr>`;
+  }).join("");
+  $("rcDonts").innerHTML = RC_DONTS.map(([t, d]) =>
+    `<div class="row"><span class="x">✕</span><span><b>${escHtml(t)}</b> — <span>${escHtml(d)}</span></span></div>`).join("");
+  rcUpdateDynamic();
+}
+/* refresh only the numbers that move — never rebuilds the controls */
+function rcRefreshPace(){
+  const box = $("rcNowBox");
+  if(box) box.innerHTML = rcNowHtml();
+  const row = $("rcLevelRow");
+  if(row) row.innerHTML = rcLevelRowHtml();
+  const grid = $("rcPace");
+  if(grid) grid.innerHTML = rcPaceTilesHtml();
+  const why = $("rcPaceWhy");
+  if(why) why.innerHTML = rcPaceWhyHtml();
+}
+function rcUpdateDynamic(){
+  if(state.page !== "race") return;
+  rcRefreshPace();
+}
+function rcEnter(){
+  renderRace();
+}
+function rcWire(){
+  if(!$("page-race")) return;
+  const phases = $("rcPhases");
+  phases.addEventListener("change", e => {
+    const cb = e.target.closest("[data-rcstepbox]");
+    if(!cb) return;
+    const id = cb.dataset.rcstepbox;
+    if(cb.checked) rcSteps[id] = true; else delete rcSteps[id];
+    rcSaveSteps();
+    const label = cb.closest(".rcstep");
+    if(label) label.classList.toggle("done", cb.checked);
+    const pr = rcProgress();
+    $("rcProgNote").textContent = pr.done + " of " + pr.total + " steps done";
+    $("rcProgFill").style.width = pr.pct + "%";
+    $("rcProgChip").textContent = pr.pct + "%";
+    $("rcProgChip").className = "chip " + (pr.pct === 100 ? "ok" : pr.pct >= 50 ? "accent" : "");
+    /* re-render the phase header counters (and celebrate a finished phase) */
+    RC_PHASES.forEach(ph => {
+      const done = ph.steps.filter((s, j) => rcSteps[ph.id + ":" + j]).length;
+      if(done === ph.steps.length && ph.steps.some((s, j) => ph.id + ":" + j === id)){
+        toast("✅ Phase complete: " + escHtml(ph.name), "ok");
+      }
+    });
+    $("rcPhases").innerHTML = RC_PHASES.map(rcPhaseHtml).join("");
+    if(pr.pct === 100) toast("🏁 Plan complete — go and hit level 15.", "ok");
+  });
+  $("rcResetSteps").addEventListener("click", () => {
+    if(!confirm("Clear every tick in the plan?")) return;
+    rcSteps = {}; rcSaveSteps(); renderRace();
+  });
+  const bind = (id, ev, fn) => { const el = $(id); if(el) el.addEventListener(ev, fn); };
+  const ctl = $("rcCtl");
+  /* while dragging a slider, refresh the numbers only — rebuilding the
+     controls would rip the element out from under the pointer */
+  ctl.addEventListener("input", e => {
+    const t = e.target;
+    if(t.id === "rcWin"){ rcOpts.win = Number(t.value) || 70; }
+    else if(t.id === "rcBase"){ rcOpts.base = Number(t.value) || 150; }
+    else return;
+    rcSaveOpts();
+    const hint = t.closest("div") && t.closest("div").querySelector(".hint b");
+    if(hint) hint.textContent = t.id === "rcWin" ? rcOpts.win + "%" : fmtInt(rcOpts.base);
+    rcRefreshPace();
+  });
+  ctl.addEventListener("change", e => {
+    const t = e.target;
+    if(t.dataset && t.dataset.rcreset === "level"){ rcOpts.level = null; }
+    else if(t.id === "rcLevel"){ rcOpts.level = Math.max(1, Math.min(RC_TARGET, Number(t.value) || 1)); }
+    else if(t.id === "rcBase"){ rcOpts.base = Number(t.value) || 150; }
+    else if(t.id === "rcXanax"){ rcOpts.xanax = Number(t.value) || 0; }
+    else if(t.id === "rcDrinks"){ rcOpts.drinks = Number(t.value) || 0; }
+    else if(t.id === "rcRefill"){ rcOpts.refill = !!t.checked; }
+    else if(t.id === "rcDonator"){ rcOpts.donator = !!t.checked; }
+    else if(t.id === "rcWin"){ rcOpts.win = Number(t.value) || 70; }
+    else return;
+    rcSaveOpts(); renderRace();
+  });
+  bind("rcGoTargets", "click", () => goto("targets"));
+  bind("rcGoCompany", "click", () => goto("company"));
+}
+</script>
+<script>
+"use strict";
 /* ============================== EVENTS ============================== */
 function toggleTheme(){
   settings.theme = settings.theme === "dark" ? "light" : "dark";
@@ -4292,7 +6354,7 @@ function toggleTheme(){
 }
 async function refreshNow(){
   $("btnRefresh").classList.add("spin");
-  if(state.mode === "live"){ await loadLive(); }
+  if(state.mode === "live"){ await loadLive(); if(state.page === "company") await coFetch(true); }
   else { state.lastUpdated = Date.now(); toast("🔄 Demo data refreshed", "ok"); }
   fetchYata(true);
   $("btnRefresh").classList.remove("spin");
@@ -4304,6 +6366,12 @@ function wire(){
   $("btnRefresh").addEventListener("click", refreshNow);
   $("btnSearch").addEventListener("click", openPalette);
   $("modeBadge").addEventListener("click", () => setMode(state.mode === "live" ? "demo" : "live"));
+
+  // ---- Company tab ----
+  coWire();
+
+  // ---- Race to level 15 ----
+  rcWire();
 
   // ---- NPC Loot tab ----
   $("npcFilterSeg").addEventListener("click", e => {
