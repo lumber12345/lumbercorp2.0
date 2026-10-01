@@ -1254,6 +1254,11 @@ function demoItems(){
   ];
 }
 
+/* Torn City Time is UTC+5. IANA's Etc/* zones use the POSIX sign convention,
+   which is INVERTED: "Etc/GMT-5" means UTC+5. Using "Etc/GMT+5" here would
+   silently render UTC-5 — ten hours off — so it lives in one named place. */
+const TCT_TZ = "Etc/GMT-5";
+
 /* ---------- global state ---------- */
 const state = {
   page: "dashboard",
@@ -2660,7 +2665,7 @@ function fmtLadder(min){
 }
 function fmtTct(ms){
   try{
-    return new Intl.DateTimeFormat("en-GB", { timeZone: "Etc/GMT+5", hour: "2-digit", minute: "2-digit" }).format(new Date(ms));
+    return new Intl.DateTimeFormat("en-GB", { timeZone: TCT_TZ, hour: "2-digit", minute: "2-digit" }).format(new Date(ms));
   }catch(e){ return fmtClock(ms); }
 }
 /* next milestone: {at, label} or null when the ladder is maxed */
@@ -3878,7 +3883,7 @@ function updateDynamic(){
   npcTick();
   jbTick();
   // clocks
-  const nowTorn = new Intl.DateTimeFormat("en-GB", { timeZone: "Etc/GMT+5", hour:"2-digit", minute:"2-digit", second:"2-digit" }).format(new Date());
+  const nowTorn = new Intl.DateTimeFormat("en-GB", { timeZone: TCT_TZ, hour:"2-digit", minute:"2-digit", second:"2-digit" }).format(new Date());
   $("clockTorn").textContent = nowTorn + " TCT";
   $("clockLocal").textContent = new Date().toLocaleTimeString();
   if($("dashUpdated")) $("dashUpdated").textContent =
