@@ -58,6 +58,22 @@ New over 1.0:
   city-job promotion, and counts down to the 18:00 TCT point drop. Filter to all city jobs or only
   ones with positions you qualify for; search any city-job position or special. Tables verified
   against the Torn Wiki.
+- **Company tab (v2.46.0)** — two sub-tabs. **My Company** is the live director dashboard:
+  daily/weekly profit and customers, popularity / efficiency / environment meters, the company bank
+  and advertising budget, size / staff-room / storage upgrades, every stock line (cost, RRP, your
+  price, margin per unit, in stock, on order, sold, revenue) with reorder and below-cost warnings,
+  the full employee table (position, days, wage, effectiveness, working stats) and your company's
+  own 1★–10★ specials ladder marked up to your current star rating. Reads `company` selections
+  `profile` + `detailed` + `employees` + `stock` one at a time, so a key that can't see the
+  director-only sections still shows everything it *can* — and the last good read survives a reload.
+  **What company should I make?** covers all 39 companies a player can start: startup cost, default
+  staff, how it earns, its five specials (1★/3★/5★/7★/10★, passive or job-point cost), honest pros
+  & cons, "best for" tags, price-tier/search filters, affordability against your live cash, an
+  A–Z/cheapest/most-profitable sort, a **demo preview** of any company's dashboard, and a
+  goal-based recommender (pick gym, energy, travel, crime, PvP, education, profit, hacking, defense
+  or passive stats) that ranks the best five. Data verified against the Torn Wiki
+  [Company List](https://wiki.torn.com/wiki/Company/Company_List) and
+  [Special List](https://wiki.torn.com/wiki/Company/Special_List).
 - **Flight planner** — pick destination + class (Standard/Airstrip/WLT/Business), see arrival/return
   times, begin a flight and get a live countdown + landing notification (persisted across reloads)
 - **Restock ticker** — abroad markets restock on a fixed 15-min cycle; the bar shows the next one
