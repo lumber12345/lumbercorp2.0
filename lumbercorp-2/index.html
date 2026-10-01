@@ -2360,8 +2360,8 @@ const NPCS = [
       ["Rabbit Foot", null, "Other", 0, "🐇"]
     ] },
   { id: 23, name: "M'aol", hp: 605000000, tag: "Awoken by 9,999 treats · once a year", glyph: "👹",
-    season: "halloween", face: "", custom: true,
-    note: "Custom loot level — no I→V ladder. Kill the five Praetorians first (Praetorian Bond blocks him), then everyone who helped is entered for 5 random pieces of M'aol armour, the Tentacle and 94 × Arca Fortunae.",
+    season: "halloween", face: "",
+    note: "Kill the five Praetorians first — Praetorian Bond blocks him while they live. Everyone who helped defeat him is entered for 5 random pieces of M'aol armour, the Tentacle and 94 × Arca Fortunae.",
     loot: [
       ["M'aol Visage", 1164, "Defensive", 0, "👹"],
       ["M'aol Spathe", 1165, "Defensive", 0, "🥋"],
@@ -2373,23 +2373,23 @@ const NPCS = [
       ["Arca Fortunae × 94", null, "Other", 0, "🎁"]
     ] },
   { id: 100, name: "Dyno'salam", hp: 60000000, tag: "Praetorian · Hawaii", glyph: "🦎",
-    season: "halloween", face: "", custom: true,
+    season: "halloween", face: "",
     note: "Awakens with M'aol. One Relic for the group that puts him down.",
     loot: [["Dyno Sac", null, "Relic", 1, "🔮"]] },
   { id: 101, name: "Nol'dasaym", hp: 42350000, tag: "Praetorian · United Kingdom", glyph: "🐲",
-    season: "halloween", face: "", custom: true,
+    season: "halloween", face: "",
     note: "Awakens with M'aol. Bloodlust + Sleep + Poison; 90% chance to deflect temporary weapons.",
     loot: [["Nol Cloachra", null, "Relic", 1, "🔮"]] },
   { id: 102, name: "Asmol'yand", hp: 42350000, tag: "Praetorian · Cayman Islands", glyph: "🐉",
-    season: "halloween", face: "", custom: true,
+    season: "halloween", face: "",
     note: "Awakens with M'aol. Frenzy ramps damage on every consecutive hit — kill him fast.",
     loot: [["Asmol Knuckle", null, "Relic", 1, "🔮"]] },
   { id: 103, name: "Sylo'nadam", hp: 55550000, tag: "Praetorian · Canada", glyph: "🦂",
-    season: "halloween", face: "", custom: true,
+    season: "halloween", face: "",
     note: "Awakens with M'aol. 950% poison over 19 turns — bring medicals.",
     loot: [["Sylo Tooth", null, "Relic", 1, "🔮"]] },
   { id: 104, name: "Ladso'myna", hp: 86800000, tag: "Praetorian · Mexico", glyph: "👁️",
-    season: "halloween", face: "", custom: true,
+    season: "halloween", face: "",
     note: "Awakens with M'aol. The fattest Praetorian; 1000% head damage on melee.",
     loot: [["Ladso Eye", 1170, "Relic", 1, "👁️"]] }
 ];
@@ -2455,7 +2455,6 @@ function fmtTct(ms){
 function npcNextStep(n, p){
   if(!p) return null;
   if(p.inHosp) return { at: p.out, label: "Loot Level I" };
-  if(n.custom) return null;
   if(p.level >= 5) return null;
   return { at: p.lv[p.level], label: "Loot Level " + NPC_ROMAN[p.level] };
 }
@@ -2473,13 +2472,12 @@ function renderNpcLadder(){
 }
 
 function npcLootHtml(n){
-  const ladder = !n.custom;   // the IV–V rarity tag only applies to the I→V ladder
   return n.loot.map(l => {
     const art = l[1]
       ? `<img src="${npcImg(l[1])}" alt="${escHtml(l[0])}" loading="lazy" onerror="this.parentNode.textContent='${l[4]}';">`
       : l[4];
-    const rare = l[3] && ladder;
-    return `<div class="lootit${rare ? " rare" : ""}" title="${escHtml(l[0])} — ${escHtml(l[2])}${rare ? " · rare, high loot levels" : ""}${l[3] && !ladder ? " · rare drop" : ""}">
+    const rare = !!l[3];
+    return `<div class="lootit${rare ? " rare" : ""}" title="${escHtml(l[0])} — ${escHtml(l[2])}${rare ? " · rare, high loot levels" : ""}">
       <span class="li">${art}</span>
       <span class="ln">${escHtml(l[0])}</span>
       <span class="lt">${escHtml(l[2])}${rare ? " · IV–V" : ""}</span>
@@ -2490,7 +2488,6 @@ function npcLootHtml(n){
 function npcStateHtml(n, p){
   if(!p) return `<span class="big">Idle</span> <span data-stx="${n.id}">no clock — record a kill to start the ladder</span>`;
   if(p.inHosp) return `<span class="big hosp">🏥 Hospitalized</span> <span data-stx="${n.id}">out in ${fmtCountdown((p.out - Date.now()) / 1000)} · Loot Level I waits</span>`;
-  if(n.custom) return `<span class="big ok">Loot Level C</span> <span data-stx="${n.id}">custom ladder — ${p.level >= 1 ? "attackable now" : ""}</span>`;
   const tail = p.level >= 5 ? "max — 5 attackers get loot, rarest table unlocked"
                             : p.level + " attacker" + (p.level > 1 ? "s" : "") + " get" + (p.level > 1 ? "" : "s") + " loot";
   return `<span class="big ok">Loot Level ${NPC_ROMAN[p.level - 1]}</span> <span data-stx="${n.id}">${tail}</span>`;
@@ -2506,7 +2503,6 @@ function npcProgHtml(n, p){
       <b data-cd="${n.id}">${fmtCountdown(left / 1000)}</b>
     </div>`;
   }
-  if(n.custom) return `<div class="npccds"><span>Out of hospital</span><span class="track"><span class="fill restockfill" style="width:100%"></span></span><b data-cd="${n.id}">attackable ✓</b></div>`;
   if(p.level >= 5) return `<div class="npccds"><span>Loot Level V</span><span class="track"><span class="fill restockfill" style="width:100%"></span></span><b data-cd="${n.id}">MAX ✓</b></div>`;
   const from = p.lv[p.level - 1], to = p.lv[p.level];
   const pct = Math.max(0, Math.min(100, (Date.now() - from) / (to - from) * 100));
@@ -2518,11 +2514,6 @@ function npcProgHtml(n, p){
 }
 
 function npcLadderRowHtml(n, p){
-  if(n.custom){
-    return `<div class="npcnote">🎃 <b>Custom loot level</b> — M'aol and the Praetorians skip the I→V ladder.
-      Everyone who helped defeat one goes into the draw, and the NPC is attackable as soon as it leaves hospital
-      ${p ? `(<b>${fmtTct(p.out)} TCT</b>).` : "— record a kill to start the hospital clock."}</div>`;
-  }
   if(!p){
     return `<div class="npcnote">No clock running. Tap <b>⚔️ Defeated now</b> the moment your group kills
       ${escHtml(n.name)} and all five level timers start ticking.</div>`;
@@ -2649,7 +2640,7 @@ function npcTick(){
       if(bar) bar.style.width = Math.min(100, (1 - left / tot) * 100).toFixed(1) + "%";
       const cd = card.querySelector(`[data-cd="${n.id}"]`);
       if(cd) cd.textContent = fmtCountdown(left / 1000);
-    }else if(!n.custom && p.level < 5){
+    }else if(p.level < 5){
       const to = p.lv[p.level], from = p.lv[p.level - 1];
       const bar = card.querySelector(`[data-bar="${n.id}"]`);
       if(bar) bar.style.width = Math.max(0, Math.min(100, (Date.now() - from) / (to - from) * 100)).toFixed(1) + "%";
@@ -2679,7 +2670,6 @@ function npcTick(){
 function npcCheckLevels(){
   let dirty = false;
   for(const n of NPCS){
-    if(n.custom) continue;
     const p = npcPhase(n);
     if(!p) continue;
     const seen = npcSeen[n.id] || 0;
