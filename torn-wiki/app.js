@@ -372,19 +372,35 @@
   }
   function clearLive() { Object.keys(liveStore).forEach((k) => delete liveStore[k]); }
 
+  /* Fetch with a hard timeout, so a dead upstream cannot stall a page render. */
+  async function getJson(url, ms) {
+    if (typeof AbortController === 'undefined') {
+      const r = await fetch(url, { cache: 'no-store' });
+      return r.ok ? r.json() : Promise.reject(new Error('HTTP ' + r.status));
+    }
+    const ac = new AbortController();
+    const timer = setTimeout(() => ac.abort(), ms || 8000);
+    try {
+      const r = await fetch(url, { cache: 'no-store', signal: ac.signal });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return await r.json();
+    } finally { clearTimeout(timer); }
+  }
+
   async function tornGet(path, selections) {
     const key = (S.key || '').trim();
     if (!key) throw new Error('no-key');
+    /* Order matters: a configured proxy first (that is why the user set it),
+       then straight to Torn (fast, and CORS-friendly), then a same-origin
+       /api/torn relay if one happens to be serving this site. */
     const tries = [];
     if (S.proxy) tries.push(S.proxy.replace(/\/$/, '') + '/api/torn?path=/' + path + '/&key=' + encodeURIComponent(key) + (selections ? '&selections=' + selections : ''));
-    tries.push('/api/torn?path=/' + path + '/&key=' + encodeURIComponent(key) + (selections ? '&selections=' + selections : ''));
     tries.push(TORN_API + '/' + path + '/?selections=' + encodeURIComponent(selections || '') + '&key=' + encodeURIComponent(key) + '&comment=tornpedia');
+    tries.push('/api/torn?path=/' + path + '/&key=' + encodeURIComponent(key) + (selections ? '&selections=' + selections : ''));
     let lastErr;
     for (const url of tries) {
       try {
-        const r = await fetch(url, { cache: 'no-store' });
-        if (!r.ok) { lastErr = new Error('HTTP ' + r.status); continue; }
-        const j = await r.json();
+        const j = await getJson(url, 9000);
         if (j && j.error) { lastErr = new Error((j.error.error || 'Torn API error') + ' (code ' + j.error.code + ')'); continue; }
         return j;
       } catch (e) { lastErr = e; }
@@ -519,16 +535,14 @@
     // 2) direct to MediaWiki with CORS, 3) user-configured proxy.
     const qs = Object.keys(params).map((k) => k + '=' + encodeURIComponent(params[k])).join('&');
     const direct = WIKI_API + '?' + qs + '&format=json&origin=*';
-    const tries = ['/api/wiki?' + qs];
+    const tries = [];
     if (S.proxy) tries.push(S.proxy.replace(/\/$/, '') + '/api/wiki?' + qs);
-    tries.push(direct);
+    tries.push(direct);                 // fast when CORS is allowed, fast fail when not
+    tries.push('/api/wiki?' + qs);      // same-origin relay (preview server / Render proxy)
     let lastErr;
     for (const url of tries) {
-      try {
-        const r = await fetch(url, { cache: 'no-store' });
-        if (!r.ok) { lastErr = new Error('HTTP ' + r.status); continue; }
-        return await r.json();
-      } catch (e) { lastErr = e; }
+      try { return await getJson(url, 9000); }
+      catch (e) { lastErr = e; }
     }
     throw lastErr || new Error('offline');
   }
