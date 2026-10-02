@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tornpedia — the fast Torn City wiki</title>
+<meta name="description" content="Tornpedia: an offline-first Torn City wiki with instant search, live API data, calculators and the verified tables from LumberCorp 2.0.">
+<meta name="theme-color" content="#0c0f16">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ───────────────────────── sidebar ───────────────────────── -->
+<aside id="sidebar" class="sidebar" aria-label="Wiki navigation">
+  <div class="sb-head">
+    <a class="brand" href="#/">
+      <span class="brand-mark">T</span>
+      <span class="brand-text">
+        <b>Tornpedia</b>
+        <small id="brandSub">the fast Torn wiki</small>
+      </span>
+    </a>
+    <button class="icon-btn sb-close" id="sbClose" aria-label="Close navigation">✕</button>
+  </div>
+
+  <button class="sb-search" id="sbSearch" type="button">
+    <span class="mag">⌕</span>
+    <span class="sb-search-text">Search Tornpedia</span>
+    <kbd>⌘K</kbd>
+  </button>
+
+  <nav class="sb-nav" id="sbNav" aria-label="Categories"></nav>
+
+  <div class="sb-foot">
+    <a class="sb-link" href="#/bookmarks">🔖 Bookmarks <span class="count" id="bmCount">0</span></a>
+    <a class="sb-link" href="#/tools">🧮 Calculators</a>
+    <a class="sb-link" href="#/live">🔌 Live data</a>
+    <a class="sb-link" href="#/offline">📥 Offline</a>
+    <div class="sb-mini">
+      <button class="icon-btn" id="themeBtn" title="Toggle theme" aria-label="Toggle theme">◐</button>
+      <button class="icon-btn" id="installBtn" title="Install app" aria-label="Install app" hidden>⬇</button>
+      <span class="sb-status" id="netStatus" title="Network status">●</span>
+    </div>
+  </div>
+</aside>
+<div class="sb-scrim" id="sbScrim"></div>
+
+<!-- ───────────────────────── main ───────────────────────── -->
+<main class="main" id="main">
+  <header class="topbar">
+    <button class="icon-btn only-mobile" id="sbOpen" aria-label="Open navigation">☰</button>
+    <div class="crumb" id="crumb"></div>
+    <div class="topbar-right">
+      <button class="btn ghost" id="topSearch" type="button"><span class="mag">⌕</span> Search <kbd>/</kbd></button>
+      <a class="btn ghost" href="https://wiki.torn.com/wiki/Torn_Wiki" target="_blank" rel="noopener" title="The official wiki">wiki.torn.com ↗</a>
+    </div>
+  </header>
+
+  <div id="view" class="view"></div>
+
+  <footer class="foot">
+    <div>
+      <b>Tornpedia</b> — an unofficial fan reference for
+      <a href="https://www.torn.com/" target="_blank" rel="noopener">Torn City</a>.
+      Mechanics checked against <a href="https://wiki.torn.com/" target="_blank" rel="noopener">wiki.torn.com</a>;
+      tables ported from this repo's LumberCorp 2.0 PDA.
+    </div>
+    <div class="foot-meta" id="footMeta"></div>
+  </footer>
+</main>
+
+<!-- ───────────────────────── command palette ───────────────────────── -->
+<div class="palette-wrap" id="paletteWrap" hidden>
+  <div class="palette" role="dialog" aria-modal="true" aria-label="Search">
+    <div class="palette-top">
+      <span class="mag">⌕</span>
+      <input id="paletteInput" type="search" placeholder="Search articles, calculators, items, NPCs…" autocomplete="off" spellcheck="false">
+      <kbd>esc</kbd>
+    </div>
+    <div class="palette-results" id="paletteResults"></div>
+    <div class="palette-foot">
+      <span><kbd>↑</kbd><kbd>↓</kbd> move</span>
+      <span><kbd>↵</kbd> open</span>
+      <span id="paletteScope">bundled library</span>
+    </div>
+  </div>
+</div>
+
+<div class="toast-wrap" id="toastWrap"></div>
+
+<script src="data/datasets.js"></script>
+<script src="data/calcs.js"></script>
+<script src="data/articles-core.js"></script>
+<script src="data/articles-work.js"></script>
+<script src="data/articles-combat.js"></script>
+<script src="data/articles-strategy.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

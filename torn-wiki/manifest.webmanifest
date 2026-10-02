@@ -1,0 +1,22 @@
+{
+  "name": "Tornpedia — the fast Torn City wiki",
+  "short_name": "Tornpedia",
+  "description": "An offline-first Torn City wiki: instant search, live Torn API data, calculators and verified reference tables.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0c0f16",
+  "theme_color": "#0c0f16",
+  "categories": ["games", "reference", "utilities"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Search", "url": "./index.html#/s/", "description": "Search the library" },
+    { "name": "Calculators", "url": "./index.html#/tools", "description": "All Tornpedia calculators" },
+    { "name": "Live data", "url": "./index.html#/live", "description": "Connect a Torn API key" }
+  ]
+}

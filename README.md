@@ -1,6 +1,43 @@
 [README.md](https://github.com/user-attachments/files/31874506/README.md)
 # LumberCorp Companion — Abroad-Stock Aggregator
 
+## 📖 Tornpedia (`torn-wiki/`)
+
+**Tornpedia** is a Torn City wiki that loads instantly and works offline —
+the reference layer that sits next to LumberCorp's live data.
+
+| | wiki.torn.com | Tornpedia |
+| --- | --- | --- |
+| Search | server round-trip per keystroke | instant, fuzzy, offline, `⌘K` |
+| Offline | no | yes — installable PWA, whole library cached |
+| Live data | none | optional Torn API key fills pages with *your* numbers |
+| Maths | read the numbers | 10 interactive calculators |
+| Depth | every page, ever | 53 curated articles + live lookup of the rest |
+
+- **53 bundled articles** across core mechanics, combat & crime, work & money,
+  items, travel, factions and strategy — every number checked against
+  [wiki.torn.com](https://wiki.torn.com/), with estimates labelled as estimates.
+- **Verified datasets** ported straight out of this repo's LumberCorp 2.0 PDA
+  (and regenerable from it): 13 lootable NPCs with all **58 drops**, **41 city-job
+  positions** across six ladders, **39 companies** with every special, 11 travel
+  destinations, 33 gyms, properties, medical items and stat weights.
+- **10 calculators**: gym gains (both the community formula *and* Torn's official
+  growth figures), happy jumps, daily energy, travel profit, battle-stat weights,
+  hospital items, NPC loot timers, job points, market fees, company payback.
+- **Live layer**: paste a Minimal-access Torn API key and articles grow a box with
+  your real bars, travel timer, battle stats, job points, cash and company.
+- **Hybrid content**: anything not bundled is one keystroke away — the palette and
+  search also query wiki.torn.com live, and pages you open can be saved for offline.
+
+```bash
+node tools/preview-server.js 4173     # serves torn-wiki/ + /api/wiki + /api/torn proxies
+node tools/check.js                   # headless tests: links, tables, calculators, search
+node tools/build-datasets.js          # regenerate data/datasets.js from lumbercorp-2/
+```
+
+Deploy: `render.yaml` publishes it as a static site (no build step, no keys on the
+server). See [`torn-wiki/README.md`](torn-wiki/README.md) for the file map.
+
 ## ✨ LumberCorp 2.0 (`lumbercorp-2/`)
 
 The next generation of the app lives in **`lumbercorp-2/`** — still a

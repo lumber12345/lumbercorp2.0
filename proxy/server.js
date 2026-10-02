@@ -136,6 +136,44 @@ function sendRaw(res, status, text, extra) {
   res.end(text);
 }
 
+/* ------------------------------------------------------------ wiki call */
+/* MediaWiki api.php on wiki.torn.com — read-only queries only. */
+const WIKI_BASE = process.env.WIKI_BASE || 'wiki.torn.com';
+const WIKI_TTL_MS = Number(process.env.WIKI_TTL_MS) || 5 * 60 * 1000;
+const WIKI_PARAM_OK = new Set([
+  'action', 'list', 'prop', 'titles', 'srsearch', 'srlimit', 'srprop', 'srnamespace',
+  'explaintext', 'exintro', 'exsectionformat', 'redirects', 'inprop', 'generator',
+  'gsrsearch', 'gsrlimit', 'gsrnamespace', 'formatversion',
+]);
+function fetchWiki(params) {
+  return new Promise((resolve, reject) => {
+    const qs = new URLSearchParams(params);
+    const req = https.request({
+      hostname: WIKI_BASE.split(':')[0],
+      port: WIKI_BASE.includes(':') ? Number(WIKI_BASE.split(':')[1]) : 443,
+      path: `/api.php?${qs.toString()}`,
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        'user-agent': 'LumberCorp2Proxy/1.0 (unofficial fan tool; Tornpedia wiki relay)',
+      },
+      timeout: 12000,
+    }, (res) => {
+      const chunks = [];
+      let size = 0;
+      res.on('data', (c) => {
+        size += c.length;
+        if (size > 4 * 1024 * 1024) req.destroy();
+        else chunks.push(c);
+      });
+      res.on('end', () => resolve({ status: res.statusCode, body: Buffer.concat(chunks).toString('utf8') }));
+    });
+    req.on('timeout', () => req.destroy(new Error('wiki upstream timeout')));
+    req.on('error', reject);
+    req.end();
+  });
+}
+
 /* ------------------------------------------------------------ torn call */
 function fetchTorn(v2path, params) {
   return new Promise((resolve, reject) => {
@@ -776,6 +814,30 @@ const server = http.createServer(async (req, res) => {
     return res.end();
   }
   if (u.pathname === '/api/ping') return send(res, 200, { ok: true, ts: Date.now() });
+
+  /* ---- wiki.torn.com relay (powers Tornpedia's live wiki search) ----
+   * Proxies MediaWiki's api.php so the static site can look up pages that
+   * are not in its bundled library. Only the read-only query endpoints are
+   * exposed, and the result is cached for five minutes. */
+  if (u.pathname === '/api/wiki') {
+    const action = u.searchParams.get('action') || '';
+    if (action !== 'query') return send(res, 400, { error: { error: 'only action=query is allowed' } });
+    const params = {};
+    for (const [k, v] of u.searchParams) {
+      if (WIKI_PARAM_OK.has(k) && v != null && v !== '') params[k] = v;
+    }
+    params.format = 'json';
+    const ck = 'wiki&' + new URLSearchParams(params).toString();
+    const hit = cache.get(ck);                       // longer TTL than the Torn API cache
+    if (hit && Date.now() - hit.ts <= WIKI_TTL_MS) return sendRaw(res, hit.status, hit.body, { 'x-cache': 'HIT' });
+    fetchWiki(params)
+      .then((r) => {
+        if (r.status === 200) cacheSet(ck, r.status, r.body);
+        sendRaw(res, r.status, r.body, { 'x-cache': 'MISS' });
+      })
+      .catch((e) => send(res, 502, { error: { error: 'wiki request failed: ' + (e.message || 'unknown') } }));
+    return;
+  }
 
   /* ---- debug intake: the app POSTs its diagnostic dump here so the
           maintainer can read it from the workspace file ---- */
