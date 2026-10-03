@@ -1,4 +1,4 @@
-/* Tornpedia — work, economy and items. */
+/* Lumbercorpedia — work, economy and items. */
 (function (root) {
   'use strict';
   const A = (root.TW_ARTICLES = root.TW_ARTICLES || []);

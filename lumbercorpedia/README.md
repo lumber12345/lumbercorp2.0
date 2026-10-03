@@ -1,4 +1,4 @@
-# Tornpedia
+# Lumbercorpedia
 
 An offline-first Torn City wiki: instant fuzzy search, a curated article library,
 live Torn API widgets, calculators, and live lookup against wiki.torn.com for
@@ -107,7 +107,7 @@ logged server-side. No key, no problem — every article stands on its own.
 
 Mechanics were checked against [wiki.torn.com](https://wiki.torn.com/); dataset
 tables were ported from this repo's LumberCorp 2.0 PDA. Where the community only
-has an *estimate* — most importantly the gym gains formula — Tornpedia says so
+has an *estimate* — most importantly the gym gains formula — Lumbercorpedia says so
 and shows Torn's own published figures alongside it.
 
 An unofficial fan project. Not affiliated with Torn City or Eugenius Ltd.

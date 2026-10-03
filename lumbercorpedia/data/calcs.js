@@ -1,5 +1,5 @@
 /* ============================================================================
- * Tornpedia calculators — data/calcs.js
+ * Lumbercorpedia calculators — data/calcs.js
  * Every `run()` gets an object of the current field values and returns
  * { big, sub, grid:[{label,value}], note }. No DOM, no dependencies.
  * ========================================================================== */
@@ -131,7 +131,7 @@ with a = 3.480061091e-7, b = 250, c = 3.091619094e-6, d = 6.82775184551527e-5, e
 That formula grows **linearly** with your stat, so it drifts high once you are in the hundreds of millions.
 Chedburn’s 2022 stat-cap removal announcement gave official monthly growth figures for 1500 E/day in George’s
 at Private Island happiness — 211.75% at 50m, 108.05% at 100m, 12.87% at 1b, 3.37% at 10b, 1.97% at 1t.
-Tornpedia shows both, because the honest answer is "it depends where you are on the curve".
+Lumbercorpedia shows both, because the honest answer is "it depends where you are on the curve".
 
 ## What actually moves the number
 
@@ -324,7 +324,7 @@ a fully-staffed Private Island at 5,025. That is why the Private Island is the s
             { label: 'Their hit chance on you', value: interp(D.statWeights || [], scale(num(v.dex), num(v.speed) || 1)).toFixed(1) + '%' },
           ],
           note: 'The published tables are "speed versus 10,000,000 dexterity" and "defense versus 10,000,000 strength". '
-            + 'Tornpedia rescales by ratio (your stat × 10m / theirs), which is the standard approximation — the wiki itself '
+            + 'Lumbercorpedia rescales by ratio (your stat × 10m / theirs), which is the standard approximation — the wiki itself '
             + 'notes the speed-vs-dexterity curve is an approximation. Below 156,250 effective speed the hit chance is reported as 0% '
             + 'and above 640m it is 100%.',
         };

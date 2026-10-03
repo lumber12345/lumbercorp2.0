@@ -1,8 +1,8 @@
-/* Tornpedia service worker — offline-first.
+/* Lumbercorpedia service worker — offline-first.
  * The whole library is a handful of static files, so cache-first is correct
  * for the app shell and the data files. Bump CACHE to force a refresh.
  */
-const CACHE = 'tornpedia-v1';
+const CACHE = 'lumbercorpedia-v1';
 const ASSETS = [
   './',
   './index.html',

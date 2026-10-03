@@ -1,4 +1,4 @@
-/* tools/build-datasets.js — regenerate torn-wiki/data/datasets.js
+/* tools/build-datasets.js — regenerate lumbercorpedia/data/datasets.js
  *
  * Pulls the verified tables that already live inside LumberCorp 2.0
  * (lumbercorp-2/index.html) and emits them as a plain data file the wiki app
@@ -167,14 +167,14 @@ const payload = {
   levelUnlocks, statWeights, defWeights, medical, energyItems,
 };
 
-const out = '/* Tornpedia datasets — GENERATED FILE, do not hand-edit.\n'
+const out = '/* Lumbercorpedia datasets — GENERATED FILE, do not hand-edit.\n'
   + ' * Regenerate with:  node tools/build-datasets.js\n'
   + ' * Sources: the verified tables inside lumbercorp-2/index.html (NPC loot, city jobs,\n'
   + ' * companies, travel) plus reference tables checked against wiki.torn.com.\n'
   + ' */\n'
   + 'window.TW_DATA = ' + JSON.stringify(payload, null, 1) + ';\n';
 
-const dest = path.join(ROOT, 'torn-wiki', 'data', 'datasets.js');
+const dest = path.join(ROOT, 'lumbercorpedia', 'data', 'datasets.js');
 fs.writeFileSync(dest, out);
 console.log('wrote ' + dest + '  (' + (out.length / 1024).toFixed(1) + ' KB)');
 console.log('  npcs ' + npcs.length + ' / loot rows ' + npcs.reduce((a, n) => a + n.loot.length, 0)

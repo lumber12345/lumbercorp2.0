@@ -1,6 +1,6 @@
 {
-  "name": "Tornpedia — the fast Torn City wiki",
-  "short_name": "Tornpedia",
+  "name": "Lumbercorpedia — the fast Torn City wiki",
+  "short_name": "Lumbercorpedia",
   "description": "An offline-first Torn City wiki: instant search, live Torn API data, calculators and verified reference tables.",
   "start_url": "./index.html",
   "scope": "./",
@@ -16,7 +16,7 @@
   ],
   "shortcuts": [
     { "name": "Search", "url": "./index.html#/s/", "description": "Search the library" },
-    { "name": "Calculators", "url": "./index.html#/tools", "description": "All Tornpedia calculators" },
+    { "name": "Calculators", "url": "./index.html#/tools", "description": "All Lumbercorpedia calculators" },
     { "name": "Live data", "url": "./index.html#/live", "description": "Connect a Torn API key" }
   ]
 }

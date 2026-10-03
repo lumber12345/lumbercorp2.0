@@ -1,4 +1,4 @@
-/* Tornpedia — travel, guides and reference. */
+/* Lumbercorpedia — travel, guides and reference. */
 (function (root) {
   'use strict';
   const A = (root.TW_ARTICLES = root.TW_ARTICLES || []);
@@ -536,7 +536,7 @@ The numbers behind Torn, in one place.
 a = 3.480061091e-7, b = 250, c = 3.091619094e-6, d = 6.82775184551527e-5, e = −0.0301431777.
 
 > Warn: This is a community fit, not an official formula, and it grows linearly with your stat. Torn's own published
-> monthly growth figures after the August 2022 stat-cap removal do not. Tornpedia's gym calculator shows both — trust
+> monthly growth figures after the August 2022 stat-cap removal do not. Lumbercorpedia's gym calculator shows both — trust
 > whichever bracket you are actually in.
 
 ## Happy loss
@@ -643,7 +643,7 @@ key in-game under Account → Settings → API, with an access level:
 - **Minimal** — your own bars, profile, travel, money, work stats, job points. Everything a personal dashboard needs.
 - **Full** — faction and company internals, and more.
 
-> Warn: Never paste a full-access key into a site you do not trust. Tornpedia only ever asks for Minimal, only ever
+> Warn: Never paste a full-access key into a site you do not trust. Lumbercorpedia only ever asks for Minimal, only ever
 > reads, and stores the key in your own browser.
 
 ## What the big sites do
@@ -657,8 +657,8 @@ key in-game under Account → Settings → API, with an access level:
 
 ## This repo
 
-**LumberCorp 2.0** (in the same repository as Tornpedia) is the live companion: bars with ETAs, the NPC loot tab with
-real TornStats clocks, the job book, the company dashboard, rank wars and the bazaar scanner. Tornpedia is the
+**LumberCorp 2.0** (in the same repository as Lumbercorpedia) is the live companion: bars with ETAs, the NPC loot tab with
+real TornStats clocks, the job book, the company dashboard, rank wars and the bazaar scanner. Lumbercorpedia is the
 reference layer; LumberCorp is the live one.
 
 ## Using an API key safely

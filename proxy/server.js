@@ -155,7 +155,7 @@ function fetchWiki(params) {
       method: 'GET',
       headers: {
         accept: 'application/json',
-        'user-agent': 'LumberCorp2Proxy/1.0 (unofficial fan tool; Tornpedia wiki relay)',
+        'user-agent': 'LumberCorp2Proxy/1.0 (unofficial fan tool; Lumbercorpedia wiki relay)',
       },
       timeout: 12000,
     }, (res) => {
@@ -815,7 +815,7 @@ const server = http.createServer(async (req, res) => {
   }
   if (u.pathname === '/api/ping') return send(res, 200, { ok: true, ts: Date.now() });
 
-  /* ---- wiki.torn.com relay (powers Tornpedia's live wiki search) ----
+  /* ---- wiki.torn.com relay (powers Lumbercorpedia's live wiki search) ----
    * Proxies MediaWiki's api.php so the static site can look up pages that
    * are not in its bundled library. Only the read-only query endpoints are
    * exposed, and the result is cached for five minutes. */

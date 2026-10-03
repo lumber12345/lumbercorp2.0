@@ -1,4 +1,4 @@
-/* tools/check.js — headless sanity check for the Tornpedia PWA.
+/* tools/check.js — headless sanity check for the Lumbercorpedia PWA.
  *
  * Loads the app in a stub DOM and verifies:
  *   - every article id is unique and every internal [[link|id]] resolves
@@ -14,7 +14,7 @@ const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
 
-const ROOT = path.join(__dirname, '..', 'torn-wiki');
+const ROOT = path.join(__dirname, '..', 'lumbercorpedia');
 const fails = [];
 const warns = [];
 const ok = (msg) => console.log('  ✓ ' + msg);
@@ -74,7 +74,7 @@ for (const f of ['data/datasets.js', 'data/calcs.js', 'data/articles-core.js', '
     bad('could not load ' + f + ': ' + e.message);
   }
 }
-const T = window.Tornpedia;
+const T = window.Lumbercorpedia;
 if (!T) { console.log('\nFATAL: app did not initialise'); process.exit(1); }
 const { A, D, CALCS, BY_ID, TABLES, LIVE_WIDGETS } = T;
 

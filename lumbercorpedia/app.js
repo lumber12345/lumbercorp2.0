@@ -1,5 +1,5 @@
 /* ============================================================================
- * Tornpedia — app.js
+ * Lumbercorpedia — app.js
  * An offline-first Torn City wiki: instant fuzzy search, a bundled article
  * library, live Torn API widgets, calculators, and live wiki.torn.com lookup.
  * Zero dependencies. Hash router. Everything is rendered client-side.
@@ -71,10 +71,17 @@
   function num(v, dflt) { const n = parseFloat(v); return Number.isFinite(n) ? n : (dflt || 0); }
 
   /* ============================================================== state */
-  const LS = 'tornpedia.v1';
+  const LS = 'lumbercorpedia.v1';
+  const LS_LEGACY = 'tornpedia.v1';          // rename migration
   const defaults = { theme: 'dark', bookmarks: [], key: '', proxy: '', offline: {}, live: true, visited: [] };
   let S;
-  try { S = Object.assign({}, defaults, JSON.parse(localStorage.getItem(LS) || '{}')); }
+  try {
+    /* Carry settings across from the old name on first load after the rename. */
+    if (!localStorage.getItem(LS) && localStorage.getItem(LS_LEGACY)) {
+      localStorage.setItem(LS, localStorage.getItem(LS_LEGACY));
+    }
+    S = Object.assign({}, defaults, JSON.parse(localStorage.getItem(LS) || '{}'));
+  }
   catch (e) { S = Object.assign({}, defaults); }
   function save() { try { localStorage.setItem(LS, JSON.stringify(S)); } catch (e) { /* private mode */ } }
 
@@ -395,7 +402,7 @@
        /api/torn relay if one happens to be serving this site. */
     const tries = [];
     if (S.proxy) tries.push(S.proxy.replace(/\/$/, '') + '/api/torn?path=/' + path + '/&key=' + encodeURIComponent(key) + (selections ? '&selections=' + selections : ''));
-    tries.push(TORN_API + '/' + path + '/?selections=' + encodeURIComponent(selections || '') + '&key=' + encodeURIComponent(key) + '&comment=tornpedia');
+    tries.push(TORN_API + '/' + path + '/?selections=' + encodeURIComponent(selections || '') + '&key=' + encodeURIComponent(key) + '&comment=lumbercorpedia');
     tries.push('/api/torn?path=/' + path + '/&key=' + encodeURIComponent(key) + (selections ? '&selections=' + selections : ''));
     let lastErr;
     for (const url of tries) {
@@ -731,7 +738,7 @@
       + '<a target="_blank" rel="noopener" href="https://wiki.torn.com/wiki/' + encodeURIComponent((a.wiki || a.title).replace(/ /g, '_')) + '">'
       + esc(a.wiki || a.title) + ' on wiki.torn.com</a>. '
       + 'Anything marked as an estimate is a community figure, not an official number.</div>'
-      + '<div>Tornpedia is an unofficial fan project. Not affiliated with Torn City / Eugenius Ltd.</div></div>';
+      + '<div>Lumbercorpedia is an unofficial fan project. Not affiliated with Torn City / Eugenius Ltd.</div></div>';
 
     return h + '</article>';
   }
@@ -805,7 +812,7 @@
   function viewOffline() {
     const pages = Object.keys(S.offline || {});
     let h = '<section class="hero"><h1>📥 Offline</h1>'
-      + '<p>Tornpedia is an installable PWA: the whole bundled library works with no connection. Pages you pull from the official wiki are cached here too.</p></section>';
+      + '<p>Lumbercorpedia is an installable PWA: the whole bundled library works with no connection. Pages you pull from the official wiki are cached here too.</p></section>';
     h += '<div class="infobox"><h4>This browser</h4><div class="info-grid">'
       + '<div><span>Bundled articles</span><b>' + A.length + '</b></div>'
       + '<div><span>Wiki pages saved</span><b>' + pages.length + '</b></div>'
@@ -819,7 +826,7 @@
           + '<p>Saved ' + esc(new Date(S.offline[t].at).toLocaleDateString()) + '</p></a>').join('') + '</div>';
     }
     h += '<div class="sec-head"><h2>Install</h2><div class="line"></div></div>'
-      + '<div class="art-body"><p>Use <b>Install app</b> in the sidebar (or your browser’s “Add to Home Screen”) to get Tornpedia as a standalone app. '
+      + '<div class="art-body"><p>Use <b>Install app</b> in the sidebar (or your browser’s “Add to Home Screen”) to get Lumbercorpedia as a standalone app. '
       + 'Once installed, the service worker serves every bundled article with no network at all.</p></div>';
     return h;
   }
@@ -849,10 +856,10 @@
     } else {
       h += '<div class="art-body"><h3>How to get a key</h3><ol>'
         + '<li>In Torn: <b>Account → Settings → API</b>, or the API page under your profile.</li>'
-        + '<li>Create a key with <b>Minimal access</b> — that is all Tornpedia needs.</li>'
+        + '<li>Create a key with <b>Minimal access</b> — that is all Lumbercorpedia needs.</li>'
         + '<li>Paste it above. It is kept in this browser’s localStorage and sent only to api.torn.com.</li>'
         + '</ol><div class="callout warn"><span class="lbl">Warn</span>Never paste a full-access key into a site you do not control. '
-        + 'Tornpedia only ever asks the API for read-only selections.</div></div>';
+        + 'Lumbercorpedia only ever asks the API for read-only selections.</div></div>';
     }
     return h;
   }
@@ -927,7 +934,7 @@
       S.visited = [a.id].concat((S.visited || []).filter((x) => x !== a.id)).slice(0, 12);
       save();
       crumb.innerHTML = esc((CAT_BY_ID[a.cat] || {}).name || '') + ' / <b>' + esc(a.title) + '</b>';
-      document.title = a.title + ' — Tornpedia';
+      document.title = a.title + ' — Lumbercorpedia';
       view.innerHTML = viewArticle(a);
       renderCalcPlaceholders(view);
       renderLivePlaceholders(view);
@@ -936,7 +943,7 @@
       currentArticle = null;
       const c = CAT_BY_ID[parts[1]];
       crumb.innerHTML = '<b>' + esc(c ? c.name : 'Category') + '</b>';
-      document.title = (c ? c.name : 'Category') + ' — Tornpedia';
+      document.title = (c ? c.name : 'Category') + ' — Lumbercorpedia';
       view.innerHTML = viewCategory(parts[1]);
     } else if (parts[0] === 's') {
       currentArticle = null;
@@ -1237,7 +1244,7 @@
       b.addEventListener('click', async () => {
         b.hidden = true; deferredPrompt.prompt();
         const r = await deferredPrompt.userChoice;
-        if (r && r.outcome === 'accepted') toast('Tornpedia installed', 'ok');
+        if (r && r.outcome === 'accepted') toast('Lumbercorpedia installed', 'ok');
         deferredPrompt = null;
       });
     });
@@ -1305,5 +1312,5 @@
   else init();
 
   /* exposed for tools/check.js (and for poking at the library in devtools) */
-  window.Tornpedia = { search, A, D, CALCS, renderCalc, renderBody, route, BY_ID, TABLES, LIVE_WIDGETS, esc };
+  window.Lumbercorpedia = { search, A, D, CALCS, renderCalc, renderBody, route, BY_ID, TABLES, LIVE_WIDGETS, esc };
 })();

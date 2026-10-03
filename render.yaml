@@ -17,10 +17,10 @@ services:
         value: no-cache
 
   - type: web
-    name: tornpedia
+    name: lumbercorpedia
     runtime: static
     buildCommand: ""            # no build step — plain static files
-    staticPublishPath: ./torn-wiki        # the wiki PWA (index.html + data/ + icons/)
+    staticPublishPath: ./lumbercorpedia        # the wiki PWA (index.html + data/ + icons/)
     headers:
       - path: /sw.js
         name: Cache-Control

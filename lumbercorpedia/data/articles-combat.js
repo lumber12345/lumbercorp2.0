@@ -1,4 +1,4 @@
-/* Tornpedia — combat, crime and factions. */
+/* Lumbercorpedia — combat, crime and factions. */
 (function (root) {
   'use strict';
   const A = (root.TW_ARTICLES = root.TW_ARTICLES || []);
@@ -60,7 +60,7 @@ Until 2 August 2022 there was a soft cap at 50 million per stat, after which gai
 Chedburn removed it: beyond 50m, gains now keep rising at a steadily decreasing rate. The practical effect is that
 gym training stays relevant for players in the billions, where before it did not.
 
-> Note: Tornpedia's gym calculator shows both the community formula and the official post-cap growth figures, because
+> Note: Lumbercorpedia's gym calculator shows both the community formula and the official post-cap growth figures, because
 > they disagree at high stat values and the honest answer is that nobody outside Torn knows the exact curve.
 `,
     related: ['gym', 'attack', 'weapons', 'armor'],
@@ -113,7 +113,7 @@ The published community formula (Vladar) is:
 
 a = 3.480061091e-7, b = 250, c = 3.091619094e-6, d = 6.82775184551527e-5, e = −0.0301431777.
 
-Two caveats Tornpedia will not hide: it grows **linearly** with your stat, and Torn's own published monthly-growth
+Two caveats Lumbercorpedia will not hide: it grows **linearly** with your stat, and Torn's own published monthly-growth
 figures after the 2022 cap removal do not. Use the calculator — it shows both.
 
 {{calc:gym}}

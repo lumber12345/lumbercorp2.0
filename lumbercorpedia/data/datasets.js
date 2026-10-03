@@ -1,4 +1,4 @@
-/* Tornpedia datasets — GENERATED FILE, do not hand-edit.
+/* Lumbercorpedia datasets — GENERATED FILE, do not hand-edit.
  * Regenerate with:  node tools/build-datasets.js
  * Sources: the verified tables inside lumbercorp-2/index.html (NPC loot, city jobs,
  * companies, travel) plus reference tables checked against wiki.torn.com.

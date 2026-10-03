@@ -1,4 +1,4 @@
-/* Tornpedia — core mechanics articles. */
+/* Lumbercorpedia — core mechanics articles. */
 (function (root) {
   'use strict';
   const A = (root.TW_ARTICLES = root.TW_ARTICLES || []);
