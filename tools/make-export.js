@@ -47,16 +47,18 @@ fs.mkdirSync(OUT, { recursive: true });
 run(`git tag -f lc-export ${sha}`, { stdio: 'ignore' });
 run(`git clone -q --no-local ${REPO} ${TMP}`, { stdio: 'ignore' });
 runIn(TMP, 'git checkout -q -b main lc-export');
+const commitCount = runIn(TMP, 'git rev-list --count main');
 runIn(TMP, 'git symbolic-ref HEAD refs/heads/main');
 runIn(TMP, `git bundle create ${path.join(OUT, 'Lumbercorpedia-main.bundle')} main HEAD`, { stdio: 'ignore' });
 runIn(TMP, `git archive --format=zip --prefix=Lumbercorpedia/ main -o ${path.join(OUT, 'Lumbercorpedia-app.zip')}`, { stdio: 'ignore' });
+runIn(TMP, `git archive --format=zip main -o ${path.join(OUT, 'Lumbercorpedia-render.zip')}`, { stdio: 'ignore' });
 run('git tag -d lc-export', { stdio: 'ignore' });
 
 /* 3 — instructions */
 const pushSh = `#!/usr/bin/env bash
 # Publish Lumbercorpedia to GitHub. Run this on your own machine, where your
 # GitHub credentials work. It uses the bundle in this folder, so the commit
-# history (4 commits, authored dates preserved) comes across intact.
+# history (${commitCount} commits, authored dates preserved) comes across intact.
 set -euo pipefail
 cd "$(dirname "$0")"
 rm -rf Lumbercorpedia
@@ -84,7 +86,8 @@ outbound SSH. Everything below runs on **your** machine instead.
 
 | File | What |
 | --- | --- |
-| \`Lumbercorpedia-main.bundle\` | 4 commits, branch \`main\`, app files at repo root |
+| \`Lumbercorpedia-main.bundle\` | ${commitCount} commits, branch \`main\`, app files at repo root |
+| \`Lumbercorpedia-render.zip\` | Same files at the zip root, plus \`render.yaml\` |
 | \`Lumbercorpedia-app.zip\` | Same tree, no history |
 | \`push.sh\` | Does the whole job in one command |
 | \`HOW-TO-PUSH.md\` | This file |
@@ -128,21 +131,9 @@ git push -u origin main
 
 ## After the push
 
-- **Deploy**: static site, no build command, publish the repo root. A Render
-  blueprint would be:
-
-  \`\`\`yaml
-  services:
-    - type: web
-      name: lumbercorpedia
-      runtime: static
-      buildCommand: ""
-      staticPublishPath: .
-      headers:
-        - path: /sw.js
-          name: Cache-Control
-          value: no-cache
-  \`\`\`
+- **Deploy on Render**: \`render.yaml\` ships in the repo root, so
+  *New -> Blueprint* and picking this repo is the whole setup. See
+  \`RENDER.md\` (in this folder) for the manual path and the optional API relay.
 
 - **Local preview**: \`node tools/preview-server.js 4173\`
 - **Tests**: \`node tools/check.js\`
@@ -157,6 +148,7 @@ Reconnect GitHub in Arena and grant the app access to **Lumbercorpedia**, then
 ask me to retry — commit \`${sha}\` is ready to go.
 `;
 fs.writeFileSync(path.join(OUT, 'HOW-TO-PUSH.md'), md);
+fs.writeFileSync(path.join(OUT, 'RENDER.md'), '# Deploying Lumbercorpedia on Render\n\n`Lumbercorpedia-render.zip` unpacks the deployable tree with the files at the\nroot: everything in the git bundle, plus `render.yaml`.\n\n## Option 1 — blueprint (recommended)\n\n1. Push the bundle to GitHub (`./push.sh` in this folder).\n2. Render dashboard -> **New** -> **Blueprint** -> connect `lumber12345/Lumbercorpedia`.\n3. Render reads `render.yaml` and offers one static site. Accept and deploy.\n4. You get `https://lumbercorpedia.onrender.com`.\n\n## Option 2 — from this zip\n\n```bash\nunzip Lumbercorpedia-render.zip -d Lumbercorpedia && cd Lumbercorpedia\ngit init -b main && git add -A\ngit commit -m "Add Lumbercorpedia: offline-first Torn City wiki PWA"\ngit remote add origin https://github.com/lumber12345/Lumbercorpedia.git\ngit push -u origin main\n```\n\nThen Blueprint -> that repo, or create a static site by hand:\nruntime **static**, build command `rm -rf tools`, publish path `.`.\n\n## What the blueprint sets\n\n| Setting | Why |\n| --- | --- |\n| `runtime: static`, `staticPublishPath: .` | No build step; the app is plain HTML/CSS/JS |\n| `buildCommand: rm -rf tools` | Render requires a build command for static sites; this also keeps `tools/` off the CDN |\n| `Cache-Control: no-cache` on `/sw.js` | Otherwise returning visitors can be pinned to a stale service worker |\n| No rewrite rules | The router is hash based (`#/a/gym`), so `/` is the only path ever requested |\n\n## Live wiki search\n\n`wiki.torn.com` sends no CORS headers, so a browser on a static host cannot call\nit directly — anything not in the bundled library just falls back gracefully.\nTo make live lookup work for everyone, uncomment the `lumbercorpedia-api`\nservice in `render.yaml`: it runs `tools/preview-server.js`, which relays\n`/api/wiki` and `/api/torn`. Then either paste its URL into\n**Live data -> Proxy** in the app (saved per browser), or change `proxy: \'\'` in\nthe `defaults` object in `app.js` to bake it in for all visitors.\n\n## Checking a deploy\n\n- `/` loads, search responds instantly, an article renders offline\n- `/sw.js` returns `Cache-Control: no-cache`\n- DevTools -> Application -> Service Workers shows `lumbercorpedia-v1` activated\n');
 
 /* 4 — verify the bundle really works */
 const check = path.join(TMP, 'bundle-check');

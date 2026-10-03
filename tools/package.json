@@ -1,0 +1,16 @@
+{
+  "name": "lumbercorpedia-tools",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Dev tooling for Lumbercorpedia: test suite, dataset builder, history filter, and the /api/wiki + /api/torn relay (preview-server.js).",
+  "main": "preview-server.js",
+  "scripts": {
+    "start": "node preview-server.js",
+    "check": "node check.js",
+    "export": "node make-export.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {}
+}

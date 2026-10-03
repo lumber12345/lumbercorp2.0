@@ -1,0 +1,37 @@
+# Lumbercorpedia — Render Blueprint
+#
+# One static site, no build step, no rewrites: the router is hash based
+# (#/a/gym), so index.html at the repo root serves every URL.
+#
+# Live wiki lookup calls wiki.torn.com, which sends no CORS headers, so a
+# browser on a static host cannot reach it. The commented-out service at the
+# bottom runs tools/preview-server.js as a same-origin relay for /api/wiki and
+# /api/torn. Deploy it, then paste its URL into Live data > Proxy in the app.
+
+services:
+  - type: web
+    name: lumbercorpedia
+    runtime: static
+    buildCommand: rm -rf tools          # nothing to build; keeps the CDN copy clean
+    staticPublishPath: .
+    autoDeploy: true
+    headers:
+      # Without this, a returning visitor can be pinned to an old service worker.
+      - path: /sw.js
+        name: Cache-Control
+        value: no-cache, no-store, must-revalidate
+      - path: /manifest.webmanifest
+        name: Cache-Control
+        value: public, max-age=3600
+
+# Uncomment to enable live wiki search and the Torn API widgets from the server
+# side. Free instances spin down when idle, so expect a cold start.
+#
+#  - type: web
+#    name: lumbercorpedia-api
+#    runtime: node
+#    plan: free
+#    rootDir: tools
+#    buildCommand: npm install --ignore-scripts
+#    startCommand: node preview-server.js
+#    healthCheckPath: /
