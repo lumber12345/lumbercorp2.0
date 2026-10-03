@@ -33,6 +33,7 @@ the reference layer that sits next to LumberCorp's live data.
 node tools/preview-server.js 4173     # serves lumbercorpedia/ + /api/wiki + /api/torn proxies
 node tools/check.js                   # headless tests: links, tables, calculators, search
 node tools/build-datasets.js          # regenerate data/datasets.js from lumbercorp-2/
+node tools/make-export.js             # build ../Lumbercorpedia-export (bundle + zip for the standalone repo)
 ```
 
 Deploy: `render.yaml` publishes it as a static site (no build step, no keys on the
