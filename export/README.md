@@ -1,7 +1,7 @@
 # Lumbercorpedia export
 
 `Lumbercorpedia-main.bundle` is a git bundle holding the standalone
-Lumbercorpedia history: branch `main`, 5 commits, the wiki app at the repo root
+Lumbercorpedia history: branch `main`, 7 commits, the wiki app at the repo root
 plus `tools/`. The LumberCorp 2.0 PDA, the proxy and the render zip are not in it.
 
 The sandbox this was built in cannot write to
@@ -23,7 +23,7 @@ root, history preserved.
 
 ## Or rebuild it yourself
 
-Deterministic: you will get the same commit SHA `b0be18d6697b1a24bdf1510b15eaec2a2a2671b9`.
+Deterministic: you will get the same commit SHA `59c19709e61b52669f108380f7dffe991c45646a`.
 
 ```bash
 git checkout arena/01a0fed4-lumbercorp2-0
@@ -35,6 +35,12 @@ cd ../Lumbercorpedia-export && ./push.sh
 root, `tools/**` kept, unrelated commits dropped, authorship and dates intact).
 `tools/make-export.js` wraps it: bundle, zip, `push.sh`, instructions, then
 verifies by cloning the bundle and running `node tools/check.js` inside it.
+
+## Render
+
+`../Lumbercorpedia-export/Lumbercorpedia-render.zip` unpacks the same tree with
+the files at the root plus `render.yaml`, so Render's *New -> Blueprint* flow
+configures itself. See `lumbercorpedia/render.yaml` for what it sets.
 
 ## Deployment once it is up
 
