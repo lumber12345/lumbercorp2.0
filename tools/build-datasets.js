@@ -14,7 +14,25 @@ const path = require('path');
 const vm = require('vm');
 
 const ROOT = path.join(__dirname, '..');
-const SRC = fs.readFileSync(path.join(ROOT, 'lumbercorp-2', 'index.html'), 'utf8').split('\n');
+/* The app lives at <repo>/lumbercorpedia in the combined LumberCorp repo, and
+   at the repo root in the standalone Lumbercorpedia repo. Support both. */
+function appRoot() {
+  const repo = path.join(__dirname, '..');
+  const candidates = [path.join(repo, 'lumbercorpedia'), repo];
+  for (const d of candidates) {
+    try { if (fs.existsSync(path.join(d, 'index.html'))) return d; } catch (e) { /* ignore */ }
+  }
+  return candidates[0];
+}
+
+const SRC_FILE = path.join(ROOT, 'lumbercorp-2', 'index.html');
+if (!fs.existsSync(SRC_FILE)) {
+  console.error('Cannot find ' + SRC_FILE);
+  console.error('build-datasets reads the verified tables out of the LumberCorp 2.0 PDA.');
+  console.error('Run it from inside the lumbercorp2.0 repo, or copy lumbercorp-2/index.html next to this file.');
+  process.exit(1);
+}
+const SRC = fs.readFileSync(SRC_FILE, 'utf8').split('\n');
 
 /* Evaluate a top-level `const NAME = [...]` straight out of the PDA source. */
 function grab(name, start, end) {
@@ -174,7 +192,7 @@ const out = '/* Lumbercorpedia datasets — GENERATED FILE, do not hand-edit.\n'
   + ' */\n'
   + 'window.TW_DATA = ' + JSON.stringify(payload, null, 1) + ';\n';
 
-const dest = path.join(ROOT, 'lumbercorpedia', 'data', 'datasets.js');
+const dest = path.join(appRoot(), 'data', 'datasets.js');
 fs.writeFileSync(dest, out);
 console.log('wrote ' + dest + '  (' + (out.length / 1024).toFixed(1) + ' KB)');
 console.log('  npcs ' + npcs.length + ' / loot rows ' + npcs.reduce((a, n) => a + n.loot.length, 0)

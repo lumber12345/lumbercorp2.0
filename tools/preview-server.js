@@ -17,7 +17,18 @@ const fs = require('fs');
 const path = require('path');
 
 const PORT = Number(process.argv[2] || process.env.PORT || 4173);
-const ROOT = path.join(__dirname, '..', 'lumbercorpedia');
+/* The app lives at <repo>/lumbercorpedia in the combined LumberCorp repo, and
+   at the repo root in the standalone Lumbercorpedia repo. Support both. */
+function appRoot() {
+  const repo = path.join(__dirname, '..');
+  const candidates = [path.join(repo, 'lumbercorpedia'), repo];
+  for (const d of candidates) {
+    try { if (fs.existsSync(path.join(d, 'index.html'))) return d; } catch (e) { /* ignore */ }
+  }
+  return candidates[0];
+}
+
+const ROOT = appRoot();
 const TYPES = {
   '.html': 'text/html; charset=utf-8',
   '.js': 'text/javascript; charset=utf-8',
